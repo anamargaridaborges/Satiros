@@ -6,65 +6,63 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		94A5A3542E4CD155002B370D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94A5A3382E4CD155002B370D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 94A5A33F2E4CD155002B370D;
+			remoteInfo = Satiros;
+		};
+		94A5A35E2E4CD156002B370D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94A5A3382E4CD155002B370D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 94A5A33F2E4CD155002B370D;
+			remoteInfo = Satiros;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		94A5A30A2E4CC7A5002B370D /* Satiros.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Satiros.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		94A5A31B2E4CC7A5002B370D /* Satiros.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Satiros.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94A5A3402E4CD155002B370D /* Satiros.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Satiros.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94A5A3532E4CD155002B370D /* SatirosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SatirosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		94A5A35D2E4CD156002B370D /* SatirosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SatirosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		94A5A32D2E4CC7A5002B370D /* Exceptions for "Satiros Shared" folder in "Satiros iOS" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Actions.sks,
-				Assets.xcassets,
-				GameScene.sks,
-				GameScene.swift,
-			);
-			target = 94A5A3092E4CC7A5002B370D /* Satiros iOS */;
-		};
-		94A5A3312E4CC7A5002B370D /* Exceptions for "Satiros Shared" folder in "Satiros macOS" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Actions.sks,
-				Assets.xcassets,
-				GameScene.sks,
-				GameScene.swift,
-			);
-			target = 94A5A31A2E4CC7A5002B370D /* Satiros macOS */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		94A5A3012E4CC7A5002B370D /* Satiros Shared */ = {
+		94A5A3422E4CD155002B370D /* Satiros */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				94A5A32D2E4CC7A5002B370D /* Exceptions for "Satiros Shared" folder in "Satiros iOS" target */,
-				94A5A3312E4CC7A5002B370D /* Exceptions for "Satiros Shared" folder in "Satiros macOS" target */,
-			);
-			path = "Satiros Shared";
+			path = Satiros;
 			sourceTree = "<group>";
 		};
-		94A5A30C2E4CC7A5002B370D /* Satiros iOS */ = {
+		94A5A3562E4CD155002B370D /* SatirosTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Satiros iOS";
+			path = SatirosTests;
 			sourceTree = "<group>";
 		};
-		94A5A31C2E4CC7A5002B370D /* Satiros macOS */ = {
+		94A5A3602E4CD156002B370D /* SatirosUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Satiros macOS";
+			path = SatirosUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		94A5A3072E4CC7A5002B370D /* Frameworks */ = {
+		94A5A33D2E4CD155002B370D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		94A5A3182E4CC7A5002B370D /* Frameworks */ = {
+		94A5A3502E4CD155002B370D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94A5A35A2E4CD156002B370D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -74,21 +72,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		94A5A2FC2E4CC7A5002B370D = {
+		94A5A3372E4CD155002B370D = {
 			isa = PBXGroup;
 			children = (
-				94A5A3012E4CC7A5002B370D /* Satiros Shared */,
-				94A5A30C2E4CC7A5002B370D /* Satiros iOS */,
-				94A5A31C2E4CC7A5002B370D /* Satiros macOS */,
-				94A5A30B2E4CC7A5002B370D /* Products */,
+				94A5A3422E4CD155002B370D /* Satiros */,
+				94A5A3562E4CD155002B370D /* SatirosTests */,
+				94A5A3602E4CD156002B370D /* SatirosUITests */,
+				94A5A3412E4CD155002B370D /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		94A5A30B2E4CC7A5002B370D /* Products */ = {
+		94A5A3412E4CD155002B370D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				94A5A30A2E4CC7A5002B370D /* Satiros.app */,
-				94A5A31B2E4CC7A5002B370D /* Satiros.app */,
+				94A5A3402E4CD155002B370D /* Satiros.app */,
+				94A5A3532E4CD155002B370D /* SatirosTests.xctest */,
+				94A5A35D2E4CD156002B370D /* SatirosUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,97 +95,134 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		94A5A3092E4CC7A5002B370D /* Satiros iOS */ = {
+		94A5A33F2E4CD155002B370D /* Satiros */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 94A5A32E2E4CC7A5002B370D /* Build configuration list for PBXNativeTarget "Satiros iOS" */;
+			buildConfigurationList = 94A5A3672E4CD156002B370D /* Build configuration list for PBXNativeTarget "Satiros" */;
 			buildPhases = (
-				94A5A3062E4CC7A5002B370D /* Sources */,
-				94A5A3072E4CC7A5002B370D /* Frameworks */,
-				94A5A3082E4CC7A5002B370D /* Resources */,
+				94A5A33C2E4CD155002B370D /* Sources */,
+				94A5A33D2E4CD155002B370D /* Frameworks */,
+				94A5A33E2E4CD155002B370D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				94A5A30C2E4CC7A5002B370D /* Satiros iOS */,
+				94A5A3422E4CD155002B370D /* Satiros */,
 			);
-			name = "Satiros iOS";
+			name = Satiros;
 			packageProductDependencies = (
 			);
-			productName = "Satiros iOS";
-			productReference = 94A5A30A2E4CC7A5002B370D /* Satiros.app */;
+			productName = Satiros;
+			productReference = 94A5A3402E4CD155002B370D /* Satiros.app */;
 			productType = "com.apple.product-type.application";
 		};
-		94A5A31A2E4CC7A5002B370D /* Satiros macOS */ = {
+		94A5A3522E4CD155002B370D /* SatirosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 94A5A3322E4CC7A5002B370D /* Build configuration list for PBXNativeTarget "Satiros macOS" */;
+			buildConfigurationList = 94A5A36A2E4CD156002B370D /* Build configuration list for PBXNativeTarget "SatirosTests" */;
 			buildPhases = (
-				94A5A3172E4CC7A5002B370D /* Sources */,
-				94A5A3182E4CC7A5002B370D /* Frameworks */,
-				94A5A3192E4CC7A5002B370D /* Resources */,
+				94A5A34F2E4CD155002B370D /* Sources */,
+				94A5A3502E4CD155002B370D /* Frameworks */,
+				94A5A3512E4CD155002B370D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				94A5A3552E4CD155002B370D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				94A5A31C2E4CC7A5002B370D /* Satiros macOS */,
+				94A5A3562E4CD155002B370D /* SatirosTests */,
 			);
-			name = "Satiros macOS";
+			name = SatirosTests;
 			packageProductDependencies = (
 			);
-			productName = "Satiros macOS";
-			productReference = 94A5A31B2E4CC7A5002B370D /* Satiros.app */;
-			productType = "com.apple.product-type.application";
+			productName = SatirosTests;
+			productReference = 94A5A3532E4CD155002B370D /* SatirosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		94A5A35C2E4CD156002B370D /* SatirosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94A5A36D2E4CD156002B370D /* Build configuration list for PBXNativeTarget "SatirosUITests" */;
+			buildPhases = (
+				94A5A3592E4CD156002B370D /* Sources */,
+				94A5A35A2E4CD156002B370D /* Frameworks */,
+				94A5A35B2E4CD156002B370D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				94A5A35F2E4CD156002B370D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				94A5A3602E4CD156002B370D /* SatirosUITests */,
+			);
+			name = SatirosUITests;
+			packageProductDependencies = (
+			);
+			productName = SatirosUITests;
+			productReference = 94A5A35D2E4CD156002B370D /* SatirosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		94A5A2FD2E4CC7A5002B370D /* Project object */ = {
+		94A5A3382E4CD155002B370D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
-					94A5A3092E4CC7A5002B370D = {
+					94A5A33F2E4CD155002B370D = {
 						CreatedOnToolsVersion = 16.4;
 					};
-					94A5A31A2E4CC7A5002B370D = {
+					94A5A3522E4CD155002B370D = {
 						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 94A5A33F2E4CD155002B370D;
+					};
+					94A5A35C2E4CD156002B370D = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 94A5A33F2E4CD155002B370D;
 					};
 				};
 			};
-			buildConfigurationList = 94A5A3002E4CC7A5002B370D /* Build configuration list for PBXProject "Satiros" */;
+			buildConfigurationList = 94A5A33B2E4CD155002B370D /* Build configuration list for PBXProject "Satiros" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 94A5A2FC2E4CC7A5002B370D;
+			mainGroup = 94A5A3372E4CD155002B370D;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 94A5A30B2E4CC7A5002B370D /* Products */;
+			productRefGroup = 94A5A3412E4CD155002B370D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				94A5A3092E4CC7A5002B370D /* Satiros iOS */,
-				94A5A31A2E4CC7A5002B370D /* Satiros macOS */,
+				94A5A33F2E4CD155002B370D /* Satiros */,
+				94A5A3522E4CD155002B370D /* SatirosTests */,
+				94A5A35C2E4CD156002B370D /* SatirosUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		94A5A3082E4CC7A5002B370D /* Resources */ = {
+		94A5A33E2E4CD155002B370D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		94A5A3192E4CC7A5002B370D /* Resources */ = {
+		94A5A3512E4CD155002B370D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94A5A35B2E4CD156002B370D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -196,14 +232,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		94A5A3062E4CC7A5002B370D /* Sources */ = {
+		94A5A33C2E4CD155002B370D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		94A5A3172E4CC7A5002B370D /* Sources */ = {
+		94A5A34F2E4CD155002B370D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94A5A3592E4CD156002B370D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -212,129 +255,21 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		94A5A3552E4CD155002B370D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 94A5A33F2E4CD155002B370D /* Satiros */;
+			targetProxy = 94A5A3542E4CD155002B370D /* PBXContainerItemProxy */;
+		};
+		94A5A35F2E4CD156002B370D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 94A5A33F2E4CD155002B370D /* Satiros */;
+			targetProxy = 94A5A35E2E4CD156002B370D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		94A5A32F2E4CC7A5002B370D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BQ84H65DR2;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = satiros.Satiros;
-				PRODUCT_NAME = Satiros;
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		94A5A3302E4CC7A5002B370D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BQ84H65DR2;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = satiros.Satiros;
-				PRODUCT_NAME = Satiros;
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		94A5A3332E4CC7A5002B370D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Satiros macOS/Satiros_macOS.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BQ84H65DR2;
-				ENABLE_HARDENED_RUNTIME = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainStoryboardFile = Main;
-				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = satiros.Satiros;
-				PRODUCT_NAME = Satiros;
-				REGISTER_APP_GROUPS = YES;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		94A5A3342E4CC7A5002B370D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Satiros macOS/Satiros_macOS.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BQ84H65DR2;
-				ENABLE_HARDENED_RUNTIME = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainStoryboardFile = Main;
-				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = satiros.Satiros;
-				PRODUCT_NAME = Satiros;
-				REGISTER_APP_GROUPS = YES;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		94A5A3352E4CC7A5002B370D /* Debug */ = {
+		94A5A3652E4CD156002B370D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -396,7 +331,7 @@
 			};
 			name = Debug;
 		};
-		94A5A3362E4CC7A5002B370D /* Release */ = {
+		94A5A3662E4CD156002B370D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -450,37 +385,214 @@
 			};
 			name = Release;
 		};
+		94A5A3682E4CD156002B370D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Satiros/Satiros.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BQ84H65DR2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = satiros.Satiros;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Debug;
+		};
+		94A5A3692E4CD156002B370D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Satiros/Satiros.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BQ84H65DR2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = satiros.Satiros;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Release;
+		};
+		94A5A36B2E4CD156002B370D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BQ84H65DR2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = satiros.SatirosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Satiros.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Satiros";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Debug;
+		};
+		94A5A36C2E4CD156002B370D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BQ84H65DR2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = satiros.SatirosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Satiros.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Satiros";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Release;
+		};
+		94A5A36E2E4CD156002B370D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BQ84H65DR2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = satiros.SatirosUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = Satiros;
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Debug;
+		};
+		94A5A36F2E4CD156002B370D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BQ84H65DR2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = satiros.SatirosUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_TARGET_NAME = Satiros;
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		94A5A3002E4CC7A5002B370D /* Build configuration list for PBXProject "Satiros" */ = {
+		94A5A33B2E4CD155002B370D /* Build configuration list for PBXProject "Satiros" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				94A5A3352E4CC7A5002B370D /* Debug */,
-				94A5A3362E4CC7A5002B370D /* Release */,
+				94A5A3652E4CD156002B370D /* Debug */,
+				94A5A3662E4CD156002B370D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		94A5A32E2E4CC7A5002B370D /* Build configuration list for PBXNativeTarget "Satiros iOS" */ = {
+		94A5A3672E4CD156002B370D /* Build configuration list for PBXNativeTarget "Satiros" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				94A5A32F2E4CC7A5002B370D /* Debug */,
-				94A5A3302E4CC7A5002B370D /* Release */,
+				94A5A3682E4CD156002B370D /* Debug */,
+				94A5A3692E4CD156002B370D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		94A5A3322E4CC7A5002B370D /* Build configuration list for PBXNativeTarget "Satiros macOS" */ = {
+		94A5A36A2E4CD156002B370D /* Build configuration list for PBXNativeTarget "SatirosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				94A5A3332E4CC7A5002B370D /* Debug */,
-				94A5A3342E4CC7A5002B370D /* Release */,
+				94A5A36B2E4CD156002B370D /* Debug */,
+				94A5A36C2E4CD156002B370D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		94A5A36D2E4CD156002B370D /* Build configuration list for PBXNativeTarget "SatirosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94A5A36E2E4CD156002B370D /* Debug */,
+				94A5A36F2E4CD156002B370D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 94A5A2FD2E4CC7A5002B370D /* Project object */;
+	rootObject = 94A5A3382E4CD155002B370D /* Project object */;
 }
