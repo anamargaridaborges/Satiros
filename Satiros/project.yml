@@ -1,0 +1,39 @@
+name: Satiros
+options:
+ bundleIdPrefix: satiros.Satiros
+ deploymentTarget:
+  macOS: "14.0"
+ usesTabs: true
+ indentWidth: 2
+ tabWidth: 2
+targets:
+ Satiros:
+  type: application
+  platform: macOS
+  deploymentTarget: "14.0"
+  sources:
+   - path: Satiros
+  resources:
+   - path: Resources
+  settings:
+   base:
+    PRODUCT_BUNDLE_IDENTIFIER: satiros.Satiros
+    SWIFT_VERSION: 5.0
+    GENERATE_INFOPLIST_FILE: YES
+  dependencies:
+   - sdk: SwiftUI.framework
+   - sdk: SpriteKit.framework
+   - sdk: SwiftData.framework
+ SatirosTests:
+  type: bundle.unit-test
+  platform: macOS
+  sources:
+   - path: SatirosTests
+  dependencies:
+   - target: Satiros
+
+
+
+
+
+
