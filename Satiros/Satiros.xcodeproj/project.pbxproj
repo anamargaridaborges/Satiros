@@ -7,40 +7,40 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
-		94A5A3542E4CD155002B370D /* PBXContainerItemProxy */ = {
+		94A5A38C2E549EE9002B370D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 94A5A3382E4CD155002B370D /* Project object */;
+			containerPortal = 94A5A3732E549EE7002B370D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 94A5A33F2E4CD155002B370D;
+			remoteGlobalIDString = 94A5A37A2E549EE7002B370D;
 			remoteInfo = Satiros;
 		};
-		94A5A35E2E4CD156002B370D /* PBXContainerItemProxy */ = {
+		94A5A3962E549EE9002B370D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 94A5A3382E4CD155002B370D /* Project object */;
+			containerPortal = 94A5A3732E549EE7002B370D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 94A5A33F2E4CD155002B370D;
+			remoteGlobalIDString = 94A5A37A2E549EE7002B370D;
 			remoteInfo = Satiros;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		94A5A3402E4CD155002B370D /* Satiros.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Satiros.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		94A5A3532E4CD155002B370D /* SatirosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SatirosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		94A5A35D2E4CD156002B370D /* SatirosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SatirosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		94A5A37B2E549EE7002B370D /* Satiros.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Satiros.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94A5A38B2E549EE9002B370D /* SatirosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SatirosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		94A5A3952E549EE9002B370D /* SatirosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SatirosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		94A5A3422E4CD155002B370D /* Satiros */ = {
+		94A5A37D2E549EE7002B370D /* Satiros */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Satiros;
 			sourceTree = "<group>";
 		};
-		94A5A3562E4CD155002B370D /* SatirosTests */ = {
+		94A5A38E2E549EE9002B370D /* SatirosTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SatirosTests;
 			sourceTree = "<group>";
 		};
-		94A5A3602E4CD156002B370D /* SatirosUITests */ = {
+		94A5A3982E549EE9002B370D /* SatirosUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SatirosUITests;
 			sourceTree = "<group>";
@@ -48,21 +48,21 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		94A5A33D2E4CD155002B370D /* Frameworks */ = {
+		94A5A3782E549EE7002B370D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		94A5A3502E4CD155002B370D /* Frameworks */ = {
+		94A5A3882E549EE9002B370D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		94A5A35A2E4CD156002B370D /* Frameworks */ = {
+		94A5A3922E549EE9002B370D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -72,22 +72,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		94A5A3372E4CD155002B370D = {
+		94A5A3722E549EE7002B370D = {
 			isa = PBXGroup;
 			children = (
-				94A5A3422E4CD155002B370D /* Satiros */,
-				94A5A3562E4CD155002B370D /* SatirosTests */,
-				94A5A3602E4CD156002B370D /* SatirosUITests */,
-				94A5A3412E4CD155002B370D /* Products */,
+				94A5A37D2E549EE7002B370D /* Satiros */,
+				94A5A38E2E549EE9002B370D /* SatirosTests */,
+				94A5A3982E549EE9002B370D /* SatirosUITests */,
+				94A5A37C2E549EE7002B370D /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		94A5A3412E4CD155002B370D /* Products */ = {
+		94A5A37C2E549EE7002B370D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				94A5A3402E4CD155002B370D /* Satiros.app */,
-				94A5A3532E4CD155002B370D /* SatirosTests.xctest */,
-				94A5A35D2E4CD156002B370D /* SatirosUITests.xctest */,
+				94A5A37B2E549EE7002B370D /* Satiros.app */,
+				94A5A38B2E549EE9002B370D /* SatirosTests.xctest */,
+				94A5A3952E549EE9002B370D /* SatirosUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,134 +95,134 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		94A5A33F2E4CD155002B370D /* Satiros */ = {
+		94A5A37A2E549EE7002B370D /* Satiros */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 94A5A3672E4CD156002B370D /* Build configuration list for PBXNativeTarget "Satiros" */;
+			buildConfigurationList = 94A5A39F2E549EE9002B370D /* Build configuration list for PBXNativeTarget "Satiros" */;
 			buildPhases = (
-				94A5A33C2E4CD155002B370D /* Sources */,
-				94A5A33D2E4CD155002B370D /* Frameworks */,
-				94A5A33E2E4CD155002B370D /* Resources */,
+				94A5A3772E549EE7002B370D /* Sources */,
+				94A5A3782E549EE7002B370D /* Frameworks */,
+				94A5A3792E549EE7002B370D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				94A5A3422E4CD155002B370D /* Satiros */,
+				94A5A37D2E549EE7002B370D /* Satiros */,
 			);
 			name = Satiros;
 			packageProductDependencies = (
 			);
 			productName = Satiros;
-			productReference = 94A5A3402E4CD155002B370D /* Satiros.app */;
+			productReference = 94A5A37B2E549EE7002B370D /* Satiros.app */;
 			productType = "com.apple.product-type.application";
 		};
-		94A5A3522E4CD155002B370D /* SatirosTests */ = {
+		94A5A38A2E549EE9002B370D /* SatirosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 94A5A36A2E4CD156002B370D /* Build configuration list for PBXNativeTarget "SatirosTests" */;
+			buildConfigurationList = 94A5A3A22E549EE9002B370D /* Build configuration list for PBXNativeTarget "SatirosTests" */;
 			buildPhases = (
-				94A5A34F2E4CD155002B370D /* Sources */,
-				94A5A3502E4CD155002B370D /* Frameworks */,
-				94A5A3512E4CD155002B370D /* Resources */,
+				94A5A3872E549EE9002B370D /* Sources */,
+				94A5A3882E549EE9002B370D /* Frameworks */,
+				94A5A3892E549EE9002B370D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				94A5A3552E4CD155002B370D /* PBXTargetDependency */,
+				94A5A38D2E549EE9002B370D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				94A5A3562E4CD155002B370D /* SatirosTests */,
+				94A5A38E2E549EE9002B370D /* SatirosTests */,
 			);
 			name = SatirosTests;
 			packageProductDependencies = (
 			);
 			productName = SatirosTests;
-			productReference = 94A5A3532E4CD155002B370D /* SatirosTests.xctest */;
+			productReference = 94A5A38B2E549EE9002B370D /* SatirosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		94A5A35C2E4CD156002B370D /* SatirosUITests */ = {
+		94A5A3942E549EE9002B370D /* SatirosUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 94A5A36D2E4CD156002B370D /* Build configuration list for PBXNativeTarget "SatirosUITests" */;
+			buildConfigurationList = 94A5A3A52E549EE9002B370D /* Build configuration list for PBXNativeTarget "SatirosUITests" */;
 			buildPhases = (
-				94A5A3592E4CD156002B370D /* Sources */,
-				94A5A35A2E4CD156002B370D /* Frameworks */,
-				94A5A35B2E4CD156002B370D /* Resources */,
+				94A5A3912E549EE9002B370D /* Sources */,
+				94A5A3922E549EE9002B370D /* Frameworks */,
+				94A5A3932E549EE9002B370D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				94A5A35F2E4CD156002B370D /* PBXTargetDependency */,
+				94A5A3972E549EE9002B370D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				94A5A3602E4CD156002B370D /* SatirosUITests */,
+				94A5A3982E549EE9002B370D /* SatirosUITests */,
 			);
 			name = SatirosUITests;
 			packageProductDependencies = (
 			);
 			productName = SatirosUITests;
-			productReference = 94A5A35D2E4CD156002B370D /* SatirosUITests.xctest */;
+			productReference = 94A5A3952E549EE9002B370D /* SatirosUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		94A5A3382E4CD155002B370D /* Project object */ = {
+		94A5A3732E549EE7002B370D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
-					94A5A33F2E4CD155002B370D = {
+					94A5A37A2E549EE7002B370D = {
 						CreatedOnToolsVersion = 16.4;
 					};
-					94A5A3522E4CD155002B370D = {
+					94A5A38A2E549EE9002B370D = {
 						CreatedOnToolsVersion = 16.4;
-						TestTargetID = 94A5A33F2E4CD155002B370D;
+						TestTargetID = 94A5A37A2E549EE7002B370D;
 					};
-					94A5A35C2E4CD156002B370D = {
+					94A5A3942E549EE9002B370D = {
 						CreatedOnToolsVersion = 16.4;
-						TestTargetID = 94A5A33F2E4CD155002B370D;
+						TestTargetID = 94A5A37A2E549EE7002B370D;
 					};
 				};
 			};
-			buildConfigurationList = 94A5A33B2E4CD155002B370D /* Build configuration list for PBXProject "Satiros" */;
+			buildConfigurationList = 94A5A3762E549EE7002B370D /* Build configuration list for PBXProject "Satiros" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 94A5A3372E4CD155002B370D;
+			mainGroup = 94A5A3722E549EE7002B370D;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 94A5A3412E4CD155002B370D /* Products */;
+			productRefGroup = 94A5A37C2E549EE7002B370D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				94A5A33F2E4CD155002B370D /* Satiros */,
-				94A5A3522E4CD155002B370D /* SatirosTests */,
-				94A5A35C2E4CD156002B370D /* SatirosUITests */,
+				94A5A37A2E549EE7002B370D /* Satiros */,
+				94A5A38A2E549EE9002B370D /* SatirosTests */,
+				94A5A3942E549EE9002B370D /* SatirosUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		94A5A33E2E4CD155002B370D /* Resources */ = {
+		94A5A3792E549EE7002B370D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		94A5A3512E4CD155002B370D /* Resources */ = {
+		94A5A3892E549EE9002B370D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		94A5A35B2E4CD156002B370D /* Resources */ = {
+		94A5A3932E549EE9002B370D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -232,21 +232,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		94A5A33C2E4CD155002B370D /* Sources */ = {
+		94A5A3772E549EE7002B370D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		94A5A34F2E4CD155002B370D /* Sources */ = {
+		94A5A3872E549EE9002B370D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		94A5A3592E4CD156002B370D /* Sources */ = {
+		94A5A3912E549EE9002B370D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -256,20 +256,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		94A5A3552E4CD155002B370D /* PBXTargetDependency */ = {
+		94A5A38D2E549EE9002B370D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 94A5A33F2E4CD155002B370D /* Satiros */;
-			targetProxy = 94A5A3542E4CD155002B370D /* PBXContainerItemProxy */;
+			target = 94A5A37A2E549EE7002B370D /* Satiros */;
+			targetProxy = 94A5A38C2E549EE9002B370D /* PBXContainerItemProxy */;
 		};
-		94A5A35F2E4CD156002B370D /* PBXTargetDependency */ = {
+		94A5A3972E549EE9002B370D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 94A5A33F2E4CD155002B370D /* Satiros */;
-			targetProxy = 94A5A35E2E4CD156002B370D /* PBXContainerItemProxy */;
+			target = 94A5A37A2E549EE7002B370D /* Satiros */;
+			targetProxy = 94A5A3962E549EE9002B370D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		94A5A3652E4CD156002B370D /* Debug */ = {
+		94A5A39D2E549EE9002B370D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -331,7 +331,7 @@
 			};
 			name = Debug;
 		};
-		94A5A3662E4CD156002B370D /* Release */ = {
+		94A5A39E2E549EE9002B370D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -385,7 +385,7 @@
 			};
 			name = Release;
 		};
-		94A5A3682E4CD156002B370D /* Debug */ = {
+		94A5A3A02E549EE9002B370D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -410,7 +410,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = satiros.Satiros;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -424,7 +424,7 @@
 			};
 			name = Debug;
 		};
-		94A5A3692E4CD156002B370D /* Release */ = {
+		94A5A3A12E549EE9002B370D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -449,7 +449,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = satiros.Satiros;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -463,7 +463,7 @@
 			};
 			name = Release;
 		};
-		94A5A36B2E4CD156002B370D /* Debug */ = {
+		94A5A3A32E549EE9002B370D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -486,7 +486,7 @@
 			};
 			name = Debug;
 		};
-		94A5A36C2E4CD156002B370D /* Release */ = {
+		94A5A3A42E549EE9002B370D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -509,7 +509,7 @@
 			};
 			name = Release;
 		};
-		94A5A36E2E4CD156002B370D /* Debug */ = {
+		94A5A3A62E549EE9002B370D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -531,7 +531,7 @@
 			};
 			name = Debug;
 		};
-		94A5A36F2E4CD156002B370D /* Release */ = {
+		94A5A3A72E549EE9002B370D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -556,43 +556,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		94A5A33B2E4CD155002B370D /* Build configuration list for PBXProject "Satiros" */ = {
+		94A5A3762E549EE7002B370D /* Build configuration list for PBXProject "Satiros" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				94A5A3652E4CD156002B370D /* Debug */,
-				94A5A3662E4CD156002B370D /* Release */,
+				94A5A39D2E549EE9002B370D /* Debug */,
+				94A5A39E2E549EE9002B370D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		94A5A3672E4CD156002B370D /* Build configuration list for PBXNativeTarget "Satiros" */ = {
+		94A5A39F2E549EE9002B370D /* Build configuration list for PBXNativeTarget "Satiros" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				94A5A3682E4CD156002B370D /* Debug */,
-				94A5A3692E4CD156002B370D /* Release */,
+				94A5A3A02E549EE9002B370D /* Debug */,
+				94A5A3A12E549EE9002B370D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		94A5A36A2E4CD156002B370D /* Build configuration list for PBXNativeTarget "SatirosTests" */ = {
+		94A5A3A22E549EE9002B370D /* Build configuration list for PBXNativeTarget "SatirosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				94A5A36B2E4CD156002B370D /* Debug */,
-				94A5A36C2E4CD156002B370D /* Release */,
+				94A5A3A32E549EE9002B370D /* Debug */,
+				94A5A3A42E549EE9002B370D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		94A5A36D2E4CD156002B370D /* Build configuration list for PBXNativeTarget "SatirosUITests" */ = {
+		94A5A3A52E549EE9002B370D /* Build configuration list for PBXNativeTarget "SatirosUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				94A5A36E2E4CD156002B370D /* Debug */,
-				94A5A36F2E4CD156002B370D /* Release */,
+				94A5A3A62E549EE9002B370D /* Debug */,
+				94A5A3A72E549EE9002B370D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 94A5A3382E4CD155002B370D /* Project object */;
+	rootObject = 94A5A3732E549EE7002B370D /* Project object */;
 }
