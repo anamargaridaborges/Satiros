@@ -1,0 +1,16 @@
+# Ignorar o Xcode project gerado pelo XcodeGen
+Satiros/*.xcodeproj
+
+# SwiftPM
+Satiros/.build/
+Satiros/Packages/
+Satiros/*.swiftpm
+
+# Xcode
+Satiros/xcuserdata/
+Satiros/DerivedData/
+Satiros/Build/
+*.xcworkspace
+
+# Arquivos temporários
+.DS_Store
