@@ -1,24 +1,109 @@
 {
     "dialogs" : [
+				{
+					"id": ,
+					"caracter" : "",
+					"text": [""],
+					"choices": [
+						{
+							"id": ,
+							"text" : "",
+							"desconfianca": ,
+							"popularidade": ,
+							"response": [""]
+						}
+					],
+				}
         {
-            "id": 0,
-            "caracter" : "",
-            "text": ["THREE DAYS AGO, FATHER LORGAN, HEAD OF THE EASTOWN SEMINAR, MYSTERIOUSLY DISAPPEARED, YOU HAVE BEEN SEND TO REPLACE HIM IN THE MEANTIME"],
-            "choices": [],
+          "id": 0,
+					"caracter" : "",
+					"text": ["THREE DAYS AGO, FATHER LORGAN, HEAD OF THE EASTOWN SEMINAR, MYSTERIOUSLY DISAPPEARED, YOU HAVE BEEN SEND TO REPLACE HIM IN THE MEANTIME"],
+					"choices": [],
         }
         {
-            "id": 1,
-            "caracter" : "Sister Desmond",
-            "text": ["Blessings Father. Good Morning…"],
-            "choices": [
+					"id": 1,
+					"caracter" : "Sister Desmond",
+					"text": ["Blessings Father. Good Morning…"],
+					"choices": [
                 {
-                    "id": 1.1,
-                    "text" : "Good morning, Sister",
-                    "atributes": {},
-                    response: []
-                }
-                
+									"id": 1.1,
+									"text" : "Good morning, Sister",
+									"desconfianca": ,
+									"popularidade": ,
+									"response": []
+                },
+								{
+									"id": 1.2,
+									"text" : "Blessings to you, my sister.",
+									"desconfianca": ,
+									"popularidade": ,
+									"response": []
+								},
+								{
+									"id": 1.3,
+									"text" : "Be quiet",
+									"desconfianca": ,
+									"popularidade": ,
+									"response": []
+								}
             ],
         }
-    ]
+				{
+					"id": 2,
+					"caracter" : "Sister Desmond",
+					"text": ["We have been expecting you, here come, let me show you around. And welcome to the church.",
+										"As you know, our seminar has been on break ever since Father Lorgan’s… absence. Let me present you our students",
+										"Richmond. Aristocrat turned zealot. Leaving comfort for the Lord’s work… inspiring really.",
+										"Sight. He lives in his own world, the family sent him here for “treatment”, turns out the kid is actually a good evangelist ",
+										"Presi. Good kid, he’s the closest to graduating, a natural charmer. His congregation will be one to watch for.",
+										"Ender. He’s sly as a fox. Tho hasn’t been the same since Lorgan left, they were very close. ",
+										"And John. Endlessly devout. Natural scholar. Not an easy talker… ",
+										"They are all going to need your guidance here Father. I hope you can sooth them, this humble village needs these kids to be good leaders to them."],
+					"choices": [
+						{
+							"id": 2.1,
+							"text" : "Thank you for the vote of confidence",
+							"desconfianca": ,
+							"popularidade": ,
+							"response": ["I expect it not to be wasted, but a new face might be able to reanimate spirits around here."],
+						},
+						{
+							"id": 2.2,
+							"text" : "Not an easy task taking on the shoes of Lorgan.",
+							"desconfianca": ,
+							"popularidade": ,
+							"response": ["I would not hang Father Lorgan’s shoes just yet, we don’t know what happened to him, well not we, I don’t. The boys “know” he has been sent on break. I can’t believe they would make us lie in the house of the Lord."]
+						}
+					],
+				}
+				{
+					"id": 3,
+					"caracter" : "",
+					"text": [""],
+					"choices": [
+						{
+							"id": 3.1,
+							"text" : "What do you think happened to Lorgan?",
+							"desconfianca": 1,
+							"popularidade": ,
+							"response": ["As I told you Father, I do not know. He was overwhelmed sure… but he cared deeply for the church… for the community. He is a leader no just in faith but for the village, we are weakened by his absence…"]
+						}
+						{
+							"id": 3.2,
+							"text" : "Brush it off",
+							"desconfianca": ,
+							"popularidade": ,
+							"response": [""]
+						}
+					],
+				}
+				{
+					"id": 4,
+					"caracter" : "",
+					"text": [""],
+				}
+				
+				
+    ] //dialogs
+		
 }
