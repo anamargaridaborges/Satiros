@@ -1,0 +1,24 @@
+{
+    "dialogs" : [
+        {
+            "id": 0,
+            "caracter" : "",
+            "text": ["THREE DAYS AGO, FATHER LORGAN, HEAD OF THE EASTOWN SEMINAR, MYSTERIOUSLY DISAPPEARED, YOU HAVE BEEN SEND TO REPLACE HIM IN THE MEANTIME"],
+            "choices": [],
+        }
+        {
+            "id": 1,
+            "caracter" : "Sister Desmond",
+            "text": ["Blessings Father. Good Morning…"],
+            "choices": [
+                {
+                    "id": 1.1,
+                    "text" : "Good morning, Sister",
+                    "atributes": {},
+                    response: []
+                }
+                
+            ],
+        }
+    ]
+}
