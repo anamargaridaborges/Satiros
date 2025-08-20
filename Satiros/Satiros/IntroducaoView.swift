@@ -13,18 +13,48 @@ struct IntroducaoView: View {
 	@Environment(\.modelContext) private var modelContext
 	@Query var contexto: [ContextoSalvo]
 	
+	@State private var path: [Int] = []
+	
+	func continuarJogo() {
+		path.append(1)
+	}
+	
+	func iniciarJogo() {
+		if !(contexto.isEmpty) {
+			path.append(2)
+			return
+		}
+		var novoJogo = ContextoSalvo()
+		modelContext.insert(novoJogo)
+		path.append(0)
+	}
+	
     var body: some View {
-			Text("Introdução")
-				.onAppear {
-					if (contexto.isEmpty) {
-						var novoJogo = ContextoSalvo(local: "introducao")
-						modelContext.insert(novoJogo)
+			NavigationStack (path: $path){
+				VStack {
+					Text("Forgive me, Father")
+						.font(.VT323(size:60))
+						.padding()
+					if !(contexto.isEmpty) {
+						Button(action: {continuarJogo()}) {
+							Text("Continue")
+								.font(.VT323(size:30))
+						}
+						.padding()
 					}
+					Button(action: {iniciarJogo()}) {
+						Text("New Game")
+							.font(.VT323(size:30))
+					}
+					.padding()
 				}
-			Button ("Próximo") {
-				if !contexto.isEmpty {
-					var contextoAtual = contexto[0]
-					contextoAtual.local = "confessionario"
+				.navigationDestination(for: Int.self) { value in
+					if value == 2 {
+						ConfirmarNovoJogo(path: $path)
+					}
+					else if value == 1 {
+						ConfessionarioView(contexto: contexto[0], path: $path)
+					}
 				}
 			}
     }

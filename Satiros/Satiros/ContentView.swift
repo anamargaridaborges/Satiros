@@ -41,7 +41,7 @@ struct ContentView: View {
             }
         } detail: {
             Text("Select an item")
-							.font(.VT323(size:20))
+							//.font(.VT323(size:20))
         }
     }
 
@@ -62,11 +62,11 @@ struct ContentView: View {
 }
 
 // Extensão para facilitar o uso da fonte customizada
-extension Font {
+/*extension Font {
 		static func VT323(size: CGFloat) -> Font {
 				.custom("VT323-Regular", size: size)
 		}
-}
+}*/
 
 #Preview {
     ContentView()

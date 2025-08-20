@@ -15,19 +15,7 @@ struct RecuperaContexto: View {
 	
     var body: some View {
         
-			if contexto.isEmpty {
-				IntroducaoView()
-			}
 			
-			else {
-				var contextoAtual = contexto[0]
-				if contextoAtual.local == "confessionario" {
-					ConfessionarioView(contexto: contextoAtual)
-				}
-				else {
-					IntroducaoView()
-				}
-			}
 			
     }
 }

@@ -13,7 +13,7 @@ struct SatirosApp: App {
 	
     var body: some Scene {
         WindowGroup {
-					RecuperaContexto()
+					IntroducaoView()
         }
 				.modelContainer(for: ContextoSalvo.self)
     }

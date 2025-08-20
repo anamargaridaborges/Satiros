@@ -10,12 +10,11 @@ import SwiftUI
 struct ConfessionarioView: View {
 	
 	@Bindable var contexto: ContextoSalvo
+	@Binding var path: [Int]
 	
     var body: some View {
         Text("Confessionário")
-				Button("Voltar") {
-					contexto.local = "introducao"
-			}
+					.font(.VT323(size:60))
     }
 }
 
