@@ -13,8 +13,11 @@ struct ConfessionarioView: View {
 	@Binding var path: [Int]
 	
     var body: some View {
-        Text("Confessionário")
+			VStack {
+				Text("Confessionário")
 					.font(.VT323(size:60))
+			}
+			.navigationBarBackButtonHidden()
     }
 }
 

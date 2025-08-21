@@ -16,9 +16,13 @@ struct TutorialView: View {
 			VStack {
 				Text("Tutorial")
 					.font(.VT323(size:60))
+				Button(action: {contexto.local = "confessionario"; path.append(1)}) {
+					Text("Ir pro confessionário")
+						.font(.VT323(size:60))
+				}
 			}
-			.navigationBarBackButtonHidden()
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
+			.navigationBarBackButtonHidden()
     }
 }
 

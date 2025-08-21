@@ -58,6 +58,9 @@ struct IntroducaoView: View {
 						if contexto[0].local == "tutorial" {
 							TutorialView(contexto: contexto[0], path: $path)
 						}
+						if contexto[0].local == "confessionario" {
+							ConfessionarioView(contexto: contexto[0], path: $path)
+						}
 					}
 					else if value == 0 {
 						TutorialView(contexto: contexto[0], path: $path)
