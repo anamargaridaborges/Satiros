@@ -1,6 +1,6 @@
 {
     "dialogs" : [
-				{
+				{ //modelo a ser seguido 
 					"id": ,
 					"caracter" : "",
 					"text": [""],
@@ -41,7 +41,7 @@
 								},
 								{
 									"id": 1.3,
-									"text" : "Be quiet",
+									"text" : "Be quiet", //italico
 									"desconfianca": ,
 									"popularidade": ,
 									"response": []
@@ -90,7 +90,7 @@
 						}
 						{
 							"id": 3.2,
-							"text" : "Brush it off",
+							"text" : "Brush it off", //italico
 							"desconfianca": ,
 							"popularidade": ,
 							"response": [""]
@@ -100,10 +100,101 @@
 				{
 					"id": 4,
 					"caracter" : "",
-					"text": [""],
+					"text": ["I don’t know how it was with your last congregation, be here you'll have a schedule to follow Father Denver… ",
+							"We start confessions at Nine A.M., I have a feeling the boys are gonna need it. Here, Lorgan left his deck of penance, it comes with instruction on the box, it may help you. Don’t go easy on them just because of Lorgan, it’s in times like these that it can really have an effect.",
+							"Since the church is closed there won’t be any masses, so you’re free to roam in the afternoon.",
+							"The day ends at ten, I’ll be helping you with any doubts, just meet me at the corridor prior to sleep.",
+							"Now go, confessions are about to start."
+					],
+				}
+				{//confessionario 1
+					"id": 5,
+					"caracter" : "",
+					"text": ["Forgive me Father, for I have sinned."],
+					"choices": [
+						{
+							"id": 5.1,
+							"text" : "Be forgiven",
+							"desconfianca": 3,
+							"popularidade": ,
+							"response": ["…
+										I have not confessed yet, father",
+									"I’m sorry son, It has been a while"]
+						}
+						{
+							"id": 5.2,
+							"text" : "Be quiet", //italico
+							"desconfianca": ,
+							"popularidade": ,
+							"response": [""]
+						}
+					],
+				}
+				{
+					"id": 6,
+					"caracter" : "",
+					"text": ["It has been one week since I’ve last confessed",
+						"I have been noticing myself giving in to greed, Father. Temptation. Not of the world, but of the spirit.",
+						"I’m trying to drown it in prayer but I have only found solace in the indulgence of the bottle. The past week or so, I slipped out, drank a bit too much.",
+						"That is not who I am Father, although you have none but my visage to judge character. Well, not even that inside here. I shall not question your guidance either way, who am I to judge His work. Tho it is definitely mysterious."],
+					"choices": [
+						{
+							"id": 6.1,
+							"text" : "It is normal to give in to temptation \"he will also provide a way out so that you can endure it.\"(1 Corinthians 10:13) ",
+							"desconfianca": ,
+							"popularidade": 2,
+							"response": ["He truly does, doesn’t he. Faith in being provided a way out. Maybe he already has… Thank you Father."]
+						},
+						{
+							"id": 6.2,
+							"text" : "\"Pray that ye enter not into temptation\” (Luke 22:40)",
+							"desconfianca": ,
+							"popularidade": ,
+							"response": ["Prayer is all I have done, I must admit the frustration. Gosh, one’s knees may not be frail from too much prayer. I shall reflect on it."]
+						},
+						{
+							"id": 6.3,
+							"text" : "Drinking is not good for you Son",
+							"desconfianca": 1,
+							"popularidade": ,
+							"response": ["It is Father… That’s just the problem"]
+						}
+					],
+				}
+				{//confessionario 2
+					"id": 7,
+					"caracter" : "",
+					"text": ["Forgive me Father, for I have sinned.",
+							"It has been five months since my last confession",
+							"It is a trying time isn’t it Father. With old man Lorgan out, I have lashed out at against my brethren. I have not ever been a man of wrath. But the past few days have been to unkind.",
+							"For my brothers cannot see past the thin veil. Anger cleanses my eyes. Rage touches their very core. Maybe that’s is why it is a capital sin.",
+							"Wrath is destructively effective.",],
+					"choices": [
+						{
+							"id": 7.1,
+							"text" : " Wrath will bring you no answers \"for the anger of man does not produce the righteousness of God.” (James 1:19 - 20)",
+							"desconfianca": ,
+							"popularidade": ,
+							"response": ["The righteousness of God should not be tarnished under His house. But anger will only make it messier. Thank you, Father."]
+						},
+						{
+							"id": 7.2,
+							"text" : "Anger is natural, let it full you, but carefully \”Be angry and do not sin; do not let the sun go down on your anger, and give no opportunity to the devil.\" (Ephesians 4:26-27)",
+							"desconfianca": ,
+							"popularidade": 1,
+							"response": ["Gosh. Just.. Thank you Father. I was lost thinking giving in to sin was the only way to the truth. I shall stand vigilant on my wrath. Maybe you are not to be overlooked after all…"]
+						},
+						{
+							"id": 7.3,
+							"text" : "Tell me son, what does thou seek beyond this veil?",
+							"desconfianca": 2,
+							"popularidade": ,
+							"response": ["Well Father, they conceal the truth. Lorgan vanished. And yet they say he has left out of his own accord. I tell you Father, Lorgan knew a bit too much. He was becoming a liability. So they took him out of the game.",
+										//falta a logica do choice/resposta interna desse ponto 7.3
+							]
+						}
+					],
 				}
 				
-				
-    ] //dialogs
-		
+    ] //fim dialogs
 }
