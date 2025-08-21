@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct BotoesTelaInicio: View {
 	
-	@Binding var path: [ContextoSalvo]
+	@Binding var path: [String]
 	
     var body: some View {
 			HStack {
@@ -23,7 +24,7 @@ struct BotoesTelaInicio: View {
 						.font(.VT323(size:20))
 				}
 				.padding()
-				Button(action: {}) {
+				Button(action: {path.append("confirmarSair")}) {
 					Text("Exit")
 						.font(.VT323(size:20))
 				}

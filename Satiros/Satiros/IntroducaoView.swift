@@ -13,16 +13,15 @@ struct IntroducaoView: View {
 	@Environment(\.modelContext) private var modelContext
 	@Query var contexto: [ContextoSalvo]
 	
-	@State private var path: [ContextoSalvo] = []
+	@State private var path: [String] = []
 	
 	func continuarJogo() {
-		path.append(contexto[0])
+		path.append(contexto[0].local ?? "tutorial")
 	}
 	
 	func iniciarJogo() {
 		if !(contexto.isEmpty) {
-			contexto[0].novoJogo = true
-			path.append(contexto[0])
+			path.append("novoJogo")
 			return
 		}
 		var novoJogo = ContextoSalvo()
@@ -32,7 +31,7 @@ struct IntroducaoView: View {
 		} catch {
 			print("Erro \(error)")
 		}
-		path.append(novoJogo)
+		path.append("tutorial")
 	}
 	
     var body: some View {
@@ -56,15 +55,18 @@ struct IntroducaoView: View {
 					BotoesTelaInicio(path: $path)
 						.padding()
 				}
-				.navigationDestination(for: ContextoSalvo.self) { jogo in
-					if jogo.novoJogo == true {
+				.navigationDestination(for: String.self) { local in
+					if local == "novoJogo" {
 						ConfirmarNovoJogo(contexto: contexto[0], path: $path)
 					}
-					else if jogo.local == "tutorial" {
+					else if local == "tutorial" {
 						TutorialView(contexto: contexto[0], path: $path)
 					}
-					else if jogo.local == "confessionario" {
+					else if local == "confessionario" {
 						ConfessionarioView(contexto: contexto[0], path: $path)
+					}
+					else if local == "confirmarSair" {
+						ConfirmarSair(path: $path)
 					}
 				}
 			}

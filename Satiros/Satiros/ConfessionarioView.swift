@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ConfessionarioView: View {
 	
 	@Bindable var contexto: ContextoSalvo
-	@Binding var path: [ContextoSalvo]
+	@Binding var path: [String]
 	
     var body: some View {
 			VStack {

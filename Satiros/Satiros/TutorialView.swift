@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct TutorialView: View {
 	
 	@Bindable var contexto: ContextoSalvo
-	@Binding var path: [ContextoSalvo]
+	@Binding var path: [String]
 	
     var body: some View {
 			VStack {
 				Text("Tutorial")
 					.font(.VT323(size:60))
-				Button(action: {contexto.local = "confessionario"; path.append(contexto)}) {
+				Button(action: {contexto.local = "confessionario"; path.append("confessionario")}) {
 					Text("Ir pro confessionário")
 						.font(.VT323(size:30))
 				}
