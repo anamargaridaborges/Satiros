@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct BotoesTelaInicio: View {
+	
+	@Binding var path: [ContextoSalvo]
+	
     var body: some View {
 			HStack {
 				Button(action: {}) {
@@ -30,5 +33,5 @@ struct BotoesTelaInicio: View {
 }
 
 #Preview {
-    BotoesTelaInicio()
+    //BotoesTelaInicio()
 }

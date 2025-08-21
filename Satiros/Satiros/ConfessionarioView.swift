@@ -10,11 +10,13 @@ import SwiftUI
 struct ConfessionarioView: View {
 	
 	@Bindable var contexto: ContextoSalvo
-	@Binding var path: [Int]
+	@Binding var path: [ContextoSalvo]
 	
     var body: some View {
 			VStack {
 				Text("Confessionário")
+					.font(.VT323(size:60))
+				Text(String(contexto.popularidade))
 					.font(.VT323(size:60))
 			}
 			.navigationBarBackButtonHidden()

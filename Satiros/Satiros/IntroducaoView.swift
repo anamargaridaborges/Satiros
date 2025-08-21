@@ -13,20 +13,26 @@ struct IntroducaoView: View {
 	@Environment(\.modelContext) private var modelContext
 	@Query var contexto: [ContextoSalvo]
 	
-	@State private var path: [Int] = []
+	@State private var path: [ContextoSalvo] = []
 	
 	func continuarJogo() {
-		path.append(1)
+		path.append(contexto[0])
 	}
 	
 	func iniciarJogo() {
 		if !(contexto.isEmpty) {
-			path.append(2)
+			contexto[0].novoJogo = true
+			path.append(contexto[0])
 			return
 		}
 		var novoJogo = ContextoSalvo()
 		modelContext.insert(novoJogo)
-		path.append(0)
+		do {
+			try modelContext.save()
+		} catch {
+			print("Erro \(error)")
+		}
+		path.append(novoJogo)
 	}
 	
     var body: some View {
@@ -47,23 +53,18 @@ struct IntroducaoView: View {
 							.font(.VT323(size:30))
 					}
 					.padding()
-					BotoesTelaInicio()
+					BotoesTelaInicio(path: $path)
 						.padding()
 				}
-				.navigationDestination(for: Int.self) { value in
-					if value == 2 {
+				.navigationDestination(for: ContextoSalvo.self) { jogo in
+					if jogo.novoJogo == true {
 						ConfirmarNovoJogo(contexto: contexto[0], path: $path)
 					}
-					else if value == 1 {
-						if contexto[0].local == "tutorial" {
-							TutorialView(contexto: contexto[0], path: $path)
-						}
-						if contexto[0].local == "confessionario" {
-							ConfessionarioView(contexto: contexto[0], path: $path)
-						}
-					}
-					else if value == 0 {
+					else if jogo.local == "tutorial" {
 						TutorialView(contexto: contexto[0], path: $path)
+					}
+					else if jogo.local == "confessionario" {
+						ConfessionarioView(contexto: contexto[0], path: $path)
 					}
 				}
 			}
