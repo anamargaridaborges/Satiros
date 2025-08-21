@@ -38,18 +38,18 @@ struct IntroducaoView: View {
 			NavigationStack (path: $path){
 				VStack {
 					Text("Forgive me, Father")
-						.font(.VT323(size:60))
+						.font(.appFont(size:60))
 						.padding()
 					if !(contexto.isEmpty) {
 						Button(action: {continuarJogo()}) {
 							Text("Continue")
-								.font(.VT323(size:30))
+								.font(.appFont(size:30))
 						}
 						.padding()
 					}
 					Button(action: {iniciarJogo()}) {
 						Text("New Game")
-							.font(.VT323(size:30))
+							.font(.appFont(size:30))
 					}
 					.padding()
 					BotoesTelaInicio(path: $path)
@@ -67,6 +67,9 @@ struct IntroducaoView: View {
 					}
 					else if local == "confirmarSair" {
 						ConfirmarSair(path: $path)
+					}
+					else if local == "options" {
+						OptionsView(path: $path)
 					}
 				}
 			}

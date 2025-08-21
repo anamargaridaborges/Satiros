@@ -15,17 +15,17 @@ struct ConfirmarSair: View {
     var body: some View {
 			VStack {
 				Text("Confirm exit?")
-					.font(.VT323(size:50))
+					.font(.appFont(size:50))
 					.padding()
 				HStack {
 					Button(action: {exit(-1)}) {
 						Text("Yes, I confirm")
-							.font(.VT323(size:30))
+							.font(.appFont(size:30))
 					}
 					.padding()
 					Button(action: {path.removeAll()}) {
 						Text("No, I decline")
-							.font(.VT323(size:30))
+							.font(.appFont(size:30))
 					}
 					.padding()
 				}

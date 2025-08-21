@@ -13,3 +13,17 @@ extension Font {
 				.custom("VT323-Regular", size: size)
 		}
 }
+
+
+extension Font {
+		static func appFont(size: CGFloat, weight: Font.Weight = .regular) -> Font {
+				let selectedFont = UserDefaults.standard.string(forKey: "selectedFont") ?? "VT323"
+
+				switch selectedFont {
+				case "SFPro":
+						return .system(size: size, weight: weight)
+				default:
+						return .custom("VT323-Regular", size: size)
+				}
+		}
+}

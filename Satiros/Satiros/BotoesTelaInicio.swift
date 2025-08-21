@@ -14,19 +14,19 @@ struct BotoesTelaInicio: View {
 	
     var body: some View {
 			HStack {
-				Button(action: {}) {
+				Button(action: {path.append("options")}) {
 					Text("Options")
-						.font(.VT323(size:20))
+						.font(.appFont(size:20))
 				}
 				.padding()
 				Button(action: {}) {
 					Text("Achievements")
-						.font(.VT323(size:20))
+						.font(.appFont(size:20))
 				}
 				.padding()
 				Button(action: {path.append("confirmarSair")}) {
 					Text("Exit")
-						.font(.VT323(size:20))
+						.font(.appFont(size:20))
 				}
 				.padding()
 			}

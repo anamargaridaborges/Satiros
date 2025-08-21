@@ -16,11 +16,12 @@ struct ConfessionarioView: View {
     var body: some View {
 			VStack {
 				Text("Confessionário")
-					.font(.VT323(size:60))
+					.font(.appFont(size:60))
 				Text(String(contexto.popularidade))
-					.font(.VT323(size:60))
+					.font(.appFont(size:60))
 			}
 			.navigationBarBackButtonHidden()
+			.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
