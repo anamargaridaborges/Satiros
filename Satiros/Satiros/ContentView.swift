@@ -76,6 +76,10 @@ struct ContentView: View {
     }
 }
 
+// Extensão para facilitar o uso da fonte customizada
+/*extension Font {
+		static func VT323(size: CGFloat) -> Font {
+				.custom("VT323-Regular", size: size)
 extension Font {
 		static func appFont(size: CGFloat, weight: Font.Weight = .regular) -> Font {
 				let selectedFont = UserDefaults.standard.string(forKey: "selectedFont") ?? "VT323"
@@ -87,7 +91,7 @@ extension Font {
 						return .custom("VT323-Regular", size: size)
 				}
 		}
-}
+}*/
 
 
 #Preview {
