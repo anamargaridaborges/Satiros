@@ -9,23 +9,23 @@ import SwiftUI
 import SwiftData
 
 struct ConfirmarSair: View {
-	
+	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Binding var path: [String]
 	
     var body: some View {
 			VStack {
 				Text("Confirm exit?")
-					.font(.appFont(size:50))
+					.font(.appFont(selectedFont, size:50))
 					.padding()
 				HStack {
 					Button(action: {exit(-1)}) {
 						Text("Yes, I confirm")
-							.font(.appFont(size:30))
+							.font(.appFont(selectedFont, size:30))
 					}
 					.padding()
 					Button(action: {path.removeAll()}) {
 						Text("No, I decline")
-							.font(.appFont(size:30))
+							.font(.appFont(selectedFont, size:30))
 					}
 					.padding()
 				}

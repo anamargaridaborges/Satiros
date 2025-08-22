@@ -10,12 +10,11 @@ import SwiftData
 
 @main
 struct SatirosApp: App {
-	
-    var body: some Scene {
-        WindowGroup {
-					IntroducaoView()
-        }
-				.modelContainer(for: ContextoSalvo.self)
-    }
-		
+	//@AppStorage("selectedFont") private var selectedFont: String = "VT323"
+	var body: some Scene {
+			WindowGroup {
+				IntroducaoView()
+			}
+			.modelContainer(for: ContextoSalvo.self)
+	}
 }

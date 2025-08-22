@@ -9,24 +9,24 @@ import SwiftUI
 import SwiftData
 
 struct BotoesTelaInicio: View {
-	
+	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Binding var path: [String]
 	
     var body: some View {
 			HStack {
 				Button(action: {path.append("options")}) {
 					Text("Options")
-						.font(.appFont(size:20))
+						.font(.appFont(selectedFont, size:20))
 				}
 				.padding()
 				Button(action: {}) {
 					Text("Achievements")
-						.font(.appFont(size:20))
+						.font(.appFont(selectedFont,size:20))
 				}
 				.padding()
 				Button(action: {path.append("confirmarSair")}) {
 					Text("Exit")
-						.font(.appFont(size:20))
+						.font(.appFont(selectedFont, size:20))
 				}
 				.padding()
 			}
