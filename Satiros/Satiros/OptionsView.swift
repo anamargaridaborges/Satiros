@@ -37,7 +37,7 @@ struct OptionsView: View {
 				}
 					.padding()
 			}
-			.navigationBarBackButtonHidden()
+			//.navigationBarBackButtonHidden()
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
