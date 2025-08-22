@@ -11,6 +11,7 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+		@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 
     var body: some View {
         NavigationSplitView {
@@ -41,8 +42,22 @@ struct ContentView: View {
             }
         } detail: {
             Text("Select an item")
-							//.font(.VT323(size:20))
+						.font(.appFont(size: 20))
         }
+			
+			
+			VStack { //teste escolha fonte
+								 Text("Exemplo de Fonte no macOS")
+										 .font(.appFont(size: 20))
+
+								 Picker("Fonte", selection: $selectedFont) {
+										 Text("VT323").tag("VT323")
+										 Text("SF Pro").tag("SFPro")
+								 }
+								 .pickerStyle(.radioGroup) // Mais natural no macOS
+								 .padding()
+						 }
+						 .frame(width: 300, height: 150)
     }
 
     private func addItem() {
@@ -65,8 +80,19 @@ struct ContentView: View {
 /*extension Font {
 		static func VT323(size: CGFloat) -> Font {
 				.custom("VT323-Regular", size: size)
+extension Font {
+		static func appFont(size: CGFloat, weight: Font.Weight = .regular) -> Font {
+				let selectedFont = UserDefaults.standard.string(forKey: "selectedFont") ?? "VT323"
+
+				switch selectedFont {
+				case "SFPro":
+						return .system(size: size, weight: weight)
+				default:
+						return .custom("VT323-Regular", size: size)
+				}
 		}
 }*/
+
 
 #Preview {
     ContentView()
