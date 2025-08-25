@@ -47,7 +47,7 @@ struct IntroducaoView: View {
 						}
 						.padding()
 					}
-					Button(action: {iniciarJogo(); print(dialogos[0])}) {
+					Button(action: {iniciarJogo()}) {
 						Text("New Game")
 							.font(.appFont(selectedFont, size:30))
 					}

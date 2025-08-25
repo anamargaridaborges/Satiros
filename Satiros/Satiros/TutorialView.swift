@@ -12,21 +12,25 @@ struct TutorialView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoSalvo
 	@Binding var path: [String]
+	@FocusState private var estaFocado: Bool
 	
     var body: some View {
 			VStack {
-				Text("Tutorial")
+				Text(dialogos[contexto.idDialogo ?? 0].personagem)
 					.font(.appFont(selectedFont, size:60))
-				Button(action: {contexto.local = "confessionario"; path.append("confessionario")}) {
-					Text("Ir pro confessionário")
-						.font(.appFont(selectedFont, size:30))
-				}
-				Text(String(contexto.popularidade))
-					.font(.appFont(selectedFont, size:60))
-				Button(action: {contexto.popularidade += 1}) {
-					Text("Aumentar popularidade")
-						.font(.appFont(selectedFont, size:30))
-				}
+				Text(dialogos[contexto.idDialogo ?? 0].texto[0])
+					.font(.appFont(selectedFont, size:40))
+			}
+			.padding()
+			.focusable()
+			.focusEffectDisabled()
+			.focused($estaFocado)
+			.onKeyPress(.return) {
+				contexto.idDialogo = dialogos[contexto.idDialogo ?? 0].id_que_opcao_leva[0]
+				return .handled
+			}
+			.onAppear {
+				estaFocado = true
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.navigationBarBackButtonHidden()
