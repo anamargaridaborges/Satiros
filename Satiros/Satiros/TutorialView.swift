@@ -14,6 +14,8 @@ struct TutorialView: View {
 	@Binding var path: [String]
 	@FocusState private var estaFocado: Bool
 	@State var texto: String = ""
+	@State var idFala: Int = 0
+	@State var opcoes: [String] = []
 	
     var body: some View {
 			VStack {
@@ -21,19 +23,40 @@ struct TutorialView: View {
 					.font(.appFont(selectedFont, size:60))
 				Text(texto)
 					.font(.appFont(selectedFont, size:40))
+				ForEach (0..<dialogos[contexto.idDialogo ?? 0].opcoes.count) { i in
+					Button(action: {contexto.idDialogo = dialogos[contexto.idDialogo ?? 0].id_que_opcao_leva[i]}) {
+						Text(opcoes[i])
+							.font(.appFont(selectedFont, size:40))
+					}
+				}
 			}
 			.padding()
 			.focusable()
 			.focusEffectDisabled()
 			.focused($estaFocado)
 			.onKeyPress(.return) {
+				if (idFala < dialogos[contexto.idDialogo ?? 0].texto.count - 1) {
+					idFala += 1
+					animacaoTexto()
+					return .handled
+				}
 				contexto.idDialogo = dialogos[contexto.idDialogo ?? 0].id_que_opcao_leva[0]
+				idFala = 0
 				animacaoTexto()
 				return .handled
 			}
 			.onAppear {
 				estaFocado = true
 				animacaoTexto()
+				for i in dialogos[contexto.idDialogo ?? 0].opcoes {
+					opcoes.append("")
+				}
+			}
+			.onChange(of: idFala) {
+				opcoes.removeAll()
+				for i in dialogos[contexto.idDialogo ?? 0].opcoes {
+					opcoes.append("")
+				}
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.navigationBarBackButtonHidden()
@@ -43,7 +66,7 @@ struct TutorialView: View {
 		if posicao == 0 {
 			texto = ""
 		}
-		let fala = dialogos[contexto.idDialogo ?? 0].texto[0]
+		let fala = dialogos[contexto.idDialogo ?? 0].texto[idFala]
 		Task {
 			for c in fala {
 				texto.append(c)
