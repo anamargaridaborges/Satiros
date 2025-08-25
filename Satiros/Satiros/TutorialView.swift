@@ -9,23 +9,23 @@ import SwiftUI
 import SwiftData
 
 struct TutorialView: View {
-	
+	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoSalvo
 	@Binding var path: [String]
 	
     var body: some View {
 			VStack {
 				Text("Tutorial")
-					.font(.appFont(size:60))
+					.font(.appFont(selectedFont, size:60))
 				Button(action: {contexto.local = "confessionario"; path.append("confessionario")}) {
 					Text("Ir pro confessionário")
-						.font(.appFont(size:30))
+						.font(.appFont(selectedFont, size:30))
 				}
 				Text(String(contexto.popularidade))
-					.font(.appFont(size:60))
+					.font(.appFont(selectedFont, size:60))
 				Button(action: {contexto.popularidade += 1}) {
 					Text("Aumentar popularidade")
-						.font(.appFont(size:30))
+						.font(.appFont(selectedFont, size:30))
 				}
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)

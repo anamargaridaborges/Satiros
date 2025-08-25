@@ -9,14 +9,14 @@ import SwiftUI
 
 struct OptionsView: View {
 	
-	@State var selectedFont = UserDefaults.standard.string(forKey: "selectedFont") ?? "VT323"
+	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@State var defaults = UserDefaults.standard
 	@Binding var path: [String]
 	
     var body: some View {
 			VStack {
 				Text("Options")
-					.font(.appFont(size: 60))
+					.font(.appFont(selectedFont, size: 60))
 					.padding()
 				Button(action: { if selectedFont == "SFPro" {
 					selectedFont = "VT323"
@@ -27,11 +27,11 @@ struct OptionsView: View {
 					defaults.set(selectedFont, forKey: "selectedFont")}) {
 					HStack {
 						Text("Font")
-							.font(.appFont(size: 30))
+							.font(.appFont(selectedFont,size: 30))
 							.padding()
 						Spacer()
 						Text((selectedFont == "SFPro" ? "Smooth" : "Squared"))
-							.font(.appFont(size: 30))
+							.font(.appFont(selectedFont,size: 30))
 							.padding()
 					}
 				}

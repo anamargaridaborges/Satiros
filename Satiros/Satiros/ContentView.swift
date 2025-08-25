@@ -28,27 +28,27 @@ struct ContentView: View {
 #if os(macOS)
             .navigationSplitViewColumnWidth(min: 180, ideal: 200)
 #endif
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
+//            .toolbar {
+//#if os(iOS)
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    EditButton()
+//                }
+//#endif
+//                ToolbarItem {
+//                    Button(action: addItem) {
+//                        Label("Add Item", systemImage: "plus")
+//                    }
+//                }
+//            }
         } detail: {
             Text("Select an item")
-						.font(.appFont(size: 20))
+						.font(.appFont(selectedFont, size: 20))
         }
 			
 			
 			VStack { //teste escolha fonte
 								 Text("Exemplo de Fonte no macOS")
-										 .font(.appFont(size: 20))
+										 .font(.appFont(selectedFont, size: 20))
 
 								 Picker("Fonte", selection: $selectedFont) {
 										 Text("VT323").tag("VT323")
@@ -75,24 +75,6 @@ struct ContentView: View {
         }
     }
 }
-
-// Extensão para facilitar o uso da fonte customizada
-/*extension Font {
-		static func VT323(size: CGFloat) -> Font {
-				.custom("VT323-Regular", size: size)
-extension Font {
-		static func appFont(size: CGFloat, weight: Font.Weight = .regular) -> Font {
-				let selectedFont = UserDefaults.standard.string(forKey: "selectedFont") ?? "VT323"
-
-				switch selectedFont {
-				case "SFPro":
-						return .system(size: size, weight: weight)
-				default:
-						return .custom("VT323-Regular", size: size)
-				}
-		}
-}*/
-
 
 #Preview {
     ContentView()

@@ -16,9 +16,7 @@ extension Font {
 
 
 extension Font {
-		static func appFont(size: CGFloat, weight: Font.Weight = .regular) -> Font {
-				let selectedFont = UserDefaults.standard.string(forKey: "selectedFont") ?? "VT323"
-
+		static func appFont(_ selectedFont: String, size: CGFloat, weight: Font.Weight = .regular) -> Font {
 				switch selectedFont {
 				case "SFPro":
 						return .system(size: size, weight: weight)
@@ -27,3 +25,4 @@ extension Font {
 				}
 		}
 }
+
