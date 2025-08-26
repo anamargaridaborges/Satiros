@@ -37,9 +37,11 @@ struct TutorialView: View {
 											opcoes.append("")
 										}
 										animacaoOpcoes()
+										terminou = true
 									}
 									else {
 										animacaoTexto()
+										terminou = true
 									}
 								}) {
 							Text(opcoes[index])
@@ -66,6 +68,9 @@ struct TutorialView: View {
 					else {
 						animacaoTexto()
 					}
+					return .handled
+				}
+				if (terminou == false) {
 					return .handled
 				}
 				contexto.idDialogo = dialogos[contexto.idDialogo ?? 0].id_que_opcao_leva[0]
@@ -125,6 +130,7 @@ struct TutorialView: View {
 		let fala = dialogos[contexto.idDialogo ?? 0].texto[idFala]
 		var cont: Int = 1
 		tarefaOpcoes = Task {
+			terminou = false
 			try? await Task.yield()
 			texto = ""
 			for c in fala {
