@@ -16,6 +16,8 @@ struct TutorialView: View {
 	@State var texto: String = ""
 	@State var idFala: Int = 0
 	@State var opcoes: [String] = []
+	@State var terminou: Bool = true
+	@State private var tarefaAtual: Task<Void, Never>? = nil
 	
     var body: some View {
 			VStack {
@@ -23,12 +25,6 @@ struct TutorialView: View {
 					.font(.appFont(selectedFont, size:60))
 				Text(texto)
 					.font(.appFont(selectedFont, size:40))
-				ForEach (0..<dialogos[contexto.idDialogo ?? 0].opcoes.count) { i in
-					Button(action: {contexto.idDialogo = dialogos[contexto.idDialogo ?? 0].id_que_opcao_leva[i]}) {
-						Text(opcoes[i])
-							.font(.appFont(selectedFont, size:40))
-					}
-				}
 			}
 			.padding()
 			.focusable()
@@ -44,6 +40,7 @@ struct TutorialView: View {
 				idFala = 0
 				animacaoTexto()
 				return .handled
+				
 			}
 			.onAppear {
 				estaFocado = true
@@ -62,14 +59,17 @@ struct TutorialView: View {
 			.navigationBarBackButtonHidden()
     }
 	
-	func animacaoTexto(posicao: Int = 0) {
-		if posicao == 0 {
-			texto = ""
-		}
+	func animacaoTexto() {
+		tarefaAtual?.cancel()
 		let fala = dialogos[contexto.idDialogo ?? 0].texto[idFala]
-		Task {
+		tarefaAtual = Task {
+			try? await Task.yield()
+			texto = ""
 			for c in fala {
 				texto.append(c)
+				if Task.isCancelled {
+					return
+				}
 				try? await Task.sleep(nanoseconds: 50_000_000)
 			}
 		}
