@@ -30,24 +30,12 @@ struct TutorialView: View {
 					// se é a última parte da fala
 					ForEach(opcoes.indices, id: \.self) { index in
 						if (opcoes[index] != ""){
-								Button (action: {contexto.idDialogo = dialogos[contexto.idDialogo ?? 0].id_que_opcao_leva[index]; idFala = 0;
-									if (idFala == dialogos[contexto.idDialogo ?? 0].texto.count - 1 && dialogos[contexto.idDialogo ?? 0].opcoes.count > 0) {
-										opcoes.removeAll()
-										for i in dialogos[contexto.idDialogo ?? 0].opcoes {
-											opcoes.append("")
-										}
-										animacaoOpcoes()
-										terminou = true
-									}
-									else {
-										animacaoTexto()
-										terminou = true
-									}
-								}) {
+							Button (action: {proximaFala(index: index); reiniciarOpcoes();
+										terminou = true}) {
 							Text(opcoes[index])
 								.font(.appFont(selectedFont, size:30))
+							}
 						}
-					}
 					}
 				}
 			}
@@ -58,88 +46,62 @@ struct TutorialView: View {
 			.onKeyPress(.return) {
 				if (idFala < dialogos[contexto.idDialogo ?? 0].texto.count - 1) {
 					idFala += 1
-					if (idFala == dialogos[contexto.idDialogo ?? 0].texto.count - 1 && dialogos[contexto.idDialogo ?? 0].opcoes.count > 0) {
-						opcoes.removeAll()
-						for i in dialogos[contexto.idDialogo ?? 0].opcoes {
-							opcoes.append("")
-						}
-						animacaoOpcoes()
-					}
-					else {
-						animacaoTexto()
-					}
+					reiniciarOpcoes()
 					return .handled
 				}
-				if (terminou == false) {
-					tarefaAtual?.cancel()
-					tarefaOpcoes?.cancel()
-					Task {
-						try? await Task.yield()
-						texto = ""
-						texto += dialogos[contexto.idDialogo ?? 0].texto[idFala]
-						var cont: Int = 0
-						for opc in dialogos[contexto.idDialogo ?? 0].opcoes {
-							opcoes[cont] = ""
-							opcoes[cont] += String(cont+1)
-							opcoes[cont] += ". "
-							opcoes[cont] += opc
-							cont += 1
-						}
-					}
+				if (terminou == false && !dialogos[contexto.idDialogo ?? 0].opcoes.isEmpty) {
+					carregaFalaToda()
 					return .handled
 				}
-				contexto.idDialogo = dialogos[contexto.idDialogo ?? 0].id_que_opcao_leva[0]
-				idFala = 0
-				if (idFala == dialogos[contexto.idDialogo ?? 0].texto.count - 1 && dialogos[contexto.idDialogo ?? 0].opcoes.count > 0) {
-					opcoes.removeAll()
-					for i in dialogos[contexto.idDialogo ?? 0].opcoes {
-						opcoes.append("")
-					}
-					animacaoOpcoes()
-				}
-				else {
-					animacaoTexto()
-				}
+				proximaFala()
+				reiniciarOpcoes()
 				return .handled
 				
 			}
 			.onAppear {
 				estaFocado = true
-				if (idFala == dialogos[contexto.idDialogo ?? 0].texto.count - 1 && dialogos[contexto.idDialogo ?? 0].opcoes.count > 0) {
-					opcoes.removeAll()
-					for i in dialogos[contexto.idDialogo ?? 0].opcoes {
-						opcoes.append("")
-					}
-					animacaoOpcoes()
-				}
-				else {
-					animacaoTexto()
-				}
+				reiniciarOpcoes()
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.navigationBarBackButtonHidden()
     }
 	
-	func animacaoTexto() {
-		tarefaAtual?.cancel()
+	func reiniciarOpcoes() {
+		opcoes.removeAll()
+		for i in dialogos[contexto.idDialogo ?? 0].opcoes {
+			opcoes.append("")
+		}
+		animacaoOpcoes()
+		return
+	}
+	
+	func carregaFalaToda() {
 		tarefaOpcoes?.cancel()
-		let fala = dialogos[contexto.idDialogo ?? 0].texto[idFala]
-		tarefaAtual = Task {
+		Task {
 			try? await Task.yield()
 			texto = ""
-			for c in fala {
-				texto.append(c)
-				if Task.isCancelled {
-					return
-				}
-				try? await Task.sleep(nanoseconds: 50_000_000)
+			texto += dialogos[contexto.idDialogo ?? 0].texto[idFala]
+			var cont: Int = 0
+			for opc in dialogos[contexto.idDialogo ?? 0].opcoes {
+				opcoes[cont] = ""
+				opcoes[cont] += String(cont+1)
+				opcoes[cont] += ". "
+				opcoes[cont] += opc
+				cont += 1
 			}
 		}
+		return
+	}
+	
+	func proximaFala(index: Int = 0) {
+		contexto.idDialogo = dialogos[contexto.idDialogo ?? 0].id_que_opcao_leva[index]
+		idFala = 0
+		return
 	}
 	
 	func animacaoOpcoes() {
 		// imprime a fala e as opcoes com animação
-		tarefaAtual?.cancel()
+		//tarefaAtual?.cancel()
 		tarefaOpcoes?.cancel()
 		let opc = dialogos[contexto.idDialogo ?? 0].opcoes
 		let fala = dialogos[contexto.idDialogo ?? 0].texto[idFala]
