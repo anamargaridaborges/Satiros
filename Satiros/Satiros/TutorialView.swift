@@ -17,7 +17,6 @@ struct TutorialView: View {
 	@State var idFala: Int = 0
 	@State var opcoes: [String] = []
 	@State var terminou: Bool = true
-	@State private var tarefaAtual: Task<Void, Never>? = nil
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
 	
     var body: some View {

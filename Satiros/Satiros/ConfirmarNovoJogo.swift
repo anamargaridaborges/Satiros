@@ -22,7 +22,7 @@ struct ConfirmarNovoJogo: View {
 					.font(.appFont(selectedFont, size:20))
 					.padding()
 				HStack {
-					Button(action: {contexto.local = "tutorial"; contexto.idDialogo = retornaID(dia: 1, horario: "manha", local: "tutorial"); contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; path.append("tutorial")}) {
+					Button(action: {contexto.local = "tutorial"; contexto.idDialogo = retornaID(dia: 1, horario: "confissao1", local: "confessionario"); contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; path.append("confessionario")}) {
 						Text("Yes, I confirm")
 							.font(.appFont(selectedFont, size:30))
 					}
