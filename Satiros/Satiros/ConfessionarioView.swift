@@ -19,7 +19,7 @@ struct ConfessionarioView: View {
 						
 						HStack(spacing: 0) {
 							ZStack(alignment: .topLeading) {
-									Image("grade confessionario")
+									Image("sombra sombria")
 											.resizable()
 											.clipped()
 											//.aspectRatio(1/1, contentMode: .fit)
@@ -28,25 +28,27 @@ struct ConfessionarioView: View {
 											Image("popularidade")
 													.resizable()
 													.clipped()
+													.aspectRatio(1/1, contentMode: .fit)
 													.frame(width: 50, height: 40)
-													//.aspectRatio(16/10, contentMode: .fit)
+													
 											
 											Image("desconfianca")
 													.resizable()
 													.clipped()
+													.aspectRatio(1/1, contentMode: .fit)
 													.frame(width: 50, height: 40)
 													.padding(.horizontal, 20)
-													.aspectRatio(16/8, contentMode: .fit)
+													
 									}
-									//.padding(.top, 10)
+									.padding(10)
 							}
 								.frame(width: geo.size.width * 2/3, height: geo.size.height)
 								
 								ZStack {
-										Image("aaa")
-												.resizable()
-												.clipped()
-												.aspectRatio(3/5.75, contentMode: .fit)
+//										Image("")
+//												.resizable()
+//												.clipped()
+//												.aspectRatio(3/5.75, contentMode: .fit)
 										
 										VStack(spacing: 10) {
 											
@@ -54,7 +56,9 @@ struct ConfessionarioView: View {
 												Image("menu")
 													.resizable()
 													.clipped()
+													.aspectRatio(1/1, contentMode: .fit)
 													.frame(width: 40, height: 40)
+													
 													
 												VStack() {
 														Text("Day \(contexto.dia)")
@@ -66,7 +70,9 @@ struct ConfessionarioView: View {
 												Image("configuracoes")
 													.resizable()
 													.clipped()
+													.aspectRatio(1/1, contentMode: .fit)
 													.frame(width: 35, height: 35)
+												
 												}
 												.padding(.top, 10)
 												Spacer()
