@@ -11,6 +11,7 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+		@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 
     var body: some View {
         NavigationSplitView {
@@ -27,22 +28,36 @@ struct ContentView: View {
 #if os(macOS)
             .navigationSplitViewColumnWidth(min: 180, ideal: 200)
 #endif
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
+//            .toolbar {
+//#if os(iOS)
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    EditButton()
+//                }
+//#endif
+//                ToolbarItem {
+//                    Button(action: addItem) {
+//                        Label("Add Item", systemImage: "plus")
+//                    }
+//                }
+//            }
         } detail: {
             Text("Select an item")
-							.font(.VT323(size:20))
+						.font(.appFont(selectedFont, size: 20))
         }
+			
+			
+			VStack { //teste escolha fonte
+								 Text("Exemplo de Fonte no macOS")
+										 .font(.appFont(selectedFont, size: 20))
+
+								 Picker("Fonte", selection: $selectedFont) {
+										 Text("VT323").tag("VT323")
+										 Text("SF Pro").tag("SFPro")
+								 }
+								 .pickerStyle(.radioGroup) // Mais natural no macOS
+								 .padding()
+						 }
+						 .frame(width: 300, height: 150)
     }
 
     private func addItem() {
@@ -59,13 +74,6 @@ struct ContentView: View {
             }
         }
     }
-}
-
-// Extensão para facilitar o uso da fonte customizada
-extension Font {
-		static func VT323(size: CGFloat) -> Font {
-				.custom("VT323-Regular", size: size)
-		}
 }
 
 #Preview {

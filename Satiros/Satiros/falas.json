@@ -1,0 +1,200 @@
+{
+    "dialogs" : [
+				{ //modelo a ser seguido 
+					"id": ,
+					"caracter" : "",
+					"text": [""],
+					"choices": [
+						{
+							"id": ,
+							"text" : "",
+							"desconfianca": ,
+							"popularidade": ,
+							"response": [""]
+						}
+					],
+				}
+        {
+          "id": 0,
+					"caracter" : "",
+					"text": ["THREE DAYS AGO, FATHER LORGAN, HEAD OF THE EASTOWN SEMINAR, MYSTERIOUSLY DISAPPEARED, YOU HAVE BEEN SEND TO REPLACE HIM IN THE MEANTIME"],
+					"choices": [],
+        }
+        {
+					"id": 1,
+					"caracter" : "Sister Desmond",
+					"text": ["Blessings Father. Good Morning…"],
+					"choices": [
+                {
+									"id": 1.1,
+									"text" : "Good morning, Sister",
+									"desconfianca": ,
+									"popularidade": ,
+									"response": []
+                },
+								{
+									"id": 1.2,
+									"text" : "Blessings to you, my sister.",
+									"desconfianca": ,
+									"popularidade": ,
+									"response": []
+								},
+								{
+									"id": 1.3,
+									"text" : "Be quiet", //italico
+									"desconfianca": ,
+									"popularidade": ,
+									"response": []
+								}
+            ],
+        }
+				{
+					"id": 2,
+					"caracter" : "Sister Desmond",
+					"text": ["We have been expecting you, here come, let me show you around. And welcome to the church.",
+										"As you know, our seminar has been on break ever since Father Lorgan’s… absence. Let me present you our students",
+										"Richmond. Aristocrat turned zealot. Leaving comfort for the Lord’s work… inspiring really.",
+										"Sight. He lives in his own world, the family sent him here for “treatment”, turns out the kid is actually a good evangelist ",
+										"Presi. Good kid, he’s the closest to graduating, a natural charmer. His congregation will be one to watch for.",
+										"Ender. He’s sly as a fox. Tho hasn’t been the same since Lorgan left, they were very close. ",
+										"And John. Endlessly devout. Natural scholar. Not an easy talker… ",
+										"They are all going to need your guidance here Father. I hope you can sooth them, this humble village needs these kids to be good leaders to them."],
+					"choices": [
+						{
+							"id": 2.1,
+							"text" : "Thank you for the vote of confidence",
+							"desconfianca": ,
+							"popularidade": ,
+							"response": ["I expect it not to be wasted, but a new face might be able to reanimate spirits around here."],
+						},
+						{
+							"id": 2.2,
+							"text" : "Not an easy task taking on the shoes of Lorgan.",
+							"desconfianca": ,
+							"popularidade": ,
+							"response": ["I would not hang Father Lorgan’s shoes just yet, we don’t know what happened to him, well not we, I don’t. The boys “know” he has been sent on break. I can’t believe they would make us lie in the house of the Lord."]
+						}
+					],
+				}
+				{
+					"id": 3,
+					"caracter" : "",
+					"text": [""],
+					"choices": [
+						{
+							"id": 3.1,
+							"text" : "What do you think happened to Lorgan?",
+							"desconfianca": 1,
+							"popularidade": ,
+							"response": ["As I told you Father, I do not know. He was overwhelmed sure… but he cared deeply for the church… for the community. He is a leader no just in faith but for the village, we are weakened by his absence…"]
+						}
+						{
+							"id": 3.2,
+							"text" : "Brush it off", //italico
+							"desconfianca": ,
+							"popularidade": ,
+							"response": [""]
+						}
+					],
+				}
+				{
+					"id": 4,
+					"caracter" : "",
+					"text": ["I don’t know how it was with your last congregation, be here you'll have a schedule to follow Father Denver… ",
+							"We start confessions at Nine A.M., I have a feeling the boys are gonna need it. Here, Lorgan left his deck of penance, it comes with instruction on the box, it may help you. Don’t go easy on them just because of Lorgan, it’s in times like these that it can really have an effect.",
+							"Since the church is closed there won’t be any masses, so you’re free to roam in the afternoon.",
+							"The day ends at ten, I’ll be helping you with any doubts, just meet me at the corridor prior to sleep.",
+							"Now go, confessions are about to start."
+					],
+				}
+				{//confessionario 1
+					"id": 5,
+					"caracter" : "",
+					"text": ["Forgive me Father, for I have sinned."],
+					"choices": [
+						{
+							"id": 5.1,
+							"text" : "Be forgiven",
+							"desconfianca": 3,
+							"popularidade": ,
+							"response": ["…
+										I have not confessed yet, father",
+									"I’m sorry son, It has been a while"]
+						}
+						{
+							"id": 5.2,
+							"text" : "Be quiet", //italico
+							"desconfianca": ,
+							"popularidade": ,
+							"response": [""]
+						}
+					],
+				}
+				{
+					"id": 6,
+					"caracter" : "",
+					"text": ["It has been one week since I’ve last confessed",
+						"I have been noticing myself giving in to greed, Father. Temptation. Not of the world, but of the spirit.",
+						"I’m trying to drown it in prayer but I have only found solace in the indulgence of the bottle. The past week or so, I slipped out, drank a bit too much.",
+						"That is not who I am Father, although you have none but my visage to judge character. Well, not even that inside here. I shall not question your guidance either way, who am I to judge His work. Tho it is definitely mysterious."],
+					"choices": [
+						{
+							"id": 6.1,
+							"text" : "It is normal to give in to temptation \"he will also provide a way out so that you can endure it.\"(1 Corinthians 10:13) ",
+							"desconfianca": ,
+							"popularidade": 2,
+							"response": ["He truly does, doesn’t he. Faith in being provided a way out. Maybe he already has… Thank you Father."]
+						},
+						{
+							"id": 6.2,
+							"text" : "\"Pray that ye enter not into temptation\” (Luke 22:40)",
+							"desconfianca": ,
+							"popularidade": ,
+							"response": ["Prayer is all I have done, I must admit the frustration. Gosh, one’s knees may not be frail from too much prayer. I shall reflect on it."]
+						},
+						{
+							"id": 6.3,
+							"text" : "Drinking is not good for you Son",
+							"desconfianca": 1,
+							"popularidade": ,
+							"response": ["It is Father… That’s just the problem"]
+						}
+					],
+				}
+				{//confessionario 2
+					"id": 7,
+					"caracter" : "",
+					"text": ["Forgive me Father, for I have sinned.",
+							"It has been five months since my last confession",
+							"It is a trying time isn’t it Father. With old man Lorgan out, I have lashed out at against my brethren. I have not ever been a man of wrath. But the past few days have been to unkind.",
+							"For my brothers cannot see past the thin veil. Anger cleanses my eyes. Rage touches their very core. Maybe that’s is why it is a capital sin.",
+							"Wrath is destructively effective.",],
+					"choices": [
+						{
+							"id": 7.1,
+							"text" : " Wrath will bring you no answers \"for the anger of man does not produce the righteousness of God.” (James 1:19 - 20)",
+							"desconfianca": ,
+							"popularidade": ,
+							"response": ["The righteousness of God should not be tarnished under His house. But anger will only make it messier. Thank you, Father."]
+						},
+						{
+							"id": 7.2,
+							"text" : "Anger is natural, let it full you, but carefully \”Be angry and do not sin; do not let the sun go down on your anger, and give no opportunity to the devil.\" (Ephesians 4:26-27)",
+							"desconfianca": ,
+							"popularidade": 1,
+							"response": ["Gosh. Just.. Thank you Father. I was lost thinking giving in to sin was the only way to the truth. I shall stand vigilant on my wrath. Maybe you are not to be overlooked after all…"]
+						},
+						{
+							"id": 7.3,
+							"text" : "Tell me son, what does thou seek beyond this veil?",
+							"desconfianca": 2,
+							"popularidade": ,
+							"response": ["Well Father, they conceal the truth. Lorgan vanished. And yet they say he has left out of his own accord. I tell you Father, Lorgan knew a bit too much. He was becoming a liability. So they took him out of the game.",
+										//falta a logica do choice/resposta interna desse ponto 7.3
+							]
+						}
+					],
+				}
+				
+    ] //fim dialogs
+}
