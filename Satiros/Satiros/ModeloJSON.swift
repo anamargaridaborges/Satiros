@@ -1,6 +1,7 @@
 import Foundation
 
 var dialogos: [Dialogo] = load("teste.json")
+var cartas: [Cartas] = load("cartas.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
 
