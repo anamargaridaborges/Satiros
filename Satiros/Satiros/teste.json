@@ -104,7 +104,7 @@
 		"personagem":"Sister Desmond",
 		"texto":["I expect it not to be wasted, but a new face might be able to reanimate spirits around here."],
 		"opcoes":[],
-		"id_que_opcao_leva":[],
+		"id_que_opcao_leva":[12],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
 		"local_fundo":"Introducao",
