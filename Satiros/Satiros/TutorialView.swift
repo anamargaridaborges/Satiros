@@ -71,6 +71,21 @@ struct TutorialView: View {
 					return .handled
 				}
 				if (terminou == false) {
+					tarefaAtual?.cancel()
+					tarefaOpcoes?.cancel()
+					Task {
+						try? await Task.yield()
+						texto = ""
+						texto += dialogos[contexto.idDialogo ?? 0].texto[idFala]
+						var cont: Int = 0
+						for opc in dialogos[contexto.idDialogo ?? 0].opcoes {
+							opcoes[cont] = ""
+							opcoes[cont] += String(cont+1)
+							opcoes[cont] += ". "
+							opcoes[cont] += opc
+							cont += 1
+						}
+					}
 					return .handled
 				}
 				contexto.idDialogo = dialogos[contexto.idDialogo ?? 0].id_que_opcao_leva[0]
@@ -147,7 +162,7 @@ struct TutorialView: View {
 					return
 				}
 				try? await Task.sleep(nanoseconds: 50_000_000)
-				opcoes[cont-1].append(":")
+				opcoes[cont-1].append(".")
 				if Task.isCancelled {
 					return
 				}
@@ -163,10 +178,6 @@ struct TutorialView: View {
 						return
 					}
 					try? await Task.sleep(nanoseconds: 50_000_000)
-				}
-				opcoes[cont-1].append("\n")
-				if Task.isCancelled {
-					return
 				}
 				cont += 1
 			}
