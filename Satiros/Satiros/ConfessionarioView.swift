@@ -71,12 +71,16 @@ struct ConfessionarioView: View {
 								Text("Morning")
 										.font(.appFont(selectedFont, size: 30))
 							}
-
-							Image("configuracoes")
-									.resizable()
-									.clipped()
-									.aspectRatio(1/1, contentMode: .fit)
-									.frame(width: 35, height: 35)
+							
+							Button(action: {path.append("options")}) { //so vai pra tela e nao volta
+								Image("configuracoes")
+										.resizable()
+										.scaledToFit()
+										.aspectRatio(1/1, contentMode: .fit)
+										.frame(width: 35, height: 35)
+							}
+							.buttonStyle(.plain)
+							.padding()
 							}
 							.padding(.top, 10)
 						

@@ -67,7 +67,7 @@ struct IntroducaoView: View {
 											.frame(width: 130, height: 40)
 									
 									Text("New Game")
-										.font(.appFont(selectedFont, size: 25))
+										.font(.appFont(selectedFont, size: 20))
 											.foregroundColor(.white)
 								}
 							}
