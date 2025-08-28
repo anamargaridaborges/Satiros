@@ -145,7 +145,7 @@
 	},
 	{
 		"id":13,
-		"personagem":"Main character",
+		"personagem":"You",
 		"texto":["Now?"],
 		"opcoes":[],
 		"id_que_opcao_leva":[14],
@@ -200,7 +200,7 @@
 	},
 	{
 		"id":18,
-		"personagem":"Main character",
+		"personagem":"You",
 		"texto":["I’m sorry son, It has been a while."],
 		"opcoes":[],
 		"id_que_opcao_leva":[19],
