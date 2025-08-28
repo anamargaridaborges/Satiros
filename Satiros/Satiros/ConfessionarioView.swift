@@ -72,7 +72,7 @@ struct ConfessionarioView: View {
 										.font(.appFont(selectedFont, size: 30))
 							}
 							
-							Button(action: {path.append("options")}) { //so vai pra tela e nao volta
+							Button(action: {path.append("options")}) { 
 								Image("configuracoes")
 										.resizable()
 										.scaledToFit()
@@ -109,6 +109,23 @@ struct ConfessionarioView: View {
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 		}
 }
+
+struct AnimatedImageBackground: View {
+		@State private var frameIndex = 0
+		let frames = ["bg1", "bg2", "bg3", "bg4"] // your assets
+		let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+		
+		var body: some View {
+				Image(frames[frameIndex])
+						.resizable()
+						.scaledToFill()
+						.ignoresSafeArea()
+						.onReceive(timer) { _ in
+								frameIndex = (frameIndex + 1) % frames.count
+						}
+		}
+}
+
 
 #Preview {
     //ConfessionarioView()
