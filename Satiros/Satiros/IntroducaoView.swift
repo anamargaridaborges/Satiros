@@ -16,7 +16,7 @@ struct IntroducaoView: View {
 	@State private var path: [String] = []
 	
 	func continuarJogo() {
-		path.append(contexto[0].local ?? "tutorial")
+		path.append(contexto[0].local ?? "confessionario")
 	}
 	
 	func iniciarJogo() {
