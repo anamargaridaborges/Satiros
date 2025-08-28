@@ -1,0 +1,77 @@
+[
+	{
+		"nome":"Job",
+		"atributos":["Loss", "Faith", "Perseverance"],
+		"nome_Imagem":"job"
+	},
+	{
+		"nome":"Abraham",
+		"atributos":["Faith", "Love", "Providence"],
+		"nome_Imagem":"abraham"
+	},
+	{
+		"nome":"Moses",
+		"atributos":["Control", "Faith", "Honor"],
+		"nome_Imagem":"moses"
+	},
+	{
+		"nome":"Joseph",
+		"atributos":["Loss", "Perseverance", "Providence"],
+		"nome_Imagem":"job"
+	},
+	{
+		"nome":"Noah",
+		"atributos":["Perseverance", "Faith", "Renunciation"],
+		"nome_Imagem":"noah"
+	},
+	{
+		"nome":"Eve",
+		"atributos":["Vice", "Loss", "Capital"],
+		"nome_Imagem":"eve"
+	},
+	{
+		"nome":"Adam",
+		"atributos":["Loss", "Renunciation", "Control"],
+		"nome_Imagem":"adam"
+	},
+	{
+		"nome":"David",
+		"atributos":["Perseverance", "Faith", "Providence"],
+		"nome_Imagem":"david"
+	},
+	{
+		"nome":"Solomon",
+		"atributos":["Control", "Honor", "Providence"],
+		"nome_Imagem":"solomon"
+	},
+	{
+		"nome":"Jonah",
+		"atributos":["Renunciation", "Faith", "Perseverance"],
+		"nome_Imagem":"jonah"
+	},
+	{
+		"nome":"Daniel",
+		"atributos":["Faith", "Perseverance", "Honor"],
+		"nome_Imagem":"daniel"
+	},
+	{
+		"nome":"Samson",
+		"atributos":["Loss", "Vice", "Love"],
+		"nome_Imagem":"samson"
+	},
+	{
+		"nome":"Peter",
+		"atributos":["Loss", "Vice", "Faith"],
+		"nome_Imagem":"peter"
+	},
+	{
+		"nome":"Judas",
+		"atributos":["Vice", "Love", "Loss"],
+		"nome_Imagem":"judas"
+	},
+	{
+		"nome":"Mary",
+		"atributos":["Loss", "Love", "Faith"],
+		"nome_Imagem":"mary"
+	}
+]
