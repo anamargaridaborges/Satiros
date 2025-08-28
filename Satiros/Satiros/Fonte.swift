@@ -19,7 +19,7 @@ extension Font {
 		static func appFont(_ selectedFont: String, size: CGFloat, weight: Font.Weight = .regular) -> Font {
 				switch selectedFont {
 				case "SFPro":
-						return .system(size: size, weight: weight)
+						return .system(size: size-5, weight: weight)
 				default:
 						return .custom("VT323-Regular", size: size)
 				}

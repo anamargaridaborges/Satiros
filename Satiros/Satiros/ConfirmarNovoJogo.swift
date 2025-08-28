@@ -14,28 +14,56 @@ struct ConfirmarNovoJogo: View {
 	@Binding var path: [String]
 	
     var body: some View {
-			VStack {
-				Text("Confirm new game?")
-					.font(.appFont(selectedFont, size:50))
-					.padding()
-				Text("All your progress in the current game will be lost.")
-					.font(.appFont(selectedFont, size:20))
-					.padding()
-				HStack {
-					Button(action: {contexto.local = "tutorial"; contexto.idDialogo = 0; contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; path.append("tutorial")}) {
-						Text("Yes, I confirm")
-							.font(.appFont(selectedFont, size:30))
+			ZStack{
+				Image("fundo pixel")
+						.resizable()
+						.clipped()
+						.aspectRatio(16/10, contentMode: .fit)
+				VStack {
+					Text("Confirm new game?")
+						.font(.appFont(selectedFont, size:50))
+						.padding()
+					
+					Text("All your progress in the current game will be lost.")
+						.font(.appFont(selectedFont, size:25))
+						.padding()
+					
+					HStack {
+						Button(action: {contexto.local = "tutorial"; contexto.idDialogo = 0; contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; path.append("tutorial")}) {
+							ZStack {
+								Image("botao continue")
+										.resizable()
+										.scaledToFit()
+										.frame(width: 200, height: 100)
+								
+								Text("Yes, I confirm")
+									.font(.appFont(selectedFont, size: 25))
+										.foregroundColor(.white)
+							}
+						}
+						.buttonStyle(.plain)
+						.padding()
+						
+						Button(action: {path.removeAll()}) {
+							ZStack {
+								Image("botao continue")
+										.resizable()
+										.scaledToFit()
+										.frame(width: 200, height: 100)
+								
+								Text("No, I decline")
+									.font(.appFont(selectedFont, size: 25))
+									.foregroundColor(.white)
+							}
+						}
+						.buttonStyle(.plain)
+						.padding()
 					}
-					.padding()
-					Button(action: {path.removeAll()}) {
-						Text("No, I decline")
-							.font(.appFont(selectedFont, size:30))
-					}
-					.padding()
 				}
+				.navigationBarBackButtonHidden()
+				.frame(maxWidth: .infinity, maxHeight: .infinity)
 			}
-			.navigationBarBackButtonHidden()
-			.frame(maxWidth: .infinity, maxHeight: .infinity)
+			
     }
 }
 
