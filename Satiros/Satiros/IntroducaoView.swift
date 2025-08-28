@@ -36,44 +36,68 @@ struct IntroducaoView: View {
 	
     var body: some View {
 			NavigationStack (path: $path){
-				VStack {
-					Text("Forgive me, Father")
-						.font(.appFont(selectedFont, size:60))
-						.padding()
-					if !(contexto.isEmpty) {
-						Button(action: {continuarJogo()}) {
-							Text("Continue")
-								.font(.appFont(selectedFont, size:30))
+				ZStack{
+					Image("menu inicial")
+							.resizable()
+							.clipped()
+							.aspectRatio(16/10, contentMode: .fit)
+					
+					VStack {
+							Spacer()
+							if !(contexto.isEmpty) {
+								Button(action: { continuarJogo() }) {
+									ZStack {
+										Image("botao continue")
+												.resizable()
+												.scaledToFit()
+												.frame(width: 200, height: 60)
+										Text("Continue")
+											.font(.appFont(selectedFont, size: 25))
+												.foregroundColor(.white)
+									}
+								}
+								.buttonStyle(.plain)
+							}
+
+							Button(action: { iniciarJogo() }) {
+								ZStack {
+									Image("botao new game")
+											.resizable()
+											.scaledToFit()
+											.frame(width: 130, height: 40)
+									
+									Text("New Game")
+										.font(.appFont(selectedFont, size: 20))
+											.foregroundColor(.white)
+								}
+							}
+							.buttonStyle(.plain)
+							
+							BotoesTelaInicio(path: $path)
+									.padding()
+					}
+					.navigationDestination(for: String.self) { local in
+						if local == "novoJogo" {
+							ConfirmarNovoJogo(contexto: contexto[0], path: $path)
 						}
-						.padding()
+						else if local == "tutorial" {
+							TutorialView(contexto: contexto[0], path: $path)
+						}
+						else if local == "confessionario" {
+							ConfessionarioView(contexto: contexto[0], path: $path)
+						}
+						else if local == "confirmarSair" {
+							ConfirmarSair(path: $path)
+						}
+						else if local == "options" {
+							OptionsView(path: $path)
+						}
 					}
-					Button(action: {iniciarJogo()}) {
-						Text("New Game")
-							.font(.appFont(selectedFont, size:30))
-					}
-					.padding()
-					BotoesTelaInicio(path: $path)
-						.padding()
+					
 				}
-				.navigationDestination(for: String.self) { local in
-					if local == "novoJogo" {
-						ConfirmarNovoJogo(contexto: contexto[0], path: $path)
-					}
-					else if local == "tutorial" {
-						TutorialView(contexto: contexto[0], path: $path)
-					}
-					else if local == "confessionario" {
-						ConfessionarioView(contexto: contexto[0], path: $path)
-					}
-					else if local == "confirmarSair" {
-						ConfirmarSair(path: $path)
-					}
-					else if local == "options" {
-						OptionsView(path: $path)
-					}
-				}
+				
 			}
-    }
+	}
 }
 
 #Preview {
