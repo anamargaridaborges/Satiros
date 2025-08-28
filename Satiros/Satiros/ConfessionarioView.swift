@@ -18,10 +18,12 @@ struct ConfessionarioView: View {
 				HStack() {
 					//LADO ESQUERDO
 					ZStack(alignment: .topLeading) {
-						Image("sombra sombria")
-								.resizable()
-								.clipped()
-								//.aspectRatio(1/1, contentMode: .fit)
+						AnimatedImageBackground()
+						
+//						Image("sombra sombria")
+//								.resizable()
+//								.clipped()
+//								//.aspectRatio(1/1, contentMode: .fit)
 						
 						VStack(alignment: .leading) {
 							HStack{
@@ -112,8 +114,8 @@ struct ConfessionarioView: View {
 
 struct AnimatedImageBackground: View {
 		@State private var frameIndex = 0
-		let frames = ["bg1", "bg2", "bg3", "bg4"] // your assets
-		let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+		let frames = ["sombra sombria", "grade confessionario"]
+		let timer = Timer.publish(every: 0.2, on: .main, in: .common).autoconnect()
 		
 		var body: some View {
 				Image(frames[frameIndex])
