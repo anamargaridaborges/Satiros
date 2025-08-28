@@ -43,7 +43,7 @@ struct IntroducaoView: View {
 							.aspectRatio(16/10, contentMode: .fit)
 					
 					VStack {
-							Spacer()
+						Spacer()
 							if !(contexto.isEmpty) {
 								Button(action: { continuarJogo() }) {
 									ZStack {
@@ -57,6 +57,7 @@ struct IntroducaoView: View {
 									}
 								}
 								.buttonStyle(.plain)
+								.padding()
 							}
 
 							Button(action: { iniciarJogo() }) {
@@ -64,7 +65,7 @@ struct IntroducaoView: View {
 									Image("botao new game")
 											.resizable()
 											.scaledToFit()
-											.frame(width: 130, height: 40)
+											.frame(width: 150, height: 40)
 									
 									Text("New Game")
 										.font(.appFont(selectedFont, size: 20))
@@ -72,10 +73,12 @@ struct IntroducaoView: View {
 								}
 							}
 							.buttonStyle(.plain)
-							
+							.padding(.bottom, 80)
+						
 							BotoesTelaInicio(path: $path)
-									.padding()
+								.padding()
 					}
+					.padding(.bottom, 30)
 					.navigationDestination(for: String.self) { local in
 						if local == "novoJogo" {
 							ConfirmarNovoJogo(contexto: contexto[0], path: $path)

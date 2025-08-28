@@ -14,31 +14,54 @@ struct OptionsView: View {
 	@Binding var path: [String]
 	
     var body: some View {
-			VStack {
-				Text("Options")
-					.font(.appFont(selectedFont, size: 60))
-					.padding()
-				Button(action: { if selectedFont == "SFPro" {
-					selectedFont = "VT323"
-				}
-					else {
-						selectedFont = "SFPro"
-					};
-					defaults.set(selectedFont, forKey: "selectedFont")}) {
+			ZStack{
+				Image("fundo pixel")
+						.resizable()
+						.clipped()
+						.aspectRatio(16/10, contentMode: .fill)
+				
+				VStack {
 					HStack {
-						Text("Font")
-							.font(.appFont(selectedFont,size: 30))
-							.padding()
+						Button(action: {path.removeLast()}) {
+							Image(systemName: "chevron.left")
+								.font(.title)
+								.fontWeight(.bold)
+								.foregroundColor(.white)
+						}
+						.buttonStyle(.plain)
+						.padding()
 						Spacer()
-						Text((selectedFont == "SFPro" ? "Smooth" : "Squared"))
-							.font(.appFont(selectedFont,size: 30))
-							.padding()
 					}
+					.padding(.top, 8)
+					.padding(.leading, 12)
+					
+					Spacer()
+					Text("Options")
+						.font(.appFont(selectedFont, size: 60))
+						.padding(20)
+					Button(action: {if selectedFont == "SFPro" {
+						selectedFont = "VT323"
+					} else{
+							selectedFont = "SFPro"
+						};
+						defaults.set(selectedFont, forKey: "selectedFont")}) {
+						HStack {
+							Text("Font")
+								.font(.appFont(selectedFont,size: 30))
+								.padding()
+							Spacer()
+							Text((selectedFont == "SFPro" ? "Smooth" : "Squared"))
+								.font(.appFont(selectedFont,size: 30))
+								.padding()
+						}
+					}
+					.padding(20)
+					Spacer()
 				}
-					.padding()
+				.navigationBarBackButtonHidden()
+				//.frame(maxWidth: .infinity, maxHeight: .infinity)
 			}
-			//.navigationBarBackButtonHidden()
-			.frame(maxWidth: .infinity, maxHeight: .infinity)
+			
     }
 }
 
