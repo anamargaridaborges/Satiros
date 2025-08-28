@@ -24,43 +24,49 @@ struct ConfessionarioView: View {
 	@State var checaImprimiu: Bool = false
 	@State private var scrollProxy: ScrollViewProxy? = nil
 	
-    var body: some View {
+		var body: some View {
 			GeometryReader { geo in
-				HStack() {
-					//LADO ESQUERDO
-					ZStack(alignment: .topLeading) {
-						Image("sombra sombria")
-								.resizable()
-								.clipped()
-								//.aspectRatio(1/1, contentMode: .fit)
+					ZStack {
 						
-						VStack(alignment: .leading) {
-							HStack{
-								Image("popularidade")
-										.resizable()
-										.clipped()
-										.aspectRatio(2/1, contentMode: .fit)
-										.frame(width: 80, height: 40)
-										.padding(.leading, 10)
-								
-								Text(String(contexto.popularidade))
-										.font(.appFont(selectedFont, size: 25))
-										.padding(.top, 15)
+						HStack(spacing: 0) {
+							ZStack(alignment: .topLeading) {
+									Image("sombra sombria")
+											.resizable()
+											.clipped()
+											//.aspectRatio(1/1, contentMode: .fit)
+									
+									VStack(alignment: .leading) {
+										HStack {
+											Image("popularidade")
+												.resizable()
+												.clipped()
+												.aspectRatio(2/1, contentMode: .fit)
+												.frame(width: 80, height: 40)
+												.padding(.leading, 10)
+											//.aspectRatio(16/10, contentMode: .fit)
+											Text(String(contexto.popularidade))
+												.font(.appFont(selectedFont, size: 25))
+												.foregroundStyle(.white)
+												.padding(.top, 15)
+										}
+											
+										HStack {
+											Image("desconfianca")
+												.resizable()
+												.clipped()
+												.aspectRatio(2/1, contentMode: .fit)
+												.frame(width: 80, height: 40)
+												.padding(.leading, 30)
+											Text(String(contexto.desconfianca))
+												.font(.appFont(selectedFont, size: 25))
+												.foregroundStyle(.white)
+												.padding(.top, 15)
+										}
+									}
+									//.padding(.top, 10)
 							}
-							
-							HStack{
-								Image("desconfianca")
-										.resizable()
-										.clipped()
-										.aspectRatio(2/1, contentMode: .fit)
-										.frame(width: 80, height: 40)
-										.padding(.leading, 30)
+								.frame(width: geo.size.width * 2/3, height: geo.size.height)
 								
-								
-								Text(String(contexto.desconfianca))
-										.font(.appFont(selectedFont, size: 25))
-										.padding(.top, 15)
-							}
 								ZStack {
 										Image("aaa")
 												.resizable()
@@ -125,6 +131,8 @@ struct ConfessionarioView: View {
 												ForEach(opcoes.indices, id: \.self) { index in
 													if (opcoes[index] != ""){
 														Button {
+															contexto.desconfianca += dialogos[contexto.idDialogo ?? 0].impacto_opcao_desc[index]
+															contexto.popularidade += dialogos[contexto.idDialogo ?? 0].impacto_opcao_pop[index]
 															let inicio = opcoes[index].index(texto.startIndex, offsetBy: 3)
 															/*let opcaoAtual = opcoes[index][inicio...]*/
 															dialogosConfessionario.append(ContextoConfessionario(personagem: "You", dialogo: String(opcoes[index][inicio...]))); proximaFala(index: index)
@@ -197,63 +205,13 @@ struct ConfessionarioView: View {
 								}
 								.frame(width: geo.size.width / 3, height: geo.size.height)
 						}
-						.padding(10)
-					}
-					.frame(width: geo.size.width * 2/3, height: geo.size.height)
-					
-					//LADO DIREITO
-					VStack() {
-						HStack(spacing: 150){
-							Image("menu")
-								.resizable()
-								.clipped()
-								.aspectRatio(1/1, contentMode: .fit)
-								.frame(width: 40, height: 40)
-								
-								
-							VStack() {
-								Text("Day \(contexto.dia)")
-										.font(.appFont(selectedFont, size: 30))
-								Text("Morning")
-										.font(.appFont(selectedFont, size: 30))
-							}
-							
-							Button(action: {path.append("options")}) { //so vai pra tela e nao volta
-								Image("configuracoes")
-										.resizable()
-										.scaledToFit()
-										.aspectRatio(1/1, contentMode: .fit)
-										.frame(width: 35, height: 35)
-							}
-							.buttonStyle(.plain)
-							.padding()
-							}
-							.padding(.top, 10)
-						
-							Spacer()
-							Text("Long paragraph of text that will wrap correctly above the image background...")
-									.font(.appFont(selectedFont, size: 25))
-									.multilineTextAlignment(.leading)
-									.lineLimit(nil)
-									.fixedSize(horizontal: false, vertical: true)
-									.padding(.horizontal, 15)
-							Spacer()
-							Text("Another line of text here...")
-									.font(.appFont(selectedFont, size: 25))
-									.multilineTextAlignment(.leading)
-									.lineLimit(nil)
-									.fixedSize(horizontal: false, vertical: true)
-									.padding(.horizontal, 15)
-							Spacer()
-					}
-					.frame(width: geo.size.width / 3, height: geo.size.height)
+						.ignoresSafeArea()
 				}
-				.ignoresSafeArea()
 					
 			}
 			.navigationBarBackButtonHidden()
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
-		}
+		} //fim body
 	
 	func reiniciarOpcoes() {
 		opcoes.removeAll()
@@ -334,8 +292,10 @@ struct ConfessionarioView: View {
 			}
 		}
 	}
+
+	
 }
 
 #Preview {
-    //ConfessionarioView()
+		//ConfessionarioView()
 }
