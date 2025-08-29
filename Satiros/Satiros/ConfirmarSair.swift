@@ -13,23 +13,51 @@ struct ConfirmarSair: View {
 	@Binding var path: [String]
 	
     var body: some View {
-			VStack {
-				Text("Confirm exit?")
-					.font(.appFont(selectedFont, size:50))
-					.padding()
-				HStack {
-					Button(action: {exit(-1)}) {
-						Text("Yes, I confirm")
-							.font(.appFont(selectedFont, size:30))
+			ZStack{
+				Image("fundo pixel")
+						.resizable()
+						.clipped()
+						.aspectRatio(16/10, contentMode: .fit)
+				VStack {
+					Text("Confirm exit?")
+						.foregroundColor(.white)
+						.font(.appFont(selectedFont, size:50))
+						.padding()
+					HStack {
+						
+						Button(action: {exit(-1)}) {
+							ZStack {
+								Image("botao continue")
+										.resizable()
+										.scaledToFit()
+										.frame(width: 200, height: 100)
+								
+								Text("Yes, I confirm")
+									.font(.appFont(selectedFont, size: 25))
+										.foregroundColor(.white)
+							}
+						}
+						.buttonStyle(.plain)
+						.padding()
+						
+						Button(action: {path.removeAll()}) {
+							ZStack {
+								Image("botao continue")
+										.resizable()
+										.scaledToFit()
+										.frame(width: 200, height: 100)
+								
+								Text("No, I decline")
+									.font(.appFont(selectedFont, size: 25))
+										.foregroundColor(.white)
+							}
+						}
+						.buttonStyle(.plain)
+						.padding()
 					}
-					.padding()
-					Button(action: {path.removeAll()}) {
-						Text("No, I decline")
-							.font(.appFont(selectedFont, size:30))
-					}
-					.padding()
 				}
 			}
+			
 			.navigationBarBackButtonHidden()
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
     }

@@ -15,19 +15,30 @@ struct BotoesTelaInicio: View {
     var body: some View {
 			HStack {
 				Button(action: {path.append("options")}) {
-					Text("Options")
-						.font(.appFont(selectedFont, size:20))
+					Image("configuracoes")
+							.resizable()
+							.scaledToFit()
+							.frame(width: 50, height: 50)
 				}
+				.buttonStyle(.plain)
 				.padding()
+				
 				Button(action: {}) {
-					Text("Achievements")
-						.font(.appFont(selectedFont,size:20))
+					Image("conquistas")
+							.resizable()
+							.scaledToFit()
+							.frame(width: 50, height: 50)
 				}
+				.buttonStyle(.plain)
 				.padding()
+				
 				Button(action: {path.append("confirmarSair")}) {
-					Text("Exit")
-						.font(.appFont(selectedFont, size:20))
+					Image("sair")
+							.resizable()
+							.scaledToFit()
+							.frame(width: 50, height: 50)
 				}
+				.buttonStyle(.plain)
 				.padding()
 			}
     }
