@@ -20,6 +20,7 @@ struct ConfirmarSair: View {
 						.aspectRatio(16/10, contentMode: .fit)
 				VStack {
 					Text("Confirm exit?")
+						.foregroundColor(.white)
 						.font(.appFont(selectedFont, size:50))
 						.padding()
 					HStack {

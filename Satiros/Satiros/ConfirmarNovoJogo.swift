@@ -13,73 +13,78 @@ struct ConfirmarNovoJogo: View {
 	@Bindable var contexto: ContextoSalvo
 	@Binding var path: [String]
 	
-    var body: some View {
-<<<<<<< HEAD
-			ZStack{
-				Image("fundo pixel")
-						.resizable()
-						.clipped()
-						.aspectRatio(16/10, contentMode: .fit)
-				VStack {
-					Text("Confirm new game?")
-						.font(.appFont(selectedFont, size:50))
-						.padding()
-					
-					Text("All your progress in the current game will be lost.")
-						.font(.appFont(selectedFont, size:25))
-						.padding()
-					
-					HStack {
-						Button(action: {contexto.local = "tutorial"; contexto.idDialogo = 0; contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; path.append("tutorial")}) {
-							ZStack {
-								Image("botao continue")
-										.resizable()
-										.scaledToFit()
-										.frame(width: 200, height: 100)
-								
-								Text("Yes, I confirm")
-									.font(.appFont(selectedFont, size: 25))
-										.foregroundColor(.white)
-							}
-						}
-						.buttonStyle(.plain)
-						.padding()
-						
-						Button(action: {path.removeAll()}) {
-							ZStack {
-								Image("botao continue")
-										.resizable()
-										.scaledToFit()
-										.frame(width: 200, height: 100)
-								
-								Text("No, I decline")
-									.font(.appFont(selectedFont, size: 25))
-									.foregroundColor(.white)
-							}
-						}
-						.buttonStyle(.plain)
-						.padding()
-=======
+	var body: some View {
+		ZStack{
+			Image("fundo pixel")
+				.resizable()
+				.clipped()
+				.aspectRatio(16/10, contentMode: .fit)
 			VStack {
 				Text("Confirm new game?")
+					.foregroundColor(.white)
 					.font(.appFont(selectedFont, size:50))
 					.padding()
+				
 				Text("All your progress in the current game will be lost.")
-					.font(.appFont(selectedFont, size:20))
+					.foregroundColor(.white)
+					.font(.appFont(selectedFont, size:25))
 					.padding()
+				
 				HStack {
-					Button(action: {contexto.local = "confessionario"; contexto.idDialogo = retornaID(dia: 1, horario: "confissao1", local: "confessionario"); contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; path.append("confessionario")}) {
-						Text("Yes, I confirm")
-							.font(.appFont(selectedFont, size:30))
->>>>>>> e2f0a03296226638bc3890d9db4f6ef4698398d3
+					Button(action: {contexto.local = "confessionario"; contexto.idDialogo = retornaID(dia: 1, horario: "confissao1", local: "confessionario"); contexto.dia = 1; contexto.horario = "confissao1"; contexto.popularidade = 5; contexto.desconfianca = 5; path.append("confessionario")}) {
+						ZStack {
+							Image("botao continue")
+								.resizable()
+								.scaledToFit()
+								.frame(width: 200, height: 100)
+							
+							Text("Yes, I confirm")
+								.font(.appFont(selectedFont, size: 25))
+								.foregroundColor(.white)
+						}
 					}
+					.buttonStyle(.plain)
+					.padding()
+					
+					Button(action: {path.removeAll()}) {
+						ZStack {
+							Image("botao continue")
+								.resizable()
+								.scaledToFit()
+								.frame(width: 200, height: 100)
+							
+							Text("No, I decline")
+								.font(.appFont(selectedFont, size: 25))
+								.foregroundColor(.white)
+						}
+					}
+					.buttonStyle(.plain)
+					.padding()
+					/*VStack {
+						Text("Confirm new game?")
+							.font(.appFont(selectedFont, size:50))
+							.padding()
+						Text("All your progress in the current game will be lost.")
+							.font(.appFont(selectedFont, size:20))
+							.padding()
+						HStack {
+							Button(action: {contexto.local = "confessionario"; contexto.idDialogo = retornaID(dia: 1, horario: "confissao1", local: "confessionario"); contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; path.append("confessionario")}) {
+								Text("Yes, I confirm")
+									.font(.appFont(selectedFont, size:30))
+							}
+						}
+						.navigationBarBackButtonHidden()
+						.frame(maxWidth: .infinity, maxHeight: .infinity)
+					}*/
+					
 				}
-				.navigationBarBackButtonHidden()
-				.frame(maxWidth: .infinity, maxHeight: .infinity)
 			}
-			
-    }
+		}
+		.navigationBarBackButtonHidden()
+		.frame(maxWidth: .infinity, maxHeight: .infinity)
+	}
 }
+
 
 #Preview {
    // ConfirmarNovoJogo()

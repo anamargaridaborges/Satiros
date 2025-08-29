@@ -37,24 +37,38 @@ struct OptionsView: View {
 					
 					Spacer()
 					Text("Options")
+						.foregroundColor(.white)
 						.font(.appFont(selectedFont, size: 60))
 						.padding(20)
-					Button(action: {if selectedFont == "SFPro" {
-						selectedFont = "VT323"
-					} else{
-							selectedFont = "SFPro"
-						};
-						defaults.set(selectedFont, forKey: "selectedFont")}) {
-						HStack {
-							Text("Font")
-								.font(.appFont(selectedFont,size: 30))
-								.padding()
-							Spacer()
-							Text((selectedFont == "SFPro" ? "Smooth" : "Squared"))
-								.font(.appFont(selectedFont,size: 30))
-								.padding()
+					Button{
+							if selectedFont == "SFPro" {
+								selectedFont = "VT323"
+							}
+						
+							else{
+									selectedFont = "SFPro"
+							}
+							defaults.set(selectedFont, forKey: "selectedFont")
+						} label: {
+								HStack {
+									Text("Font")
+										.foregroundColor(.white)
+										.font(.appFont(selectedFont,size: 30))
+										.padding()
+									Spacer()
+									Text((selectedFont == "SFPro" ? "Smooth" : "Squared"))
+										.foregroundColor(.white)
+										.font(.appFont(selectedFont,size: 30))
+										.padding()
+								}
+								.background(
+														RoundedRectangle(cornerRadius: 20)
+															//.background(.white)
+															.opacity(0.2)
+												)
+							
 						}
-					}
+						.buttonStyle(.plain)
 					.padding(20)
 					Spacer()
 				}
