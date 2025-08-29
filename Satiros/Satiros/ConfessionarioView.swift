@@ -89,11 +89,13 @@ struct ConfessionarioView: View {
 													.foregroundColor(.white)
 													.font(.appFont(selectedFont, size: 30))
 											}
-											
-											Image("configuracoes")
-												.resizable()
-												.clipped()
-												.frame(width: 35, height: 35)
+											Button (action: {path.append("options")}){
+												Image("configuracoes")
+													.resizable()
+													.clipped()
+													.frame(width: 35, height: 35)
+											}
+											.buttonStyle(.plain)
 										}
 										.padding(.top, 10)
 										.frame(maxWidth: .infinity)
