@@ -95,6 +95,12 @@ struct IntroducaoView: View {
 						else if local == "options" {
 							OptionsView(path: $path)
 						}
+						else if local == "cartas" {
+							CartasView(contexto: contexto[0], path: $path)
+						}
+						else if local == "menu" {
+							IntroducaoView()
+						}
 					}
 					
 				}

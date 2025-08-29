@@ -63,7 +63,7 @@ struct ConfessionarioView: View {
 												.padding(.top, 15)
 										}
 									}
-									//.padding(.top, 10)
+									.padding(.top, 10)
 							}
 								.frame(width: geo.size.width * 2/3, height: geo.size.height)
 								
@@ -117,6 +117,7 @@ struct ConfessionarioView: View {
 														.foregroundColor(.white)
 														.font(.appFont(selectedFont, size:30))
 														.padding()
+														//.id("atual")
 														
 												}
 												.id("atual")
@@ -138,7 +139,6 @@ struct ConfessionarioView: View {
 															let inicio = opcoes[index].index(texto.startIndex, offsetBy: 3)
 															/*let opcaoAtual = opcoes[index][inicio...]*/
 															dialogosConfessionario.append(ContextoConfessionario(personagem: "You", dialogo: String(opcoes[index][inicio...]))); proximaFala(index: index)
-															reiniciarOpcoes()
 															terminou = true
 															checaImprimiu = false
 															} label: {
@@ -186,12 +186,12 @@ struct ConfessionarioView: View {
 											}
 											dialogosConfessionario.append(ContextoConfessionario(personagem: dialogos[contexto.idDialogo ?? 0].personagem, dialogo: dialogos[contexto.idDialogo ?? 0].texto[idFala]))
 											proximaFala()
-											reiniciarOpcoes()
 											return .handled
 											
 										}
 										.onAppear {
 											estaFocado = true
+											texto = ""
 											reiniciarOpcoes()
 										}
 										.onChange(of: texto) { _ in
@@ -243,8 +243,17 @@ struct ConfessionarioView: View {
 	}
 	
 	func proximaFala(index: Int = 0) {
+		if (dialogos[contexto.idDialogo ?? 0].id_que_opcao_leva[index] == -10) {
+			contexto.idDialogo = 23
+			dialogosConfessionario.removeAll()
+			idFala = 0
+			path.append("cartas")
+			reiniciarOpcoes()
+			return
+		}
 		contexto.idDialogo = dialogos[contexto.idDialogo ?? 0].id_que_opcao_leva[index]
 		idFala = 0
+		reiniciarOpcoes()
 		return
 	}
 	
