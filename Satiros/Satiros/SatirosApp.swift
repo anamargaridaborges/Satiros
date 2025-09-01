@@ -15,6 +15,6 @@ struct SatirosApp: App {
 			WindowGroup {
 				IntroducaoView()
 			}
-			.modelContainer(for: ContextoSalvo.self)
+			.modelContainer(for: [ContextoSalvo.self, ContextoConfessionario.self])
 	}
 }

@@ -16,7 +16,7 @@ class ContextoSalvo {
 	var horario: String
 	var popularidade: Int
 	var desconfianca: Int
-	init(idDialogo: Int? = 0, local: String? = "tutorial", dia: Int = 1, horario: String = "manha", popularidade: Int = 5, desconfianca: Int = 5) {
+	init(idDialogo: Int? = 15, local: String? = "confessionario", dia: Int = 1, horario: String = "confissao1", popularidade: Int = 5, desconfianca: Int = 5) {
 		self.idDialogo = idDialogo
 		self.local = local
 		self.dia = dia

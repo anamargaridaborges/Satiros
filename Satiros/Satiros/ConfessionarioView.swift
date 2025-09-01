@@ -18,8 +18,8 @@ struct ConfessionarioView: View {
 	@State var opcoes: [String] = []
 	@State var terminou: Bool = true
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
-	@Environment(\.modelContext) private var modelContext1
-	@State var dialogosConfessionario: [ContextoConfessionario] = []
+	@Environment(\.modelContext) private var modelContext
+	@Query(sort: \ContextoConfessionario.id, order: .forward) var dialogosConfessionario: [ContextoConfessionario]
 	@State var passaNoBotao: [Bool] = [false, false, false]
 	@State var checaImprimiu: Bool = false
 	@State private var scrollProxy: ScrollViewProxy? = nil
@@ -138,7 +138,7 @@ struct ConfessionarioView: View {
 															contexto.popularidade += dialogos[contexto.idDialogo ?? 0].impacto_opcao_pop[index]
 															let inicio = opcoes[index].index(texto.startIndex, offsetBy: 3)
 															/*let opcaoAtual = opcoes[index][inicio...]*/
-															dialogosConfessionario.append(ContextoConfessionario(personagem: "You", dialogo: String(opcoes[index][inicio...]))); proximaFala(index: index)
+															modelContext.insert(ContextoConfessionario(personagem: "You", dialogo: String(opcoes[index][inicio...]))); proximaFala(index: index)
 															terminou = true
 															checaImprimiu = false
 															} label: {
@@ -173,18 +173,18 @@ struct ConfessionarioView: View {
 													scrollProxy?.scrollTo("atual", anchor: .bottom)
 											}
 											if (idFala < dialogos[contexto.idDialogo ?? 0].texto.count - 1) {
-												dialogosConfessionario.append(ContextoConfessionario(personagem: dialogos[contexto.idDialogo ?? 0].personagem, dialogo: dialogos[contexto.idDialogo ?? 0].texto[idFala]))
+												modelContext.insert(ContextoConfessionario(personagem: dialogos[contexto.idDialogo ?? 0].personagem, dialogo: dialogos[contexto.idDialogo ?? 0].texto[idFala]))
 												idFala += 1
 												reiniciarOpcoes()
 												return .handled
 											}
 											if (terminou == false && !dialogos[contexto.idDialogo ?? 0].opcoes.isEmpty) {
 												carregaFalaToda()
-												dialogosConfessionario.append(ContextoConfessionario(personagem: dialogos[contexto.idDialogo ?? 0].personagem, dialogo: dialogos[contexto.idDialogo ?? 0].texto[idFala]))
+												modelContext.insert(ContextoConfessionario(personagem: dialogos[contexto.idDialogo ?? 0].personagem, dialogo: dialogos[contexto.idDialogo ?? 0].texto[idFala]))
 												
 												return .handled
 											}
-											dialogosConfessionario.append(ContextoConfessionario(personagem: dialogos[contexto.idDialogo ?? 0].personagem, dialogo: dialogos[contexto.idDialogo ?? 0].texto[idFala]))
+											modelContext.insert(ContextoConfessionario(personagem: dialogos[contexto.idDialogo ?? 0].personagem, dialogo: dialogos[contexto.idDialogo ?? 0].texto[idFala]))
 											proximaFala()
 											return .handled
 											
@@ -245,7 +245,9 @@ struct ConfessionarioView: View {
 	func proximaFala(index: Int = 0) {
 		if (dialogos[contexto.idDialogo ?? 0].id_que_opcao_leva[index] == -10) {
 			contexto.idDialogo = 23
-			dialogosConfessionario.removeAll()
+			for dialogo in dialogosConfessionario {
+				modelContext.delete(dialogo)
+			}
 			idFala = 0
 			path.append("cartas")
 			reiniciarOpcoes()
