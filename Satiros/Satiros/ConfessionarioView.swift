@@ -36,7 +36,8 @@ struct ConfessionarioView: View {
 								
 									VStack(alignment: .leading) {
 										HStack {
-											Image("popularidade")
+											let pop = "popularidade" + String(contexto.popularidade)
+											Image(pop)
 												.resizable()
 												.clipped()
 												.aspectRatio(2/1, contentMode: .fit)
@@ -50,7 +51,8 @@ struct ConfessionarioView: View {
 										}
 											
 										HStack {
-											Image("desconfianca")
+											let des = "desconfianca" + String(contexto.desconfianca)
+											Image(des)
 												.resizable()
 												.clipped()
 												.aspectRatio(2/1, contentMode: .fit)
@@ -147,6 +149,7 @@ struct ConfessionarioView: View {
 																		.fixedSize(horizontal: false, vertical: true)
 																		.padding()
 																		.frame(maxWidth: .infinity)
+																		.background(Color.black)
 														}
 														.buttonStyle(PlainButtonStyle())
 														//.background(passaNoBotao[index] ? Color("Selecionado") : Color("Fundo"))
@@ -156,7 +159,8 @@ struct ConfessionarioView: View {
 														}
 													}
 												}
-												.padding(5)
+												
+												//.padding(5)
 											}
 										}
 									.background(Color("Fundo"))
