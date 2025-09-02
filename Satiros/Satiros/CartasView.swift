@@ -14,6 +14,7 @@ struct CartasView: View {
 	@Binding var path: [String]
 	@State var passaNaCarta: [Bool] = [false, false, false, false, false]
 	
+	
     var body: some View {
 			GeometryReader { geo in
 					ZStack {
@@ -220,15 +221,10 @@ struct CartasView: View {
 							.frame(width: geo.size.width * 2/3, height: geo.size.height)
 								
 								ZStack {
-										Image("aaa")
-												.resizable()
-												.clipped()
-												.aspectRatio(3/5.75, contentMode: .fit)
-										
 									VStack(spacing: 0) {
 										
 										HStack(spacing: 150){
-											Image("menu")
+											Image("notas")
 												.resizable()
 												.clipped()
 												.frame(width: 40, height: 40)
@@ -241,8 +237,8 @@ struct CartasView: View {
 													.foregroundColor(.white)
 													.font(.appFont(selectedFont, size: 30))
 											}
-											Button (action: {path.append("options")}){
-												Image("configuracoes")
+											Button (action: {path.removeAll()}){
+												Image("sair")
 													.resizable()
 													.clipped()
 													.frame(width: 35, height: 35)
