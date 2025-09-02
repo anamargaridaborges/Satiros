@@ -200,6 +200,7 @@ struct ConfessionarioView: View {
 			for dialogo in dialogosConfessionario {
 				modelContext.delete(dialogo)
 			}
+			contexto.local = "cartas"
 			contexto.parteDialogo = 0
 			path.append("cartas")
 			reiniciarOpcoes()
