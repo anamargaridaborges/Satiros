@@ -111,6 +111,9 @@ struct ConfessionarioView: View {
 												return .handled
 											}
 											if (terminou == false && !dialogos[contexto.idDialogo].opcoes.isEmpty) {
+												if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo]) {
+													return .handled
+												}
 												carregaFalaToda()
 												salvaBD(personagem: dialogos[contexto.idDialogo].personagem, dialogo: dialogos[contexto.idDialogo].texto[contexto.parteDialogo], momentoAdicionado: tempo)
 												return .handled
