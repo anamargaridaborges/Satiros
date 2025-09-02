@@ -270,7 +270,7 @@ struct ConfessionarioView: View {
 			await MainActor.run {
 				terminou = false
 			}
-			await Task.yield()
+			try? await Task.yield()
 			await MainActor.run {
 				texto = ""
 			}

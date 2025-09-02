@@ -13,8 +13,7 @@ struct CartasView: View {
 	@Bindable var contexto: ContextoSalvo
 	@Binding var path: [String]
 	@State var passaNaCarta: [Bool] = [false, false, false, false, false]
-	
-	
+	@State private var showImage = true
     var body: some View {
 			GeometryReader { geo in
 					ZStack {
@@ -23,7 +22,9 @@ struct CartasView: View {
 									Image("carta")
 											.resizable()
 											.clipped()
-											//.aspectRatio(1/1, contentMode: .fit)
+											.opacity(showImage ? 1 : 0)
+											.animation(.easeInOut(duration: 2), value: showImage)
+											//.aspectRatio(1/1, contentMode: .fill)
 									
 								VStack(alignment: .leading) {
 											HStack {
@@ -34,6 +35,7 @@ struct CartasView: View {
 													.frame(width: 80, height: 40)
 													.padding(.leading, 10)
 												//.aspectRatio(16/10, contentMode: .fit)
+												
 												Text(String(contexto.popularidade))
 													.font(.appFont(selectedFont, size: 25))
 													.foregroundStyle(.white)
