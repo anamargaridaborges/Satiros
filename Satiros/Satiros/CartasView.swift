@@ -19,16 +19,17 @@ struct CartasView: View {
 					ZStack {
 						HStack(spacing: 0) {
 							ZStack(alignment: .topLeading) {
-									Image("carta")
+									Image("fundoCarta")
 											.resizable()
 											.clipped()
 											.opacity(showImage ? 1 : 0)
-											.animation(.easeInOut(duration: 2), value: showImage)
+											.animation(.easeInOut(duration: 0.5), value: showImage)
 											//.aspectRatio(1/1, contentMode: .fill)
 									
 								VStack(alignment: .leading) {
 											HStack {
-												Image("popularidade")
+												let pop = "popularidade" + String(contexto.popularidade)
+												Image(pop)
 													.resizable()
 													.clipped()
 													.aspectRatio(2/1, contentMode: .fit)
@@ -43,7 +44,8 @@ struct CartasView: View {
 											}
 											
 											HStack {
-												Image("desconfianca")
+												let des = "desconfianca" + String(contexto.desconfianca)
+												Image(des)
 													.resizable()
 													.clipped()
 													.aspectRatio(2/1, contentMode: .fit)
@@ -235,9 +237,17 @@ struct CartasView: View {
 												Text("Day \(contexto.dia)")
 													.foregroundColor(.white)
 													.font(.appFont(selectedFont, size: 30))
-												Text("Morning")
-													.foregroundColor(.white)
-													.font(.appFont(selectedFont, size: 30))
+													.padding(.vertical, 5)
+												
+												if(contexto.horario == "confissao1"){
+													Text("9:00")
+														.foregroundColor(.white)
+														.font(.appFont(selectedFont, size: 30))
+												}else if (contexto.horario == "confissao2"){
+													Text("10:00")
+														.foregroundColor(.white)
+														.font(.appFont(selectedFont, size: 30))
+												}
 											}
 											Button (action: {path.removeAll()}){
 												Image("sair")
@@ -257,7 +267,7 @@ struct CartasView: View {
 										Spacer()
 										if (passaNaCarta[0] || passaNaCarta[1] || passaNaCarta[2] || passaNaCarta[3] || passaNaCarta[4] ) {
 											ZStack (alignment: .bottom){
-												Image("tentativaDeatlhe")
+												Image("detalheCarta")
 													.resizable()
 													.clipped()
 													.frame(width: 505, height: 161)

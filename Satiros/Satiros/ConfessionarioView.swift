@@ -69,9 +69,7 @@ struct ConfessionarioView: View {
 								.frame(width: geo.size.width * 2/3, height: geo.size.height)
 								
 								ZStack {
-										
 									VStack(spacing: 0) {
-										
 										HStack(spacing: 150){
 											Image("notas")
 												.resizable()
@@ -82,9 +80,17 @@ struct ConfessionarioView: View {
 												Text("Day \(contexto.dia)")
 													.foregroundColor(.white)
 													.font(.appFont(selectedFont, size: 30))
-												Text("Morning")
-													.foregroundColor(.white)
-													.font(.appFont(selectedFont, size: 30))
+													.padding(.vertical, 5)
+												
+												if(contexto.horario == "confissao1"){
+													Text("9:00")
+														.foregroundColor(.white)
+														.font(.appFont(selectedFont, size: 30))
+												}else if (contexto.horario == "confissao2"){
+													Text("10:00")
+														.foregroundColor(.white)
+														.font(.appFont(selectedFont, size: 30))
+												}
 											}
 											Button (action: {path.removeAll()}){
 												Image("sair")
