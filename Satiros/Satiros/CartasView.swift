@@ -57,7 +57,7 @@ struct CartasView: View {
 											Button (action: { if (contexto.horario == "confissao1") {
 												contexto.desconfianca -= 1
 												contexto.horario = "confissao2"
-												path.removeLast()
+												path.append("confessionario")
 											}
 												else {
 													contexto.popularidade += 1
@@ -88,7 +88,7 @@ struct CartasView: View {
 												contexto.desconfianca += 1
 												contexto.popularidade -= 1
 												contexto.horario = "confissao2"
-												path.removeLast()
+												path.append("confessionario")
 											}
 												else {
 													contexto.popularidade += 1
@@ -120,7 +120,7 @@ struct CartasView: View {
 											Button (action: {if (contexto.horario == "confissao1") {
 												contexto.popularidade += 1
 												contexto.horario = "confissao2"
-												path.removeLast()
+												path.append("confessionario")
 											}
 												else {
 													contexto.desconfianca -= 1
@@ -152,7 +152,7 @@ struct CartasView: View {
 											HStack {
 												Button (action: {if (contexto.horario == "confissao1") {
 												 contexto.horario = "confissao2"
-												 path.removeLast()
+												 path.append("confessionario")
 											 }
 												 else {
 													 path.append("menu")
@@ -182,7 +182,7 @@ struct CartasView: View {
 													contexto.desconfianca -= 1
 												 contexto.popularidade += 1
 												 contexto.horario = "confissao2"
-												 path.removeLast()
+												path.append("confessionario")
 											 }
 												 else {
 													 contexto.popularidade -= 1
