@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "iTunesArtwork-1024.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -12,6 +13,7 @@
           "value" : "dark"
         }
       ],
+      "filename" : "iTunesArtwork-1024 1.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -23,6 +25,7 @@
           "value" : "tinted"
         }
       ],
+      "filename" : "iTunesArtwork-1024 2.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -68,11 +71,13 @@
       "size" : "256x256"
     },
     {
+      "filename" : "iTunesArtwork-512.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
+      "filename" : "iTunesArtwork-1024 3.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"

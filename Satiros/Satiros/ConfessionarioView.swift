@@ -23,6 +23,7 @@ struct ConfessionarioView: View {
 	@State var passaNoBotao: [Bool] = [false, false, false]
 	@State var checaImprimiu: Bool = false
 	@State private var scrollProxy: ScrollViewProxy? = nil
+	@State private var tempo: Int = 0
 	
 		var body: some View {
 			GeometryReader { geo in
