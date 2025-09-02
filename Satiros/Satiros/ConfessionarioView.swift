@@ -1,25 +1,17 @@
-//
-//  ConfessionarioView.swift
-//  Satiros
-//
-//  Created by Ana Margarida Diniz Silva Borges on 19/08/25.
-//
-
 import SwiftUI
 import SwiftData
-
 struct ConfessionarioView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Bindable var contexto: ContextoSalvo
+	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
 	@Binding var path: [String]
 	@FocusState private var estaFocado: Bool
 	@State var texto: String = ""
-	@State var idFala: Int = 0
+	//@State var idFala: Int = 0
 	@State var opcoes: [String] = []
 	@State var terminou: Bool = true
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
 	@Environment(\.modelContext) private var modelContext
-	@Query(sort: \ContextoConfessionario.id, order: .forward) var dialogosConfessionario: [ContextoConfessionario]
+	@Query(sort: \ContextoConfessionario2.ContextoConfessionario.momentoAdicionado, order: .forward) var dialogosConfessionario: [ContextoConfessionario2.ContextoConfessionario]
 	@State var passaNoBotao: [Bool] = [false, false, false]
 	@State var checaImprimiu: Bool = false
 	@State private var scrollProxy: ScrollViewProxy? = nil
@@ -30,42 +22,7 @@ struct ConfessionarioView: View {
 					ZStack {
 						
 						HStack(spacing: 0) {
-							ZStack(alignment: .topLeading) {
-									Image("sombra sombria")
-											.resizable()
-											.clipped()
-											//.aspectRatio(1/1, contentMode: .fit)
-									
-									VStack(alignment: .leading) {
-										HStack {
-											Image("popularidade")
-												.resizable()
-												.clipped()
-												.aspectRatio(2/1, contentMode: .fit)
-												.frame(width: 80, height: 40)
-												.padding(.leading, 10)
-											//.aspectRatio(16/10, contentMode: .fit)
-											Text(String(contexto.popularidade))
-												.font(.appFont(selectedFont, size: 25))
-												.foregroundStyle(.white)
-												.padding(.top, 15)
-										}
-											
-										HStack {
-											Image("desconfianca")
-												.resizable()
-												.clipped()
-												.aspectRatio(2/1, contentMode: .fit)
-												.frame(width: 80, height: 40)
-												.padding(.leading, 30)
-											Text(String(contexto.desconfianca))
-												.font(.appFont(selectedFont, size: 25))
-												.foregroundStyle(.white)
-												.padding(.top, 15)
-										}
-									}
-									.padding(.top, 10)
-							}
+							SombraView(contexto: contexto)
 								.frame(width: geo.size.width * 2/3, height: geo.size.height)
 								
 								ZStack {
@@ -76,36 +33,15 @@ struct ConfessionarioView: View {
 										
 									VStack(spacing: 0) {
 										
-										HStack(spacing: 150){
-											Image("menu")
-												.resizable()
-												.clipped()
-												.frame(width: 40, height: 40)
-											
-											VStack() {
-												Text("Day \(contexto.dia)")
-													.foregroundColor(.white)
-													.font(.appFont(selectedFont, size: 30))
-												Text("Morning")
-													.foregroundColor(.white)
-													.font(.appFont(selectedFont, size: 30))
-											}
-											Button (action: {path.append("options")}){
-												Image("configuracoes")
-													.resizable()
-													.clipped()
-													.frame(width: 35, height: 35)
-											}
-											.buttonStyle(.plain)
-										}
-										.padding(.top, 10)
-										.frame(maxWidth: .infinity)
+										MenuzinhoView(contexto: contexto, path: $path)
+											.padding(.top, 10)
+											.frame(maxWidth: .infinity)
 										
 										ScrollView {
 											ScrollViewReader { proxy in
 												VStack {
 													ForEach (dialogosConfessionario) { dialogoConf in
-														if (dialogoConf.personagem + ": " + dialogoConf.dialogo != dialogos[contexto.idDialogo ?? 0].personagem + ": " + dialogos[contexto.idDialogo ?? 0].texto[idFala]) {
+														if (dialogoConf.personagem + ": " + dialogoConf.dialogo != dialogos[contexto.idDialogo].personagem + ": " + dialogos[contexto.idDialogo].texto[contexto.parteDialogo]) {
 															Text(dialogoConf.personagem + ": " + dialogoConf.dialogo)
 																.frame(maxWidth: .infinity, alignment: .leading)
 																.foregroundColor(.white)
@@ -130,18 +66,12 @@ struct ConfessionarioView: View {
 										.padding()
 										.frame(maxWidth: .infinity)
 											
-											if (idFala == dialogos[contexto.idDialogo ?? 0].texto.count - 1 && dialogos[contexto.idDialogo ?? 0].opcoes.count > 0) {
+										if (contexto.parteDialogo == dialogos[contexto.idDialogo ?? 0].texto.count - 1 && dialogos[contexto.idDialogo ?? 0].opcoes.count > 0) {
 												// se é a última parte da fala
 												ForEach(opcoes.indices, id: \.self) { index in
 													if (opcoes[index] != ""){
 														Button {
-															contexto.desconfianca += dialogos[contexto.idDialogo ?? 0].impacto_opcao_desc[index]
-															contexto.popularidade += dialogos[contexto.idDialogo ?? 0].impacto_opcao_pop[index]
-															let inicio = opcoes[index].index(texto.startIndex, offsetBy: 3)
-															/*let opcaoAtual = opcoes[index][inicio...]*/
-															modelContext.insert(ContextoConfessionario(personagem: "You", dialogo: String(opcoes[index][inicio...]))); proximaFala(index: index)
-															terminou = true
-															checaImprimiu = false
+															selecionaOpcao(index: index)
 															} label: {
 																		Text(opcoes[index])
 																		.foregroundColor(.white)
@@ -173,19 +103,19 @@ struct ConfessionarioView: View {
 											withAnimation {
 													scrollProxy?.scrollTo("atual", anchor: .bottom)
 											}
-											if (idFala < dialogos[contexto.idDialogo ?? 0].texto.count - 1) {
-												modelContext.insert(ContextoConfessionario(personagem: dialogos[contexto.idDialogo ?? 0].personagem, dialogo: dialogos[contexto.idDialogo ?? 0].texto[idFala]))
-												idFala += 1
+											if (contexto.parteDialogo < dialogos[contexto.idDialogo].texto.count - 1) {
+												salvaBD(personagem: dialogos[contexto.idDialogo].personagem, dialogo: dialogos[contexto.idDialogo].texto[contexto.parteDialogo], momentoAdicionado: tempo)
+												contexto.parteDialogo += 1
+												//idFala += 1
 												reiniciarOpcoes()
 												return .handled
 											}
-											if (terminou == false && !dialogos[contexto.idDialogo ?? 0].opcoes.isEmpty) {
+											if (terminou == false && !dialogos[contexto.idDialogo].opcoes.isEmpty) {
 												carregaFalaToda()
-												modelContext.insert(ContextoConfessionario(personagem: dialogos[contexto.idDialogo ?? 0].personagem, dialogo: dialogos[contexto.idDialogo ?? 0].texto[idFala]))
-												
+												salvaBD(personagem: dialogos[contexto.idDialogo].personagem, dialogo: dialogos[contexto.idDialogo].texto[contexto.parteDialogo], momentoAdicionado: tempo)
 												return .handled
 											}
-											modelContext.insert(ContextoConfessionario(personagem: dialogos[contexto.idDialogo ?? 0].personagem, dialogo: dialogos[contexto.idDialogo ?? 0].texto[idFala]))
+											salvaBD(personagem: dialogos[contexto.idDialogo].personagem, dialogo: dialogos[contexto.idDialogo].texto[contexto.parteDialogo], momentoAdicionado: tempo)
 											proximaFala()
 											return .handled
 											
@@ -216,9 +146,30 @@ struct ConfessionarioView: View {
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 		} //fim body
 	
+	func selecionaOpcao (index: Int) {
+			contexto.desconfianca += dialogos[contexto.idDialogo].impacto_opcao_desc[index]
+			contexto.popularidade += dialogos[contexto.idDialogo].impacto_opcao_pop[index]
+			let inicio = opcoes[index].index(texto.startIndex, offsetBy: 3)
+			/*let opcaoAtual = opcoes[index][inicio...]*/
+			salvaBD(personagem: "You", dialogo: String(opcoes[index][inicio...]), momentoAdicionado: tempo)
+			proximaFala(index: index)
+			terminou = true
+			checaImprimiu = false
+			return
+	}
+	
+	func salvaBD (personagem: String, dialogo: String, momentoAdicionado: Int) {
+		if (dialogosConfessionario.isEmpty == false) {
+			tempo = dialogosConfessionario.last!.momentoAdicionado + 1
+		}
+		modelContext.insert(ContextoConfessionario2.ContextoConfessionario(personagem: personagem, dialogo: dialogo, momentoAdicionado: tempo))
+		try? modelContext.save()
+		return
+	}
+	
 	func reiniciarOpcoes() {
 		opcoes.removeAll()
-		for i in dialogos[contexto.idDialogo ?? 0].opcoes {
+		for i in dialogos[contexto.idDialogo].opcoes {
 			opcoes.append("")
 		}
 		animacaoOpcoes()
@@ -230,9 +181,9 @@ struct ConfessionarioView: View {
 		Task {
 			try? await Task.yield()
 			texto = ""
-			texto += dialogos[contexto.idDialogo ?? 0].texto[idFala]
+			texto += dialogos[contexto.idDialogo].texto[contexto.parteDialogo]
 			var cont: Int = 0
-			for opc in dialogos[contexto.idDialogo ?? 0].opcoes {
+			for opc in dialogos[contexto.idDialogo].opcoes {
 				opcoes[cont] = ""
 				opcoes[cont] += String(cont+1)
 				opcoes[cont] += ". "
@@ -244,18 +195,19 @@ struct ConfessionarioView: View {
 	}
 	
 	func proximaFala(index: Int = 0) {
-		if (dialogos[contexto.idDialogo ?? 0].id_que_opcao_leva[index] == -10) {
+		if (dialogos[contexto.idDialogo].id_que_opcao_leva[index] == -10) {
 			contexto.idDialogo = 23
 			for dialogo in dialogosConfessionario {
 				modelContext.delete(dialogo)
 			}
-			idFala = 0
+			contexto.parteDialogo = 0
 			path.append("cartas")
 			reiniciarOpcoes()
 			return
 		}
-		contexto.idDialogo = dialogos[contexto.idDialogo ?? 0].id_que_opcao_leva[index]
-		idFala = 0
+		contexto.idDialogo = dialogos[contexto.idDialogo].id_que_opcao_leva[index]
+		try? modelContext.save()
+		contexto.parteDialogo = 0
 		reiniciarOpcoes()
 		return
 	}
@@ -264,8 +216,8 @@ struct ConfessionarioView: View {
 		// imprime a fala e as opcoes com animação
 		//tarefaAtual?.cancel()
 		tarefaOpcoes?.cancel()
-		let opc = dialogos[contexto.idDialogo ?? 0].opcoes
-		let fala = dialogos[contexto.idDialogo ?? 0].texto[idFala]
+		let opc = dialogos[contexto.idDialogo].opcoes
+		let fala = dialogos[contexto.idDialogo].texto[contexto.parteDialogo]
 		var cont: Int = 1
 		tarefaOpcoes = Task {
 			terminou = false
@@ -306,10 +258,8 @@ struct ConfessionarioView: View {
 			}
 		}
 	}
-
 	
 }
-
 #Preview {
 		//ConfessionarioView()
 }

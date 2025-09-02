@@ -10,9 +10,9 @@ import SwiftData
 
 struct ConfirmarNovoJogo: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Bindable var contexto: ContextoSalvo
+	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
 	@Binding var path: [String]
-	@Query var dialogosConfessionario: [ContextoConfessionario]
+	@Query var dialogosConfessionario: [ContextoConfessionario2.ContextoConfessionario]
 	@Environment(\.modelContext) private var modelContext
 	
 	var body: some View {
