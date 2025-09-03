@@ -196,7 +196,7 @@ struct ConfessionarioView: View {
 											withAnimation {
 													scrollProxy?.scrollTo("atual", anchor: .bottom)
 											}
-											if (texto == dialogos[contexto.idDialogo ?? 0].texto[idFala]) {
+											if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo]) {
 												isSpeaking = false
 											}
 										}
