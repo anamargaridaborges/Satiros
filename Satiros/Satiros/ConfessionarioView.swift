@@ -15,6 +15,8 @@ struct ConfessionarioView: View {
 	@State var passaNoBotao: [Bool] = [false, false, false]
 	@State var checaImprimiu: Bool = false
 	@State private var scrollProxy: ScrollViewProxy? = nil
+	@State private var frameIndex = 0
+	@State var isSpeaking: Bool = false
 	@State private var tempo: Int = 0
 	
 		var body: some View {
@@ -22,20 +24,79 @@ struct ConfessionarioView: View {
 					ZStack {
 						
 						HStack(spacing: 0) {
-							SombraView(contexto: contexto)
+							ZStack(alignment: .topLeading) {
+								AnimatedImageBackground(isSpeaking: $isSpeaking)
+								
+									VStack(alignment: .leading) {
+										HStack {
+											let pop = "popularidade" + String(contexto.popularidade)
+											Image(pop)
+												.resizable()
+												.clipped()
+												.aspectRatio(2/1, contentMode: .fit)
+												.frame(width: 100, height: 50)
+												.padding(.leading, 15)
+											.aspectRatio(16/10, contentMode: .fit)
+											Text(String(contexto.popularidade))
+												.font(.appFont(selectedFont, size: 30))
+												.foregroundStyle(.white)
+												.padding(.top, 25)
+										}
+											
+										HStack {
+											let des = "desconfianca" + String(contexto.desconfianca)
+											Image(des)
+												.resizable()
+												.clipped()
+												.aspectRatio(2/1, contentMode: .fit)
+												.frame(width: 100, height: 50)
+												.padding(.leading, 40)
+											Text(String(contexto.desconfianca))
+												.font(.appFont(selectedFont, size: 30))
+												.foregroundStyle(.white)
+												.padding(.top, 22)
+										}
+									}
+									.padding(.top, 40)
+							}
+							//SombraView(contexto: contexto)
 								.frame(width: geo.size.width * 2/3, height: geo.size.height)
 								
 								ZStack {
-										Image("aaa")
+									VStack(spacing: 0) {
+										HStack(spacing: 150){
+											Image("notas")
 												.resizable()
 												.clipped()
-												.aspectRatio(3/5.75, contentMode: .fit)
-										
-									VStack(spacing: 0) {
-										
-										MenuzinhoView(contexto: contexto, path: $path)
-											.padding(.top, 10)
-											.frame(maxWidth: .infinity)
+												.frame(width: 50, height: 50)
+											
+											VStack() {
+												Text("Day \(contexto.dia)")
+													.foregroundColor(.white)
+													.font(.appFont(selectedFont, size: 35))
+													//.padding(.vertical, 5)
+												
+												if(contexto.horario == "confissao1"){
+													Text("9:00")
+														.foregroundColor(.white)
+														.font(.appFont(selectedFont, size: 35))
+												}else if (contexto.horario == "confissao2"){
+													Text("10:00")
+														.foregroundColor(.white)
+														.font(.appFont(selectedFont, size: 35))
+												}
+											}
+											Button (action: {path.removeAll()}){
+												Image("sair")
+													.resizable()
+													.clipped()
+													.frame(width: 45, height: 45)
+											}
+											.buttonStyle(.plain)
+										}
+                    //MenuzinhoView(contexto: contexto, path: $path)
+										.padding(.top, 10)
+										.frame(maxWidth: .infinity)
 										
 										ScrollView {
 											ScrollViewReader { proxy in
@@ -49,6 +110,7 @@ struct ConfessionarioView: View {
 																.padding()
 														}
 													}
+													
 													Text(dialogos[contexto.idDialogo ?? 0].personagem + ": " + texto)
 														.frame(maxWidth: .infinity, alignment: .leading)
 														.foregroundColor(.white)
@@ -82,6 +144,7 @@ struct ConfessionarioView: View {
 																		.fixedSize(horizontal: false, vertical: true)
 																		.padding()
 																		.frame(maxWidth: .infinity)
+																		.background(Color.black)
 														}
 														.buttonStyle(PlainButtonStyle())
 														//.background(passaNoBotao[index] ? Color("Selecionado") : Color("Fundo"))
@@ -91,7 +154,8 @@ struct ConfessionarioView: View {
 														}
 													}
 												}
-												.padding(5)
+												
+												//.padding(5)
 											}
 										}
 									.background(Color("Fundo"))
@@ -131,6 +195,9 @@ struct ConfessionarioView: View {
 										.onChange(of: texto) { _ in
 											withAnimation {
 													scrollProxy?.scrollTo("atual", anchor: .bottom)
+											}
+											if (texto == dialogos[contexto.idDialogo ?? 0].texto[idFala]) {
+												isSpeaking = false
 											}
 										}
 										.onChange(of: opcoes.joined()) { _ in
@@ -220,39 +287,57 @@ struct ConfessionarioView: View {
 		// imprime a fala e as opcoes com animação
 		//tarefaAtual?.cancel()
 		tarefaOpcoes?.cancel()
+		if (dialogos[contexto.idDialogo ?? 0].personagem == "Shadow"){
+			isSpeaking = true
+		}
 		let opc = dialogos[contexto.idDialogo].opcoes
 		let fala = dialogos[contexto.idDialogo].texto[contexto.parteDialogo]
 		var cont: Int = 1
-		tarefaOpcoes = Task {
-			terminou = false
+		tarefaOpcoes = Task.detached {
+			await MainActor.run {
+				terminou = false
+			}
 			try? await Task.yield()
-			texto = ""
+			await MainActor.run {
+				texto = ""
+			}
 			for c in fala {
-				texto.append(c)
+				await MainActor.run {
+					texto.append(c)
+				}
 				if Task.isCancelled {
 					return
 				}
 				try? await Task.sleep(nanoseconds: 50_000_000)
 			}
 			try? await Task.sleep(nanoseconds: 50_000_000)
+			
 			for opcao in opc {
-				opcoes[cont-1].append(String(cont))
+				await MainActor.run {
+					opcoes[cont-1].append(String(cont))
+				}
 				if Task.isCancelled {
 					return
 				}
 				try? await Task.sleep(nanoseconds: 50_000_000)
-				opcoes[cont-1].append(".")
+				await MainActor.run {
+					opcoes[cont-1].append(".")
+				}
 				if Task.isCancelled {
 					return
 				}
 				try? await Task.sleep(nanoseconds: 50_000_000)
-				opcoes[cont-1].append(" ")
+				await MainActor.run {
+					opcoes[cont-1].append(" ")
+				}
 				if Task.isCancelled {
 					return
 				}
 				try? await Task.sleep(nanoseconds: 50_000_000)
 				for c in opcao {
-					opcoes[cont-1].append(c)
+					await MainActor.run {
+						opcoes[cont-1].append(c)
+					}
 					if Task.isCancelled {
 						return
 					}
@@ -262,6 +347,42 @@ struct ConfessionarioView: View {
 			}
 		}
 	}
+	
+	struct AnimatedImageBackground: View {
+		@State private var frameIndex = 0
+		
+		let frames = ["fala1", "fala2", "fala3", "fala4", "fala5", "fala6"]
+		//let timer = Timer.publish(every: 0.3, on: .main, in: .common).autoconnect()
+		//var timer:Timer = Timer()
+		@State var tick: Bool = false
+		@Binding var isSpeaking: Bool
+		
+		var body: some View {
+			Image(frames[frameIndex])
+				.resizable()
+				.scaledToFill()
+				.ignoresSafeArea()
+				.onChange(of: tick) { oldValue, newValue in
+					if isSpeaking {
+						frameIndex = (frameIndex + 1) % frames.count
+					}
+				}.task {
+					var timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) {_ in
+						Task {
+							await MainActor.run {
+								tick.toggle()
+							}
+						}
+					}
+				}
+//				.onReceive(tick) { _ in
+//					print("Recebi")
+//						frameIndex = (frameIndex + 1) % frames.count
+//				}
+		}
+	}
+
+	
 	
 }
 #Preview {
