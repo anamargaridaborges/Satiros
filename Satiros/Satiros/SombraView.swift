@@ -10,7 +10,7 @@ import SwiftUI
 struct SombraView: View {
 	
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
+	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	
     var body: some View {
 			ZStack(alignment: .topLeading) {

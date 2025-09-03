@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 struct ConfessionarioView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
+	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@Binding var path: [String]
 	@FocusState private var estaFocado: Bool
 	@State var texto: String = ""
@@ -11,13 +11,14 @@ struct ConfessionarioView: View {
 	@State var terminou: Bool = true
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
 	@Environment(\.modelContext) private var modelContext
-	@Query(sort: \ContextoConfessionario2.ContextoConfessionario.momentoAdicionado, order: .forward) var dialogosConfessionario: [ContextoConfessionario2.ContextoConfessionario]
+	@Query(sort: \ContextoConfessionario3.ContextoConfessionario.momentoAdicionado, order: .forward) var dialogosConfessionario: [ContextoConfessionario3.ContextoConfessionario]
 	@State var passaNoBotao: [Bool] = [false, false, false]
 	@State var checaImprimiu: Bool = false
 	@State private var scrollProxy: ScrollViewProxy? = nil
 	@State private var frameIndex = 0
 	@State var isSpeaking: Bool = false
 	@State private var tempo: Int = 0
+	@Bindable var bloco: ContextoConfessionario3.Bloco
 	
 		var body: some View {
 			GeometryReader { geo in
@@ -65,10 +66,13 @@ struct ConfessionarioView: View {
 								ZStack {
 									VStack(spacing: 0) {
 										HStack(spacing: 150){
-											Image("notas")
-												.resizable()
-												.clipped()
-												.frame(width: 50, height: 50)
+											Button(action: {path.append("notas")}) {
+												Image("notas")
+													.resizable()
+													.clipped()
+													.frame(width: 50, height: 50)
+											}
+											.buttonStyle(.plain)
 											
 											VStack() {
 												Text("Day \(contexto.dia)")
@@ -111,7 +115,7 @@ struct ConfessionarioView: View {
 														}
 													}
 													
-													Text(dialogos[contexto.idDialogo ?? 0].personagem + ": " + texto)
+													Text(dialogos[contexto.idDialogo].personagem + ": " + texto)
 														.frame(maxWidth: .infinity, alignment: .leading)
 														.foregroundColor(.white)
 														.font(.appFont(selectedFont, size:30))
@@ -128,7 +132,7 @@ struct ConfessionarioView: View {
 										.padding()
 										.frame(maxWidth: .infinity)
 											
-										if (contexto.parteDialogo == dialogos[contexto.idDialogo ?? 0].texto.count - 1 && dialogos[contexto.idDialogo ?? 0].opcoes.count > 0) {
+										if (contexto.parteDialogo == dialogos[contexto.idDialogo].texto.count - 1 && dialogos[contexto.idDialogo].opcoes.count > 0) {
 												// se é a última parte da fala
 												ForEach(opcoes.indices, id: \.self) { index in
 													if (opcoes[index] != ""){
@@ -208,6 +212,20 @@ struct ConfessionarioView: View {
 													scrollProxy?.scrollTo("atual", anchor: .bottom)
 											}
 										}
+										.onChange(of: contexto.idDialogo) { _ in
+											if (dialogos[contexto.idDialogo].resumo_notas != "") {
+												if (bloco.textoPorDia.count < contexto.dia) {
+													bloco.textoPorDia.append(dialogos[contexto.idDialogo].resumo_notas)
+													print("\(contexto.idDialogo)")
+													print ("\(contexto.dia) \(bloco.textoPorDia.count)")
+												}
+												else {
+														bloco.textoPorDia[contexto.dia - 1] += "\n"
+														bloco.textoPorDia[contexto.dia - 1] += dialogos[contexto.idDialogo].resumo_notas
+													print("\(contexto.idDialogo)")
+												}
+											}
+										}
 								}
 								.frame(width: geo.size.width / 3, height: geo.size.height)
 						}
@@ -235,7 +253,7 @@ struct ConfessionarioView: View {
 		if (dialogosConfessionario.isEmpty == false) {
 			tempo = dialogosConfessionario.last!.momentoAdicionado + 1
 		}
-		modelContext.insert(ContextoConfessionario2.ContextoConfessionario(personagem: personagem, dialogo: dialogo, momentoAdicionado: tempo))
+		modelContext.insert(ContextoConfessionario3.ContextoConfessionario(personagem: personagem, dialogo: dialogo, momentoAdicionado: tempo))
 		try? modelContext.save()
 		return
 	}

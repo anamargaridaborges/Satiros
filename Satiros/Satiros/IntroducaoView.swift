@@ -11,7 +11,8 @@ import SwiftData
 struct IntroducaoView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Environment(\.modelContext) private var modelContext
-	@Query var contexto: [ContextoConfessionario2.ContextoSalvo]
+	@Query var contexto: [ContextoConfessionario3.ContextoSalvo]
+	@Query var bloco: [ContextoConfessionario3.Bloco]
 	
 	@State private var path: [String] = []
 	
@@ -24,8 +25,10 @@ struct IntroducaoView: View {
 			path.append("novoJogo")
 			return
 		}
-		var novoJogo = ContextoConfessionario2.ContextoSalvo()
+		var novoJogo = ContextoConfessionario3.ContextoSalvo()
 		modelContext.insert(novoJogo)
+		var bloco = ContextoConfessionario3.Bloco()
+		modelContext.insert(bloco)
 		do {
 			try modelContext.save()
 		} catch {
@@ -81,13 +84,13 @@ struct IntroducaoView: View {
 					.padding(.bottom, 30)
 					.navigationDestination(for: String.self) { local in
 						if local == "novoJogo" {
-							ConfirmarNovoJogo(contexto: contexto[0], path: $path)
+							ConfirmarNovoJogo(contexto: contexto[0], path: $path, bloco: bloco[0])
 						}
 						else if local == "tutorial" {
-							TutorialView(contexto: contexto[0], path: $path)
+							TutorialView(contexto: contexto[0], path: $path, bloco: bloco[0])
 						}
 						else if local == "confessionario" {
-							ConfessionarioView(contexto: contexto[0], path: $path)
+							ConfessionarioView(contexto: contexto[0], path: $path, bloco: bloco[0])
 						}
 						else if local == "confirmarSair" {
 							ConfirmarSair(path: $path)
@@ -100,6 +103,9 @@ struct IntroducaoView: View {
 						}
 						else if local == "menu" {
 							IntroducaoView()
+						}
+						else if local == "notas" {
+							BlocoView(path: $path, bloco: bloco[0])
 						}
 					}
 					

@@ -10,10 +10,11 @@ import SwiftData
 
 struct ConfirmarNovoJogo: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
+	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@Binding var path: [String]
-	@Query var dialogosConfessionario: [ContextoConfessionario2.ContextoConfessionario]
+	@Query var dialogosConfessionario: [ContextoConfessionario3.ContextoConfessionario]
 	@Environment(\.modelContext) private var modelContext
+	@Bindable var bloco: ContextoConfessionario3.Bloco
 	
 	var body: some View {
 		ZStack{
@@ -36,7 +37,7 @@ struct ConfirmarNovoJogo: View {
 					Button(action: {for dial in dialogosConfessionario {
 						modelContext.delete(dial)
 					};
-						contexto.local = "tutorial"; contexto.idDialogo = 0; contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; contexto.parteDialogo = 0; path.append("tutorial")}) {
+						contexto.local = "tutorial"; contexto.idDialogo = 0; contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; contexto.parteDialogo = 0; bloco.textoPorDia = []; path.append("tutorial")}) {
 						ZStack {
 							Image("botao continue")
 								.resizable()

@@ -11,11 +11,11 @@ import SwiftData
 struct CartasView: View {
 	
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
+	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@Binding var path: [String]
 	@State var passaNaCarta: [Bool] = [false, false, false, false, false]
 	@State private var showImage = true
-	@Query(sort: \ContextoConfessionario2.ContextoConfessionario.momentoAdicionado, order: .forward) var dialogosConfessionario: [ContextoConfessionario2.ContextoConfessionario]
+	@Query(sort: \ContextoConfessionario3.ContextoConfessionario.momentoAdicionado, order: .forward) var dialogosConfessionario: [ContextoConfessionario3.ContextoConfessionario]
 	@State private var scrollProxy: ScrollViewProxy? = nil
 	@State var texto: String = ""
 	@FocusState private var estaFocado: Bool
