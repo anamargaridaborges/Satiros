@@ -13,7 +13,10 @@ struct CartasView: View {
 	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
 	@Binding var path: [String]
 	@State var passaNaCarta: [Bool] = [false, false, false, false, false]
-	@State private var showImage = true
+	@State var passaNoAsset: [Bool] = [false, false] //[popularidade, desconfianca]
+	@State var mostrarBalao:  [Bool] = [false, false]
+//	@State private var showImage = true
+	
     var body: some View {
 			GeometryReader { geo in
 					ZStack {
@@ -22,40 +25,12 @@ struct CartasView: View {
 									Image("fundoCarta")
 											.resizable()
 											.clipped()
-											.opacity(showImage ? 1 : 0)
-											.animation(.easeInOut(duration: 0.5), value: showImage)
+//											.opacity(showImage ? 1 : 0)
+//											.animation(.easeInOut(duration: 0.5), value: showImage)
 											//.aspectRatio(1/1, contentMode: .fill)
 									
 								VStack(alignment: .leading) {
-											HStack {
-												let pop = "popularidade" + String(contexto.popularidade)
-												Image(pop)
-													.resizable()
-													.clipped()
-													.aspectRatio(2/1, contentMode: .fit)
-													.frame(width: 80, height: 40)
-													.padding(.leading, 10)
-												//.aspectRatio(16/10, contentMode: .fit)
-												
-												Text(String(contexto.popularidade))
-													.font(.appFont(selectedFont, size: 25))
-													.foregroundStyle(.white)
-													.padding(.top, 15)
-											}
-											
-											HStack {
-												let des = "desconfianca" + String(contexto.desconfianca)
-												Image(des)
-													.resizable()
-													.clipped()
-													.aspectRatio(2/1, contentMode: .fit)
-													.frame(width: 80, height: 40)
-													.padding(.leading, 30)
-												Text(String(contexto.desconfianca))
-													.font(.appFont(selectedFont, size: 25))
-													.foregroundStyle(.white)
-													.padding(.top, 15)
-											}
+									AtributosView(contexto: contexto)
 										
 									VStack (alignment: .center){
 										HStack {
@@ -217,7 +192,7 @@ struct CartasView: View {
 												.buttonStyle(.plain)
 											}
 										}
-									.position(x: geo.size.width * 1/3 , y: geo.size.height * 1/2.5)
+									.position(x: geo.size.width * 1/3 , y: geo.size.height * 1/3)
 									}
 									.padding(.top, 10)
 								
@@ -227,36 +202,7 @@ struct CartasView: View {
 								ZStack {
 									VStack(spacing: 0) {
 										
-										HStack(spacing: 150){
-											Image("notas")
-												.resizable()
-												.clipped()
-												.frame(width: 40, height: 40)
-											
-											VStack() {
-												Text("Day \(contexto.dia)")
-													.foregroundColor(.white)
-													.font(.appFont(selectedFont, size: 30))
-													.padding(.vertical, 5)
-												
-												if(contexto.horario == "confissao1"){
-													Text("9:00")
-														.foregroundColor(.white)
-														.font(.appFont(selectedFont, size: 30))
-												}else if (contexto.horario == "confissao2"){
-													Text("10:00")
-														.foregroundColor(.white)
-														.font(.appFont(selectedFont, size: 30))
-												}
-											}
-											Button (action: {path.removeAll()}){
-												Image("sair")
-													.resizable()
-													.clipped()
-													.frame(width: 35, height: 35)
-											}
-											.buttonStyle(.plain)
-										}
+										MenuzinhoView(contexto: contexto, path: $path)
 										.padding(.top, 10)
 										.frame(maxWidth: .infinity)
 										

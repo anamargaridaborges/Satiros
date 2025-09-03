@@ -4,7 +4,7 @@ struct ConfessionarioView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
 	@Binding var path: [String]
-	@FocusState private var estaFocado: Bool
+	@FocusState var estaFocado: FocusKey?
 	@State var texto: String = ""
 	//@State var idFala: Int = 0
 	@State var opcoes: [String] = []
@@ -24,77 +24,12 @@ struct ConfessionarioView: View {
 					ZStack {
 						
 						HStack(spacing: 0) {
-							ZStack(alignment: .topLeading) {
-								AnimatedImageBackground(isSpeaking: $isSpeaking)
-								
-									VStack(alignment: .leading) {
-										HStack {
-											let pop = "popularidade" + String(contexto.popularidade)
-											Image(pop)
-												.resizable()
-												.clipped()
-												.aspectRatio(2/1, contentMode: .fit)
-												.frame(width: 100, height: 50)
-												.padding(.leading, 15)
-											.aspectRatio(16/10, contentMode: .fit)
-											Text(String(contexto.popularidade))
-												.font(.appFont(selectedFont, size: 30))
-												.foregroundStyle(.white)
-												.padding(.top, 25)
-										}
-											
-										HStack {
-											let des = "desconfianca" + String(contexto.desconfianca)
-											Image(des)
-												.resizable()
-												.clipped()
-												.aspectRatio(2/1, contentMode: .fit)
-												.frame(width: 100, height: 50)
-												.padding(.leading, 40)
-											Text(String(contexto.desconfianca))
-												.font(.appFont(selectedFont, size: 30))
-												.foregroundStyle(.white)
-												.padding(.top, 22)
-										}
-									}
-									.padding(.top, 40)
-							}
-							//SombraView(contexto: contexto)
+							SombraView(contexto: contexto, isSpeaking: $isSpeaking)
 								.frame(width: geo.size.width * 2/3, height: geo.size.height)
 								
 								ZStack {
 									VStack(spacing: 0) {
-										HStack(spacing: 150){
-											Image("notas")
-												.resizable()
-												.clipped()
-												.frame(width: 50, height: 50)
-											
-											VStack() {
-												Text("Day \(contexto.dia)")
-													.foregroundColor(.white)
-													.font(.appFont(selectedFont, size: 35))
-													//.padding(.vertical, 5)
-												
-												if(contexto.horario == "confissao1"){
-													Text("9:00")
-														.foregroundColor(.white)
-														.font(.appFont(selectedFont, size: 35))
-												}else if (contexto.horario == "confissao2"){
-													Text("10:00")
-														.foregroundColor(.white)
-														.font(.appFont(selectedFont, size: 35))
-												}
-											}
-											Button (action: {path.removeAll()}){
-												Image("sair")
-													.resizable()
-													.clipped()
-													.frame(width: 45, height: 45)
-											}
-											.buttonStyle(.plain)
-										}
-                    //MenuzinhoView(contexto: contexto, path: $path)
+                    MenuzinhoView(contexto: contexto, path: $path, estaFocado: _estaFocado)
 										.padding(.top, 10)
 										.frame(maxWidth: .infinity)
 										
@@ -162,7 +97,7 @@ struct ConfessionarioView: View {
 									.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 										.focusable()
 										.focusEffectDisabled()
-										.focused($estaFocado)
+										.focused($estaFocado, equals: FocusKey.enter)
 										.onKeyPress(.return) {
 											withAnimation {
 													scrollProxy?.scrollTo("atual", anchor: .bottom)
@@ -188,7 +123,7 @@ struct ConfessionarioView: View {
 											
 										}
 										.onAppear {
-											estaFocado = true
+											estaFocado = FocusKey.enter
 											texto = ""
 											reiniciarOpcoes()
 										}
@@ -214,7 +149,7 @@ struct ConfessionarioView: View {
 			}
 			.navigationBarBackButtonHidden()
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
-		} //fim body
+		}
 	
 	func selecionaOpcao (index: Int) {
 			contexto.desconfianca += dialogos[contexto.idDialogo].impacto_opcao_desc[index]
@@ -347,43 +282,6 @@ struct ConfessionarioView: View {
 			}
 		}
 	}
-	
-	struct AnimatedImageBackground: View {
-		@State private var frameIndex = 0
-		
-		let frames = ["fala1", "fala2", "fala3", "fala4", "fala5", "fala6"]
-		//let timer = Timer.publish(every: 0.3, on: .main, in: .common).autoconnect()
-		//var timer:Timer = Timer()
-		@State var tick: Bool = false
-		@Binding var isSpeaking: Bool
-		
-		var body: some View {
-			Image(frames[frameIndex])
-				.resizable()
-				.scaledToFill()
-				.ignoresSafeArea()
-				.onChange(of: tick) { oldValue, newValue in
-					if isSpeaking {
-						frameIndex = (frameIndex + 1) % frames.count
-					}
-				}.task {
-					var timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) {_ in
-						Task {
-							await MainActor.run {
-								tick.toggle()
-							}
-						}
-					}
-				}
-//				.onReceive(tick) { _ in
-//					print("Recebi")
-//						frameIndex = (frameIndex + 1) % frames.count
-//				}
-		}
-	}
-
-	
-	
 }
 #Preview {
 		//ConfessionarioView()

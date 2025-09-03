@@ -12,8 +12,8 @@ struct IntroducaoView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Environment(\.modelContext) private var modelContext
 	@Query var contexto: [ContextoConfessionario2.ContextoSalvo]
-	
 	@State private var path: [String] = []
+	@FocusState private var estaFocado: FocusKey?
 	
 	func continuarJogo() {
 		path.append(contexto[0].local)
@@ -87,7 +87,7 @@ struct IntroducaoView: View {
 							TutorialView(contexto: contexto[0], path: $path)
 						}
 						else if local == "confessionario" {
-							ConfessionarioView(contexto: contexto[0], path: $path)
+							ConfessionarioView(contexto: contexto[0], path: $path, estaFocado: _estaFocado)
 						}
 						else if local == "confirmarSair" {
 							ConfirmarSair(path: $path)
