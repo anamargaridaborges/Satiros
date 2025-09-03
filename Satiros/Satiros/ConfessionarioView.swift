@@ -310,3 +310,5 @@ struct ConfessionarioView: View {
 #Preview {
 		//ConfessionarioView()
 }
+
+
