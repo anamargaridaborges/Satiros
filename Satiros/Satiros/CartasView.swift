@@ -10,7 +10,7 @@ import SwiftUI
 struct CartasView: View {
 	
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Bindable var contexto: ContextoSalvo
+	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
 	@Binding var path: [String]
 	@State var passaNaCarta: [Bool] = [false, false, false, false, false]
 	@State private var showImage = true
@@ -62,7 +62,7 @@ struct CartasView: View {
 											Button (action: { if (contexto.horario == "confissao1") {
 												contexto.desconfianca -= 1
 												contexto.horario = "confissao2"
-												path.removeLast()
+												path.append("confessionario")
 											}
 												else {
 													contexto.popularidade += 1
@@ -93,7 +93,7 @@ struct CartasView: View {
 												contexto.desconfianca += 1
 												contexto.popularidade -= 1
 												contexto.horario = "confissao2"
-												path.removeLast()
+												path.append("confessionario")
 											}
 												else {
 													contexto.popularidade += 1
@@ -125,7 +125,7 @@ struct CartasView: View {
 											Button (action: {if (contexto.horario == "confissao1") {
 												contexto.popularidade += 1
 												contexto.horario = "confissao2"
-												path.removeLast()
+												path.append("confessionario")
 											}
 												else {
 													contexto.desconfianca -= 1
@@ -157,7 +157,7 @@ struct CartasView: View {
 											HStack {
 												Button (action: {if (contexto.horario == "confissao1") {
 												 contexto.horario = "confissao2"
-												 path.removeLast()
+												 path.append("confessionario")
 											 }
 												 else {
 													 path.append("menu")
@@ -187,7 +187,7 @@ struct CartasView: View {
 													contexto.desconfianca -= 1
 												 contexto.popularidade += 1
 												 contexto.horario = "confissao2"
-												 path.removeLast()
+												path.append("confessionario")
 											 }
 												 else {
 													 contexto.popularidade -= 1
