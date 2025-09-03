@@ -41,13 +41,13 @@ struct ConfessionarioView: View {
 												.resizable()
 												.clipped()
 												.aspectRatio(2/1, contentMode: .fit)
-												.frame(width: 80, height: 40)
-												.padding(.leading, 10)
-											//.aspectRatio(16/10, contentMode: .fit)
+												.frame(width: 100, height: 50)
+												.padding(.leading, 15)
+											.aspectRatio(16/10, contentMode: .fit)
 											Text(String(contexto.popularidade))
-												.font(.appFont(selectedFont, size: 25))
+												.font(.appFont(selectedFont, size: 30))
 												.foregroundStyle(.white)
-												.padding(.top, 20)
+												.padding(.top, 25)
 										}
 											
 										HStack {
@@ -56,12 +56,12 @@ struct ConfessionarioView: View {
 												.resizable()
 												.clipped()
 												.aspectRatio(2/1, contentMode: .fit)
-												.frame(width: 80, height: 40)
-												.padding(.leading, 30)
+												.frame(width: 100, height: 50)
+												.padding(.leading, 40)
 											Text(String(contexto.desconfianca))
-												.font(.appFont(selectedFont, size: 25))
+												.font(.appFont(selectedFont, size: 30))
 												.foregroundStyle(.white)
-												.padding(.top, 15)
+												.padding(.top, 22)
 										}
 									}
 									.padding(.top, 40)
@@ -74,29 +74,29 @@ struct ConfessionarioView: View {
 											Image("notas")
 												.resizable()
 												.clipped()
-												.frame(width: 40, height: 40)
+												.frame(width: 50, height: 50)
 											
 											VStack() {
 												Text("Day \(contexto.dia)")
 													.foregroundColor(.white)
-													.font(.appFont(selectedFont, size: 30))
-													.padding(.vertical, 5)
+													.font(.appFont(selectedFont, size: 35))
+													//.padding(.vertical, 5)
 												
 												if(contexto.horario == "confissao1"){
 													Text("9:00")
 														.foregroundColor(.white)
-														.font(.appFont(selectedFont, size: 30))
+														.font(.appFont(selectedFont, size: 35))
 												}else if (contexto.horario == "confissao2"){
 													Text("10:00")
 														.foregroundColor(.white)
-														.font(.appFont(selectedFont, size: 30))
+														.font(.appFont(selectedFont, size: 35))
 												}
 											}
 											Button (action: {path.removeAll()}){
 												Image("sair")
 													.resizable()
 													.clipped()
-													.frame(width: 35, height: 35)
+													.frame(width: 45, height: 45)
 											}
 											.buttonStyle(.plain)
 										}
