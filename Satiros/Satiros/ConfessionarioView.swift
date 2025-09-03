@@ -188,6 +188,9 @@ struct ConfessionarioView: View {
 											
 										}
 										.onAppear {
+											for dialogo in dialogosConfessionario {
+												modelContext.delete(dialogo)
+											}
 											estaFocado = true
 											texto = ""
 											reiniciarOpcoes()
@@ -267,9 +270,6 @@ struct ConfessionarioView: View {
 	func proximaFala(index: Int = 0) {
 		if (dialogos[contexto.idDialogo].id_que_opcao_leva[index] == -10) {
 			contexto.idDialogo = 23
-			for dialogo in dialogosConfessionario {
-				modelContext.delete(dialogo)
-			}
 			contexto.local = "cartas"
 			contexto.parteDialogo = 0
 			path.append("cartas")

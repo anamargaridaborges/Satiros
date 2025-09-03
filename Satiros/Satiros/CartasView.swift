@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct CartasView: View {
 	
@@ -14,6 +15,13 @@ struct CartasView: View {
 	@Binding var path: [String]
 	@State var passaNaCarta: [Bool] = [false, false, false, false, false]
 	@State private var showImage = true
+	@Query(sort: \ContextoConfessionario2.ContextoConfessionario.momentoAdicionado, order: .forward) var dialogosConfessionario: [ContextoConfessionario2.ContextoConfessionario]
+	@State private var scrollProxy: ScrollViewProxy? = nil
+	@State var texto: String = ""
+	@FocusState private var estaFocado: Bool
+	let instrucao: String = "Now you must apply penance, the cards laid in front of you are mysteriously selected and shall indicate proper action in the confessions for the day. But be careful, once you give a card away, you cannot use again until the morrow. Use them wisely, or they might begin to question your judgment."
+	@State private var tarefa: Task<Void, Never>? = nil
+	
     var body: some View {
 			GeometryReader { geo in
 					ZStack {
@@ -260,11 +268,97 @@ struct CartasView: View {
 										.padding(.top, 10)
 										.frame(maxWidth: .infinity)
 										
-										Text("Now you must apply penance, the cards laid in front of you are mysteriously selected and shall indicate proper action in the confessions for the day. But be careful, once you give a card away, you cannot use again until the morrow. Use them wisely, or they might begin to question your judgment.")
-											.foregroundColor(.white)
-											.font(.appFont(selectedFont, size: 30))
-											.padding()
-										Spacer()
+										
+										ScrollView {
+											ScrollViewReader { proxy in
+												VStack {
+													ForEach (dialogosConfessionario) { dialogoConf in
+														Text(dialogoConf.personagem + ": " + dialogoConf.dialogo)
+															.frame(maxWidth: .infinity, alignment: .leading)
+															.foregroundColor(.white)
+															.font(.appFont(selectedFont, size:30))
+															.padding()
+													}
+													
+													Text(texto)
+														.frame(maxWidth: .infinity, alignment: .leading)
+														.foregroundColor(.white)
+														.font(.appFont(selectedFont, size:30))
+														.padding()
+														.id("instrucao")
+													
+													Spacer()
+													if (passaNaCarta[0] || passaNaCarta[1] || passaNaCarta[2] || passaNaCarta[3] || passaNaCarta[4] ) {
+														ZStack (alignment: .bottom){
+															Image("detalheCarta")
+																.resizable()
+																.clipped()
+																.frame(width: 505, height: 161)
+															VStack () {
+																if (passaNaCarta[0]) {
+																	Spacer()
+																	Text("Moses")
+																		.foregroundColor(.white)
+																		.font(.appFont(selectedFont, size: 50))
+																	Text("Control, Faith, Honor")
+																		.foregroundColor(.white)
+																		.font(.appFont(selectedFont, size: 30))
+																		//.padding()
+																}
+																if (passaNaCarta[1]) {
+																	Spacer()
+																	Text("Solomon")
+																		.foregroundColor(.white)
+																		.font(.appFont(selectedFont, size: 50))
+																	Text("Control, Honor, Providence")
+																		.foregroundColor(.white)
+																		.font(.appFont(selectedFont, size: 30))
+																		//.padding()
+																}
+																if (passaNaCarta[2]) {
+																	Spacer()
+																	Text("David")
+																		.foregroundColor(.white)
+																		.font(.appFont(selectedFont, size: 50))
+																	Text("Perseverance, Faith, Providence")
+																		.foregroundColor(.white)
+																		.font(.appFont(selectedFont, size: 30))
+																		//.padding()
+																}
+																if (passaNaCarta[3]) {
+																	Spacer()
+																	Text("Joseph")
+																		.foregroundColor(.white)
+																		.font(.appFont(selectedFont, size: 50))
+																	Text("Loss, Perseverance, Providence")
+																		.foregroundColor(.white)
+																		.font(.appFont(selectedFont, size: 30))
+																		//.padding()
+																}
+																if (passaNaCarta[4]) {
+																	Spacer()
+																	Text("Noah")
+																		.foregroundColor(.white)
+																		.font(.appFont(selectedFont, size: 50))
+																	Text("Perseverance, Faith, Renunciation")
+																		.foregroundColor(.white)
+																		.font(.appFont(selectedFont, size: 30))
+																		//.padding()
+																}
+															}
+															.padding(.bottom, 25)
+														}
+														.id("atual")
+													}
+														
+												}
+												
+												.onAppear {
+													scrollProxy = proxy
+												}
+											}
+										}
+										/*Spacer()
 										if (passaNaCarta[0] || passaNaCarta[1] || passaNaCarta[2] || passaNaCarta[3] || passaNaCarta[4] ) {
 											ZStack (alignment: .bottom){
 												Image("detalheCarta")
@@ -325,10 +419,35 @@ struct CartasView: View {
 												}
 												.padding(.bottom, 25)
 											}
-										}
+										}*/
 										}
 									.background(Color("Fundo"))
 									.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+									.focusable()
+									.focusEffectDisabled()
+									.focused($estaFocado)
+									.onKeyPress(.return) {
+										withAnimation {
+												scrollProxy?.scrollTo("atual", anchor: .bottom)
+										}
+										carregaFalaToda()
+										return .handled
+									}
+									.onAppear {
+										estaFocado = true
+										texto = ""
+										animacaoTexto()
+									}
+									.onChange(of: texto) { _ in
+										withAnimation {
+												scrollProxy?.scrollTo("instrucao", anchor: .bottom)
+										}
+									}
+									.onChange(of: (passaNaCarta[0] || passaNaCarta[1] || passaNaCarta[2] || passaNaCarta[3] || passaNaCarta[4])) { _ in
+										withAnimation {
+												scrollProxy?.scrollTo("atual", anchor: .bottom)
+										}
+									}
 										//.scaleEffect(0.2)
 								}
 								.frame(width: geo.size.width / 3, height: geo.size.height)
@@ -340,6 +459,37 @@ struct CartasView: View {
 			.navigationBarBackButtonHidden()
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
+	
+	func animacaoTexto() {
+		tarefa?.cancel()
+		tarefa = Task.detached {
+			try? await Task.yield()
+			await MainActor.run {
+				texto = ""
+			}
+			for c in instrucao {
+				await MainActor.run {
+					texto.append(c)
+				}
+				if Task.isCancelled {
+					return
+				}
+				try? await Task.sleep(nanoseconds: 50_000_000)
+			}
+			try? await Task.sleep(nanoseconds: 50_000_000)
+		}
+	}
+	
+	func carregaFalaToda() {
+		tarefa?.cancel()
+		Task {
+			try? await Task.yield()
+			texto = ""
+			texto += instrucao
+		}
+		return
+	}
+	
 }
 
 #Preview {
