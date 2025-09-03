@@ -10,22 +10,22 @@ import SwiftData
 
 struct TutorialView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Bindable var contexto: ContextoSalvo
+	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
 	@Binding var path: [String]
-	@FocusState private var estaFocado: Bool
+	@FocusState private var estaFocado: FocusKey?
 	@State var texto: String = ""
-	@State var idFala: Int = 0
+	//@State var idFala: Int = 0
 	@State var opcoes: [String] = []
 	@State var terminou: Bool = true
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
 	
     var body: some View {
 			VStack {
-				Text(dialogos[contexto.idDialogo ?? 0].personagem + ":")
+				Text(dialogos[contexto.idDialogo].personagem + ":")
 					.font(.appFont(selectedFont, size:60))
 				Text(texto)
 					.font(.appFont(selectedFont, size:40))
-				if (idFala == dialogos[contexto.idDialogo ?? 0].texto.count - 1 && dialogos[contexto.idDialogo ?? 0].opcoes.count > 0) {
+				if (contexto.parteDialogo == dialogos[contexto.idDialogo].texto.count - 1 && dialogos[contexto.idDialogo].opcoes.count > 0) {
 					// se é a última parte da fala
 					ForEach(opcoes.indices, id: \.self) { index in
 						if (opcoes[index] != ""){
@@ -41,14 +41,14 @@ struct TutorialView: View {
 			.padding()
 			.focusable()
 			.focusEffectDisabled()
-			.focused($estaFocado)
+			.focused($estaFocado, equals: .enter)
 			.onKeyPress(.return) {
-				if (idFala < dialogos[contexto.idDialogo ?? 0].texto.count - 1) {
-					idFala += 1
+				if (contexto.parteDialogo < dialogos[contexto.idDialogo].texto.count - 1) {
+					contexto.parteDialogo += 1
 					reiniciarOpcoes()
 					return .handled
 				}
-				if (terminou == false && !dialogos[contexto.idDialogo ?? 0].opcoes.isEmpty) {
+				if (terminou == false && !dialogos[contexto.idDialogo].opcoes.isEmpty) {
 					carregaFalaToda()
 					return .handled
 				}
@@ -58,8 +58,16 @@ struct TutorialView: View {
 				
 			}
 			.onAppear {
-				estaFocado = true
+				estaFocado = .enter
 				reiniciarOpcoes()
+			}
+			.onChange (of: contexto.idDialogo) {
+				if (contexto.idDialogo == 15) {
+					contexto.horario = "confissao1"
+					contexto.local = "confessionario"
+					contexto.parteDialogo = 0
+					path.append("confessionario")
+				}
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.navigationBarBackButtonHidden()
@@ -67,7 +75,7 @@ struct TutorialView: View {
 	
 	func reiniciarOpcoes() {
 		opcoes.removeAll()
-		for i in dialogos[contexto.idDialogo ?? 0].opcoes {
+		for i in dialogos[contexto.idDialogo].opcoes {
 			opcoes.append("")
 		}
 		animacaoOpcoes()
@@ -79,9 +87,9 @@ struct TutorialView: View {
 		Task {
 			try? await Task.yield()
 			texto = ""
-			texto += dialogos[contexto.idDialogo ?? 0].texto[idFala]
+			texto += dialogos[contexto.idDialogo].texto[contexto.parteDialogo]
 			var cont: Int = 0
-			for opc in dialogos[contexto.idDialogo ?? 0].opcoes {
+			for opc in dialogos[contexto.idDialogo].opcoes {
 				opcoes[cont] = ""
 				opcoes[cont] += String(cont+1)
 				opcoes[cont] += ". "
@@ -93,8 +101,8 @@ struct TutorialView: View {
 	}
 	
 	func proximaFala(index: Int = 0) {
-		contexto.idDialogo = dialogos[contexto.idDialogo ?? 0].id_que_opcao_leva[index]
-		idFala = 0
+		contexto.idDialogo = dialogos[contexto.idDialogo].id_que_opcao_leva[index]
+		contexto.parteDialogo = 0
 		return
 	}
 	
@@ -102,8 +110,8 @@ struct TutorialView: View {
 		// imprime a fala e as opcoes com animação
 		//tarefaAtual?.cancel()
 		tarefaOpcoes?.cancel()
-		let opc = dialogos[contexto.idDialogo ?? 0].opcoes
-		let fala = dialogos[contexto.idDialogo ?? 0].texto[idFala]
+		let opc = dialogos[contexto.idDialogo].opcoes
+		let fala = dialogos[contexto.idDialogo].texto[contexto.parteDialogo]
 		var cont: Int = 1
 		tarefaOpcoes = Task {
 			terminou = false
