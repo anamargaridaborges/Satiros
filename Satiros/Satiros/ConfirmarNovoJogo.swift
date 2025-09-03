@@ -36,7 +36,7 @@ struct ConfirmarNovoJogo: View {
 					Button(action: {for dial in dialogosConfessionario {
 						modelContext.delete(dial)
 					};
-						contexto.local = "confessionario"; contexto.idDialogo = 15; contexto.dia = 1; contexto.horario = "confissao1"; contexto.popularidade = 5; contexto.desconfianca = 5; contexto.parteDialogo = 0; path.append("confessionario")}) {
+						contexto.local = "tutorial"; contexto.idDialogo = 0; contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; contexto.parteDialogo = 0; path.append("tutorial")}) {
 						ZStack {
 							Image("botao continue")
 								.resizable()
