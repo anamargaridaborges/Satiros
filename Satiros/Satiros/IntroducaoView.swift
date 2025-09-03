@@ -11,12 +11,12 @@ import SwiftData
 struct IntroducaoView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Environment(\.modelContext) private var modelContext
-	@Query var contexto: [ContextoSalvo]
+	@Query var contexto: [ContextoConfessionario2.ContextoSalvo]
 	
 	@State private var path: [String] = []
 	
 	func continuarJogo() {
-		path.append(contexto[0].local ?? "confessionario")
+		path.append(contexto[0].local)
 	}
 	
 	func iniciarJogo() {
@@ -24,7 +24,7 @@ struct IntroducaoView: View {
 			path.append("novoJogo")
 			return
 		}
-		var novoJogo = ContextoSalvo()
+		var novoJogo = ContextoConfessionario2.ContextoSalvo()
 		modelContext.insert(novoJogo)
 		do {
 			try modelContext.save()

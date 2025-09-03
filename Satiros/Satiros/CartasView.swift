@@ -10,29 +10,33 @@ import SwiftUI
 struct CartasView: View {
 	
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Bindable var contexto: ContextoSalvo
+	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
 	@Binding var path: [String]
 	@State var passaNaCarta: [Bool] = [false, false, false, false, false]
-	
+	@State private var showImage = true
     var body: some View {
 			GeometryReader { geo in
 					ZStack {
 						HStack(spacing: 0) {
 							ZStack(alignment: .topLeading) {
-									Image("carta")
+									Image("fundoCarta")
 											.resizable()
 											.clipped()
-											//.aspectRatio(1/1, contentMode: .fit)
+											.opacity(showImage ? 1 : 0)
+											.animation(.easeInOut(duration: 0.5), value: showImage)
+											//.aspectRatio(1/1, contentMode: .fill)
 									
 								VStack(alignment: .leading) {
 											HStack {
-												Image("popularidade")
+												let pop = "popularidade" + String(contexto.popularidade)
+												Image(pop)
 													.resizable()
 													.clipped()
 													.aspectRatio(2/1, contentMode: .fit)
 													.frame(width: 80, height: 40)
 													.padding(.leading, 10)
 												//.aspectRatio(16/10, contentMode: .fit)
+												
 												Text(String(contexto.popularidade))
 													.font(.appFont(selectedFont, size: 25))
 													.foregroundStyle(.white)
@@ -40,7 +44,8 @@ struct CartasView: View {
 											}
 											
 											HStack {
-												Image("desconfianca")
+												let des = "desconfianca" + String(contexto.desconfianca)
+												Image(des)
 													.resizable()
 													.clipped()
 													.aspectRatio(2/1, contentMode: .fit)
@@ -57,7 +62,7 @@ struct CartasView: View {
 											Button (action: { if (contexto.horario == "confissao1") {
 												contexto.desconfianca -= 1
 												contexto.horario = "confissao2"
-												path.removeLast()
+												path.append("confessionario")
 											}
 												else {
 													contexto.popularidade += 1
@@ -88,7 +93,7 @@ struct CartasView: View {
 												contexto.desconfianca += 1
 												contexto.popularidade -= 1
 												contexto.horario = "confissao2"
-												path.removeLast()
+												path.append("confessionario")
 											}
 												else {
 													contexto.popularidade += 1
@@ -120,7 +125,7 @@ struct CartasView: View {
 											Button (action: {if (contexto.horario == "confissao1") {
 												contexto.popularidade += 1
 												contexto.horario = "confissao2"
-												path.removeLast()
+												path.append("confessionario")
 											}
 												else {
 													contexto.desconfianca -= 1
@@ -152,7 +157,7 @@ struct CartasView: View {
 											HStack {
 												Button (action: {if (contexto.horario == "confissao1") {
 												 contexto.horario = "confissao2"
-												 path.removeLast()
+												 path.append("confessionario")
 											 }
 												 else {
 													 path.append("menu")
@@ -182,7 +187,7 @@ struct CartasView: View {
 													contexto.desconfianca -= 1
 												 contexto.popularidade += 1
 												 contexto.horario = "confissao2"
-												 path.removeLast()
+												path.append("confessionario")
 											 }
 												 else {
 													 contexto.popularidade -= 1
@@ -220,15 +225,10 @@ struct CartasView: View {
 							.frame(width: geo.size.width * 2/3, height: geo.size.height)
 								
 								ZStack {
-										Image("aaa")
-												.resizable()
-												.clipped()
-												.aspectRatio(3/5.75, contentMode: .fit)
-										
 									VStack(spacing: 0) {
 										
 										HStack(spacing: 150){
-											Image("menu")
+											Image("notas")
 												.resizable()
 												.clipped()
 												.frame(width: 40, height: 40)
@@ -237,12 +237,20 @@ struct CartasView: View {
 												Text("Day \(contexto.dia)")
 													.foregroundColor(.white)
 													.font(.appFont(selectedFont, size: 30))
-												Text("Morning")
-													.foregroundColor(.white)
-													.font(.appFont(selectedFont, size: 30))
+													.padding(.vertical, 5)
+												
+												if(contexto.horario == "confissao1"){
+													Text("9:00")
+														.foregroundColor(.white)
+														.font(.appFont(selectedFont, size: 30))
+												}else if (contexto.horario == "confissao2"){
+													Text("10:00")
+														.foregroundColor(.white)
+														.font(.appFont(selectedFont, size: 30))
+												}
 											}
-											Button (action: {path.append("options")}){
-												Image("configuracoes")
+											Button (action: {path.removeAll()}){
+												Image("sair")
 													.resizable()
 													.clipped()
 													.frame(width: 35, height: 35)
@@ -259,7 +267,7 @@ struct CartasView: View {
 										Spacer()
 										if (passaNaCarta[0] || passaNaCarta[1] || passaNaCarta[2] || passaNaCarta[3] || passaNaCarta[4] ) {
 											ZStack (alignment: .bottom){
-												Image("tentativaDeatlhe")
+												Image("detalheCarta")
 													.resizable()
 													.clipped()
 													.frame(width: 505, height: 161)

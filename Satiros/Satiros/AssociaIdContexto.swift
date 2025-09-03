@@ -12,7 +12,7 @@ func retornaID (dia: Int, horario: String, local: String) -> Int {
 		return 15
 	}
 	else if (dia == 1 && horario == "confissao2" && local == "confessionario") {
-		return 13
+		return 23
 	}
 	else if (dia == 1 && horario == "manha" && local == "tutorial") {
 		return 0

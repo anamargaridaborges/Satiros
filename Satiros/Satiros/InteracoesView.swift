@@ -10,7 +10,7 @@ import SwiftData
 
 struct InteracoesView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Bindable var contexto: ContextoSalvo
+	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
 	@Binding var path: [String]
 	
 		var body: some View {
