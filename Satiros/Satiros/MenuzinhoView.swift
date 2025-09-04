@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct MenuzinhoView: View {
 	
@@ -41,6 +42,15 @@ struct MenuzinhoView: View {
 							.foregroundColor(.white)
 							.font(.appFont(selectedFont, size: 35))
 					}
+					
+					
+					Button("Mostrar fundo toalha") {
+							salvarImagemEscolhida("fundoCarta")
+					}
+					Button("Mostrar fundo pixel") {
+							salvarImagemEscolhida("menu inicial")
+					}
+					
 				}
 				
 				Button (action: {path.removeAll()}){
@@ -64,12 +74,14 @@ struct MenuzinhoView: View {
 				.onChange(of: estaFocado) {
 					estaFocado = FocusKey.escape
 				}
-//				.onAppear{
-//					estaFocado = FocusKey.escape
-//				print("esta focado on appear " )
-//				}
 			}
     }
+	private func salvarImagemEscolhida(_ nome: String) {
+		let defaults = UserDefaults(suiteName: "group.satiros.Satiros.MuralWidget")
+		defaults?.set(nome, forKey: "widgetImage")
+		
+		WidgetCenter.shared.reloadTimelines(ofKind: "MuralWidget")
+	}
 }
 
 #Preview {
