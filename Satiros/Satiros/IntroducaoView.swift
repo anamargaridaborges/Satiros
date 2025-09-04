@@ -13,8 +13,8 @@ struct IntroducaoView: View {
 	@Environment(\.modelContext) private var modelContext
 	@Query var contexto: [ContextoConfessionario3.ContextoSalvo]
 	@Query var bloco: [ContextoConfessionario3.Bloco]
-	
 	@State private var path: [String] = []
+	@FocusState private var estaFocado: FocusKey?
 	
 	func continuarJogo() {
 		path.append(contexto[0].local)
@@ -90,7 +90,7 @@ struct IntroducaoView: View {
 							TutorialView(contexto: contexto[0], path: $path, bloco: bloco[0])
 						}
 						else if local == "confessionario" {
-							ConfessionarioView(contexto: contexto[0], path: $path, bloco: bloco[0])
+							ConfessionarioView(contexto: contexto[0], path: $path, estaFocado: _estaFocado, bloco: bloco[0])
 						}
 						else if local == "confirmarSair" {
 							ConfirmarSair(path: $path)
