@@ -10,7 +10,7 @@ import SwiftUI
 struct MenuzinhoView: View {
 	
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
+	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@Binding var path: [String]
 	@State var passaNoAsset: [Bool] = [false, false] //[notas, sair]
 	@FocusState var estaFocado: FocusKey?
