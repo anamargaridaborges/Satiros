@@ -19,7 +19,7 @@ struct ConfessionarioView: View {
 	@State var isSpeaking: Bool = false
 	@State private var tempo: Int = 0
 	@Bindable var bloco: ContextoConfessionario3.Bloco
-	@State var clicaNotas: Bool = false
+	@Binding var clicaNotas: Bool
 	
 		var body: some View {
 			GeometryReader { geo in
@@ -31,7 +31,7 @@ struct ConfessionarioView: View {
 								
 								ZStack {
 									VStack(spacing: 0) {
-                    MenuzinhoView(contexto: contexto, path: $path, estaFocado: _estaFocado)
+										MenuzinhoView(contexto: contexto, path: $path, estaFocado: _estaFocado, clicaBloco: $clicaNotas)
 										.padding(.top, 10)
 										.frame(maxWidth: .infinity)
 										

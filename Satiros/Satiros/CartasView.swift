@@ -23,6 +23,7 @@ struct CartasView: View {
 	@FocusState private var estaFocado: Bool
 	let instrucao: String = "Now you must apply penance, the cards laid in front of you are mysteriously selected and shall indicate proper action in the confessions for the day. But be careful, once you give a card away, you cannot use again until the morrow. Use them wisely, or they might begin to question your judgment."
 	@State private var tarefa: Task<Void, Never>? = nil
+	@Binding var clicaBloco: Bool
 	
     var body: some View {
 			GeometryReader { geo in
@@ -209,7 +210,7 @@ struct CartasView: View {
 								ZStack {
 									VStack(spacing: 0) {
 										
-										MenuzinhoView(contexto: contexto, path: $path)
+										MenuzinhoView(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
 										.padding(.top, 10)
 										.frame(maxWidth: .infinity)
 										
