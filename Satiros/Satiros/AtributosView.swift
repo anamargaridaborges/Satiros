@@ -40,7 +40,7 @@ struct AtributosView: View {
 						.overlay(alignment: .leading) {
 							if mostrarBalao[0] {
 								ZStack {
-									Image("botao continue")
+									Image("balaoAtributos")
 											.resizable()
 											.frame(width: 400, height: 100)
 									Text("Popularity shows how much you’re liked and trusted. Don’t let it drop too low!")
@@ -75,7 +75,7 @@ struct AtributosView: View {
 						.overlay(alignment: .leading) {
 							if mostrarBalao[1] {
 								ZStack {
-									Image("botao continue")
+									Image("balaoAtributos")
 											.resizable()
 											.frame(width: 400, height: 100)
 									Text("Distrust shows how close you are to being discovered. Don’t let it fill up!")
