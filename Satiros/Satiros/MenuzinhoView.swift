@@ -14,17 +14,21 @@ struct MenuzinhoView: View {
 	@Binding var path: [String]
 	@State var passaNoAsset: [Bool] = [false, false] //[notas, sair]
 	@FocusState var estaFocado: FocusKey?
+	@Binding var clicaBloco: Bool
 	
     var body: some View {
 			HStack(spacing: 150){
-				Image("notas")
-					.resizable()
-					.clipped()
-					.frame(width: 50, height: 50)
-					.scaleEffect(passaNoAsset[0] ? 1.1 : 1.0)
-					.onHover {over in
-						passaNoAsset[0] = over
-					}
+				Button (action: {clicaBloco = true}) {
+					Image("notas")
+						.resizable()
+						.clipped()
+						.frame(width: 50, height: 50)
+						.scaleEffect(passaNoAsset[0] ? 1.1 : 1.0)
+						.onHover {over in
+							passaNoAsset[0] = over
+						}
+				}
+				.buttonStyle(.plain)
 				
 				VStack() {
 					Text("Day \(contexto.dia)")
