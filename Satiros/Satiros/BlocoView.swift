@@ -27,7 +27,7 @@ struct BlocoView: View {
 								.foregroundColor(.black)
 								.font(.appFont(selectedFont, size: 60))
 								.position(x: geo.size.width * 1 / 2, y: geo.size.height * 2 / 7)
-							Text(bloco.textoPorDia[0])
+							Text(bloco.textoPorDia.isEmpty ? "" : bloco.textoPorDia[0])
 								.foregroundColor(.black)
 								.font(.appFont(selectedFont, size: 30))
 								.position(x: geo.size.width * 1 / 2, y: geo.size.height * 1 / 2)

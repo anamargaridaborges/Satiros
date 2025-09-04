@@ -141,7 +141,7 @@ struct ConfessionarioView: View {
 															selecionaOpcao(index: index)
 															} label: {
 																		Text(opcoes[index])
-																		.foregroundColor(.white)
+																	.foregroundColor(passaNoBotao[index] ? .orange : .white)
 																		.font(.appFont(selectedFont, size: 25))
 																		.scaleEffect(passaNoBotao[index] ? 1.1 : 1.0)
 																		.multilineTextAlignment(.center)
@@ -149,7 +149,7 @@ struct ConfessionarioView: View {
 																		.fixedSize(horizontal: false, vertical: true)
 																		.padding()
 																		.frame(maxWidth: .infinity)
-																		.background(Color.black)
+																		.background(Color("FundoOpcoes"))
 														}
 														.buttonStyle(PlainButtonStyle())
 														//.background(passaNoBotao[index] ? Color("Selecionado") : Color("Fundo"))
@@ -163,7 +163,7 @@ struct ConfessionarioView: View {
 												//.padding(5)
 											}
 										}
-									.background(Color("Fundo"))
+									.background(Color("FundoConfissao"))
 									.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 										.focusable()
 										.focusEffectDisabled()
