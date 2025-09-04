@@ -1,5 +1,5 @@
 //
-//  SatirosApp.swift
+//  SatirosApp.swigit ft
 //  Satiros
 //
 //  Created by Ana Margarida Diniz Silva Borges on 19/08/25.
