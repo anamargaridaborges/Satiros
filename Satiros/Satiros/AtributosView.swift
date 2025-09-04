@@ -44,7 +44,7 @@ struct AtributosView: View {
 											.resizable()
 											.frame(width: 400, height: 100)
 									Text("Popularity shows how much you’re liked and trusted. Don’t let it drop too low!")
-										.font(.appFont(selectedFont, size: 20))
+										.font(.appFont(selectedFont, size: 25))
 											.foregroundColor(.black)
 											.padding()
 								}
@@ -79,7 +79,7 @@ struct AtributosView: View {
 											.resizable()
 											.frame(width: 400, height: 100)
 									Text("Distrust shows how close you are to being discovered. Don’t let it fill up!")
-										.font(.appFont(selectedFont, size: 20))
+										.font(.appFont(selectedFont, size: 25))
 											.foregroundColor(.black)
 											.padding()
 								}

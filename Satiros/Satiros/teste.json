@@ -114,7 +114,7 @@
 		"id":10,
 		"personagem":"Sister Desmond",
 		"texto":["I would not hang Father Lorgan’s shoes just yet, we don’t know what happened to him, well not we, I don’t. The boys “know” he has been sent on break. I can’t believe they would make us lie in the house of the Lord."],
-		"opcoes":["What do you think happened to Lorgan?", "Brush it off"],
+		"opcoes":["What do you think happened to Lorgan?", "(Brush it off)"],
 		"id_que_opcao_leva":[11, 12],
 		"impacto_opcao_pop":[0, 0],
 		"impacto_opcao_desc":[1, 0],
