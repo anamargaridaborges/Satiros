@@ -193,8 +193,10 @@ struct ConfessionarioView: View {
 											
 										}
 										.onAppear {
-											for dialogo in dialogosConfessionario {
-												modelContext.delete(dialogo)
+											if (contexto.horario == "confissao2" && contexto.idDialogo == 23) {
+												for dialogo in dialogosConfessionario {
+													modelContext.delete(dialogo)
+												}
 											}
 											estaFocado = true
 											texto = ""
