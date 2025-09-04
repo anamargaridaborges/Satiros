@@ -39,7 +39,7 @@ struct TutorialView: View {
 					}
 				}
 			}
-			.aspectRatio(contentMode: .fill)
+		//	.aspectRatio(contentMode: .fill)
 			.padding()
 			.focusable()
 			.focusEffectDisabled()

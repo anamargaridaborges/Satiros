@@ -23,7 +23,7 @@ struct IntroducaoView: View {
 	
 	func iniciarJogo() {
 		if !(contexto.isEmpty) {
-			path.append("novoJogo")
+			path.append("popUp")
 			return
 		}
 		var novoJogo = ContextoConfessionario3.ContextoSalvo()
@@ -39,7 +39,7 @@ struct IntroducaoView: View {
 	}
 	
     var body: some View {
-			NavigationStack (path: $path){
+			NavigationStack (path: $path) {
 				ZStack{
 					Image("menu inicial")
 							.resizable()
@@ -59,6 +59,7 @@ struct IntroducaoView: View {
 											.font(.appFont(selectedFont, size: 25))
 												.foregroundColor(.white)
 									}
+									
 								}
 								.buttonStyle(.plain)
 								.padding()

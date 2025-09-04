@@ -13,16 +13,29 @@ struct PopUpView: View {
 	@Binding var path: [String]
 	@Environment(\.modelContext) private var modelContext
 	@Bindable var bloco: ContextoConfessionario3.Bloco
+	@FocusState var estaFocado: FocusKey?
 	
 	var body: some View {
 			ZStack {
+				
 					// Fundo clicável
 					Button(action: { path.append("tutorial") }) {
-							Rectangle()
-									.fill(Color.gray)
-									.aspectRatio(contentMode: .fill)
+						Image("fundo pixel")
+							.resizable()
+							.clipped()
+							.aspectRatio(16/10, contentMode: .fit)
 					}
 					.buttonStyle(.plain)
+//					.focusable()
+//					.focusEffectDisabled()
+//					.focused($estaFocado, equals: FocusKey.enter)
+//					.onKeyPress(.return) {
+//						path.append("tutorial")
+//						return .handled
+//					}
+//					.onChange(of: estaFocado) {
+//						estaFocado = FocusKey.enter
+//					}
 					
 					// Popup com texto dentro
 					ZStack(alignment: .topLeading) {
