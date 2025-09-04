@@ -10,14 +10,15 @@ import SwiftData
 
 struct TutorialView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
+	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@Binding var path: [String]
-	@FocusState private var estaFocado: Bool
+	@FocusState private var estaFocado: FocusKey?
 	@State var texto: String = ""
 	//@State var idFala: Int = 0
 	@State var opcoes: [String] = []
 	@State var terminou: Bool = true
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
+	@Bindable var bloco: ContextoConfessionario3.Bloco
 	
     var body: some View {
 			VStack {
@@ -41,7 +42,7 @@ struct TutorialView: View {
 			.padding()
 			.focusable()
 			.focusEffectDisabled()
-			.focused($estaFocado)
+			.focused($estaFocado, equals: .enter)
 			.onKeyPress(.return) {
 				if (contexto.parteDialogo < dialogos[contexto.idDialogo].texto.count - 1) {
 					contexto.parteDialogo += 1
@@ -58,10 +59,19 @@ struct TutorialView: View {
 				
 			}
 			.onAppear {
-				estaFocado = true
+				estaFocado = .enter
 				reiniciarOpcoes()
 			}
 			.onChange (of: contexto.idDialogo) {
+				if (dialogos[contexto.idDialogo].resumo_notas != "") {
+					if (bloco.textoPorDia.count < contexto.dia) {
+						bloco.textoPorDia.append(dialogos[contexto.idDialogo].resumo_notas)
+					}
+					else {
+						bloco.textoPorDia[contexto.dia - 1] += "\n"
+						bloco.textoPorDia[contexto.dia - 1] += dialogos[contexto.idDialogo].resumo_notas
+					}
+				}
 				if (contexto.idDialogo == 15) {
 					contexto.horario = "confissao1"
 					contexto.local = "confessionario"

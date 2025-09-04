@@ -2,99 +2,36 @@ import SwiftUI
 import SwiftData
 struct ConfessionarioView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
+	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@Binding var path: [String]
-	@FocusState private var estaFocado: Bool
+	@FocusState var estaFocado: FocusKey?
 	@State var texto: String = ""
 	//@State var idFala: Int = 0
 	@State var opcoes: [String] = []
 	@State var terminou: Bool = true
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
 	@Environment(\.modelContext) private var modelContext
-	@Query(sort: \ContextoConfessionario2.ContextoConfessionario.momentoAdicionado, order: .forward) var dialogosConfessionario: [ContextoConfessionario2.ContextoConfessionario]
+	@Query(sort: \ContextoConfessionario3.ContextoConfessionario.momentoAdicionado, order: .forward) var dialogosConfessionario: [ContextoConfessionario3.ContextoConfessionario]
 	@State var passaNoBotao: [Bool] = [false, false, false]
 	@State var checaImprimiu: Bool = false
 	@State private var scrollProxy: ScrollViewProxy? = nil
 	@State private var frameIndex = 0
 	@State var isSpeaking: Bool = false
 	@State private var tempo: Int = 0
+	@Bindable var bloco: ContextoConfessionario3.Bloco
+	@Binding var clicaNotas: Bool
 	
 		var body: some View {
 			GeometryReader { geo in
 					ZStack {
 						
 						HStack(spacing: 0) {
-							ZStack(alignment: .topLeading) {
-								AnimatedImageBackground(isSpeaking: $isSpeaking)
-								
-									VStack(alignment: .leading) {
-										HStack {
-											let pop = "popularidade" + String(contexto.popularidade)
-											Image(pop)
-												.resizable()
-												.clipped()
-												.aspectRatio(2/1, contentMode: .fit)
-												.frame(width: 100, height: 50)
-												.padding(.leading, 15)
-											.aspectRatio(16/10, contentMode: .fit)
-											Text(String(contexto.popularidade))
-												.font(.appFont(selectedFont, size: 30))
-												.foregroundStyle(.white)
-												.padding(.top, 25)
-										}
-											
-										HStack {
-											let des = "desconfianca" + String(contexto.desconfianca)
-											Image(des)
-												.resizable()
-												.clipped()
-												.aspectRatio(2/1, contentMode: .fit)
-												.frame(width: 100, height: 50)
-												.padding(.leading, 40)
-											Text(String(contexto.desconfianca))
-												.font(.appFont(selectedFont, size: 30))
-												.foregroundStyle(.white)
-												.padding(.top, 22)
-										}
-									}
-									.padding(.top, 40)
-							}
-							//SombraView(contexto: contexto)
+							SombraView(contexto: contexto, isSpeaking: $isSpeaking)
 								.frame(width: geo.size.width * 2/3, height: geo.size.height)
 								
 								ZStack {
 									VStack(spacing: 0) {
-										HStack(spacing: 150){
-											Image("notas")
-												.resizable()
-												.clipped()
-												.frame(width: 50, height: 50)
-											
-											VStack() {
-												Text("Day \(contexto.dia)")
-													.foregroundColor(.white)
-													.font(.appFont(selectedFont, size: 35))
-													//.padding(.vertical, 5)
-												
-												if(contexto.horario == "confissao1"){
-													Text("9:00")
-														.foregroundColor(.white)
-														.font(.appFont(selectedFont, size: 35))
-												}else if (contexto.horario == "confissao2"){
-													Text("10:00")
-														.foregroundColor(.white)
-														.font(.appFont(selectedFont, size: 35))
-												}
-											}
-											Button (action: {path.removeAll()}){
-												Image("sair")
-													.resizable()
-													.clipped()
-													.frame(width: 45, height: 45)
-											}
-											.buttonStyle(.plain)
-										}
-                    //MenuzinhoView(contexto: contexto, path: $path)
+										MenuzinhoView(contexto: contexto, path: $path, estaFocado: _estaFocado, clicaBloco: $clicaNotas)
 										.padding(.top, 10)
 										.frame(maxWidth: .infinity)
 										
@@ -111,7 +48,7 @@ struct ConfessionarioView: View {
 														}
 													}
 													
-													Text(dialogos[contexto.idDialogo ?? 0].personagem + ": " + texto)
+													Text(dialogos[contexto.idDialogo].personagem + ": " + texto)
 														.frame(maxWidth: .infinity, alignment: .leading)
 														.foregroundColor(.white)
 														.font(.appFont(selectedFont, size:30))
@@ -128,7 +65,7 @@ struct ConfessionarioView: View {
 										.padding()
 										.frame(maxWidth: .infinity)
 											
-										if (contexto.parteDialogo == dialogos[contexto.idDialogo ?? 0].texto.count - 1 && dialogos[contexto.idDialogo ?? 0].opcoes.count > 0) {
+										if (contexto.parteDialogo == dialogos[contexto.idDialogo].texto.count - 1 && dialogos[contexto.idDialogo].opcoes.count > 0) {
 												// se é a última parte da fala
 												ForEach(opcoes.indices, id: \.self) { index in
 													if (opcoes[index] != ""){
@@ -136,7 +73,7 @@ struct ConfessionarioView: View {
 															selecionaOpcao(index: index)
 															} label: {
 																		Text(opcoes[index])
-																		.foregroundColor(.white)
+																	.foregroundColor(passaNoBotao[index] ? .orange : .white)
 																		.font(.appFont(selectedFont, size: 25))
 																		.scaleEffect(passaNoBotao[index] ? 1.1 : 1.0)
 																		.multilineTextAlignment(.center)
@@ -144,7 +81,7 @@ struct ConfessionarioView: View {
 																		.fixedSize(horizontal: false, vertical: true)
 																		.padding()
 																		.frame(maxWidth: .infinity)
-																		.background(Color.black)
+																		.background(Color("FundoOpcoes"))
 														}
 														.buttonStyle(PlainButtonStyle())
 														//.background(passaNoBotao[index] ? Color("Selecionado") : Color("Fundo"))
@@ -158,11 +95,11 @@ struct ConfessionarioView: View {
 												//.padding(5)
 											}
 										}
-									.background(Color("Fundo"))
+									.background(Color("FundoConfissao"))
 									.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 										.focusable()
 										.focusEffectDisabled()
-										.focused($estaFocado)
+										.focused($estaFocado, equals: FocusKey.enter)
 										.onKeyPress(.return) {
 											withAnimation {
 													scrollProxy?.scrollTo("atual", anchor: .bottom)
@@ -188,7 +125,12 @@ struct ConfessionarioView: View {
 											
 										}
 										.onAppear {
-											estaFocado = true
+											estaFocado = FocusKey.enter
+											if (contexto.horario == "confissao2" && contexto.idDialogo == 23) {
+												for dialogo in dialogosConfessionario {
+													modelContext.delete(dialogo)
+												}
+											}
 											texto = ""
 											reiniciarOpcoes()
 										}
@@ -209,12 +151,33 @@ struct ConfessionarioView: View {
 								.frame(width: geo.size.width / 3, height: geo.size.height)
 						}
 						.ignoresSafeArea()
+						
+						if (clicaNotas) {
+							BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaNotas)
+						}
+						
 				}
 					
 			}
 			.navigationBarBackButtonHidden()
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
-		} //fim body
+		}
+	
+	func addBlocoDeNotas (resumo: String) {
+		if (bloco.textoPorDia.count < contexto.dia) {
+			bloco.textoPorDia.append(dialogos[contexto.idDialogo].resumo_notas + "\n" + "\n")
+			try? modelContext.save()
+			return
+		}
+		else {
+			if !bloco.textoPorDia[contexto.dia-1].contains(resumo) {
+					print(bloco.textoPorDia[contexto.dia-1])
+					bloco.textoPorDia[contexto.dia-1] += resumo + "\n" + "\n"
+				try? modelContext.save()
+			}
+			return
+		}
+	}
 	
 	func selecionaOpcao (index: Int) {
 			contexto.desconfianca += dialogos[contexto.idDialogo].impacto_opcao_desc[index]
@@ -232,7 +195,7 @@ struct ConfessionarioView: View {
 		if (dialogosConfessionario.isEmpty == false) {
 			tempo = dialogosConfessionario.last!.momentoAdicionado + 1
 		}
-		modelContext.insert(ContextoConfessionario2.ContextoConfessionario(personagem: personagem, dialogo: dialogo, momentoAdicionado: tempo))
+		modelContext.insert(ContextoConfessionario3.ContextoConfessionario(personagem: personagem, dialogo: dialogo, momentoAdicionado: tempo))
 		try? modelContext.save()
 		return
 	}
@@ -267,14 +230,14 @@ struct ConfessionarioView: View {
 	func proximaFala(index: Int = 0) {
 		if (dialogos[contexto.idDialogo].id_que_opcao_leva[index] == -10) {
 			contexto.idDialogo = 23
-			for dialogo in dialogosConfessionario {
-				modelContext.delete(dialogo)
-			}
 			contexto.local = "cartas"
 			contexto.parteDialogo = 0
 			path.append("cartas")
 			reiniciarOpcoes()
 			return
+		}
+		if (dialogos[contexto.idDialogo].resumo_notas != "") {
+			addBlocoDeNotas(resumo: dialogos[contexto.idDialogo].resumo_notas)
 		}
 		contexto.idDialogo = dialogos[contexto.idDialogo].id_que_opcao_leva[index]
 		try? modelContext.save()
@@ -347,43 +310,6 @@ struct ConfessionarioView: View {
 			}
 		}
 	}
-	
-	struct AnimatedImageBackground: View {
-		@State private var frameIndex = 0
-		
-		let frames = ["fala1", "fala2", "fala3", "fala4", "fala5", "fala6"]
-		//let timer = Timer.publish(every: 0.3, on: .main, in: .common).autoconnect()
-		//var timer:Timer = Timer()
-		@State var tick: Bool = false
-		@Binding var isSpeaking: Bool
-		
-		var body: some View {
-			Image(frames[frameIndex])
-				.resizable()
-				.scaledToFill()
-				.ignoresSafeArea()
-				.onChange(of: tick) { oldValue, newValue in
-					if isSpeaking {
-						frameIndex = (frameIndex + 1) % frames.count
-					}
-				}.task {
-					var timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) {_ in
-						Task {
-							await MainActor.run {
-								tick.toggle()
-							}
-						}
-					}
-				}
-//				.onReceive(tick) { _ in
-//					print("Recebi")
-//						frameIndex = (frameIndex + 1) % frames.count
-//				}
-		}
-	}
-
-	
-	
 }
 #Preview {
 		//ConfessionarioView()

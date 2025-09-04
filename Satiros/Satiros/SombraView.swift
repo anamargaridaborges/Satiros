@@ -10,44 +10,35 @@ import SwiftUI
 struct SombraView: View {
 	
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
+	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
+	@State private var frameIndex = 0
+	@State var tick: Bool = false
+	@Binding var isSpeaking: Bool
+	@State var passaNoAsset: [Bool] = [false, false] //[popularidade, desconfianca]
+	@State var mostrarBalao:  [Bool] = [false, false]
+	let frames = ["fala1", "fala2", "fala3", "fala4", "fala5", "fala6"]
 	
     var body: some View {
 			ZStack(alignment: .topLeading) {
-					Image("sombra sombria")
-							.resizable()
-							.clipped()
-							//.aspectRatio(1/1, contentMode: .fit)
-					
-					VStack(alignment: .leading) {
-						HStack {
-							Image("popularidade")
-								.resizable()
-								.clipped()
-								.aspectRatio(2/1, contentMode: .fit)
-								.frame(width: 80, height: 40)
-								.padding(.leading, 10)
-							//.aspectRatio(16/10, contentMode: .fit)
-							Text(String(contexto.popularidade))
-								.font(.appFont(selectedFont, size: 25))
-								.foregroundStyle(.white)
-								.padding(.top, 15)
+				Image(frames[frameIndex])
+					.resizable()
+					.scaledToFill()
+					.ignoresSafeArea()
+					.onChange(of: tick) { oldValue, newValue in
+						if isSpeaking {
+							frameIndex = (frameIndex + 1) % frames.count
 						}
-							
-						HStack {
-							Image("desconfianca")
-								.resizable()
-								.clipped()
-								.aspectRatio(2/1, contentMode: .fit)
-								.frame(width: 80, height: 40)
-								.padding(.leading, 30)
-							Text(String(contexto.desconfianca))
-								.font(.appFont(selectedFont, size: 25))
-								.foregroundStyle(.white)
-								.padding(.top, 15)
+					}.task {
+						var timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) {_ in
+							Task {
+								await MainActor.run {
+									tick.toggle()
+								}
+							}
 						}
 					}
-					.padding(.top, 10)
+				
+					AtributosView(contexto: contexto)
 			}
     }
 }
