@@ -19,6 +19,7 @@ struct ConfessionarioView: View {
 	@State var isSpeaking: Bool = false
 	@State private var tempo: Int = 0
 	@Bindable var bloco: ContextoConfessionario3.Bloco
+	@State var clicaNotas: Bool = false
 	
 		var body: some View {
 			GeometryReader { geo in
@@ -66,7 +67,7 @@ struct ConfessionarioView: View {
 								ZStack {
 									VStack(spacing: 0) {
 										HStack(spacing: 150){
-											Button(action: {path.append("notas")}) {
+											Button(action: {clicaNotas = true}) {
 												Image("notas")
 													.resizable()
 													.clipped()
@@ -212,30 +213,37 @@ struct ConfessionarioView: View {
 													scrollProxy?.scrollTo("atual", anchor: .bottom)
 											}
 										}
-										.onChange(of: contexto.idDialogo) { _ in
-											if (dialogos[contexto.idDialogo].resumo_notas != "") {
-												if (bloco.textoPorDia.count < contexto.dia) {
-													bloco.textoPorDia.append(dialogos[contexto.idDialogo].resumo_notas)
-													print("\(contexto.idDialogo)")
-													print ("\(contexto.dia) \(bloco.textoPorDia.count)")
-												}
-												else {
-														bloco.textoPorDia[contexto.dia - 1] += "\n"
-														bloco.textoPorDia[contexto.dia - 1] += dialogos[contexto.idDialogo].resumo_notas
-													print("\(contexto.idDialogo)")
-												}
-											}
-										}
 								}
 								.frame(width: geo.size.width / 3, height: geo.size.height)
 						}
 						.ignoresSafeArea()
+						
+						if (clicaNotas) {
+							BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaNotas)
+						}
+						
 				}
 					
 			}
 			.navigationBarBackButtonHidden()
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 		} //fim body
+	
+	func addBlocoDeNotas (resumo: String) {
+		if (bloco.textoPorDia.count < contexto.dia) {
+			bloco.textoPorDia.append(dialogos[contexto.idDialogo].resumo_notas + "\n" + "\n")
+			try? modelContext.save()
+			return
+		}
+		else {
+			if !bloco.textoPorDia[contexto.dia-1].contains(resumo) {
+					print(bloco.textoPorDia[contexto.dia-1])
+					bloco.textoPorDia[contexto.dia-1] += resumo + "\n" + "\n"
+				try? modelContext.save()
+			}
+			return
+		}
+	}
 	
 	func selecionaOpcao (index: Int) {
 			contexto.desconfianca += dialogos[contexto.idDialogo].impacto_opcao_desc[index]
@@ -293,6 +301,9 @@ struct ConfessionarioView: View {
 			path.append("cartas")
 			reiniciarOpcoes()
 			return
+		}
+		if (dialogos[contexto.idDialogo].resumo_notas != "") {
+			addBlocoDeNotas(resumo: dialogos[contexto.idDialogo].resumo_notas)
 		}
 		contexto.idDialogo = dialogos[contexto.idDialogo].id_que_opcao_leva[index]
 		try? modelContext.save()

@@ -104,9 +104,9 @@ struct IntroducaoView: View {
 						else if local == "menu" {
 							IntroducaoView()
 						}
-						else if local == "notas" {
+						/*else if local == "notas" {
 							BlocoView(path: $path, bloco: bloco[0])
-						}
+						}*/
 					}
 					
 				}

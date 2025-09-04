@@ -12,18 +12,37 @@ struct BlocoView: View {
 	@Binding var path: [String]
 	@Bindable var bloco: ContextoConfessionario3.Bloco
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
+	@Binding var clicaNotas: Bool
 	
     var body: some View {
-			ZStack {
-				Image("BlocoSemSetas")
-					.scaleEffect(6.0)
-				ForEach (bloco.textoPorDia.indices, id: \.self) { index in
-					VStack {
-						Text("Dia \(index)")
-						Text(bloco.textoPorDia[index])
-							.foregroundColor(.black)
-							.font(.appFont(selectedFont, size: 30))
+			GeometryReader { geo in
+				ZStack {
+					Image("Fundo preto")
+						.opacity(0.5)
+					
+					ZStack {
+						Image("BlocoGRANDAO")
+							.position(x: geo.size.width * 1 / 2, y: geo.size.height * 1 / 2)
+							Text("Dia 1")
+								.foregroundColor(.black)
+								.font(.appFont(selectedFont, size: 60))
+								.position(x: geo.size.width * 1 / 2, y: geo.size.height * 2 / 7)
+							Text(bloco.textoPorDia[0])
+								.foregroundColor(.black)
+								.font(.appFont(selectedFont, size: 30))
+								.position(x: geo.size.width * 1 / 2, y: geo.size.height * 1 / 2)
 					}
+					.frame(maxWidth: .infinity, maxHeight: .infinity)
+					//.position(x: geo.size.width * 1 / 2, y: geo.size.height * 1 / 2)
+					
+					HStack {
+						Button(action: {clicaNotas = false}) {
+							Image("botaoFechar 1")
+						}
+						.buttonStyle(.plain)
+					}
+					.position(x: geo.size.width * 1 / 7, y: geo.size.height * 1.2 / 7)
+					
 				}
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)

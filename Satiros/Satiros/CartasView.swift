@@ -282,7 +282,7 @@ struct CartasView: View {
 													
 													Text(texto)
 														.frame(maxWidth: .infinity, alignment: .leading)
-														.foregroundColor(.white)
+														.foregroundColor(.orange)
 														.font(.appFont(selectedFont, size:30))
 														.padding()
 														.id("instrucao")

@@ -171,7 +171,7 @@ enum ConfessionarioMigracao: SchemaMigrationPlan {
 			let contexto = try context.fetch(FetchDescriptor<ContextoConfessionario2.ContextoSalvo>())
 			for cont in contexto {
 				context.delete(cont)
-				context.insert(ContextoConfessionario3.ContextoSalvo(idDialogo: cont.idDialogo ?? 0, local: cont.local ?? "tutorial", dia: cont.dia, horario: cont.horario, popularidade: cont.popularidade, desconfianca: cont.desconfianca, parteDialogo: 0, cartaUsada: -1))
+				context.insert(ContextoConfessionario3.ContextoSalvo(idDialogo: cont.idDialogo, local: cont.local, dia: cont.dia, horario: cont.horario, popularidade: cont.popularidade, desconfianca: cont.desconfianca, parteDialogo: 0, cartaUsada: -1))
 			}
 			try context.save()
 		}, didMigrate: nil
