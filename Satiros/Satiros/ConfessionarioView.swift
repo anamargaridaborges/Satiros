@@ -13,7 +13,6 @@ struct ConfessionarioView: View {
 	@Environment(\.modelContext) private var modelContext
 	@Query(sort: \ContextoConfessionario3.ContextoConfessionario.momentoAdicionado, order: .forward) var dialogosConfessionario: [ContextoConfessionario3.ContextoConfessionario]
 	@State var passaNoBotao: [Bool] = [false, false, false]
-	@State var checaImprimiu: Bool = false
 	@State private var scrollProxy: ScrollViewProxy? = nil
 	@State private var frameIndex = 0
 	@State var isSpeaking: Bool = false
@@ -191,7 +190,6 @@ struct ConfessionarioView: View {
 			salvaBD(personagem: "You", dialogo: String(opcoes[index][inicio...]), momentoAdicionado: tempo)
 			proximaFala(index: index)
 			terminou = true
-			checaImprimiu = false
 			return
 	}
 	

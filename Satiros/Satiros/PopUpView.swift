@@ -48,19 +48,19 @@ struct PopUpView: View {
 									.font(.custom(selectedFont, size: 30))
 									.foregroundColor(.white)
 																
-									HStack(alignment: .top, spacing: 25) {
-											Text("To move to the next line, press the return key.")
-													.font(.custom(selectedFont, size: 25))
-													.multilineTextAlignment(.leading)
-													.padding(.top, 15)
-													.foregroundColor(.white)
-											
-											Image("enter")
-													.resizable()
-													.scaledToFit()
-													.frame(width: 120, height: 50)
-									}
-								HStack(alignment: .top, spacing: 60) {
+								HStack(alignment: .top, spacing: 25) { //linha 1
+										Text("To move to the next line, press the return key.")
+												.font(.custom(selectedFont, size: 25))
+												.multilineTextAlignment(.leading)
+												.padding(.top, 15)
+												.foregroundColor(.white)
+										
+										Image("enter")
+												.resizable()
+												.scaledToFit()
+												.frame(width: 120, height: 50)
+								}
+								HStack(alignment: .top, spacing: 60) { //linha 2
 										Text("Popularity shows how much you’re liked and trusted. Don’t let it drop too low!")
 												.font(.custom(selectedFont, size: 25))
 												.multilineTextAlignment(.leading)
@@ -72,7 +72,7 @@ struct PopUpView: View {
 												.scaledToFit()
 												.frame(width: 120, height: 50)
 								}
-								HStack(alignment: .top, spacing: 70) {
+								HStack(alignment: .top, spacing: 70) { //linha 3
 										Text("Distrust shows how much people doubt you. Don’t let it fill up!")
 												.font(.custom(selectedFont, size: 25))
 												.multilineTextAlignment(.leading)
