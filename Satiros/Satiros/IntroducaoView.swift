@@ -22,9 +22,19 @@ struct IntroducaoView: View {
 	}
 	
 	func iniciarJogo() {
-		if !(contexto.isEmpty) {
+		let count1 = try? modelContext.fetchCount(FetchDescriptor<ContextoConfessionario3.ContextoSalvo>())
+		let count2 = try? modelContext.fetchCount(FetchDescriptor<ContextoConfessionario3.ContextoConfessionario>())
+		let count3 = try? modelContext.fetchCount(FetchDescriptor<ContextoConfessionario3.Bloco>())
+		//print(count1, count2, count3)
+		if !(count1 == 0 || count2 == 0 || count3 == 0) {
 			path.append("novoJogo")
 			return
+		}
+		for c in contexto {
+			modelContext.delete(c)
+		}
+		for b in bloco {
+			modelContext.delete(b)
 		}
 		var novoJogo = ContextoConfessionario3.ContextoSalvo()
 		modelContext.insert(novoJogo)
