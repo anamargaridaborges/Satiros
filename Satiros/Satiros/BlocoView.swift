@@ -23,7 +23,7 @@ struct BlocoView: View {
 					ZStack {
 						Image("BlocoGRANDAO")
 							.position(x: geo.size.width * 1 / 2, y: geo.size.height * 1 / 2)
-							Text("Dia 1")
+							Text("Day 1")
 								.foregroundColor(.black)
 								.font(.appFont(selectedFont, size: 60))
 								.position(x: geo.size.width * 1 / 2, y: geo.size.height * 2 / 7)

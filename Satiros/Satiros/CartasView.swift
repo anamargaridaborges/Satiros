@@ -420,9 +420,9 @@ struct CartasView: View {
 				if Task.isCancelled {
 					return
 				}
-				try? await Task.sleep(nanoseconds: 50_000_000)
+				try? await Task.sleep(nanoseconds: 30_000_000)
 			}
-			try? await Task.sleep(nanoseconds: 50_000_000)
+			try? await Task.sleep(nanoseconds: 30_000_000)
 		}
 	}
 	

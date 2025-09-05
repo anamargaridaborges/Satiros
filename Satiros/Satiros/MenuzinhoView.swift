@@ -15,6 +15,7 @@ struct MenuzinhoView: View {
 	@State var passaNoAsset: [Bool] = [false, false] //[notas, sair]
 	@FocusState var estaFocado: FocusKey?
 	@Binding var clicaBloco: Bool
+	@State var mostrarBalao:  Bool = false
 	
     var body: some View {
 			HStack(spacing: 150){
@@ -26,6 +27,23 @@ struct MenuzinhoView: View {
 						.scaleEffect(passaNoAsset[0] ? 1.1 : 1.0)
 						.onHover {over in
 							passaNoAsset[0] = over
+							mostrarBalao = over
+						}
+						.overlay(alignment: .leading) {
+							if mostrarBalao {
+								ZStack {
+									Image("balaoAtributos")
+											.resizable()
+											.frame(width: 400, height: 100)
+									Text("The notebook shows important findings. Check out what you have discovered so far!")
+										.font(.appFont(selectedFont, size: 20))
+											.foregroundColor(.black)
+											.padding()
+								}
+								.offset(x: -430, y: 20)
+								
+								.transition(.opacity)
+							}
 						}
 				}
 				.buttonStyle(.plain)

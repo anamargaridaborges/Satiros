@@ -35,11 +35,11 @@ struct IntroducaoView: View {
 		} catch {
 			print("Erro \(error)")
 		}
-		path.append("tutorial")
+		path.append("popUp")
 	}
 	
     var body: some View {
-			NavigationStack (path: $path){
+			NavigationStack (path: $path) {
 				ZStack{
 					Image("menu inicial")
 							.resizable()
@@ -59,6 +59,7 @@ struct IntroducaoView: View {
 											.font(.appFont(selectedFont, size: 25))
 												.foregroundColor(.white)
 									}
+									
 								}
 								.buttonStyle(.plain)
 								.padding()
@@ -104,6 +105,9 @@ struct IntroducaoView: View {
 						}
 						else if local == "menu" {
 							IntroducaoView()
+						}
+						else if local == "popUp" {
+							PopUpView(contexto: contexto[0], path: $path, bloco: bloco[0], estaFocado: _estaFocado)
 						}
 						/*else if local == "notas" {
 							BlocoView(path: $path, bloco: bloco[0])

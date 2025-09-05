@@ -78,7 +78,7 @@ struct AtributosView: View {
 									Image("balaoAtributos")
 											.resizable()
 											.frame(width: 400, height: 100)
-									Text("Distrust shows how close you are to being discovered. Don’t let it fill up!")
+									Text("Distrust shows how much people doubt you. Don’t let it fill up!")
 										.font(.appFont(selectedFont, size: 20))
 											.foregroundColor(.black)
 											.padding()
