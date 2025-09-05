@@ -133,31 +133,31 @@ struct TutorialView: View {
 				if Task.isCancelled {
 					return
 				}
-				try? await Task.sleep(nanoseconds: 50_000_000)
+				try? await Task.sleep(nanoseconds: 30_000_000)
 			}
-			try? await Task.sleep(nanoseconds: 50_000_000)
+			try? await Task.sleep(nanoseconds: 30_000_000)
 			for opcao in opc {
 				opcoes[cont-1].append(String(cont))
 				if Task.isCancelled {
 					return
 				}
-				try? await Task.sleep(nanoseconds: 50_000_000)
+				try? await Task.sleep(nanoseconds: 30_000_000)
 				opcoes[cont-1].append(".")
 				if Task.isCancelled {
 					return
 				}
-				try? await Task.sleep(nanoseconds: 50_000_000)
+				try? await Task.sleep(nanoseconds: 30_000_000)
 				opcoes[cont-1].append(" ")
 				if Task.isCancelled {
 					return
 				}
-				try? await Task.sleep(nanoseconds: 50_000_000)
+				try? await Task.sleep(nanoseconds: 30_000_000)
 				for c in opcao {
 					opcoes[cont-1].append(c)
 					if Task.isCancelled {
 						return
 					}
-					try? await Task.sleep(nanoseconds: 50_000_000)
+					try? await Task.sleep(nanoseconds: 30_000_000)
 				}
 				cont += 1
 			}

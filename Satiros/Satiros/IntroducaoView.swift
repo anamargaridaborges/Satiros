@@ -35,7 +35,7 @@ struct IntroducaoView: View {
 		} catch {
 			print("Erro \(error)")
 		}
-		path.append("tutorial")
+		path.append("popUp")
 	}
 	
     var body: some View {

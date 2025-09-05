@@ -73,7 +73,7 @@ struct PopUpView: View {
 												.frame(width: 120, height: 50)
 								}
 								HStack(alignment: .top, spacing: 70) {
-										Text("Distrust shows how close you are to being discovered. Don’t let it fill up!")
+										Text("Distrust shows how much people doubt you. Don’t let it fill up!")
 												.font(.custom(selectedFont, size: 25))
 												.multilineTextAlignment(.leading)
 												.padding(.top, 15)

@@ -275,9 +275,9 @@ struct ConfessionarioView: View {
 				if Task.isCancelled {
 					return
 				}
-				try? await Task.sleep(nanoseconds: 50_000_000)
+				try? await Task.sleep(nanoseconds: 30_000_000)
 			}
-			try? await Task.sleep(nanoseconds: 50_000_000)
+			try? await Task.sleep(nanoseconds: 30_000_000)
 			
 			for opcao in opc {
 				await MainActor.run {
@@ -286,21 +286,21 @@ struct ConfessionarioView: View {
 				if Task.isCancelled {
 					return
 				}
-				try? await Task.sleep(nanoseconds: 50_000_000)
+				try? await Task.sleep(nanoseconds: 30_000_000)
 				await MainActor.run {
 					opcoes[cont-1].append(".")
 				}
 				if Task.isCancelled {
 					return
 				}
-				try? await Task.sleep(nanoseconds: 50_000_000)
+				try? await Task.sleep(nanoseconds: 30_000_000)
 				await MainActor.run {
 					opcoes[cont-1].append(" ")
 				}
 				if Task.isCancelled {
 					return
 				}
-				try? await Task.sleep(nanoseconds: 50_000_000)
+				try? await Task.sleep(nanoseconds: 30_000_000)
 				for c in opcao {
 					await MainActor.run {
 						opcoes[cont-1].append(c)
@@ -308,7 +308,7 @@ struct ConfessionarioView: View {
 					if Task.isCancelled {
 						return
 					}
-					try? await Task.sleep(nanoseconds: 50_000_000)
+					try? await Task.sleep(nanoseconds: 30_000_000)
 				}
 				cont += 1
 			}
