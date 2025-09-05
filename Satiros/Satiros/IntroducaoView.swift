@@ -23,7 +23,7 @@ struct IntroducaoView: View {
 	
 	func iniciarJogo() {
 		if !(contexto.isEmpty) {
-			path.append("popUp")
+			path.append("novoJogo")
 			return
 		}
 		var novoJogo = ContextoConfessionario3.ContextoSalvo()
@@ -107,7 +107,7 @@ struct IntroducaoView: View {
 							IntroducaoView()
 						}
 						else if local == "popUp" {
-							PopUpView(contexto: contexto[0], path: $path, bloco: bloco[0])
+							PopUpView(contexto: contexto[0], path: $path, bloco: bloco[0], estaFocado: _estaFocado)
 						}
 						/*else if local == "notas" {
 							BlocoView(path: $path, bloco: bloco[0])

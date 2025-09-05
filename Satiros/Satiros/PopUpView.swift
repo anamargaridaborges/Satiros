@@ -26,32 +26,34 @@ struct PopUpView: View {
 							.aspectRatio(16/10, contentMode: .fit)
 					}
 					.buttonStyle(.plain)
-//					.focusable()
-//					.focusEffectDisabled()
-//					.focused($estaFocado, equals: FocusKey.enter)
-//					.onKeyPress(.return) {
-//						path.append("tutorial")
-//						return .handled
-//					}
-//					.onChange(of: estaFocado) {
-//						estaFocado = FocusKey.enter
-//					}
+					.focusable()
+					.focusEffectDisabled()
+					.focused($estaFocado, equals: FocusKey.enter)
+					.onKeyPress(.return) {
+						path.append("tutorial")
+						return .handled
+					}
+					.onAppear() {
+						estaFocado = FocusKey.enter
+					}
 					
 					// Popup com texto dentro
 					ZStack(alignment: .topLeading) {
-							Image("popup")
+							Image("popupdeusporfavor")
 									.frame(width: 700, height: 315)
 									.clipped()
 							
 							VStack(alignment: .leading, spacing: 10) {
 								Text("Tutorial")
-									.font(.custom(selectedFont, size: 35))
+									.font(.custom(selectedFont, size: 30))
+									.foregroundColor(.white)
 																
 									HStack(alignment: .top, spacing: 25) {
 											Text("To move to the next line, press the return key.")
 													.font(.custom(selectedFont, size: 25))
 													.multilineTextAlignment(.leading)
 													.padding(.top, 15)
+													.foregroundColor(.white)
 											
 											Image("enter")
 													.resizable()
@@ -63,6 +65,7 @@ struct PopUpView: View {
 												.font(.custom(selectedFont, size: 25))
 												.multilineTextAlignment(.leading)
 												.padding(.top, 15)
+												.foregroundColor(.white)
 										
 										Image("popularidade10")
 												.resizable()
@@ -74,6 +77,7 @@ struct PopUpView: View {
 												.font(.custom(selectedFont, size: 25))
 												.multilineTextAlignment(.leading)
 												.padding(.top, 15)
+												.foregroundColor(.white)
 										
 										Image("desconfianca10")
 												.resizable()

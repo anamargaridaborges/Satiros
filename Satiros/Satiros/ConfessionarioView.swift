@@ -39,6 +39,7 @@ struct ConfessionarioView: View {
 											ScrollViewReader { proxy in
 												VStack {
 													ForEach (dialogosConfessionario) { dialogoConf in
+														// dialogos antigos salvos no array de swiftdata
 														if (dialogoConf.personagem + ": " + dialogoConf.dialogo != dialogos[contexto.idDialogo].personagem + ": " + dialogos[contexto.idDialogo].texto[contexto.parteDialogo]) {
 															Text(dialogoConf.personagem + ": " + dialogoConf.dialogo)
 																.frame(maxWidth: .infinity, alignment: .leading)
@@ -49,6 +50,7 @@ struct ConfessionarioView: View {
 													}
 													
 													Text(dialogos[contexto.idDialogo].personagem + ": " + texto)
+													// dialogo atual, que está sendo inserido na variável texto
 														.frame(maxWidth: .infinity, alignment: .leading)
 														.foregroundColor(.white)
 														.font(.appFont(selectedFont, size:30))
@@ -67,7 +69,9 @@ struct ConfessionarioView: View {
 											
 										if (contexto.parteDialogo == dialogos[contexto.idDialogo].texto.count - 1 && dialogos[contexto.idDialogo].opcoes.count > 0) {
 												// se é a última parte da fala
+											// se temos um número de opções maior que zero
 												ForEach(opcoes.indices, id: \.self) { index in
+													// aqui tenho os botões das opções
 													if (opcoes[index] != ""){
 														Button {
 															selecionaOpcao(index: index)
