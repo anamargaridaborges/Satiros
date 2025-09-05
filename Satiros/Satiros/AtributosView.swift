@@ -88,7 +88,7 @@ struct AtributosView: View {
 							}
 						}
 					}
-					.padding(.top, 40)
+					.padding(.top, 20)
 		}
 }
 
