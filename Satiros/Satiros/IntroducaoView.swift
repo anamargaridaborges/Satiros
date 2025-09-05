@@ -101,7 +101,7 @@ struct IntroducaoView: View {
 							OptionsView(path: $path)
 						}
 						else if local == "cartas" {
-							CartasView(contexto: contexto[0], path: $path, clicaBloco: $clicaNotas)
+							CartasView(contexto: contexto[0], path: $path, clicaBloco: $clicaNotas, bloco: bloco[0])
 						}
 						else if local == "menu" {
 							IntroducaoView()
