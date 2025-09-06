@@ -19,21 +19,22 @@ struct TutorialView: View {
 	@State var terminou: Bool = true
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
 	@Bindable var bloco: ContextoConfessionario3.Bloco
+	@State var falaNome: Bool = false
 	
     var body: some View {
 			ZStack(alignment: .topLeading){
-				Image("fundo pixel")
+				Image(dialogos[contexto.idDialogo ?? 0].local_fundo)
 					.resizable()
-					.clipped()
-					.aspectRatio(16/10, contentMode: .fit)
+					.aspectRatio(16/10, contentMode: .fill)
 				
 				AtributosView(contexto: contexto)
-				FalaView(contexto: contexto, bloco: bloco)
-				
+				FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
+
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.navigationBarBackButtonHidden()
 			.onChange(of: contexto.idDialogo) {
+				defineFalaNome()
 				if (contexto.idDialogo == 15) {
 					contexto.horario = "confissao1"
 					contexto.local = "confessionario"
@@ -42,6 +43,15 @@ struct TutorialView: View {
 				}
 			}
     }
+	func defineFalaNome() -> Binding<Bool> {
+		if (dialogos[contexto.idDialogo].personagem == "Sister Desmond" || dialogos[contexto.idDialogo].personagem == "You") {
+			falaNome = true
+		} else {
+			falaNome = false
+		}
+		return $falaNome
+	}
+	
 }
 
 #Preview {

@@ -7,7 +7,7 @@
 		"id_que_opcao_leva":[1],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"Introducao",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
@@ -18,7 +18,7 @@
 		"id_que_opcao_leva":[2, 2, 2],
 		"impacto_opcao_pop":[0, 0, 0],
 		"impacto_opcao_desc":[0, 0, 0],
-		"local_fundo":"Introducao",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
@@ -30,62 +30,62 @@
 		"id_que_opcao_leva":[3],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"Introducao",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
 		"id":3,
-		"personagem":"Richmond",
-		"texto":["Richmond. Aristocrat turned zealot. Leaving comfort for the Lord’s work… inspiring really."],
+		"personagem":"Benedict",
+		"texto":["Benedict. Aristocrat turned zealot. Leaving comfort for the Lord’s work… inspiring really."],
 		"opcoes":[],
 		"id_que_opcao_leva":[4],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"Introducao_Richmond",
+		"local_fundo":"introBenedict",
 		"resumo_notas":""
 	},
 	{
 		"id":4,
-		"personagem":"Sight",
-		"texto":["Sight. He lives in his own world, the family sent him here for “treatment”, turns out the kid is actually a good evangelist."],
+		"personagem":"Thomas",
+		"texto":["Thomas. He lives in his own world, the family sent him here for “treatment”, turns out the kid is actually a good evangelist."],
 		"opcoes":[],
 		"id_que_opcao_leva":[5],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"Introducao_Sight",
+		"local_fundo":"introThomas",
 		"resumo_notas":""
 	},
 	{
 		"id":5,
-		"personagem":"Presi",
-		"texto":["Presi. Good kid, he’s the closest to graduating, a natural charmer. His congregation will be one to watch for."],
+		"personagem":"Samuel",
+		"texto":["Samuel. Good kid, he’s the closest to graduating, a natural charmer. His congregation will be one to watch for."],
 		"opcoes":[],
 		"id_que_opcao_leva":[6],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"Introducao_Presi",
+		"local_fundo":"introSamuel",
 		"resumo_notas":""
 	},
 	{
 		"id":6,
-		"personagem":"Ender",
-		"texto":["Ender. He’s sly as a fox. Tho hasn’t been the same since Lorgan left, they were very close."],
+		"personagem":"Edgar",
+		"texto":["Edgar. He’s sly as a fox. Tho hasn’t been the same since Lorgan left, they were very close."],
 		"opcoes":[],
 		"id_que_opcao_leva":[7],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"Introducao_Ender",
+		"local_fundo":"introEdgar",
 		"resumo_notas":""
 	},
 	{
 		"id":7,
-		"personagem":"John",
-		"texto":["And John. Endlessly devout. Natural scholar. Not an easy talker… "],
+		"personagem":"Staffano",
+		"texto":["And Steffano. Endlessly devout. Natural scholar. Not an easy talker… "],
 		"opcoes":[],
 		"id_que_opcao_leva":[8],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"Introducao_John",
+		"local_fundo":"introSteffano",
 		"resumo_notas":""
 	},
 	{
@@ -96,7 +96,7 @@
 		"id_que_opcao_leva":[9, 10],
 		"impacto_opcao_pop":[0, 0],
 		"impacto_opcao_desc":[0, 0],
-		"local_fundo":"Introducao",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
@@ -107,7 +107,7 @@
 		"id_que_opcao_leva":[12],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"Introducao",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
@@ -118,7 +118,7 @@
 		"id_que_opcao_leva":[11, 12],
 		"impacto_opcao_pop":[0, 0],
 		"impacto_opcao_desc":[1, 0],
-		"local_fundo":"Introducao",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
@@ -129,7 +129,7 @@
 		"id_que_opcao_leva":[12],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"Introducao",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":"Lorgan is not only a religious leader, but a political one."
 	},
 	{
@@ -140,7 +140,7 @@
 		"id_que_opcao_leva":[13],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"Introducao",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
@@ -151,7 +151,7 @@
 		"id_que_opcao_leva":[14],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"Introducao",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
@@ -162,7 +162,7 @@
 		"id_que_opcao_leva":[15],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"Introducao",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{

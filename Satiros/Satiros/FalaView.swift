@@ -18,6 +18,7 @@ struct FalaView: View {
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
 	@Bindable var bloco: ContextoConfessionario3.Bloco
 	@State var passaNoBotao: [Bool] = [false, false, false]
+	@Binding var falaNome: Bool
 	
     var body: some View {
 			ZStack(alignment: .bottom) {
@@ -27,10 +28,16 @@ struct FalaView: View {
 						.padding(.bottom, 50)
 					
 				VStack(alignment: .leading, spacing: 10) {
-						Text(dialogos[contexto.idDialogo].personagem + ":")
-							.font(.appFont(selectedFont, size:25))
+						if(falaNome){
+							Text(dialogos[contexto.idDialogo].personagem + ":")
+								.font(.appFont(selectedFont, size:25))
+								.foregroundColor(.white)
+						}
+						
 						Text(texto)
 							.font(.appFont(selectedFont, size:25))
+							.foregroundColor(.white)
+					
 						if (contexto.parteDialogo == dialogos[contexto.idDialogo].texto.count - 1 && dialogos[contexto.idDialogo].opcoes.count > 0) {
 							// se é a última parte da fala
 								ForEach(opcoes.indices, id: \.self) { index in
@@ -47,7 +54,7 @@ struct FalaView: View {
 												.fixedSize(horizontal: false, vertical: true)
 												.frame(maxWidth: .infinity, alignment: .leading)
 												.padding(.top, 10)
-										}
+										} 
 										.buttonStyle(PlainButtonStyle())
 										//.background(passaNoBotao[index] ? Color("Selecionado") : Color("Fundo"))
 										//.cornerRadius(10)
@@ -94,12 +101,6 @@ struct FalaView: View {
 								bloco.textoPorDia[contexto.dia - 1] += "\n"
 								bloco.textoPorDia[contexto.dia - 1] += dialogos[contexto.idDialogo].resumo_notas
 							}
-						}
-						if (contexto.idDialogo == 15) {
-							contexto.horario = "confissao1"
-							contexto.local = "confessionario"
-							contexto.parteDialogo = 0
-							//path.append("confessionario")
 						}
 					}
 					.frame(maxWidth: .infinity, maxHeight: .infinity)

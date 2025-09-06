@@ -82,7 +82,7 @@ struct CartasView: View {
 												else {
 													contexto.popularidade += 1
 													contexto.desconfianca -= 1
-													path.append("menu")
+													path.append("mapa")
 												}
 												}) {
 												ZStack {
