@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PopUpView: View {
+struct PopUpIntro: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@Binding var path: [String]

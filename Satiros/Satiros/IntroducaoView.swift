@@ -116,12 +116,16 @@ struct IntroducaoView: View {
 						else if local == "menu" {
 							IntroducaoView()
 						}
-						else if local == "popUp" {
-							PopUpView(contexto: contexto[0], path: $path, bloco: bloco[0], estaFocado: _estaFocado)
+						else if local == "popUpIntro" {
+							PopUpIntro(contexto: contexto[0], path: $path, bloco: bloco[0], estaFocado: _estaFocado)
 						}
-						else if local == "fala" {
-							FalaView(contexto: contexto[0], bloco: bloco[0])
+						else if local == "popUpMapa" {
+							PopUpMapa(contexto: contexto[0], path: $path, bloco: bloco[0], estaFocado: _estaFocado)
 						}
+						else if local == "mapa" {
+							MapaView(contexto: contexto[0], path: $path, bloco: bloco[0])
+						}
+						
 						/*else if local == "notas" {
 							BlocoView(path: $path, bloco: bloco[0])
 						}*/

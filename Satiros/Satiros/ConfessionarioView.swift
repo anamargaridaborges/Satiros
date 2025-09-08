@@ -77,7 +77,7 @@ struct ConfessionarioView: View {
 															selecionaOpcao(index: index)
 															} label: {
 																		Text(opcoes[index])
-																	.foregroundColor(passaNoBotao[index] ? .orange : .white)
+																	.foregroundColor(passaNoBotao[index] ? .white: .orange)
 																		.font(.appFont(selectedFont, size: 25))
 																		.scaleEffect(passaNoBotao[index] ? 1.1 : 1.0)
 																		.multilineTextAlignment(.center)
