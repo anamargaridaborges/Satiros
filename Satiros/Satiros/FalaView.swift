@@ -36,6 +36,7 @@ struct FalaView: View {
 								ForEach(opcoes.indices, id: \.self) { index in
 									if (opcoes[index] != ""){
 										Button {
+											carregaFalaToda()
 											selecionaOpcao(index: index)
 										} label: {
 											Text(opcoes[index])
@@ -187,6 +188,9 @@ struct FalaView: View {
 				}
 				try? await Task.sleep(nanoseconds: 30_000_000)
 				for c in opcao {
+					if Task.isCancelled {
+						return
+					}
 					opcoes[cont-1].append(c)
 					if Task.isCancelled {
 						return

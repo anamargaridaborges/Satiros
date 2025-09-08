@@ -116,7 +116,7 @@ struct ConfessionarioView: View {
 												return .handled
 											}
 											if (terminou == false && !dialogos[contexto.idDialogo].opcoes.isEmpty) {
-												if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo]) {
+												if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo] && opcoes.last == dialogos[contexto.idDialogo].opcoes.last) {
 													return .handled
 												}
 												carregaFalaToda()
