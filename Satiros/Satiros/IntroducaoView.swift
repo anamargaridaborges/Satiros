@@ -125,6 +125,9 @@ struct IntroducaoView: View {
 						else if local == "mapa" {
 							MapaView(contexto: contexto[0], path: $path, bloco: bloco[0])
 						}
+						else if local == "falaIntro" {
+							FalaIntroView(contexto: contexto[0], path: $path, bloco: bloco[0])
+						}
 						
 						/*else if local == "notas" {
 							BlocoView(path: $path, bloco: bloco[0])

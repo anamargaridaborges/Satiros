@@ -14,6 +14,8 @@ struct PopUpMapa: View {
 	@Environment(\.modelContext) private var modelContext
 	@Bindable var bloco: ContextoConfessionario3.Bloco
 	@FocusState var estaFocado: FocusKey?
+	@State private var fadeIn = false
+	@State private var fadeOut = false
 	
 	var body: some View {
 			ZStack {
@@ -30,10 +32,14 @@ struct PopUpMapa: View {
 					.focusEffectDisabled()
 					.focused($estaFocado, equals: FocusKey.enter)
 					.onKeyPress(.return) {
-						path.append("mapa")
+						withAnimation { fadeOut = true }
+						DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+								path.append("mapa")
+						}
 						return .handled
 					}
 					.onAppear() {
+						withAnimation { fadeIn = true }
 						estaFocado = FocusKey.enter
 					}
 					
@@ -52,8 +58,15 @@ struct PopUpMapa: View {
 							.frame(width: 680, alignment: .leading)
 					}
 			}
+			.opacity(fadeIn ? 1 : 0)
+			.animation(.easeIn(duration: 1), value: fadeIn)
+			.opacity(fadeOut ? 0 : 1)
+			.animation(.easeOut(duration: 2), value: fadeOut)
 			.navigationBarBackButtonHidden()
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
+			.onAppear {
+				withAnimation { fadeIn = true }
+			}
 	}
 
 }

@@ -19,6 +19,8 @@ struct ConfessionarioView: View {
 	@State private var tempo: Int = 0
 	@Bindable var bloco: ContextoConfessionario3.Bloco
 	@Binding var clicaNotas: Bool
+	@State private var fadeIn = false
+	@State private var fadeOut = false
 	
 		var body: some View {
 			GeometryReader { geo in
@@ -129,6 +131,7 @@ struct ConfessionarioView: View {
 											
 										}
 										.onAppear {
+											withAnimation { fadeIn = true }
 											estaFocado = FocusKey.enter
 											if (contexto.horario == "confissao2" && contexto.idDialogo == 23) {
 												for dialogo in dialogosConfessionario {
@@ -163,6 +166,10 @@ struct ConfessionarioView: View {
 				}
 					
 			}
+			.opacity(fadeIn ? 1 : 0)
+			.animation(.easeIn(duration: 1), value: fadeIn)
+			.opacity(fadeOut ? 0 : 1)
+			.animation(.easeOut(duration: 1), value: fadeOut)
 			.navigationBarBackButtonHidden()
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 		}
@@ -235,7 +242,10 @@ struct ConfessionarioView: View {
 			contexto.idDialogo = 23
 			contexto.local = "cartas"
 			contexto.parteDialogo = 0
-			path.append("cartas")
+			withAnimation { fadeOut = true }
+			DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+					path.append("cartas")
+			}
 			reiniciarOpcoes()
 			return
 		}
@@ -253,7 +263,7 @@ struct ConfessionarioView: View {
 		// imprime a fala e as opcoes com animação
 		//tarefaAtual?.cancel()
 		tarefaOpcoes?.cancel()
-		if (dialogos[contexto.idDialogo ?? 0].personagem == "Shadow"){
+		if (dialogos[contexto.idDialogo].personagem == "Shadow"){
 			isSpeaking = true
 		}
 		let opc = dialogos[contexto.idDialogo].opcoes

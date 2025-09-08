@@ -19,6 +19,8 @@ struct MapaView: View {
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
 	@Bindable var bloco: ContextoConfessionario3.Bloco
 	@State var passaNaPlaca: [Bool] = [false, false, false, false]
+	@State private var fadeIn = false
+	@State private var fadeOut = false
 	
 		var body: some View {
 			ZStack(alignment: .topLeading){
@@ -29,7 +31,12 @@ struct MapaView: View {
 				HStack{
 					Spacer()
 					VStack (spacing: 50){ //placas esquerda
-						Button(action: {path.removeAll()}){
+						Button(action: {
+							withAnimation { fadeOut = true }
+							DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+									path.removeAll()
+							}
+						}){
 							ZStack(alignment: .bottomTrailing){
 								Image("placaEsquerda")
 									.resizable()
@@ -54,6 +61,7 @@ struct MapaView: View {
 							.onHover { over in
 								passaNaPlaca[0] = over
 							}
+							
 						}
 						.buttonStyle(.plain)
 						
@@ -97,7 +105,12 @@ struct MapaView: View {
 					}
 					
 					VStack (spacing: 50){ //placas direita
-						Button(action: {path.removeAll()}) {
+						Button(action: {
+							withAnimation { fadeOut = true }
+							DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+									path.removeAll()
+							}
+						}) {
 							ZStack(alignment: .bottomLeading){
 								Image("placaDireita")
 									.resizable()
@@ -148,13 +161,15 @@ struct MapaView: View {
 					.padding(50)
 					Spacer()
 				}
-				
-					
-				
 				AtributosView(contexto: contexto)
-					
-				
 			}
+			.onAppear {
+				withAnimation { fadeIn = true }
+			}
+			.opacity(fadeIn ? 1 : 0)
+			.animation(.easeIn(duration: 1), value: fadeIn)
+			.opacity(fadeOut ? 0 : 1)
+			.animation(.easeOut(duration: 1), value: fadeOut)
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.navigationBarBackButtonHidden()
 		}

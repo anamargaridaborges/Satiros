@@ -14,12 +14,11 @@ struct PopUpIntro: View {
 	@Environment(\.modelContext) private var modelContext
 	@Bindable var bloco: ContextoConfessionario3.Bloco
 	@FocusState var estaFocado: FocusKey?
+	@State private var fadeOut = false
 	
 	var body: some View {
 			ZStack {
-				
-					// Fundo clicável
-					Button(action: { path.append("tutorial") }) {
+					Button(action: { path.append("falaIntro") }) {
 						Image("fundo pixel")
 							.resizable()
 							.clipped()
@@ -30,11 +29,11 @@ struct PopUpIntro: View {
 					.focusEffectDisabled()
 					.focused($estaFocado, equals: FocusKey.enter)
 					.onKeyPress(.return) {
-						path.append("tutorial")
-						return .handled
+							path.append("falaIntro")
+							return .handled
 					}
-					.onAppear() {
-						estaFocado = FocusKey.enter
+					.onAppear {
+							estaFocado = FocusKey.enter
 					}
 					
 					// Popup com texto dentro
@@ -47,7 +46,7 @@ struct PopUpIntro: View {
 								Text("Tutorial")
 									.font(.custom(selectedFont, size: 30))
 									.foregroundColor(.white)
-																
+					
 								HStack(alignment: .top, spacing: 25) { //linha 1
 										Text("To move to the next line, press the return key.")
 												.font(.custom(selectedFont, size: 25))

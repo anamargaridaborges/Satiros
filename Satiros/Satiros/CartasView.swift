@@ -25,6 +25,8 @@ struct CartasView: View {
 	@State private var tarefa: Task<Void, Never>? = nil
 	@Binding var clicaBloco: Bool
 	@Bindable var bloco: ContextoConfessionario3.Bloco
+	@State private var fadeIn = false
+	@State private var fadeOut = false
 	
     var body: some View {
 			GeometryReader { geo in
@@ -47,11 +49,17 @@ struct CartasView: View {
 												Button (action: {contexto.cartaUsada = 1; if (contexto.horario == "confissao1") {
 														contexto.desconfianca -= 1
 														contexto.horario = "confissao2"
-														path.append("confessionario")
+														withAnimation { fadeOut = true }
+														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+																path.append("confessionario")
+														}
 													}
 														else {
 															contexto.popularidade += 1
-															path.append("popUpMapa")
+															withAnimation { fadeOut = true }
+															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+																	path.append("popUpMapa")
+															}
 														}}) {
 												ZStack {
 													Image("moses")
@@ -80,12 +88,18 @@ struct CartasView: View {
 													contexto.desconfianca += 1
 													contexto.popularidade -= 1
 													contexto.horario = "confissao2"
-													path.append("confessionario")
+													withAnimation { fadeOut = true }
+													DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+															path.append("confessionario")
+													}
 												}
 													else {
 														contexto.popularidade += 1
 														contexto.desconfianca -= 1
-														path.append("popUpMapa")
+														withAnimation { fadeOut = true }
+														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+																path.append("popUpMapa")
+														}
 													}
 												}) {
 													ZStack {
@@ -114,11 +128,17 @@ struct CartasView: View {
 												Button (action: {contexto.cartaUsada = 3; if (contexto.horario == "confissao1") {
 													contexto.popularidade += 1
 													contexto.horario = "confissao2"
-													path.append("confessionario")
+													withAnimation { fadeOut = true }
+													DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+															path.append("confessionario")
+													}
 												}
 													else {
 														contexto.desconfianca -= 1
-														path.append("popUpMapa")
+														withAnimation { fadeOut = true }
+														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+																path.append("popUpMapa")
+														}
 													}}) {
 														ZStack {
 															Image("david")
@@ -148,10 +168,16 @@ struct CartasView: View {
 												if (contexto.cartaUsada != 4) {
 													Button (action: {contexto.cartaUsada = 4; if (contexto.horario == "confissao1") {
 														contexto.horario = "confissao2"
-														path.append("confessionario")
+														withAnimation { fadeOut = true }
+														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+																path.append("confessionario")
+														}
 													}
 														else {
-															path.append("popUpMapa")
+															withAnimation { fadeOut = true }
+															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+																	path.append("popUpMapa")
+															}
 														}}) {
 															ZStack {
 																Image("joseph")
@@ -179,11 +205,17 @@ struct CartasView: View {
 													Button (action: {contexto.cartaUsada = 3; if (contexto.horario == "confissao1") {
 														contexto.popularidade += 1
 														contexto.horario = "confissao2"
-														path.append("confessionario")
+														withAnimation { fadeOut = true }
+														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+																path.append("confessionario")
+														}
 													}
 														else {
 															contexto.desconfianca -= 1
-															path.append("popUpMapa")
+															withAnimation { fadeOut = true }
+															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+																	path.append("popUpMapa")
+															}
 														}}) {
 															ZStack {
 																Image("david")
@@ -212,12 +244,18 @@ struct CartasView: View {
 														contexto.desconfianca -= 1
 														contexto.popularidade += 1
 														contexto.horario = "confissao2"
-														path.append("confessionario")
+														withAnimation { fadeOut = true }
+														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+																path.append("confessionario")
+														}
 													}
 														else {
 															contexto.popularidade -= 1
 															contexto.desconfianca += 1
-															path.append("popUpMapa")
+															withAnimation { fadeOut = true }
+															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+																	path.append("popUpMapa")
+															}
 														}}) {
 															ZStack {
 																Image("noah")
@@ -245,11 +283,17 @@ struct CartasView: View {
 													Button (action: {contexto.cartaUsada = 3; if (contexto.horario == "confissao1") {
 														contexto.popularidade += 1
 														contexto.horario = "confissao2"
-														path.append("confessionario")
+														withAnimation { fadeOut = true }
+														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+																path.append("confessionario")
+														}
 													}
 														else {
 															contexto.desconfianca -= 1
-															path.append("popUpMapa")
+															withAnimation { fadeOut = true }
+															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+																	path.append("popUpMapa")
+															}
 														}}) {
 															ZStack {
 																Image("david")
@@ -375,6 +419,7 @@ struct CartasView: View {
 												}
 												
 												.onAppear {
+													withAnimation { fadeIn = true }
 													scrollProxy = proxy
 												}
 											}
@@ -480,6 +525,10 @@ struct CartasView: View {
 				}
 					
 			}
+			.opacity(fadeIn ? 1 : 0)
+			.animation(.easeIn(duration: 1), value: fadeIn)
+			.opacity(fadeOut ? 0 : 1)
+			.animation(.easeOut(duration: 2), value: fadeOut)
 			.navigationBarBackButtonHidden()
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
     }

@@ -20,27 +20,38 @@ struct TutorialView: View {
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
 	@Bindable var bloco: ContextoConfessionario3.Bloco
 	@State var falaNome: Bool = false
+	@State private var fadeIn = false
+	@State private var fadeOut = false
 	
     var body: some View {
 			ZStack(alignment: .topLeading){
-				Image(dialogos[contexto.idDialogo ?? 0].local_fundo)
+				Image(dialogos[contexto.idDialogo].local_fundo)
 					.resizable()
 					.aspectRatio(16/10, contentMode: .fill)
 				
 				AtributosView(contexto: contexto)
 				FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
-
 			}
+			.opacity(fadeIn ? 1 : 0)
+			.animation(.easeIn(duration: 1), value: fadeIn)
+			.opacity(fadeOut ? 0 : 1)
+			.animation(.easeOut(duration: 2), value: fadeOut)
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.navigationBarBackButtonHidden()
 			.onChange(of: contexto.idDialogo) {
 				defineFalaNome()
 				if (contexto.idDialogo == 15) {
+					withAnimation { fadeOut = true }
+					DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+							path.append("confessionario")
+					}
 					contexto.horario = "confissao1"
 					contexto.local = "confessionario"
 					contexto.parteDialogo = 0
-					path.append("confessionario")
 				}
+			}
+			.onAppear {
+				withAnimation { fadeIn = true }
 			}
     }
 	func defineFalaNome() -> Binding<Bool> {
