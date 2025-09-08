@@ -58,7 +58,7 @@ struct IntroducaoView: View {
 					
 					VStack {
 						Spacer()
-							if !(contexto.isEmpty) {
+						if !(contexto.isEmpty) && !(bloco.isEmpty) {
 								Button(action: { continuarJogo() }) {
 									ZStack {
 										Image("botao continue")

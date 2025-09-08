@@ -43,15 +43,16 @@ struct CartasView: View {
 										
 									VStack (alignment: .center){
 										HStack {
-											Button (action: { if (contexto.horario == "confissao1") {
-												contexto.desconfianca -= 1
-												contexto.horario = "confissao2"
-												path.append("confessionario")
-											}
-												else {
-													contexto.popularidade += 1
-													path.append("menu")
-												}}) {
+											if (contexto.cartaUsada != 1) {
+												Button (action: {contexto.cartaUsada = 1; if (contexto.horario == "confissao1") {
+														contexto.desconfianca -= 1
+														contexto.horario = "confissao2"
+														path.append("confessionario")
+													}
+														else {
+															contexto.popularidade += 1
+															path.append("popUpMapa")
+														}}) {
 												ZStack {
 													Image("moses")
 														.resizable()
@@ -72,133 +73,206 @@ struct CartasView: View {
 													}
 												}
 											}
-											.buttonStyle(.plain)
-											Button (action: { if (contexto.horario == "confissao1") {
-												contexto.desconfianca += 1
-												contexto.popularidade -= 1
-												contexto.horario = "confissao2"
-												path.append("confessionario")
-											}
-												else {
-													contexto.popularidade += 1
-													contexto.desconfianca -= 1
-													path.append("popUpMapa")
+												.buttonStyle(.plain)
+										}
+											if (contexto.cartaUsada != 2) {
+												Button (action: {contexto.cartaUsada = 2; if (contexto.horario == "confissao1") {
+													contexto.desconfianca += 1
+													contexto.popularidade -= 1
+													contexto.horario = "confissao2"
+													path.append("confessionario")
 												}
+													else {
+														contexto.popularidade += 1
+														contexto.desconfianca -= 1
+														path.append("popUpMapa")
+													}
 												}) {
-												ZStack {
-													Image("solomon")
-														.resizable()
-														.clipped()
-													//.aspectRatio(2/1, contentMode: .fit)
-														.frame(width: 160, height: 226)
-														.scaleEffect(passaNaCarta[1] ? 1.1 : 1.0)
-														.padding()
-														.onHover { over in
-															passaNaCarta[1] = over
-														}
-													if (passaNaCarta[1]) {
-														Image("seta")
+													ZStack {
+														Image("solomon")
 															.resizable()
 															.clipped()
-															.frame(width: 40, height: 40)
-															.padding(.top, -180)
-													}
-												}
-											}
-											.buttonStyle(.plain)
-											Button (action: {if (contexto.horario == "confissao1") {
-												contexto.popularidade += 1
-												contexto.horario = "confissao2"
-												path.append("confessionario")
-											}
-												else {
-													contexto.desconfianca -= 1
-													path.append("popUpMapa")
-												}}) {
-												ZStack {
-													Image("david")
-														.resizable()
-														.clipped()
-													//.aspectRatio(2/1, contentMode: .fit)
-														.frame(width: 160, height: 226)
-														.scaleEffect(passaNaCarta[2] ? 1.1 : 1.0)
-														.padding()
-														.onHover { over in
-															passaNaCarta[2] = over
+														//.aspectRatio(2/1, contentMode: .fit)
+															.frame(width: 160, height: 226)
+															.scaleEffect(passaNaCarta[1] ? 1.1 : 1.0)
+															.padding()
+															.onHover { over in
+																passaNaCarta[1] = over
+															}
+														if (passaNaCarta[1]) {
+															Image("seta")
+																.resizable()
+																.clipped()
+																.frame(width: 40, height: 40)
+																.padding(.top, -180)
 														}
-													if (passaNaCarta[2]) {
-														Image("seta")
-															.resizable()
-															.clipped()
-															.frame(width: 40, height: 40)
-															.padding(.top, -180)
 													}
 												}
+												.buttonStyle(.plain)
 											}
-											.buttonStyle(.plain)
+											if (contexto.cartaUsada != 3 && (contexto.cartaUsada != 4 && contexto.cartaUsada != 5)) {
+												Button (action: {contexto.cartaUsada = 3; if (contexto.horario == "confissao1") {
+													contexto.popularidade += 1
+													contexto.horario = "confissao2"
+													path.append("confessionario")
+												}
+													else {
+														contexto.desconfianca -= 1
+														path.append("popUpMapa")
+													}}) {
+														ZStack {
+															Image("david")
+																.resizable()
+																.clipped()
+															//.aspectRatio(2/1, contentMode: .fit)
+																.frame(width: 160, height: 226)
+																.scaleEffect(passaNaCarta[2] ? 1.1 : 1.0)
+																.padding()
+																.onHover { over in
+																	passaNaCarta[2] = over
+																}
+															if (passaNaCarta[2]) {
+																Image("seta")
+																	.resizable()
+																	.clipped()
+																	.frame(width: 40, height: 40)
+																	.padding(.top, -180)
+															}
+														}
+													}
+													.buttonStyle(.plain)
+											}
 										}
 											.padding(40)
 											HStack {
-												Button (action: {if (contexto.horario == "confissao1") {
-												 contexto.horario = "confissao2"
-												 path.append("confessionario")
-											 }
-												 else {
-													 path.append("popUpMapa")
-												 }}) {
-													ZStack {
-														Image("joseph")
-															.resizable()
-															.clipped()
-														//.aspectRatio(2/1, contentMode: .fit)
-															.frame(width: 160, height: 226)
-															.scaleEffect(passaNaCarta[3] ? 1.1 : 1.0)
-															.padding()
-															.onHover { over in
-																passaNaCarta[3] = over
-															}
-														if (passaNaCarta[3]) {
-															Image("seta")
-																.resizable()
-																.clipped()
-																.frame(width: 40, height: 40)
-																.padding(.top, -180)
-														}
+												if (contexto.cartaUsada != 4) {
+													Button (action: {contexto.cartaUsada = 4; if (contexto.horario == "confissao1") {
+														contexto.horario = "confissao2"
+														path.append("confessionario")
 													}
-												}
-												.buttonStyle(.plain)
-												Button (action: {if (contexto.horario == "confissao1") {
-													contexto.desconfianca -= 1
-												 contexto.popularidade += 1
-												 contexto.horario = "confissao2"
-												path.append("confessionario")
-											 }
-												 else {
-													 contexto.popularidade -= 1
-													 contexto.desconfianca += 1
-													 path.append("popUpMapa")
-												 }}) {
-													ZStack {
-														Image("noah")
-															.resizable()
-															.clipped()
-														//.aspectRatio(2/1, contentMode: .fit)
-															.frame(width: 160, height: 226)
-															.scaleEffect(passaNaCarta[4] ? 1.1 : 1.0)
-															.padding()
-															.onHover { over in
-																passaNaCarta[4] = over
+														else {
+															path.append("popUpMapa")
+														}}) {
+															ZStack {
+																Image("joseph")
+																	.resizable()
+																	.clipped()
+																//.aspectRatio(2/1, contentMode: .fit)
+																	.frame(width: 160, height: 226)
+																	.scaleEffect(passaNaCarta[3] ? 1.1 : 1.0)
+																	.padding()
+																	.onHover { over in
+																		passaNaCarta[3] = over
+																	}
+																if (passaNaCarta[3]) {
+																	Image("seta")
+																		.resizable()
+																		.clipped()
+																		.frame(width: 40, height: 40)
+																		.padding(.top, -180)
+																}
 															}
-														if (passaNaCarta[4]) {
-															Image("seta")
-																.resizable()
-																.clipped()
-																.frame(width: 40, height: 40)
-																.padding(.top, -180)
 														}
-													}
+														.buttonStyle(.plain)
 												}
-												.buttonStyle(.plain)
+												else {
+													Button (action: {contexto.cartaUsada = 3; if (contexto.horario == "confissao1") {
+														contexto.popularidade += 1
+														contexto.horario = "confissao2"
+														path.append("confessionario")
+													}
+														else {
+															contexto.desconfianca -= 1
+															path.append("popUpMapa")
+														}}) {
+															ZStack {
+																Image("david")
+																	.resizable()
+																	.clipped()
+																//.aspectRatio(2/1, contentMode: .fit)
+																	.frame(width: 160, height: 226)
+																	.scaleEffect(passaNaCarta[2] ? 1.1 : 1.0)
+																	.padding()
+																	.onHover { over in
+																		passaNaCarta[2] = over
+																	}
+																if (passaNaCarta[2]) {
+																	Image("seta")
+																		.resizable()
+																		.clipped()
+																		.frame(width: 40, height: 40)
+																		.padding(.top, -180)
+																}
+															}
+														}
+														.buttonStyle(.plain)
+												}
+												if (contexto.cartaUsada != 5) {
+													Button (action: {contexto.cartaUsada = 5; if (contexto.horario == "confissao1") {
+														contexto.desconfianca -= 1
+														contexto.popularidade += 1
+														contexto.horario = "confissao2"
+														path.append("confessionario")
+													}
+														else {
+															contexto.popularidade -= 1
+															contexto.desconfianca += 1
+															path.append("popUpMapa")
+														}}) {
+															ZStack {
+																Image("noah")
+																	.resizable()
+																	.clipped()
+																//.aspectRatio(2/1, contentMode: .fit)
+																	.frame(width: 160, height: 226)
+																	.scaleEffect(passaNaCarta[4] ? 1.1 : 1.0)
+																	.padding()
+																	.onHover { over in
+																		passaNaCarta[4] = over
+																	}
+																if (passaNaCarta[4]) {
+																	Image("seta")
+																		.resizable()
+																		.clipped()
+																		.frame(width: 40, height: 40)
+																		.padding(.top, -180)
+																}
+															}
+														}
+														.buttonStyle(.plain)
+												}
+												else {
+													Button (action: {contexto.cartaUsada = 3; if (contexto.horario == "confissao1") {
+														contexto.popularidade += 1
+														contexto.horario = "confissao2"
+														path.append("confessionario")
+													}
+														else {
+															contexto.desconfianca -= 1
+															path.append("popUpMapa")
+														}}) {
+															ZStack {
+																Image("david")
+																	.resizable()
+																	.clipped()
+																//.aspectRatio(2/1, contentMode: .fit)
+																	.frame(width: 160, height: 226)
+																	.scaleEffect(passaNaCarta[2] ? 1.1 : 1.0)
+																	.padding()
+																	.onHover { over in
+																		passaNaCarta[2] = over
+																	}
+																if (passaNaCarta[2]) {
+																	Image("seta")
+																		.resizable()
+																		.clipped()
+																		.frame(width: 40, height: 40)
+																		.padding(.top, -180)
+																}
+															}
+														}
+														.buttonStyle(.plain)
+												}
 											}
 										}
 									.position(x: geo.size.width * 1/3 , y: geo.size.height * 1/3)

@@ -43,6 +43,7 @@ struct FalaView: View {
 								ForEach(opcoes.indices, id: \.self) { index in
 									if (opcoes[index] != ""){
 										Button {
+											carregaFalaToda()
 											selecionaOpcao(index: index)
 										} label: {
 											Text(opcoes[index])
@@ -138,7 +139,7 @@ struct FalaView: View {
 	func selecionaOpcao (index: Int) {
 			contexto.desconfianca += dialogos[contexto.idDialogo].impacto_opcao_desc[index]
 			contexto.popularidade += dialogos[contexto.idDialogo].impacto_opcao_pop[index]
-			let inicio = opcoes[index].index(texto.startIndex, offsetBy: 3)
+			//let inicio = opcoes[index].index(texto.startIndex, offsetBy: 3)
 			/*let opcaoAtual = opcoes[index][inicio...]*/
 			proximaFala(index: index)
 			terminou = true
@@ -148,6 +149,7 @@ struct FalaView: View {
 	func proximaFala(index: Int = 0) {
 		contexto.idDialogo = dialogos[contexto.idDialogo].id_que_opcao_leva[index]
 		contexto.parteDialogo = 0
+		reiniciarOpcoes()
 		return
 	}
 	
@@ -187,6 +189,9 @@ struct FalaView: View {
 				}
 				try? await Task.sleep(nanoseconds: 30_000_000)
 				for c in opcao {
+					if Task.isCancelled {
+						return
+					}
 					opcoes[cont-1].append(c)
 					if Task.isCancelled {
 						return
