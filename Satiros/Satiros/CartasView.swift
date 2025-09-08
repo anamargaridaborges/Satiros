@@ -51,7 +51,7 @@ struct CartasView: View {
 													}
 														else {
 															contexto.popularidade += 1
-															path.append("menu")
+															path.removeAll()
 														}}) {
 												ZStack {
 													Image("moses")
@@ -85,7 +85,7 @@ struct CartasView: View {
 													else {
 														contexto.popularidade += 1
 														contexto.desconfianca -= 1
-														path.append("menu")
+														path.removeAll()
 													}
 												}) {
 													ZStack {
@@ -118,7 +118,7 @@ struct CartasView: View {
 												}
 													else {
 														contexto.desconfianca -= 1
-														path.append("menu")
+														path.removeAll()
 													}}) {
 														ZStack {
 															Image("david")
@@ -151,7 +151,7 @@ struct CartasView: View {
 														path.append("confessionario")
 													}
 														else {
-															path.append("menu")
+															path.removeAll()
 														}}) {
 															ZStack {
 																Image("joseph")
@@ -183,7 +183,7 @@ struct CartasView: View {
 													}
 														else {
 															contexto.desconfianca -= 1
-															path.append("menu")
+															path.removeAll()
 														}}) {
 															ZStack {
 																Image("david")
@@ -217,7 +217,7 @@ struct CartasView: View {
 														else {
 															contexto.popularidade -= 1
 															contexto.desconfianca += 1
-															path.append("menu")
+															path.removeAll()
 														}}) {
 															ZStack {
 																Image("noah")
@@ -249,7 +249,7 @@ struct CartasView: View {
 													}
 														else {
 															contexto.desconfianca -= 1
-															path.append("menu")
+															path.removeAll()
 														}}) {
 															ZStack {
 																Image("david")
