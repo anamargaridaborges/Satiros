@@ -117,7 +117,7 @@ enum ContextoConfessionario3: VersionedSchema {
 			var popularidade: Int
 			var desconfianca: Int
 			var parteDialogo: Int
-			var cartaUsada: Int = -1
+			var cartaUsada: Int
 		init(idDialogo: Int = 0, local: String = "tutorial", dia: Int = 1, horario: String = "manha", popularidade: Int = 5, desconfianca: Int = 5, parteDialogo: Int = 0, cartaUsada: Int = -1) {
 				self.idDialogo = idDialogo
 				self.local = local

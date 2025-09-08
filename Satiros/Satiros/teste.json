@@ -585,6 +585,7 @@
 	},
 	{
 		"id":53,
+		"personagem":"Sister Desmond",
 		"texto":["Gut feeling,\nDivine foresight,\nDesperation.", "Call it whatever thy want.", "So, what do you say Father?"],
 		"opcoes":["I will help you"],
 		"id_que_opcao_leva":[51],
