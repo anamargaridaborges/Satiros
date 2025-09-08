@@ -73,6 +73,7 @@ struct ConfessionarioView: View {
 													// aqui tenho os botões das opções
 													if (opcoes[index] != ""){
 														Button {
+															carregaFalaToda()
 															selecionaOpcao(index: index)
 															} label: {
 																		Text(opcoes[index])
@@ -300,6 +301,9 @@ struct ConfessionarioView: View {
 				}
 				try? await Task.sleep(nanoseconds: 30_000_000)
 				for c in opcao {
+					if Task.isCancelled {
+						return
+					}
 					await MainActor.run {
 						opcoes[cont-1].append(c)
 					}
