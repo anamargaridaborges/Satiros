@@ -82,7 +82,7 @@ struct CartasView: View {
 												else {
 													contexto.popularidade += 1
 													contexto.desconfianca -= 1
-													path.append("mapa")
+													path.append("popUpMapa")
 												}
 												}) {
 												ZStack {
@@ -113,7 +113,7 @@ struct CartasView: View {
 											}
 												else {
 													contexto.desconfianca -= 1
-													path.append("menu")
+													path.append("popUpMapa")
 												}}) {
 												ZStack {
 													Image("david")
@@ -144,7 +144,7 @@ struct CartasView: View {
 												 path.append("confessionario")
 											 }
 												 else {
-													 path.append("menu")
+													 path.append("popUpMapa")
 												 }}) {
 													ZStack {
 														Image("joseph")
@@ -176,7 +176,7 @@ struct CartasView: View {
 												 else {
 													 contexto.popularidade -= 1
 													 contexto.desconfianca += 1
-													 path.append("menu")
+													 path.append("popUpMapa")
 												 }}) {
 													ZStack {
 														Image("noah")

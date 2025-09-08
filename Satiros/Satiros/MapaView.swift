@@ -18,19 +18,141 @@ struct MapaView: View {
 	@State var terminou: Bool = true
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
 	@Bindable var bloco: ContextoConfessionario3.Bloco
+	@State var passaNaPlaca: [Bool] = [false, false, false, false]
 	
 		var body: some View {
-			ZStack(alignment: .bottom){
+			ZStack(alignment: .topLeading){
 				Image("paredeMapa")
 					.resizable()
 					.aspectRatio(16/10, contentMode: .fit)
 				
-				Image("portaMapa")
-					//.clipped()
-					//.padding(.bottom, 10)
-					.frame(width: 550, height: 960)
+				HStack{
+					Spacer()
+					VStack (spacing: 50){ //placas esquerda
+						Button(action: {path.removeAll()}){
+							ZStack(alignment: .bottomTrailing){
+								Image("placaEsquerda")
+									.resizable()
+									.clipped()
+									.frame(width: 295, height: 160)
+									.padding()
+								
+								Text("Garden")
+									.font(.custom(selectedFont, size: 40))
+									.foregroundColor(.white)
+									.offset(x: -50, y: -100)
+								
+								Image("setaEsquerda")
+									.resizable()
+									.clipped()
+									.frame(width: 84, height: 46)
+									.padding(.bottom, 30)
+									.padding(.trailing, 50)
+
+							}
+							.scaleEffect(passaNaPlaca[0] ? 1.1 : 1.0)
+							.onHover { over in
+								passaNaPlaca[0] = over
+							}
+						}
+						.buttonStyle(.plain)
+						
+						ZStack(alignment: .bottomTrailing){
+							Image("placaEsquerda")
+								.resizable()
+								.clipped()
+								.frame(width: 295, height: 160)
+								.padding()
+							
+							Text("*********")
+								.font(.custom(selectedFont, size: 40))
+								.foregroundColor(.gray)
+								.offset(x: -50, y: -100)
+							
+							Image("setaEsquerda")
+								.resizable()
+								.clipped()
+								.frame(width: 84, height: 46)
+								.padding(.bottom, 30)
+								.padding(.trailing, 50)
+						}
+						.opacity(0.8)
+						
+						
+					}
+					.padding(50)
+					
+					VStack (){ //porta e cruz
+						Spacer()
+						Image("cruzMapa")
+							.resizable()
+							.clipped()
+							.frame(width: 73, height: 110)
+							.padding()
+						
+						Image("portaMapa")
+							.resizable()
+							.clipped()
+							.frame(width: 440, height: 770)
+					}
+					
+					VStack (spacing: 50){ //placas direita
+						Button(action: {path.removeAll()}) {
+							ZStack(alignment: .bottomLeading){
+								Image("placaDireita")
+									.resizable()
+									.clipped()
+									.frame(width: 295, height: 160)
+									.padding()
+								
+								Text("Library")
+									.font(.custom(selectedFont, size: 40))
+									.foregroundColor(.white)
+									.offset(x: 50, y: -100)
+								
+								Image("setaDireita")
+									.resizable()
+									.clipped()
+									.frame(width: 84, height: 46)
+									.padding(.bottom, 30)
+									.padding(.leading, 50)
+							}
+							.scaleEffect(passaNaPlaca[3] ? 1.1 : 1.0)
+							.onHover { over in
+								passaNaPlaca[3] = over
+							}
+						}
+						.buttonStyle(.plain)
+						
+						ZStack(alignment: .bottomLeading){
+							Image("placaDireita")
+								.resizable()
+								.clipped()
+								.frame(width: 295, height: 160)
+								.padding()
+							
+							Text("******")
+								.font(.custom(selectedFont, size: 40))
+								.foregroundColor(.gray)
+								.offset(x: 50, y: -100)
+							
+							Image("setaDireita")
+								.resizable()
+								.clipped()
+								.frame(width: 84, height: 46)
+								.padding(.bottom, 30)
+								.padding(.leading, 50)
+						}
+						.opacity(0.8)
+					}
+					.padding(50)
+					Spacer()
+				}
+				
+					
 				
 				AtributosView(contexto: contexto)
+					
 				
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)

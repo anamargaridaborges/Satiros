@@ -30,12 +30,12 @@ struct AtributosView: View {
 								.font(.appFont(selectedFont, size: 30))
 								.foregroundStyle(.white)
 								.padding(.top, 25)
+								.shadow(radius: 5)
 						}
 						.scaleEffect(passaNoAsset[0] ? 1.1 : 1.0)
 						.onHover { over in
 							passaNoAsset[0] = over
 							mostrarBalao[0] = over
-							
 						}
 						.overlay(alignment: .leading) {
 							if mostrarBalao[0] {
@@ -66,6 +66,7 @@ struct AtributosView: View {
 								.font(.appFont(selectedFont, size: 30))
 								.foregroundStyle(.white)
 								.padding(.top, 25)
+								.shadow(radius: 5)
 						}
 						.scaleEffect(passaNoAsset[1] ? 1.1 : 1.0)
 						.onHover { over in
