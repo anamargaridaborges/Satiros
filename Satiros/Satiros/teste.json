@@ -654,7 +654,7 @@
 		"personagem":"Narrator",
 		"texto":["You pick up your radio, it seems They are as unquiet as Sister Desmond."],
 		"opcoes":["Pick up", "Turn off"],
-		"id_que_opcao_leva":[60, -60],
+		"id_que_opcao_leva":[60, 67],
 		"impacto_opcao_pop":[0, 0],
 		"impacto_opcao_desc":[0, 0],
 		"local_fundo":"Quarto",
@@ -676,7 +676,7 @@
 		"personagem":"Radiovoice",
 		"texto":["How was the trip dude!! Or should I say, Father…", "Oh forget it, I don’t really care. So did you find that old priest They sent you after?"],
 		"opcoes":["Not yet", "Not cool to talk about such a respected person like that"],
-		"id_que_opcao_leva":[62, -62],
+		"id_que_opcao_leva":[62, 70],
 		"impacto_opcao_pop":[0, 0],
 		"impacto_opcao_desc":[0, 0],
 		"local_fundo":"Quarto",
@@ -734,6 +734,50 @@
 		"id_que_opcao_leva":[-10],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
+		"local_fundo":"Quarto",
+		"resumo_notas":""
+	}
+	{
+		"id":67,
+		"personagem":"Narrator",
+		"texto":["The radio quickly starts ringing again."],
+		"opcoes":[],
+		"id_que_opcao_leva":[68],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Quarto",
+		"resumo_notas":""
+	}
+	{
+		"id":68,
+		"personagem":"",
+		"texto":["*prililim* *prililim*"],
+		"opcoes":["Pick Up"],
+		"id_que_opcao_leva":[69],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Quarto",
+		"resumo_notas":""
+	}
+	{
+		"id":69,
+		"personagem":"Radiovoice",
+		"texto":["Hey dumbass do not ignore me like that, it hurts my feelings.", "Do you copy, dumbass?"],
+		"opcoes":["Copy"],
+		"id_que_opcao_leva":[61],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Quarto",
+		"resumo_notas":""
+	}
+	{
+		"id":70,
+		"personagem":"Radiovoice",
+		"texto":["Not like he’s gon hear it.", "First cause he's missing,", "second because he's like 100 years old."],
+		"opcoes":["This mission needs caution, that’s why They haven’t sent you", "Get to the point."],
+		"id_que_opcao_leva":[63, 64],
+		"impacto_opcao_pop":[0, 0],
+		"impacto_opcao_desc":[0, 0],
 		"local_fundo":"Quarto",
 		"resumo_notas":""
 	}
