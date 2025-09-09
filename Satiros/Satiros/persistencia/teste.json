@@ -2,12 +2,12 @@
 	{
 		"id":0,
 		"personagem":"Narrator",
-		"texto":["THREE DAYS AGO, FATHER LORGAN, HEAD OF THE EASTOWN SEMINAR, MYSTERIOUSLY DISAPPEARED, YOU HAVE BEEN SEND TO REPLACE HIM IN THE MEANTIME"],
+		"texto":["THREE DAYS AGO, FATHER LORGAN, HEAD OF THE EASTOWN SEMINAR, MYSTERIOUSLY DISAPPEARED"],
 		"opcoes":[],
-		"id_que_opcao_leva":[1],
+		"id_que_opcao_leva":[67],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"fundoPersonagens",
+		"local_fundo":"animacaoCutscene",
 		"resumo_notas":""
 	},
 	{
@@ -735,6 +735,17 @@
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
 		"local_fundo":"Quarto",
+		"resumo_notas":""
+	},
+	{ 
+		"id":67,
+		"personagem":"Narrator",
+		"texto":["YOU HAVE BEEN SEND TO REPLACE HIM IN THE MEANTIME"],
+		"opcoes":[],
+		"id_que_opcao_leva":[1],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"cut6",
 		"resumo_notas":""
 	}
 ]

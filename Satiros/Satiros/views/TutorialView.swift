@@ -22,12 +22,33 @@ struct TutorialView: View {
 	@State var falaNome: Bool = false
 	@State private var fadeIn = false
 	@State private var fadeOut = false
+	let frames = ["cut1", "cut2", "cut3", "cut4", "cut5"]
+	@State private var frameIndex = 0
+	@State var tick: Bool = false
+	@State private var animationFinished = false
 	
     var body: some View {
 			ZStack(alignment: .topLeading){
-				Image(dialogos[contexto.idDialogo].local_fundo)
-					.resizable()
-					.aspectRatio(16/10, contentMode: .fill)
+				if (dialogos[contexto.idDialogo].local_fundo == "animacaoCutscene"){
+					Image(frames[frameIndex])
+						.resizable()
+						.aspectRatio(16/10, contentMode: .fill)
+						.onChange(of: tick) { oldValue, newValue in
+							if frameIndex < frames.count - 1 {
+									frameIndex += 1
+									DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+											tick.toggle()
+									}
+							} else {
+									animationFinished = true }
+						}
+						.task { tick.toggle() }
+				} else {
+					Image(dialogos[contexto.idDialogo].local_fundo)
+						.resizable()
+						.aspectRatio(16/10, contentMode: .fill)
+				}
+				
 				
 				AtributosView(contexto: contexto)
 				FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
@@ -42,7 +63,7 @@ struct TutorialView: View {
 				defineFalaNome()
 				if (contexto.idDialogo == 15) {
 					withAnimation { fadeOut = true }
-					DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 							path.append("confessionario")
 					}
 					contexto.horario = "confissao1"
@@ -54,6 +75,7 @@ struct TutorialView: View {
 				withAnimation { fadeIn = true }
 			}
     }
+	
 	func defineFalaNome() -> Binding<Bool> {
 		if (dialogos[contexto.idDialogo].personagem == "Sister Desmond" || dialogos[contexto.idDialogo].personagem == "You") {
 			falaNome = true
