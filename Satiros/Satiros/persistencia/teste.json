@@ -4,7 +4,7 @@
 		"personagem":"Narrator",
 		"texto":["THREE DAYS AGO, FATHER LORGAN, HEAD OF THE EASTOWN SEMINAR, MYSTERIOUSLY DISAPPEARED"],
 		"opcoes":[],
-		"id_que_opcao_leva":[67],
+		"id_que_opcao_leva":[80],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
 		"local_fundo":"animacaoCutscene",
@@ -737,16 +737,159 @@
 		"local_fundo":"Quarto",
 		"resumo_notas":""
 	},
-	{ 
-		"id":67,
-		"personagem":"Narrator",
-		"texto":["YOU HAVE BEEN SEND TO REPLACE HIM IN THE MEANTIME"],
-		"opcoes":[],
-		"id_que_opcao_leva":[1],
-		"impacto_opcao_pop":[0],
-		"impacto_opcao_desc":[0],
-		"local_fundo":"cut6",
-		"resumo_notas":""
-	}
+	{
+			"id":67,
+			"personagem":"Narrator",
+			"texto":["The radio quickly starts ringing again."],
+			"opcoes":[],
+			"id_que_opcao_leva":[68],
+			"impacto_opcao_pop":[0],
+			"impacto_opcao_desc":[0],
+			"local_fundo":"Quarto",
+			"resumo_notas":""
+		},
+		{
+			"id":68,
+			"personagem":"",
+			"texto":["*prililim* *prililim*"],
+			"opcoes":["Pick Up"],
+			"id_que_opcao_leva":[69],
+			"impacto_opcao_pop":[0],
+			"impacto_opcao_desc":[0],
+			"local_fundo":"Quarto",
+			"resumo_notas":""
+		},
+		{
+			"id":69,
+			"personagem":"Radiovoice",
+			"texto":["Hey dumbass do not ignore me like that, it hurts my feelings.", "Do you copy, dumbass?"],
+			"opcoes":["Copy"],
+			"id_que_opcao_leva":[61],
+			"impacto_opcao_pop":[0],
+			"impacto_opcao_desc":[0],
+			"local_fundo":"Quarto",
+			"resumo_notas":""
+		},
+		{
+			"id":70,
+			"personagem":"Radiovoice",
+			"texto":["Not like he’s gon hear it.", "First cause he's missing,", "second because he's like 100 years old."],
+			"opcoes":["This mission needs caution, that’s why They haven’t sent you", "Get to the point."],
+			"id_que_opcao_leva":[63, 64],
+			"impacto_opcao_pop":[0, 0],
+			"impacto_opcao_desc":[0, 0],
+			"local_fundo":"Quarto",
+			"resumo_notas":""
+		},
+		{
+			"id":71,
+			"personagem":"Narrator",
+			"texto":["You arrive at the very well tendered garden of the church. Amongst the vegetation, Thomas sits at the bench looking at some flowers"],
+			"opcoes":[],
+			"id_que_opcao_leva":[72],
+			"impacto_opcao_pop":[0],
+			"impacto_opcao_desc":[0],
+			"local_fundo":"Jardim",
+			"resumo_notas":""
+		},
+		{
+			"id":72,
+			"personagem":"Thomas",
+			"texto":["Gazanias. Vexing. They have been blooming around here non stop. Yet, I do not know who could have spread it’s seeds.", "Tell me, Father, What flowers do enjoy most?"],
+			"opcoes":["First, Hello Thomas", "Solomon Lilies, for they remind me of God’s beauty", "Gazanias, for they are signs of prosperity", "Roses, the classic."],
+			"id_que_opcao_leva":[73, 74, 75, 76],
+			"impacto_opcao_pop":[-1, 1, 0, 0],
+			"impacto_opcao_desc":[0, 0, 1, -1],
+			"local_fundo":"Jardim",
+			"resumo_notas":""
+		},
+		{
+			"id":73,
+			"personagem":"Thomas",
+			"texto":["I apologize, Father. I got caught up amidst the flowers."],
+			"opcoes":[],
+			"id_que_opcao_leva":[77],
+			"impacto_opcao_pop":[0],
+			"impacto_opcao_desc":[0],
+			"local_fundo":"Jardim",
+			"resumo_notas":""
+		},
+		{
+			"id":74,
+			"personagem":"Thomas",
+			"texto":["\"They neither toil nor spin\". Gorgeous really.", "Maybe we should add one to our garden, isn't that a good idea?"],
+			"opcoes":[],
+			"id_que_opcao_leva":[77],
+			"impacto_opcao_pop":[0],
+			"impacto_opcao_desc":[0],
+			"local_fundo":"Jardim",
+			"resumo_notas":""
+		},
+		{
+			"id":75,
+			"personagem":"Thomas",
+			"texto":["It seems they welcome you then. Be they plague or friend."],
+			"opcoes":[],
+			"id_que_opcao_leva":[77],
+			"impacto_opcao_pop":[0],
+			"impacto_opcao_desc":[0],
+			"local_fundo":"Jardim",
+			"resumo_notas":""
+		},
+		{
+			"id":76,
+			"personagem":"Thomas",
+			"texto":["There is a reason why they are the classic. They’re gorgeous."],
+			"opcoes":[],
+			"id_que_opcao_leva":[77],
+			"impacto_opcao_pop":[0],
+			"impacto_opcao_desc":[0],
+			"local_fundo":"Jardim",
+			"resumo_notas":""
+		},
+		{
+			"id":77,
+			"personagem":"Narrator",
+			"texto":["Thomas gets up from the bench. You notice he has a small, but noticeable difficulty in gettin up, using his hands like crutches. You also see some slight bruising around his neck"],
+			"opcoes":["Are you alright son?", "What’s up with the bruises?", "Do you come often to the garden?"],
+			"id_que_opcao_leva":[],
+			"impacto_opcao_pop":[1, -1, 0],
+			"impacto_opcao_desc":[0, 1, 0],
+			"local_fundo":"Jardim",
+			"resumo_notas":"Thomas has a bruise, what caused it?"
+		},
+		{
+			"id":78,
+			"personagem":"Thomas",
+			"texto":["Besides missing Father Lorgan, I’m fine.", "No offense, I’m sure you are a great priest also. I just miss him.", "But, I appreciate you asking."],
+			"opcoes":["Are you sure? there seems to be some slight bruising.", "Do you come often to the garden?"],
+			"id_que_opcao_leva":[-5, -5],
+			"impacto_opcao_pop":[0, 0],
+			"impacto_opcao_desc":[0, 0],
+			"local_fundo":"Jardim",
+			"resumo_notas":""
+		},
+		{
+			"id":79,
+			"personagem":"Thomas",
+			"texto":["I don’t want to get anyone in trouble Father, but please trust me, It’s fine. It was just an accident with one of my brothers. Nothing to be weary about"],
+			"opcoes":["Are you sure? there seems to be some slight bruising.", "Do you come often to the garden?"],
+			"id_que_opcao_leva":[-5, -5],
+			"impacto_opcao_pop":[0, 0],
+			"impacto_opcao_desc":[0, 0],
+			"local_fundo":"Jardim",
+			"resumo_notas":"Thomas got the bruise from one of the others, maybe the angry one from the confessions?"
+		},
+		{
+			"id":80,
+			"personagem":"Narrator",
+			"texto":["YOU HAVE BEEN SEND TO REPLACE HIM IN THE MEANTIME"],
+			"opcoes":[],
+			"id_que_opcao_leva":[1],
+			"impacto_opcao_pop":[0],
+			"impacto_opcao_desc":[0],
+			"local_fundo":"cut6",
+			"resumo_notas":""
+		}
 ]
  

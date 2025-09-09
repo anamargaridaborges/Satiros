@@ -1,12 +1,4 @@
-//
-//  FalaView.swift
-//  Satiros
-//
-//  Created by Jordana Lourenço Santos on 05/09/25.
-//
-
 import SwiftUI
-
 struct FalaView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
@@ -17,10 +9,10 @@ struct FalaView: View {
 	@State var terminou: Bool = true
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
 	@Bindable var bloco: ContextoConfessionario3.Bloco
-	@State var passaNoBotao: [Bool] = [false, false, false]
+	@State var passaNoBotao: [Bool] = [false, false, false, false]
 	@Binding var falaNome: Bool
 	
-    var body: some View {
+	var body: some View {
 			ZStack(alignment: .bottom) {
 					Image("blocoFala")
 						.frame(width: 1180, height: 310, alignment: .bottom)
@@ -43,7 +35,8 @@ struct FalaView: View {
 								ForEach(opcoes.indices, id: \.self) { index in
 									if (opcoes[index] != ""){
 										Button {
-											carregaFalaToda()
+											//carregaFalaToda()
+											terminou = false
 											selecionaOpcao(index: index)
 										} label: {
 											Text(opcoes[index])
@@ -55,7 +48,7 @@ struct FalaView: View {
 												.fixedSize(horizontal: false, vertical: true)
 												.frame(maxWidth: .infinity, alignment: .leading)
 												.padding(.top, 10)
-										} 
+										}
 										.buttonStyle(PlainButtonStyle())
 										//.background(passaNoBotao[index] ? Color("Selecionado") : Color("Fundo"))
 										//.cornerRadius(10)
@@ -75,15 +68,48 @@ struct FalaView: View {
 					.focusEffectDisabled()
 					.focused($estaFocado, equals: .enter)
 					.onKeyPress(.return) {
+						if (terminou == false) {
+							if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo] && opcoes.last == dialogos[contexto.idDialogo].opcoes.last ) {
+								if (opcoes.count != 0) {
+									terminou = true
+									return .handled
+								}
+								else {
+									tarefaOpcoes?.cancel()
+									if (contexto.parteDialogo < dialogos[contexto.idDialogo].texto.count - 1) {
+										contexto.parteDialogo += 1
+										reiniciarOpcoes()
+										return .handled
+									}
+									else {
+										selecionaOpcao(index: 0)
+										return .handled
+									}
+								}
+							}
+							carregaFalaToda()
+							return .handled
+						}
 						if (contexto.parteDialogo < dialogos[contexto.idDialogo].texto.count - 1) {
 							contexto.parteDialogo += 1
 							reiniciarOpcoes()
 							return .handled
 						}
-						if (terminou == false && !dialogos[contexto.idDialogo].opcoes.isEmpty) {
+						/*if (terminou == false) {
+							if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo] && opcoes.last == dialogos[contexto.idDialogo].opcoes.last) {
+								if (opcoes.count != 0) {
+									terminou = true
+									return .handled
+								}
+								else {
+									tarefaOpcoes?.cancel()
+									selecionaOpcao(index: 0)
+									return .handled
+								}
+							}
 							carregaFalaToda()
 							return .handled
-						}
+						}*/
 						proximaFala()
 						reiniciarOpcoes()
 						return .handled
@@ -132,6 +158,7 @@ struct FalaView: View {
 				opcoes[cont] += opc
 				cont += 1
 			}
+			terminou = true
 		}
 		return
 	}
@@ -142,7 +169,7 @@ struct FalaView: View {
 			//let inicio = opcoes[index].index(texto.startIndex, offsetBy: 3)
 			/*let opcaoAtual = opcoes[index][inicio...]*/
 			proximaFala(index: index)
-			terminou = true
+			//terminou = true
 			return
 	}
 	
@@ -160,30 +187,55 @@ struct FalaView: View {
 		let opc = dialogos[contexto.idDialogo].opcoes
 		let fala = dialogos[contexto.idDialogo].texto[contexto.parteDialogo]
 		var cont: Int = 1
-		tarefaOpcoes = Task {
-			terminou = false
+		tarefaOpcoes = Task.detached {
+			await MainActor.run {
+				terminou = false
+			}
 			try? await Task.yield()
-			texto = ""
+			if Task.isCancelled {
+				return
+			}
+			await MainActor.run {
+				texto = ""
+			}
 			for c in fala {
-				texto.append(c)
+				await MainActor.run {
+					texto.append(c)
+				}
 				if Task.isCancelled {
 					return
 				}
 				try? await Task.sleep(nanoseconds: 30_000_000)
 			}
 			try? await Task.sleep(nanoseconds: 30_000_000)
+			
 			for opcao in opc {
-				opcoes[cont-1].append(String(cont))
+				if Task.isCancelled {
+					return
+				}
+				await MainActor.run {
+					opcoes[cont-1].append(String(cont))
+				}
 				if Task.isCancelled {
 					return
 				}
 				try? await Task.sleep(nanoseconds: 30_000_000)
-				opcoes[cont-1].append(".")
+				if Task.isCancelled {
+					return
+				}
+				await MainActor.run {
+					opcoes[cont-1].append(".")
+				}
 				if Task.isCancelled {
 					return
 				}
 				try? await Task.sleep(nanoseconds: 30_000_000)
-				opcoes[cont-1].append(" ")
+				if Task.isCancelled {
+					return
+				}
+				await MainActor.run {
+					opcoes[cont-1].append(" ")
+				}
 				if Task.isCancelled {
 					return
 				}
@@ -192,7 +244,9 @@ struct FalaView: View {
 					if Task.isCancelled {
 						return
 					}
-					opcoes[cont-1].append(c)
+					await MainActor.run {
+						opcoes[cont-1].append(c)
+					}
 					if Task.isCancelled {
 						return
 					}
@@ -204,7 +258,6 @@ struct FalaView: View {
 	}
 	
 }
-
 //#Preview {
-//    FalaView()
+//  FalaView()
 //}

@@ -33,16 +33,19 @@ struct TutorialView: View {
 					Image(frames[frameIndex])
 						.resizable()
 						.aspectRatio(16/10, contentMode: .fill)
-						.onChange(of: tick) { oldValue, newValue in
+						.onChange(of: tick) { _, _ in
 							if frameIndex < frames.count - 1 {
 									frameIndex += 1
 									DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
 											tick.toggle()
 									}
 							} else {
-									animationFinished = true }
+								animationFinished = true
+								fadeOut = false
+							}
 						}
 						.task { tick.toggle() }
+
 				} else {
 					Image(dialogos[contexto.idDialogo].local_fundo)
 						.resizable()
@@ -69,6 +72,20 @@ struct TutorialView: View {
 					contexto.horario = "confissao1"
 					contexto.local = "confessionario"
 					contexto.parteDialogo = 0
+				}
+				if (contexto.idDialogo == 0 && terminou) {
+					fadeOut = false
+					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+						withAnimation { fadeOut = true }
+					}
+					
+				}
+				if (contexto.idDialogo == 80) {
+					fadeIn = false
+					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+						withAnimation { fadeIn = true }
+					}
+					
 				}
 			}
 			.onAppear {
