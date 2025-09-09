@@ -17,7 +17,7 @@ struct FalaView: View {
 	@State var terminou: Bool = true
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
 	@Bindable var bloco: ContextoConfessionario3.Bloco
-	@State var passaNoBotao: [Bool] = [false, false, false]
+	@State var passaNoBotao: [Bool] = [false, false, false, false]
 	@Binding var falaNome: Bool
 	
     var body: some View {
@@ -166,6 +166,7 @@ struct FalaView: View {
 				opcoes[cont] += opc
 				cont += 1
 			}
+			terminou = true
 		}
 		return
 	}
