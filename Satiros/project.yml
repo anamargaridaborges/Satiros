@@ -13,6 +13,10 @@ targets:
   deploymentTarget: "14.0"
   sources:
    - path: Satiros
+   - path: Satiros/persistencia
+   - path: Satiros/views_auxiliares
+   - path: Satiros/componentes
+   - path: Satiros/views
   resources:
    - path: Resources
   settings:
@@ -31,6 +35,11 @@ targets:
    - path: SatirosTests
   dependencies:
    - target: Satiros
+
+
+
+
+
 
 
 
