@@ -26,6 +26,7 @@ struct TutorialView: View {
 	@State private var frameIndex = 0
 	@State var tick: Bool = false
 	@State private var animationFinished = false
+	@State var passaNoAsset: Bool = false
 	
     var body: some View {
 			ZStack(alignment: .topLeading){
@@ -41,7 +42,6 @@ struct TutorialView: View {
 									}
 							} else {
 								animationFinished = true
-								fadeOut = false
 							}
 						}
 						.task { tick.toggle() }
@@ -51,7 +51,31 @@ struct TutorialView: View {
 						.resizable()
 						.aspectRatio(16/10, contentMode: .fill)
 				}
-				
+				HStack(alignment: .top){
+					Spacer()
+					Button (action: {path.removeAll()}){
+						Image("sair")
+							.resizable()
+							.clipped()
+							.frame(width: 50, height: 50)
+							.padding(20)
+							.scaleEffect(passaNoAsset ? 1.1 : 1.0)
+							.onHover {over in
+								passaNoAsset = over
+							}
+					}
+					.buttonStyle(.plain)
+//					.focusable()
+//					.focusEffectDisabled()
+//					.focused($estaFocado, equals: FocusKey.escape)
+//					.onKeyPress(.escape) {
+//						path.removeAll()
+//						return .handled
+//					}
+//					.onChange(of: estaFocado) {
+//						estaFocado = FocusKey.escape
+//					}
+				}
 				
 				AtributosView(contexto: contexto)
 				FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
@@ -67,26 +91,25 @@ struct TutorialView: View {
 				if (contexto.idDialogo == 15) {
 					withAnimation { fadeOut = true }
 					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+							contexto.horario = "confissao1"
+							contexto.local = "confessionario"
+							contexto.parteDialogo = 0
 							path.append("confessionario")
 					}
-					contexto.horario = "confissao1"
-					contexto.local = "confessionario"
-					contexto.parteDialogo = 0
 				}
-				if (contexto.idDialogo == 0 && terminou) {
-					fadeOut = false
-					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-						withAnimation { fadeOut = true }
-					}
-					
-				}
-				if (contexto.idDialogo == 80) {
-					fadeIn = false
-					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-						withAnimation { fadeIn = true }
-					}
-					
-				}
+//				if (contexto.idDialogo == 0 && terminou) {
+//					fadeOut = false
+//					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//						withAnimation { fadeOut = true }
+//					}
+//					
+//				}
+//				if (contexto.idDialogo == 80) {
+//					fadeIn = false
+//					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//						withAnimation { fadeIn = true }
+//					}
+//				}
 			}
 			.onAppear {
 				withAnimation { fadeIn = true }

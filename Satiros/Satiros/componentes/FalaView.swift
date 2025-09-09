@@ -15,9 +15,10 @@ struct FalaView: View {
 	var body: some View {
 			ZStack(alignment: .bottom) {
 					Image("blocoFala")
+						.resizable()
 						.frame(width: 1180, height: 310, alignment: .bottom)
 						.clipped()
-						.padding(.bottom, 50)
+						.padding(.bottom, 38)
 					
 				VStack(alignment: .leading, spacing: 10) {
 						if(falaNome){
