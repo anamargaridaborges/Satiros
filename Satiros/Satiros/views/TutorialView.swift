@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 struct TutorialView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
@@ -136,6 +137,9 @@ struct TutorialView: View {
 							path.append("confessionario")
 					//}
 				}
+				if (contexto.idDialogo == 1){
+					salvarImagemEscolhida("mural1")
+				}
 //				if (contexto.idDialogo == 0 && terminou) {
 //					fadeOut = false
 //					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -162,6 +166,13 @@ struct TutorialView: View {
 			falaNome = false
 		}
 		return $falaNome
+	}
+	
+	private func salvarImagemEscolhida(_ nome: String) {
+		let defaults = UserDefaults(suiteName: "group.satiros.Satiros.MuralWidget")
+		defaults?.set(nome, forKey: "widgetImage")
+		
+		WidgetCenter.shared.reloadTimelines(ofKind: "MuralWidget")
 	}
 	
 }
