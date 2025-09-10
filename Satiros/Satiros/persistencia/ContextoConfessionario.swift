@@ -10,6 +10,9 @@ import SwiftData
 
 //typealias ContextoConfessionario = ContextoConfessionario3.ContextoConfessionario
 //typealias ContextoSalvo = ContextoConfessionario3.ContextoSalvo
+//typealias ContextoConfessionario = ContextoConfessionario2.ContextoConfessionario
+//typealias ContextoSalvo = ContextoConfessionario2.ContextoSalvo
+
 
 enum ContextoConfessionario1: VersionedSchema {
 		static var versionIdentifier = Schema.Version(1, 0, 0)

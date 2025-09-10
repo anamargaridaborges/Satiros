@@ -69,7 +69,6 @@ struct IntroducaoView: View {
 											.font(.appFont(selectedFont, size: 25))
 												.foregroundColor(.white)
 									}
-									
 								}
 								.buttonStyle(.plain)
 								.padding()
@@ -96,6 +95,7 @@ struct IntroducaoView: View {
 					.padding(.bottom, 30)
 					.navigationDestination(for: String.self) { local in
 						if local == "novoJogo" {
+
 							ConfirmarNovoJogo(contexto: contexto[0], path: $path, bloco: bloco[0])
 						}
 						else if local == "tutorial" {

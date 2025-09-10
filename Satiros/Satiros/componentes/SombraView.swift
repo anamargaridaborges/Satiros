@@ -40,6 +40,7 @@ struct SombraView: View {
 				
 					AtributosView(contexto: contexto)
 					.padding(.top, 30)
+
 			}
     }
 }

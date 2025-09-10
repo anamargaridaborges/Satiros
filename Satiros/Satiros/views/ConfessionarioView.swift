@@ -140,6 +140,7 @@ struct ConfessionarioView: View {
 													modelContext.delete(dialogo)
 												}
 											}
+
 											texto = ""
 											reiniciarOpcoes()
 										}
@@ -191,7 +192,7 @@ struct ConfessionarioView: View {
 			return
 		}
 	}
-	
+
 	func selecionaOpcao (index: Int) {
 			contexto.desconfianca += dialogos[contexto.idDialogo].impacto_opcao_desc[index]
 			contexto.popularidade += dialogos[contexto.idDialogo].impacto_opcao_pop[index]
@@ -297,6 +298,7 @@ struct ConfessionarioView: View {
 				if Task.isCancelled {
 					return
 				}
+
 				try? await Task.sleep(nanoseconds: 30_000_000)
 				await MainActor.run {
 					opcoes[cont-1].append(".")
@@ -305,6 +307,7 @@ struct ConfessionarioView: View {
 					return
 				}
 				try? await Task.sleep(nanoseconds: 30_000_000)
+
 				await MainActor.run {
 					opcoes[cont-1].append(" ")
 				}
@@ -323,6 +326,7 @@ struct ConfessionarioView: View {
 						return
 					}
 					try? await Task.sleep(nanoseconds: 30_000_000)
+
 				}
 				cont += 1
 			}
@@ -332,3 +336,4 @@ struct ConfessionarioView: View {
 #Preview {
 		//ConfessionarioView()
 }
+
