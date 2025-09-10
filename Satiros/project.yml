@@ -18,15 +18,24 @@ targets:
       - path: Resources
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: satiros.Satiros
+        PRODUCT_BUNDLE_IDENTIFIER: satiros.Satiros.MuralWidget
         SWIFT_VERSION: 5.0
         GENERATE_INFOPLIST_FILE: YES
-        INFOPLIST_KEY_CFBundleDisplayName: "Forgive Me, Father"
     dependencies:
       - target: MuralWidget
       - sdk: SwiftUI.framework
       - sdk: SpriteKit.framework
       - sdk: SwiftData.framework
+    entitlements:
+      path: Satiros/Satiros.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.application-groups:
+          - group.satiros.Satiros.MuralWidget
+    settings:
+      base:
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: M6V5WGN23W
 
   SatirosTests:
     type: bundle.unit-test
@@ -50,3 +59,13 @@ targets:
     dependencies:
       - sdk: SwiftUI.framework
       - sdk: WidgetKit.framework
+    entitlements:
+      path: MuralWidget/MuralWidget.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.application-groups:
+          - group.satiros.Satiros.MuralWidget
+    settings:
+      base:
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: M6V5WGN23W
