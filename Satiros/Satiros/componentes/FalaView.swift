@@ -72,7 +72,7 @@ struct FalaView: View {
 						if (terminou == false) {
 							if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo] && opcoes.last == dialogos[contexto.idDialogo].opcoes.last ) {
 								if (opcoes.count != 0) {
-									terminou = true
+									//terminou = true
 									return .handled
 								}
 								else {
@@ -159,7 +159,7 @@ struct FalaView: View {
 				opcoes[cont] += opc
 				cont += 1
 			}
-			terminou = true
+			//terminou = true
 		}
 		return
 	}
@@ -170,7 +170,7 @@ struct FalaView: View {
 			//let inicio = opcoes[index].index(texto.startIndex, offsetBy: 3)
 			/*let opcaoAtual = opcoes[index][inicio...]*/
 			proximaFala(index: index)
-			//terminou = true
+			terminou = true
 			return
 	}
 	
