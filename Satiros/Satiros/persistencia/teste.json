@@ -18,7 +18,7 @@
 		"id_que_opcao_leva":[2, 2, 2],
 		"impacto_opcao_pop":[0, 0, 0],
 		"impacto_opcao_desc":[0, 0, 0],
-		"local_fundo":"cut7",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
@@ -30,7 +30,7 @@
 		"id_que_opcao_leva":[3],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"cut7",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
@@ -96,7 +96,7 @@
 		"id_que_opcao_leva":[9, 10],
 		"impacto_opcao_pop":[0, 0],
 		"impacto_opcao_desc":[0, 0],
-		"local_fundo":"cut7",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
@@ -107,7 +107,7 @@
 		"id_que_opcao_leva":[12],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"cut7",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
@@ -118,7 +118,7 @@
 		"id_que_opcao_leva":[11, 12],
 		"impacto_opcao_pop":[0, 0],
 		"impacto_opcao_desc":[1, 0],
-		"local_fundo":"cut7",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
@@ -129,7 +129,7 @@
 		"id_que_opcao_leva":[12],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"cut7",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":"Lorgan is not only a religious leader, but a political one."
 	},
 	{
@@ -140,7 +140,7 @@
 		"id_que_opcao_leva":[13],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"cut7",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
@@ -151,7 +151,7 @@
 		"id_que_opcao_leva":[14],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"cut7",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
@@ -162,7 +162,7 @@
 		"id_que_opcao_leva":[15],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"cut7",
+		"local_fundo":"fundoPersonagens",
 		"resumo_notas":""
 	},
 	{
@@ -654,7 +654,7 @@
 		"personagem":"Narrator",
 		"texto":["You pick up your radio, it seems They are as unquiet as Sister Desmond."],
 		"opcoes":["Pick up", "Turn off"],
-		"id_que_opcao_leva":[60, -60],
+		"id_que_opcao_leva":[60, 67],
 		"impacto_opcao_pop":[0, 0],
 		"impacto_opcao_desc":[0, 0],
 		"local_fundo":"Quarto",
@@ -676,7 +676,7 @@
 		"personagem":"Radiovoice",
 		"texto":["How was the trip dude!! Or should I say, Father…", "Oh forget it, I don’t really care. So did you find that old priest They sent you after?"],
 		"opcoes":["Not yet", "Not cool to talk about such a respected person like that"],
-		"id_que_opcao_leva":[62, -62],
+		"id_que_opcao_leva":[62, 70],
 		"impacto_opcao_pop":[0, 0],
 		"impacto_opcao_desc":[0, 0],
 		"local_fundo":"Quarto",
@@ -738,158 +738,488 @@
 		"resumo_notas":""
 	},
 	{
-			"id":67,
-			"personagem":"Narrator",
-			"texto":["The radio quickly starts ringing again."],
-			"opcoes":[],
-			"id_que_opcao_leva":[68],
-			"impacto_opcao_pop":[0],
-			"impacto_opcao_desc":[0],
-			"local_fundo":"Quarto",
-			"resumo_notas":""
-		},
-		{
-			"id":68,
-			"personagem":"",
-			"texto":["*prililim* *prililim*"],
-			"opcoes":["Pick Up"],
-			"id_que_opcao_leva":[69],
-			"impacto_opcao_pop":[0],
-			"impacto_opcao_desc":[0],
-			"local_fundo":"Quarto",
-			"resumo_notas":""
-		},
-		{
-			"id":69,
-			"personagem":"Radiovoice",
-			"texto":["Hey dumbass do not ignore me like that, it hurts my feelings.", "Do you copy, dumbass?"],
-			"opcoes":["Copy"],
-			"id_que_opcao_leva":[61],
-			"impacto_opcao_pop":[0],
-			"impacto_opcao_desc":[0],
-			"local_fundo":"Quarto",
-			"resumo_notas":""
-		},
-		{
-			"id":70,
-			"personagem":"Radiovoice",
-			"texto":["Not like he’s gon hear it.", "First cause he's missing,", "second because he's like 100 years old."],
-			"opcoes":["This mission needs caution, that’s why They haven’t sent you", "Get to the point."],
-			"id_que_opcao_leva":[63, 64],
-			"impacto_opcao_pop":[0, 0],
-			"impacto_opcao_desc":[0, 0],
-			"local_fundo":"Quarto",
-			"resumo_notas":""
-		},
-		{
-			"id":71,
-			"personagem":"Narrator",
-			"texto":["You arrive at the very well tendered garden of the church. Amongst the vegetation, Thomas sits at the bench looking at some flowers"],
-			"opcoes":[],
-			"id_que_opcao_leva":[72],
-			"impacto_opcao_pop":[0],
-			"impacto_opcao_desc":[0],
-			"local_fundo":"Jardim",
-			"resumo_notas":""
-		},
-		{
-			"id":72,
-			"personagem":"Thomas",
-			"texto":["Gazanias. Vexing. They have been blooming around here non stop. Yet, I do not know who could have spread it’s seeds.", "Tell me, Father, What flowers do enjoy most?"],
-			"opcoes":["First, Hello Thomas", "Solomon Lilies, for they remind me of God’s beauty", "Gazanias, for they are signs of prosperity", "Roses, the classic."],
-			"id_que_opcao_leva":[73, 74, 75, 76],
-			"impacto_opcao_pop":[-1, 1, 0, 0],
-			"impacto_opcao_desc":[0, 0, 1, -1],
-			"local_fundo":"Jardim",
-			"resumo_notas":""
-		},
-		{
-			"id":73,
-			"personagem":"Thomas",
-			"texto":["I apologize, Father. I got caught up amidst the flowers."],
-			"opcoes":[],
-			"id_que_opcao_leva":[77],
-			"impacto_opcao_pop":[0],
-			"impacto_opcao_desc":[0],
-			"local_fundo":"Jardim",
-			"resumo_notas":""
-		},
-		{
-			"id":74,
-			"personagem":"Thomas",
-			"texto":["\"They neither toil nor spin\". Gorgeous really.", "Maybe we should add one to our garden, isn't that a good idea?"],
-			"opcoes":[],
-			"id_que_opcao_leva":[77],
-			"impacto_opcao_pop":[0],
-			"impacto_opcao_desc":[0],
-			"local_fundo":"Jardim",
-			"resumo_notas":""
-		},
-		{
-			"id":75,
-			"personagem":"Thomas",
-			"texto":["It seems they welcome you then. Be they plague or friend."],
-			"opcoes":[],
-			"id_que_opcao_leva":[77],
-			"impacto_opcao_pop":[0],
-			"impacto_opcao_desc":[0],
-			"local_fundo":"Jardim",
-			"resumo_notas":""
-		},
-		{
-			"id":76,
-			"personagem":"Thomas",
-			"texto":["There is a reason why they are the classic. They’re gorgeous."],
-			"opcoes":[],
-			"id_que_opcao_leva":[77],
-			"impacto_opcao_pop":[0],
-			"impacto_opcao_desc":[0],
-			"local_fundo":"Jardim",
-			"resumo_notas":""
-		},
-		{
-			"id":77,
-			"personagem":"Narrator",
-			"texto":["Thomas gets up from the bench. You notice he has a small, but noticeable difficulty in gettin up, using his hands like crutches. You also see some slight bruising around his neck"],
-			"opcoes":["Are you alright son?", "What’s up with the bruises?", "Do you come often to the garden?"],
-			"id_que_opcao_leva":[],
-			"impacto_opcao_pop":[1, -1, 0],
-			"impacto_opcao_desc":[0, 1, 0],
-			"local_fundo":"Jardim",
-			"resumo_notas":"Thomas has a bruise, what caused it?"
-		},
-		{
-			"id":78,
-			"personagem":"Thomas",
-			"texto":["Besides missing Father Lorgan, I’m fine.", "No offense, I’m sure you are a great priest also. I just miss him.", "But, I appreciate you asking."],
-			"opcoes":["Are you sure? there seems to be some slight bruising.", "Do you come often to the garden?"],
-			"id_que_opcao_leva":[-5, -5],
-			"impacto_opcao_pop":[0, 0],
-			"impacto_opcao_desc":[0, 0],
-			"local_fundo":"Jardim",
-			"resumo_notas":""
-		},
-		{
-			"id":79,
-			"personagem":"Thomas",
-			"texto":["I don’t want to get anyone in trouble Father, but please trust me, It’s fine. It was just an accident with one of my brothers. Nothing to be weary about"],
-			"opcoes":["Are you sure? there seems to be some slight bruising.", "Do you come often to the garden?"],
-			"id_que_opcao_leva":[-5, -5],
-			"impacto_opcao_pop":[0, 0],
-			"impacto_opcao_desc":[0, 0],
-			"local_fundo":"Jardim",
-			"resumo_notas":"Thomas got the bruise from one of the others, maybe the angry one from the confessions?"
-		},
-		{
-			"id":80,
-			"personagem":"Narrator",
-			"texto":["YOU HAVE BEEN SEND TO REPLACE HIM IN THE MEANTIME"],
-			"opcoes":[],
-			"id_que_opcao_leva":[1],
-			"impacto_opcao_pop":[0],
-			"impacto_opcao_desc":[0],
-			"local_fundo":"cut6",
-			"resumo_notas":""
-		}
+		"id":67,
+		"personagem":"Narrator",
+		"texto":["The radio quickly starts ringing again."],
+		"opcoes":[],
+		"id_que_opcao_leva":[68],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Quarto",
+		"resumo_notas":""
+	},
+	{
+		"id":68,
+		"personagem":"",
+		"texto":["*prililim* *prililim*"],
+		"opcoes":["Pick Up"],
+		"id_que_opcao_leva":[69],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Quarto",
+		"resumo_notas":""
+	},
+	{
+		"id":69,
+		"personagem":"Radiovoice",
+		"texto":["Hey dumbass do not ignore me like that, it hurts my feelings.", "Do you copy, dumbass?"],
+		"opcoes":["Copy"],
+		"id_que_opcao_leva":[61],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Quarto",
+		"resumo_notas":""
+	},
+	{
+		"id":70,
+		"personagem":"Radiovoice",
+		"texto":["Not like he’s gon hear it.", "First cause he's missing,", "second because he's like 100 years old."],
+		"opcoes":["This mission needs caution, that’s why They haven’t sent you", "Get to the point."],
+		"id_que_opcao_leva":[63, 64],
+		"impacto_opcao_pop":[0, 0],
+		"impacto_opcao_desc":[0, 0],
+		"local_fundo":"Quarto",
+		"resumo_notas":""
+	},
+	{
+		"id":71,
+		"personagem":"Narrator",
+		"texto":["You arrive at the very well tendered garden of the church. Amongst the vegetation, Thomas sits at the bench looking at some flowers"],
+		"opcoes":[],
+		"id_que_opcao_leva":[72],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Jardim",
+		"resumo_notas":""
+	},
+	{
+		"id":72,
+		"personagem":"Thomas",
+		"texto":["Gazanias. Vexing. They have been blooming around here non stop. Yet, I do not know who could have spread it’s seeds.", "Tell me, Father, What flowers do enjoy most?"],
+		"opcoes":["First, Hello Thomas", "Solomon Lilies, for they remind me of God’s beauty", "Gazanias, for they are signs of prosperity", "Roses, the classic."],
+		"id_que_opcao_leva":[73, 74, 75, 76],
+		"impacto_opcao_pop":[-1, 1, 0, 0],
+		"impacto_opcao_desc":[0, 0, 1, -1],
+		"local_fundo":"Jardim",
+		"resumo_notas":""
+	},
+	{
+		"id":73,
+		"personagem":"Thomas",
+		"texto":["I apologize, Father. I got caught up amidst the flowers."],
+		"opcoes":[],
+		"id_que_opcao_leva":[77],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Jardim",
+		"resumo_notas":""
+	},
+	{
+		"id":74,
+		"personagem":"Thomas",
+		"texto":["\"They neither toil nor spin\". Gorgeous really.", "Maybe we should add one to our garden, isn't that a good idea?"],
+		"opcoes":[],
+		"id_que_opcao_leva":[77],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Jardim",
+		"resumo_notas":""
+	},
+	{
+		"id":75,
+		"personagem":"Thomas",
+		"texto":["It seems they welcome you then. Be they plague or friend."],
+		"opcoes":[],
+		"id_que_opcao_leva":[77],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Jardim",
+		"resumo_notas":""
+	},
+	{
+		"id":76,
+		"personagem":"Thomas",
+		"texto":["There is a reason why they are the classic. They’re gorgeous."],
+		"opcoes":[],
+		"id_que_opcao_leva":[77],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Jardim",
+		"resumo_notas":""
+	},
+	{
+		"id":77,
+		"personagem":"Narrator",
+		"texto":["Thomas gets up from the bench. You notice he has a small, but noticeable difficulty in gettin up, using his hands like crutches. You also see some slight bruising around his neck"],
+		"opcoes":["Are you alright son?", "What’s up with the bruises?", "Do you come often to the garden?"],
+		"id_que_opcao_leva":[78, 82, 84],
+		"impacto_opcao_pop":[1, -1, 0],
+		"impacto_opcao_desc":[0, 1, 0],
+		"local_fundo":"Jardim",
+		"resumo_notas":"Thomas has a bruise, what caused it?"
+	},
+	{
+		"id":78,
+		"personagem":"Thomas",
+		"texto":["Besides missing Father Lorgan, I’m fine.", "No offense, I’m sure you are a great priest also. I just miss him.", "But, I appreciate you asking."],
+		"opcoes":["Are you sure? there seems to be some slight bruising.", "Do you come often to the garden?"],
+		"id_que_opcao_leva":[-5, 84],
+		"impacto_opcao_pop":[0, 0],
+		"impacto_opcao_desc":[0, 0],
+		"local_fundo":"Jardim",
+		"resumo_notas":""
+	},
+	{
+		"id":79,
+		"personagem":"Thomas",
+		"texto":["I don’t want to get anyone in trouble Father, but please trust me, It’s fine. It was just an accident with one of my brothers. Nothing to be weary about"],
+		"opcoes":["Do you come often to the garden?"],
+		"id_que_opcao_leva":[84],
+		"impacto_opcao_pop":[0, 0],
+		"impacto_opcao_desc":[0, 0],
+		"local_fundo":"Jardim",
+		"resumo_notas":"Thomas got the bruise from one of the others, maybe the angry one from the confessions?"
+	},
+	{
+		"id":80,
+		"personagem":"Narrator",
+		"texto":["YOU HAVE BEEN SEND TO REPLACE HIM IN THE MEANTIME"],
+		"opcoes":[],
+		"id_que_opcao_leva":[1],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"cut6",
+		"resumo_notas":""
+	},
+	{
+		"id":81,
+		"personagem":"Thomas",
+		"texto":["I rather not speak of it Father. It’s sensible yet. Maybe on confessions I’ll talk about it."],
+		"opcoes":["Do you come often to the garden?"],
+		"id_que_opcao_leva":[84],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[1],
+		"local_fundo":"Jardim",
+		"resumo_notas":""
+	},
+	{
+		"id":82,
+		"personagem":"Thomas",
+		"texto":["Oh, I… I", "That’s embarrassing. I slipped during cleanup yesterday. It was harsh."],
+		"opcoes":[],
+		"id_que_opcao_leva":[83],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Jardim",
+		"resumo_notas":""
+	},
+	{
+		"id":83,
+		"personagem":"Narrator",
+		"texto":["He is nervous, cornered like a small animal. It’s clear he is lying, but why?"],
+		"opcoes":["Do you come often to the garden?"],
+		"id_que_opcao_leva":[84],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Jardim",
+		"resumo_notas":"Thomas lied when asked about the bruise"
+	},
+	{
+		"id":84,
+		"personagem":"Thomas",
+		"texto":["I enjoy it. The fresh air. I think the connection with nature surely brings me closer to the Lord. Although the plants have been feeling the impacts of TROVE’s mining efforts.", "Some have been withering from the pollution. A tragedy really."],
+		"opcoes":[],
+		"id_que_opcao_leva":[85],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Jardim",
+		"resumo_notas":"TROVE has been impacting the environment a lot"
+	},
+	{
+		"id":85,
+		"personagem":"Thomas",
+		"texto":["It’s so sad to see that Lorgan’s efforts to maintain such a beautiful garden might be forever tainted by corporate greed."],
+		"opcoes":["We shall tender to the garden, maintaining Lorgan’s work", "It’s simply a garden, son, TROVE employs hundreds of starving people"],
+		"id_que_opcao_leva":[86, 87],
+		"impacto_opcao_pop":[2, -2],
+		"impacto_opcao_desc":[-1, 0],
+		"local_fundo":"Jardim",
+		"resumo_notas":"Lorgan took special care of the garden, maybe there is something there"
+	},
+	{
+		"id":86,
+		"personagem":"Thomas",
+		"texto":["I’m Glad to hear it, Father! Truly."],
+		"opcoes":[],
+		"id_que_opcao_leva":[88],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Jardim",
+		"resumo_notas":""
+	},
+	{
+		"id":87,
+		"personagem":"Thomas",
+		"texto":["Perhaps… Still something that causes this much harm cannot be all good"],
+		"opcoes":[],
+		"id_que_opcao_leva":[88],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Jardim",
+		"resumo_notas":""
+	},
+	{
+		"id":88,
+		"personagem":"Narrator",
+		"texto":["The sky begins to close. Looks like it’s about to rain"],
+		"opcoes":[],
+		"id_que_opcao_leva":[89],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Jardim",
+		"resumo_notas":""
+	},
+	{
+		"id":89,
+		"personagem":"Thomas",
+		"texto":["Oh geez look at the sky. It was nice speaking with thee. Let us go inside and escape the rain Father."],
+		"opcoes":[],
+		"id_que_opcao_leva":[-10],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Jardim",
+		"resumo_notas":""
+	},
+	{
+		"id":90,
+		"personagem":"Narrator",
+		"texto":["Upon arriving at the library, you see Edgar digging around for something amongst the shelves. Making a mess in the process."],
+		"opcoes":["(Clear your throat to call attention)", "What’s going on here?", "We sure need a librarian amongst here"],
+		"id_que_opcao_leva":[91, 91, 92],
+		"impacto_opcao_pop":[0, 0, 1],
+		"impacto_opcao_desc":[0, 0, 0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":91,
+		"personagem":"Edgar",
+		"texto":["Shit, you scared me Father.", "Hello there, Forgive me for cursing also"],
+		"opcoes":["Maybe I can help", "(Watch as he searches)"],
+		"id_que_opcao_leva":[93, 101],
+		"impacto_opcao_pop":[0, 0],
+		"impacto_opcao_desc":[0, 0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":92,
+		"personagem":"Edgar",
+		"texto":["Heh… The nun that takes care of it is out on a mission or something", "Ignore the mess, I’m looking for something I lost."],
+		"opcoes":["Maybe I can help", "(Watch as he searches)"],
+		"id_que_opcao_leva":[93, 101],
+		"impacto_opcao_pop":[0, 0],
+		"impacto_opcao_desc":[0, 0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":93,
+		"personagem":"Edgar",
+		"texto":["Really? It’s one with a leather cover that has a purple stone etch to it."],
+		"opcoes":["Look at the bottom shelf", "Look at the top shelf", "Look at the middle shelf"],
+		"id_que_opcao_leva":[108, 94, 109],
+		"impacto_opcao_pop":[0, 2, 0],
+		"impacto_opcao_desc":[0, 0, 0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":94,
+		"personagem":"Narrator",
+		"texto":["You find the book, when you look closer at the cover you notice something etched in the corner, the initials L. E."],
+		"opcoes":[],
+		"id_que_opcao_leva":[95],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":"Edgar was looking for a book apparently from Lorgan"
+	},
+	{
+		"id":95,
+		"personagem":"Edgar",
+		"texto":["There we have it Father! Nice eyes you got there.", "Now give it to me!"],
+		"opcoes":["L.E. What does that stand for?", "What’s so special about this book?", "(Give it to him)"],
+		"id_que_opcao_leva":[96, -5, 100],
+		"impacto_opcao_pop":[0, 0, 0],
+		"impacto_opcao_desc":[0, 0, 0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":96,
+		"personagem":"Edgar",
+		"texto":["Lorgan Eastman. This bad boy was once his, he donated it to the library before he left"],
+		"opcoes":[],
+		"id_que_opcao_leva":[102],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":97,
+		"personagem":"Edgar",
+		"texto":["Honestly Father, Not much, I’m just looking for answers on why the old bum decided to get away all of a sudden."],
+		"opcoes":[],
+		"id_que_opcao_leva":[102],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":"Edgar is investigating Lorgan’s disappearance"
+	},
+	{
+		"id":98,
+		"personagem":"Edgar",
+		"texto":["I’m just looking for a good read, that’s all"],
+		"opcoes":[],
+		"id_que_opcao_leva":[99],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":99,
+		"personagem":"Narrator",
+		"texto":["You can’t shake the feeling he is hiding something"],
+		"opcoes":[],
+		"id_que_opcao_leva":[102],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":100,
+		"personagem":"Edgar",
+		"texto":["Thank you Father, you made my day here"],
+		"opcoes":[],
+		"id_que_opcao_leva":[102],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":101,
+		"personagem":"Edgar",
+		"texto":["Found it!", "Now I can give you the proper attention"],
+		"opcoes":["Sister Desmond told me you and Lorgan were close, how are you doing after everything?"],
+		"id_que_opcao_leva":[103],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":102,
+		"personagem":"Edgar",
+		"texto":["Now that you found the book, I can give you the proper attention"],
+		"opcoes":["Sister Desmond told me you and Lorgan were close, how are you doing after everything?"],
+		"id_que_opcao_leva":[103],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":103,
+		"personagem":"Edgar",
+		"texto":["Like peas in a pot.", "Lorgan is my oldest friend, we know each other since childhood", "So imagine how I feel after he vanishes without saying a word to me."],
+		"opcoes":["I’m sorry", "Did you notice anything strange with Lorgan before he left?"],
+		"id_que_opcao_leva":[104, -5],
+		"impacto_opcao_pop":[0, 0],
+		"impacto_opcao_desc":[0, 0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":104,
+		"personagem":"Edgar",
+		"texto":["Don’t be, Father. You didn’t do anything"],
+		"opcoes":[],
+		"id_que_opcao_leva":[107],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":105,
+		"personagem":"Edgar",
+		"texto":["He was more stressed the usual, didn’t tell me why tho."],
+		"opcoes":[],
+		"id_que_opcao_leva":[107],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":"Lorgan was stressed with something"
+	},
+	{
+		"id":106,
+		"personagem":"Edgar",
+		"texto":["What do you care, Father? Afraid you’ll lose the job if he comes back?"],
+		"opcoes":[],
+		"id_que_opcao_leva":[107],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[1],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":107,
+		"personagem":"Edgar",
+		"texto":["Now excuse me, Father, I have some readings to do."],
+		"opcoes":[],
+		"id_que_opcao_leva":[-10],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":108,
+		"personagem":"Narrator",
+		"texto":["You looked at the bottom shelf, but didn't find the book."],
+		"opcoes":["Look at the top shelf", "Look at the middle shelf"],
+		"id_que_opcao_leva":[94, 110],
+		"impacto_opcao_pop":[1, 0],
+		"impacto_opcao_desc":[0, 0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":109,
+		"personagem":"Narrator",
+		"texto":["You looked at the middle shelf, but didn't find the book."],
+		"opcoes":["Look at the bottom shelf", "Look at the top shelf"],
+		"id_que_opcao_leva":[110, 94],
+		"impacto_opcao_pop":[0, 1],
+		"impacto_opcao_desc":[0, 0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":110,
+		"personagem":"Narrator",
+		"texto":["You didn't find the book once again. As you were preparing to look at the top shelf, Edgar shouted"],
+		"opcoes":[],
+		"id_que_opcao_leva":[101],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
 ]
  
