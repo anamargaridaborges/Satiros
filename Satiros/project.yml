@@ -18,11 +18,12 @@ targets:
       - path: Resources
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: satiros.Satiros.MuralWidget
+        PRODUCT_BUNDLE_IDENTIFIER: satiros.Satiros
         SWIFT_VERSION: 5.0
         GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: "Forgive Me, Father"
     dependencies:
-      - sdk: MuralWidget.appex
+      - target: MuralWidget
       - sdk: SwiftUI.framework
       - sdk: SpriteKit.framework
       - sdk: SwiftData.framework
