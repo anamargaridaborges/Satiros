@@ -83,10 +83,12 @@ struct TutorialView: View {
 				
 				//AtributosView(contexto: contexto)
 					//.offset(y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 200: 0)
+				if (contexto.idDialogo != 15) {
 					FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
-				AtributosView(contexto: contexto)
-					.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
-				HStack(alignment: .top){
+					
+					AtributosView(contexto: contexto)
+						.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
+					HStack(alignment: .top){
 						Spacer()
 						Button (action: {path.removeAll()}){
 							Image("sair")
@@ -111,7 +113,8 @@ struct TutorialView: View {
 						//						estaFocado = FocusKey.escape
 						//					}
 					}
-				.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
+					.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
+				}
 				
 			}
 			.aspectRatio(16/10, contentMode: .fill)
@@ -124,13 +127,14 @@ struct TutorialView: View {
 			.onChange(of: contexto.idDialogo) {
 				defineFalaNome()
 				if (contexto.idDialogo == 15) {
-					withAnimation { fadeOut = true }
-					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+					//FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome()).cancelarTarefa()
+					//withAnimation { fadeOut = true }
+					//DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 							contexto.horario = "confissao1"
 							contexto.local = "confessionario"
 							contexto.parteDialogo = 0
 							path.append("confessionario")
-					}
+					//}
 				}
 //				if (contexto.idDialogo == 0 && terminou) {
 //					fadeOut = false

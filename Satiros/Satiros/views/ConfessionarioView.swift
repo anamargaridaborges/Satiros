@@ -131,7 +131,7 @@ struct ConfessionarioView: View {
 											
 										}
 										.onAppear {
-											withAnimation { fadeIn = true }
+											//withAnimation { fadeIn = true }
 											estaFocado = FocusKey.enter
 											if (contexto.horario == "confissao2" && contexto.idDialogo == 23) {
 												for dialogo in dialogosConfessionario {
@@ -166,8 +166,8 @@ struct ConfessionarioView: View {
 				}
 					
 			}
-			.opacity(fadeIn ? 1 : 0)
-			.animation(.easeIn(duration: 1), value: fadeIn)
+			//.opacity(fadeIn ? 1 : 0)
+			//.animation(.easeIn(duration: 1), value: fadeIn)
 			.opacity(fadeOut ? 0 : 1)
 			.animation(.easeOut(duration: 1), value: fadeOut)
 			.navigationBarBackButtonHidden()

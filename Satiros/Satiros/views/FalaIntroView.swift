@@ -41,7 +41,7 @@ struct FalaIntroView: View {
 				}
 			}
 			.opacity(fadeIn ? 1 : 0)
-			.animation(.easeIn(duration: 2), value: fadeIn)
+			.animation(.easeIn(duration: 1), value: fadeIn)
 			.opacity(fadeOut ? 0 : 1)
 			.animation(.easeOut(duration: 1), value: fadeOut)
 			.focusable()

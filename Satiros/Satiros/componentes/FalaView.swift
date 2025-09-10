@@ -155,6 +155,10 @@ struct FalaView: View {
 				}
 		}
 	
+	func cancelarTarefa() {
+		tarefaOpcoes?.cancel()
+		return
+	}
 		
 	func reiniciarOpcoes() {
 		opcoes.removeAll()
