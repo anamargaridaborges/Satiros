@@ -118,8 +118,10 @@ struct ConfessionarioView: View {
 												return .handled
 											}
 											if (terminou == false && !dialogos[contexto.idDialogo].opcoes.isEmpty) {
-												if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo] && opcoes.last == dialogos[contexto.idDialogo].opcoes.last) {
-													return .handled
+												if let ultimaOpcao = opcoes.last,
+													 let ultimaDialogo = dialogos[contexto.idDialogo].opcoes.last,
+													 ultimaOpcao.contains(ultimaDialogo) {
+														return .handled
 												}
 												carregaFalaToda()
 												salvaBD(personagem: dialogos[contexto.idDialogo].personagem, dialogo: dialogos[contexto.idDialogo].texto[contexto.parteDialogo], momentoAdicionado: tempo)

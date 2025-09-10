@@ -33,7 +33,7 @@ struct CartasView: View {
 					ZStack {
 						HStack(spacing: 0) {
 							ZStack(alignment: .topLeading) {
-									Image("fundoCarta")
+									Image("fundoCartas")
 											.resizable()
 											.clipped()
 //											.opacity(showImage ? 1 : 0)
@@ -413,11 +413,11 @@ struct CartasView: View {
 															}
 															.padding(.bottom, 25)
 														}
-														.id("atual")
+														//.id("atual")
 													}
 														
 												}
-												
+												.id("atual")
 												.onAppear {
 													withAnimation { fadeIn = true }
 													scrollProxy = proxy
@@ -506,7 +506,7 @@ struct CartasView: View {
 									}
 									.onChange(of: texto) { _ in
 										withAnimation {
-												scrollProxy?.scrollTo("instrucao", anchor: .bottom)
+												scrollProxy?.scrollTo("atual", anchor: .bottom)
 										}
 									}
 									.onChange(of: (passaNaCarta[0] || passaNaCarta[1] || passaNaCarta[2] || passaNaCarta[3] || passaNaCarta[4])) { _ in
