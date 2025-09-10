@@ -22,6 +22,7 @@ targets:
         SWIFT_VERSION: 5.0
         GENERATE_INFOPLIST_FILE: YES
     dependencies:
+      - sdk: MuralWidget.appex
       - sdk: SwiftUI.framework
       - sdk: SpriteKit.framework
       - sdk: SwiftData.framework
@@ -46,6 +47,5 @@ targets:
         SWIFT_VERSION: 5.0
         GENERATE_INFOPLIST_FILE: YES
     dependencies:
-      - target: Satiros
       - sdk: SwiftUI.framework
       - sdk: WidgetKit.framework
