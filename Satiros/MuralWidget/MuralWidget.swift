@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Provider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-			SimpleEntry(date: Date(), configuration: ConfigurationAppIntent(), imageName: "fundoCarta")
+			SimpleEntry(date: Date(), configuration: ConfigurationAppIntent(), imageName: "mural0")
     }
 
     func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
@@ -38,7 +38,7 @@ struct Provider: AppIntentTimelineProvider {
 	
 			private func carregarImagem() -> String {
 					let defaults = UserDefaults(suiteName: "group.satiros.Satiros.MuralWidget")
-					return defaults?.string(forKey: "widgetImage") ?? "fundoCarta"
+					return defaults?.string(forKey: "widgetImage") ?? "mural0"
 			}
 
 //    func relevances() async -> WidgetRelevances<ConfigurationAppIntent> {

@@ -44,11 +44,11 @@ struct MenuzinhoView: View {
 					}
 					
 					
-					Button("Mostrar fundo toalha") {
-							salvarImagemEscolhida("fundoCarta")
+					Button("toalha") {
+							salvarImagemEscolhida("mural0")
 					}
-					Button("Mostrar fundo pixel") {
-							salvarImagemEscolhida("menu inicial")
+					Button("pixel") {
+							salvarImagemEscolhida("mural1")
 					}
 					
 				}
