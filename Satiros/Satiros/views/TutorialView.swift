@@ -48,38 +48,43 @@ struct TutorialView: View {
 
 				} else {
 					Image(dialogos[contexto.idDialogo].local_fundo)
-						.resizable()
-						.aspectRatio(16/10, contentMode: .fill)
+							.resizable()
+							.scaleEffect((dialogos[contexto.idDialogo].personagem == "You") ? 1.42 : 1.0)
+							.aspectRatio(16 / 10, contentMode: .fit)
+							.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 				}
 				HStack(alignment: .top){
-					Spacer()
-					Button (action: {path.removeAll()}){
-						Image("sair")
-							.resizable()
-							.clipped()
-							.frame(width: 50, height: 50)
-							.padding(20)
-							.scaleEffect(passaNoAsset ? 1.1 : 1.0)
-							.onHover {over in
-								passaNoAsset = over
-							}
+						Spacer()
+						Button (action: {path.removeAll()}){
+							Image("sair")
+								.resizable()
+								.clipped()
+								.frame(width: 50, height: 50)
+								.padding(20)
+								.scaleEffect(passaNoAsset ? 1.1 : 1.0)
+								.onHover {over in
+									passaNoAsset = over
+								}
+						}
+						.buttonStyle(.plain)
+						//					.focusable()
+						//					.focusEffectDisabled()
+						//					.focused($estaFocado, equals: FocusKey.escape)
+						//					.onKeyPress(.escape) {
+						//						path.removeAll()
+						//						return .handled
+						//					}
+						//					.onChange(of: estaFocado) {
+						//						estaFocado = FocusKey.escape
+						//					}
 					}
-					.buttonStyle(.plain)
-//					.focusable()
-//					.focusEffectDisabled()
-//					.focused($estaFocado, equals: FocusKey.escape)
-//					.onKeyPress(.escape) {
-//						path.removeAll()
-//						return .handled
-//					}
-//					.onChange(of: estaFocado) {
-//						estaFocado = FocusKey.escape
-//					}
-				}
+				
 				
 				AtributosView(contexto: contexto)
-				FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
+					FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
+				
 			}
+			.aspectRatio(16/10, contentMode: .fill)
 			.opacity(fadeIn ? 1 : 0)
 			.animation(.easeIn(duration: 1), value: fadeIn)
 			.opacity(fadeOut ? 0 : 1)

@@ -18,7 +18,7 @@
 		"id_que_opcao_leva":[2, 2, 2],
 		"impacto_opcao_pop":[0, 0, 0],
 		"impacto_opcao_desc":[0, 0, 0],
-		"local_fundo":"fundoPersonagens",
+		"local_fundo":"cut7",
 		"resumo_notas":""
 	},
 	{
@@ -30,7 +30,7 @@
 		"id_que_opcao_leva":[3],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"fundoPersonagens",
+		"local_fundo":"cut7",
 		"resumo_notas":""
 	},
 	{
@@ -96,7 +96,7 @@
 		"id_que_opcao_leva":[9, 10],
 		"impacto_opcao_pop":[0, 0],
 		"impacto_opcao_desc":[0, 0],
-		"local_fundo":"fundoPersonagens",
+		"local_fundo":"cut7",
 		"resumo_notas":""
 	},
 	{
@@ -107,7 +107,7 @@
 		"id_que_opcao_leva":[12],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"fundoPersonagens",
+		"local_fundo":"cut7",
 		"resumo_notas":""
 	},
 	{
@@ -118,7 +118,7 @@
 		"id_que_opcao_leva":[11, 12],
 		"impacto_opcao_pop":[0, 0],
 		"impacto_opcao_desc":[1, 0],
-		"local_fundo":"fundoPersonagens",
+		"local_fundo":"cut7",
 		"resumo_notas":""
 	},
 	{
@@ -129,7 +129,7 @@
 		"id_que_opcao_leva":[12],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"fundoPersonagens",
+		"local_fundo":"cut7",
 		"resumo_notas":"Lorgan is not only a religious leader, but a political one."
 	},
 	{
@@ -140,7 +140,7 @@
 		"id_que_opcao_leva":[13],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"fundoPersonagens",
+		"local_fundo":"cut7",
 		"resumo_notas":""
 	},
 	{
@@ -151,7 +151,7 @@
 		"id_que_opcao_leva":[14],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"fundoPersonagens",
+		"local_fundo":"cut7",
 		"resumo_notas":""
 	},
 	{
@@ -162,7 +162,7 @@
 		"id_que_opcao_leva":[15],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
-		"local_fundo":"fundoPersonagens",
+		"local_fundo":"cut7",
 		"resumo_notas":""
 	},
 	{

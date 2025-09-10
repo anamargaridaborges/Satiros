@@ -13,127 +13,136 @@ struct FalaView: View {
 	@Binding var falaNome: Bool
 	
 	var body: some View {
+		ZStack (alignment: .bottom)
+		{
 			ZStack(alignment: .bottom) {
-					Image("blocoFala")
-						.resizable()
-						.frame(width: 1180, height: 310, alignment: .bottom)
-						.clipped()
-						.padding(.bottom, 38)
-					
+				
+				Image("blocoFala")
+					.resizable()
+					.frame(width: 1180, height: 310, alignment: .bottom)
+					.clipped()
+					.padding(.bottom, 38)
+					.offset(x: 0, y:(dialogos[contexto.idDialogo].personagem == "Sister Desmond" ? -200 : 0))
+				
 				VStack(alignment: .leading, spacing: 10) {
-						if(falaNome){
-							Text(dialogos[contexto.idDialogo].personagem + ":")
-								.font(.appFont(selectedFont, size:25))
-								.foregroundColor(.white)
-						}
-						
-						Text(texto)
+					if(falaNome){
+						Text(dialogos[contexto.idDialogo].personagem + ":")
 							.font(.appFont(selectedFont, size:25))
 							.foregroundColor(.white)
-					
-						if (contexto.parteDialogo == dialogos[contexto.idDialogo].texto.count - 1 && dialogos[contexto.idDialogo].opcoes.count > 0) {
-							// se é a última parte da fala
-								ForEach(opcoes.indices, id: \.self) { index in
-									if (opcoes[index] != ""){
-										Button {
-											//carregaFalaToda()
-											terminou = false
-											selecionaOpcao(index: index)
-										} label: {
-											Text(opcoes[index])
-												.foregroundColor(passaNoBotao[index] ? .white : .orange)
-												.font(.appFont(selectedFont, size: 25))
-												.scaleEffect(passaNoBotao[index] ? 1.1 : 1.0)
-												.multilineTextAlignment(.leading)
-												.lineLimit(nil)
-												.fixedSize(horizontal: false, vertical: true)
-												.frame(maxWidth: .infinity, alignment: .leading)
-												.padding(.top, 10)
-										}
-										.buttonStyle(PlainButtonStyle())
-										//.background(passaNoBotao[index] ? Color("Selecionado") : Color("Fundo"))
-										//.cornerRadius(10)
-										.onHover { over in
-											passaNoBotao[index] = over
-										}
-									}
-								}
-						}
 					}
-					.padding(30)
-					.frame(maxHeight: 280, alignment: .top)
-					.frame(width: 1120, alignment: .bottomLeading)
-					.offset(x: 0, y: 270)
-				
-					.focusable()
-					.focusEffectDisabled()
-					.focused($estaFocado, equals: .enter)
-					.onKeyPress(.return) {
-						if (terminou == false) {
-							if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo] && opcoes.last == dialogos[contexto.idDialogo].opcoes.last ) {
-								if (opcoes.count != 0) {
-									//terminou = true
-									return .handled
+					
+					Text(texto)
+						.font(.appFont(selectedFont, size:25))
+						.foregroundColor(.white)
+					
+					if (contexto.parteDialogo == dialogos[contexto.idDialogo].texto.count - 1 && dialogos[contexto.idDialogo].opcoes.count > 0) {
+						// se é a última parte da fala
+						ForEach(opcoes.indices, id: \.self) { index in
+							if (opcoes[index] != ""){
+								Button {
+									//carregaFalaToda()
+									terminou = false
+									selecionaOpcao(index: index)
+								} label: {
+									Text(opcoes[index])
+										.foregroundColor(passaNoBotao[index] ? .white : .orange)
+										.font(.appFont(selectedFont, size: 25))
+										.scaleEffect(passaNoBotao[index] ? 1.1 : 1.0)
+										.multilineTextAlignment(.leading)
+										.lineLimit(nil)
+										.fixedSize(horizontal: false, vertical: true)
+										.frame(maxWidth: .infinity, alignment: .leading)
+										.padding(.top, 10)
 								}
-								else {
-									tarefaOpcoes?.cancel()
-									if (contexto.parteDialogo < dialogos[contexto.idDialogo].texto.count - 1) {
-										contexto.parteDialogo += 1
-										reiniciarOpcoes()
-										return .handled
-									}
-									else {
-										selecionaOpcao(index: 0)
-										return .handled
-									}
+								.buttonStyle(PlainButtonStyle())
+								//.background(passaNoBotao[index] ? Color("Selecionado") : Color("Fundo"))
+								//.cornerRadius(10)
+								.onHover { over in
+									passaNoBotao[index] = over
 								}
 							}
-							carregaFalaToda()
-							return .handled
 						}
-						if (contexto.parteDialogo < dialogos[contexto.idDialogo].texto.count - 1) {
-							contexto.parteDialogo += 1
-							reiniciarOpcoes()
-							return .handled
-						}
-						/*if (terminou == false) {
-							if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo] && opcoes.last == dialogos[contexto.idDialogo].opcoes.last) {
-								if (opcoes.count != 0) {
-									terminou = true
+					}
+				}
+				.padding(30)
+				.frame(maxHeight: 280, alignment: .top)
+				.frame(width: 1120, alignment: .bottomLeading)
+				.offset(x: 0, y: 270)
+				
+				.focusable()
+				.focusEffectDisabled()
+				.focused($estaFocado, equals: .enter)
+				.onKeyPress(.return) {
+					if (terminou == false) {
+						if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo] && opcoes.last == dialogos[contexto.idDialogo].opcoes.last ) {
+							if (opcoes.count != 0) {
+								//terminou = true
+								return .handled
+							}
+							else {
+								tarefaOpcoes?.cancel()
+								if (contexto.parteDialogo < dialogos[contexto.idDialogo].texto.count - 1) {
+									contexto.parteDialogo += 1
+									reiniciarOpcoes()
 									return .handled
 								}
 								else {
-									tarefaOpcoes?.cancel()
 									selecionaOpcao(index: 0)
 									return .handled
 								}
 							}
-							carregaFalaToda()
-							return .handled
-						}*/
-						proximaFala()
+						}
+						carregaFalaToda()
+						return .handled
+					}
+					if (contexto.parteDialogo < dialogos[contexto.idDialogo].texto.count - 1) {
+						contexto.parteDialogo += 1
 						reiniciarOpcoes()
 						return .handled
-						
 					}
-					.onAppear {
-						estaFocado = .enter
-						reiniciarOpcoes()
-					}
-					.onChange (of: contexto.idDialogo) {
-						if (dialogos[contexto.idDialogo].resumo_notas != "") {
-							if (bloco.textoPorDia.count < contexto.dia) {
-								bloco.textoPorDia.append(dialogos[contexto.idDialogo].resumo_notas)
-							}
-							else {
-								bloco.textoPorDia[contexto.dia - 1] += "\n"
-								bloco.textoPorDia[contexto.dia - 1] += dialogos[contexto.idDialogo].resumo_notas
-							}
+					/*if (terminou == false) {
+					 if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo] && opcoes.last == dialogos[contexto.idDialogo].opcoes.last) {
+					 if (opcoes.count != 0) {
+					 terminou = true
+					 return .handled
+					 }
+					 else {
+					 tarefaOpcoes?.cancel()
+					 selecionaOpcao(index: 0)
+					 return .handled
+					 }
+					 }
+					 carregaFalaToda()
+					 return .handled
+					 }*/
+					proximaFala()
+					reiniciarOpcoes()
+					return .handled
+					
+				}
+				.onAppear {
+					estaFocado = .enter
+					reiniciarOpcoes()
+				}
+				.onChange (of: contexto.idDialogo) {
+					if (dialogos[contexto.idDialogo].resumo_notas != "") {
+						if (bloco.textoPorDia.count < contexto.dia) {
+							bloco.textoPorDia.append(dialogos[contexto.idDialogo].resumo_notas)
+						}
+						else {
+							bloco.textoPorDia[contexto.dia - 1] += "\n"
+							bloco.textoPorDia[contexto.dia - 1] += dialogos[contexto.idDialogo].resumo_notas
 						}
 					}
-					.frame(maxWidth: .infinity, maxHeight: .infinity)
-					.navigationBarBackButtonHidden()
+				}
+				.frame(maxWidth: .infinity, maxHeight: .infinity)
+				.navigationBarBackButtonHidden()
 			}
+			.padding(0)
+			Image(dialogos[contexto.idDialogo].personagem)
+				.scaleEffect(0.3)
+				.offset(x: -300, y:-79)
+		}
 	}
 		
 	func reiniciarOpcoes() {
