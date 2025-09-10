@@ -53,6 +53,39 @@ struct TutorialView: View {
 							.aspectRatio(16 / 10, contentMode: .fit)
 							.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 				}
+//				HStack(alignment: .top){
+//						Spacer()
+//						Button (action: {path.removeAll()}){
+//							Image("sair")
+//								.resizable()
+//								.clipped()
+//								.frame(width: 50, height: 50)
+//								.padding(20)
+//								.scaleEffect(passaNoAsset ? 1.1 : 1.0)
+//								.onHover {over in
+//									passaNoAsset = over
+//								}
+//						}
+//						.buttonStyle(.plain)
+//						//					.focusable()
+//						//					.focusEffectDisabled()
+//						//					.focused($estaFocado, equals: FocusKey.escape)
+//						//					.onKeyPress(.escape) {
+//						//						path.removeAll()
+//						//						return .handled
+//						//					}
+//						//					.onChange(of: estaFocado) {
+//						//						estaFocado = FocusKey.escape
+//						//					}
+//					}
+//				.offset(y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 200: 0)
+				
+				
+				//AtributosView(contexto: contexto)
+					//.offset(y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 200: 0)
+					FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
+				AtributosView(contexto: contexto)
+					.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
 				HStack(alignment: .top){
 						Spacer()
 						Button (action: {path.removeAll()}){
@@ -78,10 +111,7 @@ struct TutorialView: View {
 						//						estaFocado = FocusKey.escape
 						//					}
 					}
-				
-				
-				AtributosView(contexto: contexto)
-					FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
+				.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
 				
 			}
 			.aspectRatio(16/10, contentMode: .fill)

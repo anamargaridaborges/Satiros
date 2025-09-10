@@ -139,11 +139,22 @@ struct FalaView: View {
 				.navigationBarBackButtonHidden()
 			}
 			.padding(0)
-			Image(dialogos[contexto.idDialogo].personagem)
+			Image((contexto.local == "tutorial" && dialogos[contexto.idDialogo].personagem != "Sister Desmond") ? "" : dialogos[contexto.idDialogo].personagem)
 				.scaleEffect(0.3)
 				.offset(x: -300, y:-79)
+					//					.focusable()
+					//					.focusEffectDisabled()
+					//					.focused($estaFocado, equals: FocusKey.escape)
+					//					.onKeyPress(.escape) {
+					//						path.removeAll()
+					//						return .handled
+					//					}
+					//					.onChange(of: estaFocado) {
+					//						estaFocado = FocusKey.escape
+					//					}
+				}
 		}
-	}
+	
 		
 	func reiniciarOpcoes() {
 		opcoes.removeAll()
