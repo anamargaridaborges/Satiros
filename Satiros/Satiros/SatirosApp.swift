@@ -1,5 +1,5 @@
 //
-//  SatirosApp.swift
+//  SatirosApp.swigit ft
 //  Satiros
 //
 //  Created by Ana Margarida Diniz Silva Borges on 19/08/25.
@@ -17,7 +17,7 @@ struct SatirosApp: App {
 	init() {
 			do {
 					container = try ModelContainer(
-						for: ContextoConfessionario2.ContextoConfessionario.self, ContextoConfessionario2.ContextoSalvo.self,
+						for: ContextoConfessionario3.ContextoConfessionario.self, ContextoConfessionario3.ContextoSalvo.self, ContextoConfessionario3.Bloco.self,
 							migrationPlan: ConfessionarioMigracao.self
 					)
 			} catch {

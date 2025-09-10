@@ -1,6 +1,5 @@
 name: Satiros
 options:
-  #bundleIdPrefix: satiros
   deploymentTarget:
     macOS: "14.0"
   usesTabs: true

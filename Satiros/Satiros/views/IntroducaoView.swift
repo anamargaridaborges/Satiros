@@ -11,31 +11,45 @@ import SwiftData
 struct IntroducaoView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Environment(\.modelContext) private var modelContext
-	@Query var contexto: [ContextoConfessionario2.ContextoSalvo]
+	@Query var contexto: [ContextoConfessionario3.ContextoSalvo]
+	@Query var bloco: [ContextoConfessionario3.Bloco]
 	@State private var path: [String] = []
 	@FocusState private var estaFocado: FocusKey?
+	@State var clicaNotas: Bool = false
 	
 	func continuarJogo() {
 		path.append(contexto[0].local)
 	}
 	
 	func iniciarJogo() {
-		if !(contexto.isEmpty) {
+		let count1 = try? modelContext.fetchCount(FetchDescriptor<ContextoConfessionario3.ContextoSalvo>())
+		//let count2 = try? modelContext.fetchCount(FetchDescriptor<ContextoConfessionario3.ContextoConfessionario>())
+		let count3 = try? modelContext.fetchCount(FetchDescriptor<ContextoConfessionario3.Bloco>())
+		//print(count1, count2, count3)
+		if !(count1 == 0 ||  count3 == 0) {
 			path.append("novoJogo")
 			return
 		}
-		var novoJogo = ContextoConfessionario2.ContextoSalvo()
+		for c in contexto {
+			modelContext.delete(c)
+		}
+		for b in bloco {
+			modelContext.delete(b)
+		}
+		var novoJogo = ContextoConfessionario3.ContextoSalvo()
 		modelContext.insert(novoJogo)
+		var bloco = ContextoConfessionario3.Bloco()
+		modelContext.insert(bloco)
 		do {
 			try modelContext.save()
 		} catch {
 			print("Erro \(error)")
 		}
-		path.append("tutorial")
+		path.append("popUpIntro")
 	}
 	
     var body: some View {
-			NavigationStack (path: $path){
+			NavigationStack (path: $path) {
 				ZStack{
 					Image("menu inicial")
 							.resizable()
@@ -44,7 +58,7 @@ struct IntroducaoView: View {
 					
 					VStack {
 						Spacer()
-							if !(contexto.isEmpty) {
+						if !(contexto.isEmpty) && !(bloco.isEmpty) {
 								Button(action: { continuarJogo() }) {
 									ZStack {
 										Image("botao continue")
@@ -81,13 +95,14 @@ struct IntroducaoView: View {
 					.padding(.bottom, 30)
 					.navigationDestination(for: String.self) { local in
 						if local == "novoJogo" {
-							ConfirmarNovoJogo(contexto: contexto[0], path: $path)
+
+							ConfirmarNovoJogo(contexto: contexto[0], path: $path, bloco: bloco[0])
 						}
 						else if local == "tutorial" {
-							TutorialView(contexto: contexto[0], path: $path)
+							TutorialView(contexto: contexto[0], path: $path, bloco: bloco[0])
 						}
 						else if local == "confessionario" {
-							ConfessionarioView(contexto: contexto[0], path: $path, estaFocado: _estaFocado)
+							ConfessionarioView(contexto: contexto[0], path: $path, estaFocado: _estaFocado, bloco: bloco[0], clicaNotas: $clicaNotas)
 						}
 						else if local == "confirmarSair" {
 							ConfirmarSair(path: $path)
@@ -96,11 +111,27 @@ struct IntroducaoView: View {
 							OptionsView(path: $path)
 						}
 						else if local == "cartas" {
-							CartasView(contexto: contexto[0], path: $path)
+							CartasView(contexto: contexto[0], path: $path, clicaBloco: $clicaNotas, bloco: bloco[0])
 						}
 						else if local == "menu" {
 							IntroducaoView()
 						}
+						else if local == "popUpIntro" {
+							PopUpIntro(contexto: contexto[0], path: $path, bloco: bloco[0], estaFocado: _estaFocado)
+						}
+						else if local == "popUpMapa" {
+							PopUpMapa(contexto: contexto[0], path: $path, bloco: bloco[0], estaFocado: _estaFocado)
+						}
+						else if local == "mapa" {
+							MapaView(contexto: contexto[0], path: $path, bloco: bloco[0])
+						}
+						else if local == "falaIntro" {
+							FalaIntroView(contexto: contexto[0], path: $path, bloco: bloco[0])
+						}
+						
+						/*else if local == "notas" {
+							BlocoView(path: $path, bloco: bloco[0])
+						}*/
 					}
 					
 				}

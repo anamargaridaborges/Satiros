@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 struct ConfessionarioView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
+	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@Binding var path: [String]
 	@FocusState var estaFocado: FocusKey?
 	@State var texto: String = ""
@@ -11,13 +11,16 @@ struct ConfessionarioView: View {
 	@State var terminou: Bool = true
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
 	@Environment(\.modelContext) private var modelContext
-	@Query(sort: \ContextoConfessionario2.ContextoConfessionario.momentoAdicionado, order: .forward) var dialogosConfessionario: [ContextoConfessionario2.ContextoConfessionario]
+	@Query(sort: \ContextoConfessionario3.ContextoConfessionario.momentoAdicionado, order: .forward) var dialogosConfessionario: [ContextoConfessionario3.ContextoConfessionario]
 	@State var passaNoBotao: [Bool] = [false, false, false]
-	@State var checaImprimiu: Bool = false
 	@State private var scrollProxy: ScrollViewProxy? = nil
 	@State private var frameIndex = 0
 	@State var isSpeaking: Bool = false
 	@State private var tempo: Int = 0
+	@Bindable var bloco: ContextoConfessionario3.Bloco
+	@Binding var clicaNotas: Bool
+	@State private var fadeIn = false
+	@State private var fadeOut = false
 	
 		var body: some View {
 			GeometryReader { geo in
@@ -29,7 +32,7 @@ struct ConfessionarioView: View {
 								
 								ZStack {
 									VStack(spacing: 0) {
-                    MenuzinhoView(contexto: contexto, path: $path, estaFocado: _estaFocado)
+										MenuzinhoView(contexto: contexto, path: $path, estaFocado: _estaFocado, clicaBloco: $clicaNotas)
 										.padding(.top, 10)
 										.frame(maxWidth: .infinity)
 										
@@ -37,6 +40,7 @@ struct ConfessionarioView: View {
 											ScrollViewReader { proxy in
 												VStack {
 													ForEach (dialogosConfessionario) { dialogoConf in
+														// dialogos antigos salvos no array de swiftdata
 														if (dialogoConf.personagem + ": " + dialogoConf.dialogo != dialogos[contexto.idDialogo].personagem + ": " + dialogos[contexto.idDialogo].texto[contexto.parteDialogo]) {
 															Text(dialogoConf.personagem + ": " + dialogoConf.dialogo)
 																.frame(maxWidth: .infinity, alignment: .leading)
@@ -46,7 +50,8 @@ struct ConfessionarioView: View {
 														}
 													}
 													
-													Text(dialogos[contexto.idDialogo ?? 0].personagem + ": " + texto)
+													Text(dialogos[contexto.idDialogo].personagem + ": " + texto)
+													// dialogo atual, que está sendo inserido na variável texto
 														.frame(maxWidth: .infinity, alignment: .leading)
 														.foregroundColor(.white)
 														.font(.appFont(selectedFont, size:30))
@@ -63,15 +68,18 @@ struct ConfessionarioView: View {
 										.padding()
 										.frame(maxWidth: .infinity)
 											
-										if (contexto.parteDialogo == dialogos[contexto.idDialogo ?? 0].texto.count - 1 && dialogos[contexto.idDialogo ?? 0].opcoes.count > 0) {
+										if (contexto.parteDialogo == dialogos[contexto.idDialogo].texto.count - 1 && dialogos[contexto.idDialogo].opcoes.count > 0) {
 												// se é a última parte da fala
+											// se temos um número de opções maior que zero
 												ForEach(opcoes.indices, id: \.self) { index in
+													// aqui tenho os botões das opções
 													if (opcoes[index] != ""){
 														Button {
+															carregaFalaToda()
 															selecionaOpcao(index: index)
 															} label: {
 																		Text(opcoes[index])
-																		.foregroundColor(.white)
+																	.foregroundColor(passaNoBotao[index] ? .white: .orange)
 																		.font(.appFont(selectedFont, size: 25))
 																		.scaleEffect(passaNoBotao[index] ? 1.1 : 1.0)
 																		.multilineTextAlignment(.center)
@@ -79,7 +87,7 @@ struct ConfessionarioView: View {
 																		.fixedSize(horizontal: false, vertical: true)
 																		.padding()
 																		.frame(maxWidth: .infinity)
-																		.background(Color.black)
+																		.background(Color("FundoOpcoes"))
 														}
 														.buttonStyle(PlainButtonStyle())
 														//.background(passaNoBotao[index] ? Color("Selecionado") : Color("Fundo"))
@@ -93,7 +101,7 @@ struct ConfessionarioView: View {
 												//.padding(5)
 											}
 										}
-									.background(Color("Fundo"))
+									.background(Color("FundoConfissao"))
 									.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 										.focusable()
 										.focusEffectDisabled()
@@ -110,8 +118,10 @@ struct ConfessionarioView: View {
 												return .handled
 											}
 											if (terminou == false && !dialogos[contexto.idDialogo].opcoes.isEmpty) {
-												if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo]) {
-													return .handled
+												if let ultimaOpcao = opcoes.last,
+													 let ultimaDialogo = dialogos[contexto.idDialogo].opcoes.last,
+													 ultimaOpcao.contains(ultimaDialogo) {
+														return .handled
 												}
 												carregaFalaToda()
 												salvaBD(personagem: dialogos[contexto.idDialogo].personagem, dialogo: dialogos[contexto.idDialogo].texto[contexto.parteDialogo], momentoAdicionado: tempo)
@@ -123,7 +133,14 @@ struct ConfessionarioView: View {
 											
 										}
 										.onAppear {
+											//withAnimation { fadeIn = true }
 											estaFocado = FocusKey.enter
+											if (contexto.horario == "confissao2" && contexto.idDialogo == 23) {
+												for dialogo in dialogosConfessionario {
+													modelContext.delete(dialogo)
+												}
+											}
+
 											texto = ""
 											reiniciarOpcoes()
 										}
@@ -144,13 +161,38 @@ struct ConfessionarioView: View {
 								.frame(width: geo.size.width / 3, height: geo.size.height)
 						}
 						.ignoresSafeArea()
+						
+						if (clicaNotas) {
+							BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaNotas)
+						}
+						
 				}
 					
 			}
+			//.opacity(fadeIn ? 1 : 0)
+			//.animation(.easeIn(duration: 1), value: fadeIn)
+			.opacity(fadeOut ? 0 : 1)
+			.animation(.easeOut(duration: 1), value: fadeOut)
 			.navigationBarBackButtonHidden()
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 		}
 	
+	func addBlocoDeNotas (resumo: String) {
+		if (bloco.textoPorDia.count < contexto.dia) {
+			bloco.textoPorDia.append(dialogos[contexto.idDialogo].resumo_notas + "\n" + "\n")
+			try? modelContext.save()
+			return
+		}
+		else {
+			if !bloco.textoPorDia[contexto.dia-1].contains(resumo) {
+					print(bloco.textoPorDia[contexto.dia-1])
+					bloco.textoPorDia[contexto.dia-1] += resumo + "\n" + "\n"
+				try? modelContext.save()
+			}
+			return
+		}
+	}
+
 	func selecionaOpcao (index: Int) {
 			contexto.desconfianca += dialogos[contexto.idDialogo].impacto_opcao_desc[index]
 			contexto.popularidade += dialogos[contexto.idDialogo].impacto_opcao_pop[index]
@@ -159,7 +201,6 @@ struct ConfessionarioView: View {
 			salvaBD(personagem: "You", dialogo: String(opcoes[index][inicio...]), momentoAdicionado: tempo)
 			proximaFala(index: index)
 			terminou = true
-			checaImprimiu = false
 			return
 	}
 	
@@ -167,7 +208,7 @@ struct ConfessionarioView: View {
 		if (dialogosConfessionario.isEmpty == false) {
 			tempo = dialogosConfessionario.last!.momentoAdicionado + 1
 		}
-		modelContext.insert(ContextoConfessionario2.ContextoConfessionario(personagem: personagem, dialogo: dialogo, momentoAdicionado: tempo))
+		modelContext.insert(ContextoConfessionario3.ContextoConfessionario(personagem: personagem, dialogo: dialogo, momentoAdicionado: tempo))
 		try? modelContext.save()
 		return
 	}
@@ -202,14 +243,17 @@ struct ConfessionarioView: View {
 	func proximaFala(index: Int = 0) {
 		if (dialogos[contexto.idDialogo].id_que_opcao_leva[index] == -10) {
 			contexto.idDialogo = 23
-			for dialogo in dialogosConfessionario {
-				modelContext.delete(dialogo)
-			}
 			contexto.local = "cartas"
 			contexto.parteDialogo = 0
-			path.append("cartas")
+			withAnimation { fadeOut = true }
+			DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+					path.append("cartas")
+			}
 			reiniciarOpcoes()
 			return
+		}
+		if (dialogos[contexto.idDialogo].resumo_notas != "") {
+			addBlocoDeNotas(resumo: dialogos[contexto.idDialogo].resumo_notas)
 		}
 		contexto.idDialogo = dialogos[contexto.idDialogo].id_que_opcao_leva[index]
 		try? modelContext.save()
@@ -222,7 +266,7 @@ struct ConfessionarioView: View {
 		// imprime a fala e as opcoes com animação
 		//tarefaAtual?.cancel()
 		tarefaOpcoes?.cancel()
-		if (dialogos[contexto.idDialogo ?? 0].personagem == "Shadow"){
+		if (dialogos[contexto.idDialogo].personagem == "Shadow"){
 			isSpeaking = true
 		}
 		let opc = dialogos[contexto.idDialogo].opcoes
@@ -243,9 +287,9 @@ struct ConfessionarioView: View {
 				if Task.isCancelled {
 					return
 				}
-				try? await Task.sleep(nanoseconds: 50_000_000)
+				try? await Task.sleep(nanoseconds: 30_000_000)
 			}
-			try? await Task.sleep(nanoseconds: 50_000_000)
+			try? await Task.sleep(nanoseconds: 30_000_000)
 			
 			for opcao in opc {
 				await MainActor.run {
@@ -254,29 +298,35 @@ struct ConfessionarioView: View {
 				if Task.isCancelled {
 					return
 				}
-				try? await Task.sleep(nanoseconds: 50_000_000)
+
+				try? await Task.sleep(nanoseconds: 30_000_000)
 				await MainActor.run {
 					opcoes[cont-1].append(".")
 				}
 				if Task.isCancelled {
 					return
 				}
-				try? await Task.sleep(nanoseconds: 50_000_000)
+				try? await Task.sleep(nanoseconds: 30_000_000)
+
 				await MainActor.run {
 					opcoes[cont-1].append(" ")
 				}
 				if Task.isCancelled {
 					return
 				}
-				try? await Task.sleep(nanoseconds: 50_000_000)
+				try? await Task.sleep(nanoseconds: 30_000_000)
 				for c in opcao {
+					if Task.isCancelled {
+						return
+					}
 					await MainActor.run {
 						opcoes[cont-1].append(c)
 					}
 					if Task.isCancelled {
 						return
 					}
-					try? await Task.sleep(nanoseconds: 50_000_000)
+					try? await Task.sleep(nanoseconds: 30_000_000)
+
 				}
 				cont += 1
 			}
@@ -286,5 +336,4 @@ struct ConfessionarioView: View {
 #Preview {
 		//ConfessionarioView()
 }
-
 
