@@ -1,0 +1,98 @@
+//
+//  ConfirmarNovoJogo.swift
+//  Satiros
+//
+//  Created by Ana Margarida Diniz Silva Borges on 20/08/25.
+//
+
+import SwiftUI
+import SwiftData
+
+struct ConfirmarNovoJogo: View {
+	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
+	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
+	@Binding var path: [String]
+	@Query var dialogosConfessionario: [ContextoConfessionario3.ContextoConfessionario]
+	@Environment(\.modelContext) private var modelContext
+	@Bindable var bloco: ContextoConfessionario3.Bloco
+	
+	var body: some View {
+		ZStack{
+			Image("fundo pixel")
+				.resizable()
+				.clipped()
+				.aspectRatio(16/10, contentMode: .fit)
+			VStack {
+				Text("Confirm new game?")
+					.foregroundColor(.white)
+					.font(.appFont(selectedFont, size:50))
+					.padding()
+				
+				Text("All your progress in the current game will be lost.")
+					.foregroundColor(.white)
+					.font(.appFont(selectedFont, size:25))
+					.padding()
+				
+				HStack {
+					Button(action: {for dial in dialogosConfessionario {
+						modelContext.delete(dial)
+					};
+						bloco.textoPorDia.removeAll();
+						contexto.local = "tutorial"; contexto.idDialogo = 0; contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; contexto.parteDialogo = 0; bloco.textoPorDia = []; contexto.cartaUsada = -1; path.append("popUpIntro")}) {
+						ZStack {
+							Image("botao continue")
+								.resizable()
+								.scaledToFit()
+								.frame(width: 200, height: 100)
+							
+							Text("Yes, I confirm")
+								.font(.appFont(selectedFont, size: 25))
+								.foregroundColor(.white)
+						}
+					}
+					.buttonStyle(.plain)
+					.padding()
+					
+					Button(action: {path.removeAll()}) {
+						ZStack {
+							Image("botao continue")
+								.resizable()
+								.scaledToFit()
+								.frame(width: 200, height: 100)
+							
+							Text("No, I decline")
+								.font(.appFont(selectedFont, size: 25))
+								.foregroundColor(.white)
+						}
+					}
+					.buttonStyle(.plain)
+					.padding()
+					/*VStack {
+						Text("Confirm new game?")
+							.font(.appFont(selectedFont, size:50))
+							.padding()
+						Text("All your progress in the current game will be lost.")
+							.font(.appFont(selectedFont, size:20))
+							.padding()
+						HStack {
+							Button(action: {contexto.local = "confessionario"; contexto.idDialogo = retornaID(dia: 1, horario: "confissao1", local: "confessionario"); contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; path.append("confessionario")}) {
+								Text("Yes, I confirm")
+									.font(.appFont(selectedFont, size:30))
+							}
+						}
+						.navigationBarBackButtonHidden()
+						.frame(maxWidth: .infinity, maxHeight: .infinity)
+					}*/
+					
+				}
+			}
+		}
+		.navigationBarBackButtonHidden()
+		.frame(maxWidth: .infinity, maxHeight: .infinity)
+	}
+}
+
+
+#Preview {
+   // ConfirmarNovoJogo()
+}
