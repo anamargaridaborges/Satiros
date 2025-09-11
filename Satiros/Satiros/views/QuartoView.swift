@@ -34,29 +34,31 @@ struct QuartoView: View {
 		ZStack(alignment: .topLeading){
 			Image(dialogos[contexto.idDialogo].local_fundo)
 				.resizable()
-				.scaleEffect((dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 0.705 : 1.0)
+				.scaleEffect((dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 1.0 : 1.0)
 				.aspectRatio(16 / 10, contentMode: .fit)
 				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-			Button (action: {if (contexto.idDialogo == 111) {
-				path.append("mural")}}) {
-					Image("muralzinho")
-						.resizable()
-						.scaledToFit()
-						.frame(width: geometry.size.width * 0.25)
-					//.contentShape(Rectangle())
-						.onHover {over in
-							passaMural = over
-						}
-				}
-				.scaleEffect(passaMural && contexto.idDialogo == 111 ? 1.2 : 1)
-				.buttonStyle(.plain)
-				.offset(x: 650, y:200)
+			if(contexto.idDialogo == 111) {
+				Button (action: {if (contexto.idDialogo == 111) {
+					path.append("mural")}}) {
+						Image("muralzinho")
+							.resizable()
+							.scaledToFit()
+							.frame(width: geometry.size.width * 0.25)
+						//.contentShape(Rectangle())
+							.onHover {over in
+								passaMural = over
+							}
+					}
+					.scaleEffect(passaMural && contexto.idDialogo == 111 ? 1.2 : 1)
+					.buttonStyle(.plain)
+					.offset(x: 650, y:200)
+			}
 			
 			if (contexto.idDialogo != 111) {
 				FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
 				
 				AtributosView(contexto: contexto)
-					.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
+					.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 30: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
 				HStack(alignment: .top){
 					Spacer()
 					Button (action: {path.removeAll()}){
@@ -82,17 +84,18 @@ struct QuartoView: View {
 					//						estaFocado = FocusKey.escape
 					//					}
 				}
-				.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
+				.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -30: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
 			}
 			
 		}
 	}
-			.aspectRatio(16/10, contentMode: .fill)
+		.aspectRatio(16/10, contentMode: .fit)
+		.offset(y: (dialogos[contexto.idDialogo].personagem != "Sister Desmond") ? 0 : -200)
 			.opacity(fadeIn ? 1 : 0)
 			.animation(.easeIn(duration: 1), value: fadeIn)
 			.opacity(fadeOut ? 0 : 1)
 			.animation(.easeOut(duration: 2), value: fadeOut)
-			.frame(maxWidth: .infinity, maxHeight: .infinity)
+			.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 			.navigationBarBackButtonHidden()
 			.onChange(of: contexto.idDialogo) {
 				//defineFalaNome()
