@@ -21,7 +21,25 @@ struct SatirosApp: App {
 							migrationPlan: ConfessionarioMigracao.self
 					)
 			} catch {
-					fatalError("Failed to initialize model container.")
+				let fileManager = FileManager.default
+						let storeURL = URL.documentsDirectory
+								.deletingLastPathComponent()
+								.appending(path: "Library")
+								.appending(path: "Application Support")
+								.appending(path: "default.store")
+
+						if fileManager.fileExists(atPath: storeURL.path) {
+								do {
+										try fileManager.removeItem(at: storeURL)
+								} catch {
+									fatalError("Failed to initialize model container.")
+								}
+						}
+				container = try! ModelContainer(
+					for: ContextoConfessionario3.ContextoConfessionario.self, ContextoConfessionario3.ContextoSalvo.self, ContextoConfessionario3.Bloco.self,
+						migrationPlan: ConfessionarioMigracao.self
+				)
+					//fatalError("Failed to initialize model container.")
 			}
 	}
 	
