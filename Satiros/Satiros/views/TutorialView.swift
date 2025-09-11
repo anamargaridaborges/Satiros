@@ -85,7 +85,7 @@ struct TutorialView: View {
 				//AtributosView(contexto: contexto)
 					//.offset(y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 200: 0)
 				if (contexto.idDialogo != 15) {
-					FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
+					FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
 					
 					AtributosView(contexto: contexto)
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)

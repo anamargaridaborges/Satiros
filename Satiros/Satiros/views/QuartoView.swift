@@ -55,7 +55,7 @@ struct QuartoView: View {
 			}
 			
 			if (contexto.idDialogo != 111) {
-				FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
+				FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
 				
 				AtributosView(contexto: contexto)
 					.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 30: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)

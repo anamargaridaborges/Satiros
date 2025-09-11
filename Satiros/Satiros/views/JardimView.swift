@@ -37,7 +37,7 @@ struct JardimView: View {
 						.aspectRatio(16 / 10, contentMode: .fit)
 						.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 				if (contexto.idDialogo != 15) {
-					FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
+					FalaView( path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
 					
 					AtributosView(contexto: contexto)
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Thomas") ? 328: 0, y: (dialogos[contexto.idDialogo].personagem == "Thomas") ? 205 : 0)
