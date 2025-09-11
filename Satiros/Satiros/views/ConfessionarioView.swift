@@ -158,6 +158,7 @@ struct ConfessionarioView: View {
 											} else if (contexto.idDialogo == 23) {
 												salvarImagemEscolhida("mural3")
 											}
+											
 										}
 										.onChange(of: opcoes.joined()) { _ in
 											withAnimation {

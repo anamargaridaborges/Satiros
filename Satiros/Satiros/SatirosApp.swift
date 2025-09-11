@@ -21,6 +21,7 @@ struct SatirosApp: App {
 							migrationPlan: ConfessionarioMigracao.self
 					)
 			} catch {
+				print(error)
 					fatalError("Failed to initialize model container.")
 			}
 	}
