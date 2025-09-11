@@ -22,10 +22,10 @@ targets:
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
-        PRODUCT_BUNDLE_IDENTIFIER: satiros.Satiros.MuralWidget
+        PRODUCT_BUNDLE_IDENTIFIER: satiros.Satiros
         SWIFT_VERSION: 5.0
         CODE_SIGN_STYLE: Automatic
-        DEVELOPMENT_TEAM: M6V5WGN23W
+        DEVELOPMENT_TEAM: BQ84H65DR2
     dependencies:
       - target: MuralWidget
       - sdk: SwiftUI.framework
@@ -36,7 +36,7 @@ targets:
       properties:
         com.apple.security.app-sandbox: truegit status
         com.apple.security.application-groups:
-          - group.satiros.Satiros.MuralWidget
+          - group.satiros.Satiros
 
   SatirosTests:
     type: bundle.unit-test
@@ -55,10 +55,10 @@ targets:
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
-        PRODUCT_BUNDLE_IDENTIFIER: satiros.Satiros.MuralWidget
+        PRODUCT_BUNDLE_IDENTIFIER: satiros.Satiros
         SWIFT_VERSION: 5.0
         CODE_SIGN_STYLE: Automatic
-        DEVELOPMENT_TEAM: M6V5WGN23W
+        DEVELOPMENT_TEAM: BQ84H65DR2
     dependencies:
       - sdk: SwiftUI.framework
       - sdk: WidgetKit.framework
@@ -68,4 +68,4 @@ targets:
       properties:
         com.apple.security.app-sandbox: true
         com.apple.security.application-groups:
-          - group.satiros.Satiros.MuralWidget
+          - group.satiros.Satiros
