@@ -27,78 +27,66 @@ struct QuartoView: View {
 	@State var tick: Bool = false
 	@State private var animationFinished = false
 	@State var passaNoAsset: Bool = false
+	@State var passaMural: Bool = false
 	
-		var body: some View {
-			ZStack(alignment: .topLeading){
-				Image(dialogos[contexto.idDialogo].local_fundo)
-							.resizable()
-							.scaleEffect((dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 0.705 : 1.0)
-							.aspectRatio(16 / 10, contentMode: .fit)
-							.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-//				HStack(alignment: .top){
-//						Spacer()
-//						Button (action: {path.removeAll()}){
-//							Image("sair")
-//								.resizable()
-//								.clipped()
-//								.frame(width: 50, height: 50)
-//								.padding(20)
-//								.scaleEffect(passaNoAsset ? 1.1 : 1.0)
-//								.onHover {over in
-//									passaNoAsset = over
-//								}
-//						}
-//						.buttonStyle(.plain)
-//						//					.focusable()
-//						//					.focusEffectDisabled()
-//						//					.focused($estaFocado, equals: FocusKey.escape)
-//						//					.onKeyPress(.escape) {
-//						//						path.removeAll()
-//						//						return .handled
-//						//					}
-//						//					.onChange(of: estaFocado) {
-//						//						estaFocado = FocusKey.escape
-//						//					}
-//					}
-//				.offset(y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 200: 0)
-				
-				
-				//AtributosView(contexto: contexto)
-					//.offset(y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 200: 0)
-				if (contexto.idDialogo != 15) {
-					FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
-					
-					AtributosView(contexto: contexto)
-						.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
-					HStack(alignment: .top){
-						Spacer()
-						Button (action: {path.removeAll()}){
-							Image("sair")
-								.resizable()
-								.clipped()
-								.frame(width: 50, height: 50)
-								.padding(20)
-								.scaleEffect(passaNoAsset ? 1.1 : 1.0)
-								.onHover {over in
-									passaNoAsset = over
-								}
+	var body: some View {
+		GeometryReader { geometry in
+		ZStack(alignment: .topLeading){
+			Image(dialogos[contexto.idDialogo].local_fundo)
+				.resizable()
+				.scaleEffect((dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 0.705 : 1.0)
+				.aspectRatio(16 / 10, contentMode: .fit)
+				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+			Button (action: {if (contexto.idDialogo == 111) {
+				path.append("mural")}}) {
+					Image("muralzinho")
+						.resizable()
+						.scaledToFit()
+						.frame(width: geometry.size.width * 0.25)
+					//.contentShape(Rectangle())
+						.onHover {over in
+							passaMural = over
 						}
-						.buttonStyle(.plain)
-						//					.focusable()
-						//					.focusEffectDisabled()
-						//					.focused($estaFocado, equals: FocusKey.escape)
-						//					.onKeyPress(.escape) {
-						//						path.removeAll()
-						//						return .handled
-						//					}
-						//					.onChange(of: estaFocado) {
-						//						estaFocado = FocusKey.escape
-						//					}
-					}
-					.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
 				}
+				.scaleEffect(passaMural && contexto.idDialogo == 111 ? 1.2 : 1)
+				.buttonStyle(.plain)
+				.offset(x: 650, y:200)
+			
+			if (contexto.idDialogo != 111) {
+				FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
 				
+				AtributosView(contexto: contexto)
+					.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
+				HStack(alignment: .top){
+					Spacer()
+					Button (action: {path.removeAll()}){
+						Image("sair")
+							.resizable()
+							.clipped()
+							.frame(width: 50, height: 50)
+							.padding(20)
+							.scaleEffect(passaNoAsset ? 1.1 : 1.0)
+							.onHover {over in
+								passaNoAsset = over
+							}
+					}
+					.buttonStyle(.plain)
+					//					.focusable()
+					//					.focusEffectDisabled()
+					//					.focused($estaFocado, equals: FocusKey.escape)
+					//					.onKeyPress(.escape) {
+					//						path.removeAll()
+					//						return .handled
+					//					}
+					//					.onChange(of: estaFocado) {
+					//						estaFocado = FocusKey.escape
+					//					}
+				}
+				.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
 			}
+			
+		}
+	}
 			.aspectRatio(16/10, contentMode: .fill)
 			.opacity(fadeIn ? 1 : 0)
 			.animation(.easeIn(duration: 1), value: fadeIn)
@@ -107,7 +95,7 @@ struct QuartoView: View {
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.navigationBarBackButtonHidden()
 			.onChange(of: contexto.idDialogo) {
-				defineFalaNome()
+				//defineFalaNome()
 				if (contexto.idDialogo == 15) {
 					//FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome()).cancelarTarefa()
 					//withAnimation { fadeOut = true }

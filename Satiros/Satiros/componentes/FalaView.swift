@@ -127,6 +127,9 @@ struct FalaView: View {
 					 return .handled
 					 }*/
 					proximaFala()
+					if (contexto.idDialogo == -10) {
+						return .handled
+					}
 					reiniciarOpcoes()
 					return .handled
 					
@@ -266,6 +269,10 @@ struct FalaView: View {
 				reiniciarOpcoes()
 				return
 			}
+		}
+		if (dialogos[contexto.idDialogo].id_que_opcao_leva[index] == -10) {
+			contexto.idDialogo = -10
+			return
 		}
 		contexto.idDialogo = dialogos[contexto.idDialogo].id_que_opcao_leva[index]
 		contexto.parteDialogo = 0
