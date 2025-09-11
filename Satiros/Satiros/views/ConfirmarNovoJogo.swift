@@ -38,8 +38,7 @@ struct ConfirmarNovoJogo: View {
 						modelContext.delete(dial)
 					};
 						bloco.textoPorDia.removeAll();
-						contexto.local = "quarto"; contexto.idDialogo = 66; contexto.dia = 1; contexto.horario = "noite";
-						/*contexto.local = "tutorial"; contexto.idDialogo = 0; contexto.dia = 1; contexto.horario = "manha";*/ contexto.popularidade = 5; contexto.desconfianca = 5; contexto.parteDialogo = 0; bloco.textoPorDia = []; contexto.cartaUsada = -1; path.append("quarto")}) {
+						contexto.local = "tutorial"; contexto.idDialogo = 0; contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; contexto.parteDialogo = 0; bloco.textoPorDia = []; contexto.cartaUsada = -1; path.append("tutorial")}) {
 						ZStack {
 							Image("botao continue")
 								.resizable()
