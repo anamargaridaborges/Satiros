@@ -11,6 +11,8 @@ struct AtributosView: View {
 	
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
+	//@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
+
 	@State var passaNoAsset: [Bool] = [false, false] //[popularidade, desconfianca]
 	@State var mostrarBalao:  [Bool] = [false, false]
 	
@@ -29,8 +31,8 @@ struct AtributosView: View {
 							Text(String(contexto.popularidade))
 								.font(.appFont(selectedFont, size: 30))
 								.foregroundStyle(.white)
-								.padding(.top, 25)
-								.shadow(radius: 5)
+								//.shadow(radius: 5)
+
 						}
 						.scaleEffect(passaNoAsset[0] ? 1.1 : 1.0)
 						.onHover { over in
@@ -66,7 +68,8 @@ struct AtributosView: View {
 								.font(.appFont(selectedFont, size: 30))
 								.foregroundStyle(.white)
 								.padding(.top, 25)
-								.shadow(radius: 5)
+								//.shadow(radius: 5)
+
 						}
 						.scaleEffect(passaNoAsset[1] ? 1.1 : 1.0)
 						.onHover { over in
@@ -79,8 +82,9 @@ struct AtributosView: View {
 									Image("balaoAtributos")
 											.resizable()
 											.frame(width: 400, height: 100)
+                  
 									Text("Distrust shows how much people doubt you. Don’t let it fill up!")
-										.font(.appFont(selectedFont, size: 20))
+										  .font(.appFont(selectedFont, size: 20))
 											.foregroundColor(.black)
 											.padding()
 								}
@@ -90,6 +94,7 @@ struct AtributosView: View {
 						}
 					}
 					.padding(.top, 20)
+
 		}
 }
 
