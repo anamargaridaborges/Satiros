@@ -128,7 +128,15 @@ struct IntroducaoView: View {
 						else if local == "falaIntro" {
 							FalaIntroView(contexto: contexto[0], path: $path, bloco: bloco[0])
 						}
-						
+						else if local == "jardim" {
+							JardimView(contexto: contexto[0], path: $path, bloco: bloco[0])
+						}
+						else if local == "quarto" {
+							QuartoView(contexto: contexto[0], path: $path, bloco: bloco[0])
+						}
+						else if local == "biblioteca" {
+							BibliotecaView(contexto: contexto[0], path:$path, bloco: bloco[0])
+						}
 						/*else if local == "notas" {
 							BlocoView(path: $path, bloco: bloco[0])
 						}*/

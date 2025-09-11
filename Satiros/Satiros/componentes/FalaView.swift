@@ -17,12 +17,16 @@ struct FalaView: View {
 		{
 			ZStack(alignment: .bottom) {
 				
+				Image((contexto.local == "tutorial" && dialogos[contexto.idDialogo].personagem != "Sister Desmond") ? "" : dialogos[contexto.idDialogo].personagem)
+					.scaleEffect((dialogos[contexto.idDialogo].personagem == "Edgar") ? 0.4 : 0.3)
+					.offset(x: -300, y:-79)
+				
 				Image("blocoFala")
 					.resizable()
 					.frame(width: 1180, height: 310, alignment: .bottom)
 					.clipped()
 					.padding(.bottom, 38)
-					.offset(x: 0, y:(dialogos[contexto.idDialogo].personagem == "Sister Desmond" ? -200 : 0))
+					.offset(x: 0, y:(dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -200 : (dialogos[contexto.idDialogo].personagem == "Thomas" && contexto.local == "jardim") ? -206 : (dialogos[contexto.idDialogo].personagem == "Edgar" && contexto.local == "biblioteca") ? -40 : 0)
 				
 				VStack(alignment: .leading, spacing: 10) {
 					if(falaNome){
@@ -73,6 +77,13 @@ struct FalaView: View {
 				.focusEffectDisabled()
 				.focused($estaFocado, equals: .enter)
 				.onKeyPress(.return) {
+					if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo] && contexto.parteDialogo < dialogos[contexto.idDialogo].texto.count - 1) {
+						terminou = true
+						tarefaOpcoes?.cancel()
+						contexto.parteDialogo += 1
+						reiniciarOpcoes()
+						return .handled
+					}
 					if (terminou == false) {
 						if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo] && opcoes.last == dialogos[contexto.idDialogo].opcoes.last ) {
 							if (opcoes.count != 0) {
@@ -139,9 +150,6 @@ struct FalaView: View {
 				.navigationBarBackButtonHidden()
 			}
 			.padding(0)
-			Image((contexto.local == "tutorial" && dialogos[contexto.idDialogo].personagem != "Sister Desmond") ? "" : dialogos[contexto.idDialogo].personagem)
-				.scaleEffect(0.3)
-				.offset(x: -300, y:-79)
 					//					.focusable()
 					//					.focusEffectDisabled()
 					//					.focused($estaFocado, equals: FocusKey.escape)
@@ -199,6 +207,66 @@ struct FalaView: View {
 	}
 	
 	func proximaFala(index: Int = 0) {
+		if (dialogos[contexto.idDialogo].id_que_opcao_leva[index] == -5) {
+			if (contexto.local == "quarto") {
+				if (contexto.popularidade >= 6 && contexto.desconfianca <= 5) {
+					contexto.idDialogo = 33
+					contexto.parteDialogo = 0
+					reiniciarOpcoes()
+					return
+				}
+				else if (contexto.popularidade >= 7 && contexto.desconfianca >= 5) {
+					contexto.idDialogo = 34
+					contexto.parteDialogo = 0
+					reiniciarOpcoes()
+					return
+				}
+				else {
+					contexto.idDialogo = 35
+					contexto.parteDialogo = 0
+					reiniciarOpcoes()
+					return
+				}
+			}
+			if (contexto.local == "biblioteca") {
+				if (contexto.popularidade >= 8 && contexto.idDialogo == 95) {
+					contexto.idDialogo = 97
+					contexto.parteDialogo = 0
+					reiniciarOpcoes()
+					return
+				}
+				else if (contexto.popularidade < 8 && contexto.idDialogo == 95) {
+					contexto.idDialogo = 98
+					contexto.parteDialogo = 0
+					reiniciarOpcoes()
+					return
+				}
+				else if (contexto.popularidade >= 8 && contexto.idDialogo == 103) {
+					contexto.idDialogo = 105
+					contexto.parteDialogo = 0
+					reiniciarOpcoes()
+					return
+				}
+				else if (contexto.popularidade < 8 && contexto.idDialogo == 103) {
+					contexto.idDialogo = 106
+					contexto.parteDialogo = 0
+					reiniciarOpcoes()
+					return
+				}
+			}
+			if (contexto.local == "jardim" && contexto.popularidade >= 8) {
+				contexto.idDialogo = 79
+				contexto.parteDialogo = 0
+				reiniciarOpcoes()
+				return
+			}
+			else if (contexto.local == "jardim") {
+				contexto.idDialogo = 81
+				contexto.parteDialogo = 0
+				reiniciarOpcoes()
+				return
+			}
+		}
 		contexto.idDialogo = dialogos[contexto.idDialogo].id_que_opcao_leva[index]
 		contexto.parteDialogo = 0
 		reiniciarOpcoes()

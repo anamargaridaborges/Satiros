@@ -50,11 +50,12 @@ struct PopUpMapa: View {
 									.clipped()
 							
 							VStack(alignment: .leading, spacing: 10) {
-								Text("tool tip mapa")
+								Text("Now that you listened to today's confessions, you may explore the church and the village during the afternoon.")
 									.font(.appFont(selectedFont, size: 30))
 									.foregroundStyle(.white)
+									.padding()
 							}
-							.padding(30)
+							.padding(60)
 							.frame(width: 680, alignment: .leading)
 					}
 			}

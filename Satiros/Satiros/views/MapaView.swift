@@ -32,9 +32,10 @@ struct MapaView: View {
 					Spacer()
 					VStack (spacing: 50){ //placas esquerda
 						Button(action: {
+							contexto.local = "jardim"; contexto.idDialogo = 71; contexto.horario = "tarde"; contexto.parteDialogo = 0;
 							withAnimation { fadeOut = true }
 							DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-									path.removeAll()
+									path.append("jardim")
 							}
 						}){
 							ZStack(alignment: .bottomTrailing){
@@ -106,9 +107,10 @@ struct MapaView: View {
 					
 					VStack (spacing: 50){ //placas direita
 						Button(action: {
+							contexto.local = "biblioteca"; contexto.idDialogo = 90; contexto.horario = "tarde"; contexto.parteDialogo = 0;
 							withAnimation { fadeOut = true }
 							DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-									path.removeAll()
+									path.append("biblioteca")
 							}
 						}) {
 							ZStack(alignment: .bottomLeading){
