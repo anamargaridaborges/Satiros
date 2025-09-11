@@ -4,11 +4,5 @@
 <dict>
 	<key>ATSApplicationFontsPath</key>
 	<string>.</string>
-<!-- 	<key>LSApplicationCategoryType</key>
-	<string>public.app-category.games</string> -->
-
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-
 </dict>
 </plist>

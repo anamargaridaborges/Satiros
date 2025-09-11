@@ -37,7 +37,7 @@ struct Provider: AppIntentTimelineProvider {
 			}
 	
 			private func carregarImagem() -> String {
-					let defaults = UserDefaults(suiteName: "group.satiros.Satiros.MuralWidget")
+					let defaults = UserDefaults(suiteName: "group.satiros.Satiros")
 					return defaults?.string(forKey: "widgetImage") ?? "mural0"
 			}
 
