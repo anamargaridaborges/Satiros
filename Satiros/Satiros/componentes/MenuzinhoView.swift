@@ -98,7 +98,7 @@ struct MenuzinhoView: View {
 			}
     }
 	private func salvarImagemEscolhida(_ nome: String) {
-		let defaults = UserDefaults(suiteName: "group.satiros.Satiros.MuralWidget")
+		let defaults = UserDefaults(suiteName: "group.satiros.Satiros")
 		defaults?.set(nome, forKey: "widgetImage")
 		
 		WidgetCenter.shared.reloadTimelines(ofKind: "MuralWidget")

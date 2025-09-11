@@ -1,5 +1,7 @@
 import SwiftUI
 import SwiftData
+import WidgetKit
+
 struct ConfessionarioView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
@@ -151,6 +153,11 @@ struct ConfessionarioView: View {
 											if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo]) {
 												isSpeaking = false
 											}
+											if (contexto.idDialogo == 16){
+												salvarImagemEscolhida("mural2")
+											} else if (contexto.idDialogo == 23) {
+												salvarImagemEscolhida("mural3")
+											}
 										}
 										.onChange(of: opcoes.joined()) { _ in
 											withAnimation {
@@ -175,6 +182,18 @@ struct ConfessionarioView: View {
 			.animation(.easeOut(duration: 1), value: fadeOut)
 			.navigationBarBackButtonHidden()
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
+		}
+	
+	private func salvarImagemEscolhida(_ nome: String) {
+			let defaults = UserDefaults(suiteName: "group.satiros.Satiros")
+			defaults?.set(nome, forKey: "widgetImage")
+		if defaults != nil {
+			print("Estou aqui")
+			print(defaults?.string(forKey: "widgetImage"))
+		} else {
+			print("Não funfou!!")
+		}
+			WidgetCenter.shared.reloadTimelines(ofKind: "MuralWidget")
 		}
 	
 	func addBlocoDeNotas (resumo: String) {
