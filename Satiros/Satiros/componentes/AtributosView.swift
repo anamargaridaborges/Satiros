@@ -11,8 +11,6 @@ struct AtributosView: View {
 	
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
-	//@Bindable var contexto: ContextoConfessionario2.ContextoSalvo
-
 	@State var passaNoAsset: [Bool] = [false, false] //[popularidade, desconfianca]
 	@State var mostrarBalao:  [Bool] = [false, false]
 	
@@ -94,7 +92,6 @@ struct AtributosView: View {
 						}
 					}
 					.padding(.top, 20)
-
 		}
 }
 

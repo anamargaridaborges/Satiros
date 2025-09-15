@@ -11,7 +11,7 @@ struct MuralView: View {
 	
 	@State var passaNaFoto: [Bool] = [false, false, false, false, false, false, false]
 	@State var clicaFoto: [Bool] = [false, false, false, false, false, false, false]
-	@Binding var path: [String]
+	@Binding var path: [Caminhos]
 	
     var body: some View {
 			GeometryReader { geometry in

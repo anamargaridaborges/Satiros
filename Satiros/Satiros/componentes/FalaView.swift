@@ -1,11 +1,10 @@
 import SwiftUI
 struct FalaView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Binding var path: [String]
+	@Binding var path: [Caminhos]
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@FocusState private var estaFocado: FocusKey?
 	@State var texto: String = ""
-	//@State var idFala: Int = 0
 	@State var opcoes: [String] = []
 	@State var terminou: Bool = true
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
@@ -272,7 +271,7 @@ struct FalaView: View {
 			}
 		}
 		if (dialogos[contexto.idDialogo].id_que_opcao_leva[index] == 111) {
-			path.append("selecionarMural")
+			path.append(.selecionarMural)
 			return
 		}
 		contexto.idDialogo = dialogos[contexto.idDialogo].id_que_opcao_leva[index]

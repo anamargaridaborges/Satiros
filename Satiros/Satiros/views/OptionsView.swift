@@ -11,7 +11,7 @@ struct OptionsView: View {
 	
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@State var defaults = UserDefaults.standard
-	@Binding var path: [String]
+	@Binding var path: [Caminhos]
 	
     var body: some View {
 			ZStack{

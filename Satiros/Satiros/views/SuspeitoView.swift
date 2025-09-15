@@ -12,7 +12,7 @@ struct SuspeitoView: View {
 	var suspeito: String
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Binding var clicaFoto: Bool
-	@Binding var path: [String]
+	@Binding var path: [Caminhos]
 	
 		var body: some View {
 			GeometryReader { geo in

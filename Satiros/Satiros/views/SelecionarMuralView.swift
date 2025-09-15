@@ -10,7 +10,7 @@ import SwiftData
 
 struct SelecionarMuralView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Binding var path: [String]
+	@Binding var path: [Caminhos]
 	@State var falaNome: Bool = false
 	@State private var fadeIn = false
 	@State private var fadeOut = false

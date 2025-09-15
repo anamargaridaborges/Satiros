@@ -5,7 +5,7 @@ import WidgetKit
 struct ConfessionarioView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
-	@Binding var path: [String]
+	@Binding var path: [Caminhos]
 	@FocusState var estaFocado: FocusKey?
 	@State var texto: String = ""
 	//@State var idFala: Int = 0

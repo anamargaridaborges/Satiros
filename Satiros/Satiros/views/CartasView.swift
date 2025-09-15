@@ -12,7 +12,7 @@ struct CartasView: View {
 	
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
-	@Binding var path: [String]
+	@Binding var path: [Caminhos]
 	@State var passaNaCarta: [Bool] = [false, false, false, false, false]
 	@State var passaNoAsset: [Bool] = [false, false] //[popularidade, desconfianca]
 	@State var mostrarBalao:  [Bool] = [false, false]
