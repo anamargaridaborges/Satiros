@@ -62,10 +62,10 @@ struct OptionsView: View {
 										.padding()
 								}
 								.background(
-														RoundedRectangle(cornerRadius: 20)
-															//.background(.white)
-															.opacity(0.2)
-												)
+										RoundedRectangle(cornerRadius: 20)
+											//.background(.white)
+											.opacity(0.2)
+								)
 							
 						}
 						.buttonStyle(.plain)

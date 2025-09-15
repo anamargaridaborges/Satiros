@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum Caminhos: String, Hashable {
+enum Caminhos: String, Hashable, Codable, RawRepresentable {
 	case novoJogo
 	case tutorial
 	case confessionario
@@ -68,7 +68,7 @@ extension Caminhos {
 					MapaView(contexto: contexto[0], path: path, bloco: bloco[0])
 
 			case .falaIntro:
-					FalaIntroView(contexto: contexto[0], path: path, bloco: bloco[0])
+					FalaIntroView(contexto: contexto[0], path: path)
 
 			case .jardim:
 					JardimView(contexto: contexto[0], path: path, bloco: bloco[0])

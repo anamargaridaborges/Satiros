@@ -12,11 +12,7 @@ struct MapaView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@Binding var path: [Caminhos]
-	@FocusState private var estaFocado: FocusKey?
-	@State var texto: String = ""
-	@State var opcoes: [String] = []
-	@State var terminou: Bool = true
-	@State private var tarefaOpcoes: Task<Void, Never>? = nil
+	//@FocusState private var estaFocado: FocusKey?
 	@Bindable var bloco: ContextoConfessionario3.Bloco
 	@State var passaNaPlaca: [Bool] = [false, false, false, false]
 	@State private var fadeIn = false
@@ -32,10 +28,10 @@ struct MapaView: View {
 					Spacer()
 					VStack (spacing: 50){ //placas esquerda
 						Button(action: {
-							contexto.local = "jardim"; contexto.idDialogo = 71; contexto.horario = "tarde"; contexto.parteDialogo = 0;
+							contexto.local = .jardim; contexto.idDialogo = 71; contexto.horario = "tarde"; contexto.parteDialogo = 0;
 							withAnimation { fadeOut = true }
 							DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-									path.append("jardim")
+								path.append(.jardim)
 							}
 						}){
 							ZStack(alignment: .bottomTrailing){
@@ -107,10 +103,10 @@ struct MapaView: View {
 					
 					VStack (spacing: 50){ //placas direita
 						Button(action: {
-							contexto.local = "biblioteca"; contexto.idDialogo = 90; contexto.horario = "tarde"; contexto.parteDialogo = 0;
+							contexto.local = .biblioteca; contexto.idDialogo = 90; contexto.horario = "tarde"; contexto.parteDialogo = 0;
 							withAnimation { fadeOut = true }
 							DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-									path.append("biblioteca")
+								path.append(.biblioteca)
 							}
 						}) {
 							ZStack(alignment: .bottomLeading){

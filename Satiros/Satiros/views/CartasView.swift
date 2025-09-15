@@ -16,7 +16,6 @@ struct CartasView: View {
 	@State var passaNaCarta: [Bool] = [false, false, false, false, false]
 	@State var passaNoAsset: [Bool] = [false, false] //[popularidade, desconfianca]
 	@State var mostrarBalao:  [Bool] = [false, false]
-//	@State private var showImage = true
 	@Query(sort: \ContextoConfessionario3.ContextoConfessionario.momentoAdicionado, order: .forward) var dialogosConfessionario: [ContextoConfessionario3.ContextoConfessionario]
 	@State private var scrollProxy: ScrollViewProxy? = nil
 	@State var texto: String = ""
@@ -36,9 +35,6 @@ struct CartasView: View {
 									Image("fundoCartas")
 											.resizable()
 											.clipped()
-//											.opacity(showImage ? 1 : 0)
-//											.animation(.easeInOut(duration: 0.5), value: showImage)
-											//.aspectRatio(1/1, contentMode: .fill)
 									
 								VStack(alignment: .leading) {
 									AtributosView(contexto: contexto)
@@ -51,14 +47,14 @@ struct CartasView: View {
 														contexto.horario = "confissao2"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																path.append("confessionario")
+															path.append(.confessionario)
 														}
 													}
 														else {
 															contexto.popularidade += 1
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																	path.append("popUpMapa")
+																path.append(.popUpMapa)
 															}
 														}}) {
 												ZStack {
@@ -90,7 +86,7 @@ struct CartasView: View {
 													contexto.horario = "confissao2"
 													withAnimation { fadeOut = true }
 													DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-															path.append("confessionario")
+														path.append(.confessionario)
 													}
 												}
 													else {
@@ -98,7 +94,7 @@ struct CartasView: View {
 														contexto.desconfianca -= 1
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																path.append("popUpMapa")
+															path.append(.popUpMapa)
 														}
 													}
 												}) {
@@ -130,14 +126,14 @@ struct CartasView: View {
 													contexto.horario = "confissao2"
 													withAnimation { fadeOut = true }
 													DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-															path.append("confessionario")
+														path.append(.confessionario)
 													}
 												}
 													else {
 														contexto.desconfianca -= 1
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																path.append("popUpMapa")
+															path.append(.popUpMapa)
 														}
 													}}) {
 														ZStack {
@@ -170,13 +166,13 @@ struct CartasView: View {
 														contexto.horario = "confissao2"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																path.append("confessionario")
+															path.append(.confessionario)
 														}
 													}
 														else {
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																	path.append("popUpMapa")
+																path.append(.popUpMapa)
 															}
 														}}) {
 															ZStack {
@@ -207,14 +203,14 @@ struct CartasView: View {
 														contexto.horario = "confissao2"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																path.append("confessionario")
+															path.append(.confessionario)
 														}
 													}
 														else {
 															contexto.desconfianca -= 1
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																	path.append("popUpMapa")
+																path.append(.popUpMapa)
 															}
 														}}) {
 															ZStack {
@@ -246,7 +242,7 @@ struct CartasView: View {
 														contexto.horario = "confissao2"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																path.append("confessionario")
+															path.append(.confessionario)
 														}
 													}
 														else {
@@ -254,7 +250,7 @@ struct CartasView: View {
 															contexto.desconfianca += 1
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																	path.append("popUpMapa")
+																path.append(.popUpMapa)
 															}
 														}}) {
 															ZStack {
@@ -285,14 +281,14 @@ struct CartasView: View {
 														contexto.horario = "confissao2"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																path.append("confessionario")
+															path.append(.confessionario)
 														}
 													}
 														else {
 															contexto.desconfianca -= 1
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																	path.append("popUpMapa")
+																path.append(.popUpMapa)
 															}
 														}}) {
 															ZStack {
@@ -368,7 +364,6 @@ struct CartasView: View {
 																	Text("Control, Faith, Honor")
 																		.foregroundColor(.white)
 																		.font(.appFont(selectedFont, size: 30))
-																		//.padding()
 																}
 																if (passaNaCarta[1]) {
 																	Spacer()
@@ -378,7 +373,6 @@ struct CartasView: View {
 																	Text("Control, Honor, Providence")
 																		.foregroundColor(.white)
 																		.font(.appFont(selectedFont, size: 30))
-																		//.padding()
 																}
 																if (passaNaCarta[2]) {
 																	Spacer()
@@ -388,7 +382,6 @@ struct CartasView: View {
 																	Text("Perseverance, Faith, Providence")
 																		.foregroundColor(.white)
 																		.font(.appFont(selectedFont, size: 30))
-																		//.padding()
 																}
 																if (passaNaCarta[3]) {
 																	Spacer()
@@ -398,7 +391,6 @@ struct CartasView: View {
 																	Text("Loss, Perseverance, Providence")
 																		.foregroundColor(.white)
 																		.font(.appFont(selectedFont, size: 30))
-																		//.padding()
 																}
 																if (passaNaCarta[4]) {
 																	Spacer()
@@ -408,12 +400,10 @@ struct CartasView: View {
 																	Text("Perseverance, Faith, Renunciation")
 																		.foregroundColor(.white)
 																		.font(.appFont(selectedFont, size: 30))
-																		//.padding()
 																}
 															}
 															.padding(.bottom, 25)
 														}
-														//.id("atual")
 													}
 														
 												}
@@ -424,68 +414,6 @@ struct CartasView: View {
 												}
 											}
 										}
-										/*Spacer()
-										if (passaNaCarta[0] || passaNaCarta[1] || passaNaCarta[2] || passaNaCarta[3] || passaNaCarta[4] ) {
-											ZStack (alignment: .bottom){
-												Image("detalheCarta")
-													.resizable()
-													.clipped()
-													.frame(width: 505, height: 161)
-												VStack () {
-													if (passaNaCarta[0]) {
-														Spacer()
-														Text("Moses")
-															.foregroundColor(.white)
-															.font(.appFont(selectedFont, size: 50))
-														Text("Control, Faith, Honor")
-															.foregroundColor(.white)
-															.font(.appFont(selectedFont, size: 30))
-															//.padding()
-													}
-													if (passaNaCarta[1]) {
-														Spacer()
-														Text("Solomon")
-															.foregroundColor(.white)
-															.font(.appFont(selectedFont, size: 50))
-														Text("Control, Honor, Providence")
-															.foregroundColor(.white)
-															.font(.appFont(selectedFont, size: 30))
-															//.padding()
-													}
-													if (passaNaCarta[2]) {
-														Spacer()
-														Text("David")
-															.foregroundColor(.white)
-															.font(.appFont(selectedFont, size: 50))
-														Text("Perseverance, Faith, Providence")
-															.foregroundColor(.white)
-															.font(.appFont(selectedFont, size: 30))
-															//.padding()
-													}
-													if (passaNaCarta[3]) {
-														Spacer()
-														Text("Joseph")
-															.foregroundColor(.white)
-															.font(.appFont(selectedFont, size: 50))
-														Text("Loss, Perseverance, Providence")
-															.foregroundColor(.white)
-															.font(.appFont(selectedFont, size: 30))
-															//.padding()
-													}
-													if (passaNaCarta[4]) {
-														Spacer()
-														Text("Noah")
-															.foregroundColor(.white)
-															.font(.appFont(selectedFont, size: 50))
-														Text("Perseverance, Faith, Renunciation")
-															.foregroundColor(.white)
-															.font(.appFont(selectedFont, size: 30))
-															//.padding()
-													}
-												}
-												.padding(.bottom, 25)
-											}
-										}*/
 										}
 									.background(Color("Fundo"))
 									.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)

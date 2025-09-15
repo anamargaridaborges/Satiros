@@ -13,10 +13,7 @@ struct MenuzinhoView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@Binding var path: [Caminhos]
-	@State var passaNoAsset: [Bool] = [false, false] //[notas, sair]
-	@FocusState var estaFocado: FocusKey?
 	@Binding var clicaBloco: Bool
-	@State var mostrarBalao:  Bool = false
 	
     var body: some View {
 			HStack(spacing: 150){

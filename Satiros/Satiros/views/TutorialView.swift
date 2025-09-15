@@ -13,12 +13,7 @@ struct TutorialView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@Binding var path: [Caminhos]
-	@FocusState private var estaFocado: FocusKey?
-	@State var texto: String = ""
-	//@State var idFala: Int = 0
-	@State var opcoes: [String] = []
-	@State var terminou: Bool = true
-	@State private var tarefaOpcoes: Task<Void, Never>? = nil
+  @FocusState private var estaFocado: FocusKey?
 	@Bindable var bloco: ContextoConfessionario3.Bloco
 	@State var falaNome: Bool = false
 	@State private var fadeIn = false
@@ -54,36 +49,6 @@ struct TutorialView: View {
 							.aspectRatio(16 / 10, contentMode: .fit)
 							.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 				}
-//				HStack(alignment: .top){
-//						Spacer()
-//						Button (action: {path.removeAll()}){
-//							Image("sair")
-//								.resizable()
-//								.clipped()
-//								.frame(width: 50, height: 50)
-//								.padding(20)
-//								.scaleEffect(passaNoAsset ? 1.1 : 1.0)
-//								.onHover {over in
-//									passaNoAsset = over
-//								}
-//						}
-//						.buttonStyle(.plain)
-//						//					.focusable()
-//						//					.focusEffectDisabled()
-//						//					.focused($estaFocado, equals: FocusKey.escape)
-//						//					.onKeyPress(.escape) {
-//						//						path.removeAll()
-//						//						return .handled
-//						//					}
-//						//					.onChange(of: estaFocado) {
-//						//						estaFocado = FocusKey.escape
-//						//					}
-//					}
-//				.offset(y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 200: 0)
-				
-				
-				//AtributosView(contexto: contexto)
-					//.offset(y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 200: 0)
 				if (contexto.idDialogo != 15) {
 					FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
 					
@@ -91,28 +56,7 @@ struct TutorialView: View {
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
 					HStack(alignment: .top){
 						Spacer()
-						Button (action: {path.removeAll()}){
-							Image("sair")
-								.resizable()
-								.clipped()
-								.frame(width: 50, height: 50)
-								.padding(20)
-								.scaleEffect(passaNoAsset ? 1.1 : 1.0)
-								.onHover {over in
-									passaNoAsset = over
-								}
-						}
-						.buttonStyle(.plain)
-						//					.focusable()
-						//					.focusEffectDisabled()
-						//					.focused($estaFocado, equals: FocusKey.escape)
-						//					.onKeyPress(.escape) {
-						//						path.removeAll()
-						//						return .handled
-						//					}
-						//					.onChange(of: estaFocado) {
-						//						estaFocado = FocusKey.escape
-						//					}
+						BotaoSair(contexto: contexto, path: $path, passaNoAsset: passaNoAsset, estaFocado: _estaFocado)
 					}
 					.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
 				}
@@ -128,31 +72,14 @@ struct TutorialView: View {
 			.onChange(of: contexto.idDialogo) {
 				defineFalaNome()
 				if (contexto.idDialogo == 15) {
-					//FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome()).cancelarTarefa()
-					//withAnimation { fadeOut = true }
-					//DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 							contexto.horario = "confissao1"
-							contexto.local = "confessionario"
+					contexto.local = .confessionario
 							contexto.parteDialogo = 0
-							path.append("confessionario")
-					//}
+					path.append(.confessionario)
 				}
 				if (contexto.idDialogo == 1){
 					salvarImagemEscolhida("mural1")
 				}
-//				if (contexto.idDialogo == 0 && terminou) {
-//					fadeOut = false
-//					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//						withAnimation { fadeOut = true }
-//					}
-//					
-//				}
-//				if (contexto.idDialogo == 80) {
-//					fadeIn = false
-//					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//						withAnimation { fadeIn = true }
-//					}
-//				}
 			}
 			.onAppear {
 				withAnimation { fadeIn = true }

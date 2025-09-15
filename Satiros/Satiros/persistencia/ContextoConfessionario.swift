@@ -114,16 +114,20 @@ enum ContextoConfessionario3: VersionedSchema {
 	@Model
 	class ContextoSalvo: Identifiable {
 			var idDialogo: Int
-			var local: String
+			private var localRaw: String
 			var dia: Int
 			var horario: String
 			var popularidade: Int
 			var desconfianca: Int
 			var parteDialogo: Int
 			var cartaUsada: Int
-		init(idDialogo: Int = 0, local: String = "tutorial", dia: Int = 1, horario: String = "manha", popularidade: Int = 5, desconfianca: Int = 5, parteDialogo: Int = 0, cartaUsada: Int = -1) {
+			var local: Caminhos {
+				get { Caminhos(rawValue: localRaw) ?? .tutorial }
+				set { localRaw = newValue.rawValue }
+		}
+		init(idDialogo: Int = 0, local: Caminhos = .tutorial, dia: Int = 1, horario: String = "manha", popularidade: Int = 5, desconfianca: Int = 5, parteDialogo: Int = 0, cartaUsada: Int = -1) {
 				self.idDialogo = idDialogo
-				self.local = local
+			self.localRaw = local.rawValue
 				self.dia = dia
 				self.horario = horario
 				self.popularidade = popularidade
@@ -174,7 +178,8 @@ enum ConfessionarioMigracao: SchemaMigrationPlan {
 			let contexto = try context.fetch(FetchDescriptor<ContextoConfessionario2.ContextoSalvo>())
 			for cont in contexto {
 				context.delete(cont)
-				context.insert(ContextoConfessionario3.ContextoSalvo(idDialogo: cont.idDialogo, local: cont.local, dia: cont.dia, horario: cont.horario, popularidade: cont.popularidade, desconfianca: cont.desconfianca, parteDialogo: 0, cartaUsada: -1))
+				let novoLocal = Caminhos(rawValue: cont.local) ?? .tutorial
+				context.insert(ContextoConfessionario3.ContextoSalvo(idDialogo: cont.idDialogo, local: novoLocal, dia: cont.dia, horario: cont.horario, popularidade: cont.popularidade, desconfianca: cont.desconfianca, parteDialogo: 0, cartaUsada: -1))
 			}
 			try context.save()
 		}, didMigrate: nil

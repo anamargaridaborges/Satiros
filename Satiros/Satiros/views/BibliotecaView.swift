@@ -60,7 +60,7 @@ struct BibliotecaView: View {
 				defineFalaNome()
 				if (contexto.idDialogo == 29) {
 					contexto.horario = "noite"
-					contexto.local = "quarto"
+					contexto.local = .quarto
 					contexto.parteDialogo = 0
 					path.append(.quarto)
 				}

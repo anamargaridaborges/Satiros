@@ -11,14 +11,8 @@ import SwiftData
 struct SelecionarMuralView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Binding var path: [Caminhos]
-	@State var falaNome: Bool = false
 	@State private var fadeIn = false
 	@State private var fadeOut = false
-	let frames = ["cut1", "cut2", "cut3", "cut4", "cut5"]
-	@State private var frameIndex = 0
-	@State var tick: Bool = false
-	@State private var animationFinished = false
-	@State var passaNoAsset: Bool = false
 	@State var passaMural: Bool = false
 	
 	var body: some View {
@@ -28,7 +22,8 @@ struct SelecionarMuralView: View {
 				.resizable()
 				.aspectRatio(16 / 10, contentMode: .fit)
 				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-				Button (action: {path.append("mural")}) {
+			
+			Button (action: {path.append(.mural)}) {
 						Image("muralzinho")
 							.resizable()
 							.scaledToFit()

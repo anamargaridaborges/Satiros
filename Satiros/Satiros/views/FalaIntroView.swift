@@ -13,13 +13,6 @@ struct FalaIntroView: View {
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@Binding var path: [Caminhos]
 	@FocusState private var estaFocado: FocusKey?
-	@State var texto: String = ""
-	//@State var idFala: Int = 0
-	@State var opcoes: [String] = []
-	@State var terminou: Bool = true
-	@State private var tarefaOpcoes: Task<Void, Never>? = nil
-	@Bindable var bloco: ContextoConfessionario3.Bloco
-	@State var falaNome: Bool = false
 	@State private var fadeIn = false
 	@State private var fadeOut = false
 	
@@ -50,7 +43,7 @@ struct FalaIntroView: View {
 			.onKeyPress(.return) {
 				withAnimation { fadeOut = true }
 				DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-						path.append("tutorial")
+					path.append(.tutorial)
 				}
 				return .handled
 			}
@@ -65,7 +58,3 @@ struct FalaIntroView: View {
 	
 	
 }
-
-//#Preview {
-//		//TutorialView()
-//}
