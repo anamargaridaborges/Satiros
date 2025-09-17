@@ -49,10 +49,8 @@ struct QuartoView: View {
 				
 				AtributosView(contexto: contexto)
 					.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 30: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
-				HStack(alignment: .top){
-					Spacer()
-					BotaoSair(contexto: contexto, path: $path)
-				}
+				
+				BotaoSair(contexto: contexto, path: $path)
 				.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -30: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
 			}
 			

@@ -13,7 +13,6 @@ struct TutorialView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@Binding var path: [Caminhos]
-  @FocusState private var estaFocado: FocusKey?
 	@Bindable var bloco: ContextoConfessionario3.Bloco
 	@State var falaNome: Bool = false
 	@State private var fadeIn = false
@@ -54,11 +53,9 @@ struct TutorialView: View {
 					
 					AtributosView(contexto: contexto)
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
-					HStack(alignment: .top){
-						Spacer()
-						BotaoSair(contexto: contexto, path: $path, passaNoAsset: passaNoAsset, estaFocado: _estaFocado)
-					}
-					.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
+					
+					BotaoSair(contexto: contexto, path: $path)
+						.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
 				}
 				
 			}

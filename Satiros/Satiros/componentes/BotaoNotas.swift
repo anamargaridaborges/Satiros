@@ -15,12 +15,13 @@ struct BotaoNotas: View {
 				Image("notas")
 					.resizable()
 					.clipped()
-					.frame(width: 50, height: 50)
+					.frame(width: 55, height: 55)
 					.scaleEffect(passaNoAsset ? 1.1 : 1.0)
 					.onHover {over in
 						passaNoAsset = over
 						mostrarBalao = over
 					}
+					.padding()
 					.overlay(alignment: .leading) {
 						if mostrarBalao {
 							ZStack {

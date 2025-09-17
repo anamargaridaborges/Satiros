@@ -72,7 +72,6 @@ struct FalaView: View {
 				.frame(maxHeight: 280, alignment: .top)
 				.frame(width: 1120, alignment: .bottomLeading)
 				.offset(x: 0, y: 270)
-				
 				.focusable()
 				.focusEffectDisabled()
 				.focused($estaFocado, equals: .enter)
@@ -153,16 +152,6 @@ struct FalaView: View {
 				.navigationBarBackButtonHidden()
 			}
 			.padding(0)
-					//					.focusable()
-					//					.focusEffectDisabled()
-					//					.focused($estaFocado, equals: FocusKey.escape)
-					//					.onKeyPress(.escape) {
-					//						path.removeAll()
-					//						return .handled
-					//					}
-					//					.onChange(of: estaFocado) {
-					//						estaFocado = FocusKey.escape
-					//					}
 				}
 		}
 	

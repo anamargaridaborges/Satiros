@@ -6,10 +6,12 @@ struct BotaoSair: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@Binding var path: [Caminhos]
-	@State var passaNoAsset: Bool = false
-	@FocusState var estaFocado: FocusKey?
+	@State private var passaNoAsset: Bool = false
+	//@FocusState private var estaFocado: FocusKey?
 	
-		var body: some View {
+	var body: some View {
+		HStack(alignment: .top){
+			Spacer()
 			Button (action: {path.removeAll()}){
 				Image("sair")
 					.resizable()
@@ -19,17 +21,20 @@ struct BotaoSair: View {
 					.onHover {over in
 						passaNoAsset = over
 					}
+					.padding(20)
 			}
 			.buttonStyle(.plain)
-			.focusable()
-			.focusEffectDisabled()
-			.focused($estaFocado, equals: FocusKey.escape)
-			.onKeyPress(.escape) {
-				path.removeAll()
-				return .handled
-			}
-			.onChange(of: estaFocado) {
-				estaFocado = FocusKey.escape
-			}
+//			.focusable()
+//			.focusEffectDisabled()
+//			.focused($estaFocado, equals: FocusKey.escape)
+//			.onKeyPress(.escape) {
+//				path.removeAll()
+//				return .handled
+//			}
+//			.onChange(of: estaFocado) {
+//				estaFocado = FocusKey.escape
+//			}
+
 		}
+	}
 }

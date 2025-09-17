@@ -160,6 +160,7 @@ struct MapaView: View {
 					Spacer()
 				}
 				AtributosView(contexto: contexto)
+				BotaoSair(contexto: contexto, path: $path)
 			}
 			.onAppear {
 				withAnimation { fadeIn = true }

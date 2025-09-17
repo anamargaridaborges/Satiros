@@ -40,10 +40,8 @@ struct JardimView: View {
 					
 					AtributosView(contexto: contexto)
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Thomas") ? 328: 0, y: (dialogos[contexto.idDialogo].personagem == "Thomas") ? 205 : 0)
-					HStack(alignment: .top){
-						Spacer()
-						BotaoSair(contexto: contexto, path: $path)
-					}
+					
+					BotaoSair(contexto: contexto, path: $path)
 					.offset(x: (dialogos[contexto.idDialogo].personagem == "Thomas") ? -328: 0, y: (dialogos[contexto.idDialogo].personagem == "Thomas") ? 205 : 0)
 				}
 				

@@ -41,11 +41,8 @@ struct BibliotecaView: View {
 					AtributosView(contexto: contexto)
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 65: 0, y: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 38 : 0)
 					
-					HStack(alignment: .top){
-						Spacer()
-						BotaoSair(contexto: contexto, path: $path)
-					}
-					.offset(x: (dialogos[contexto.idDialogo].personagem == "Edgar") ? -65: 0, y: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 38 : 0)
+					BotaoSair(contexto: contexto, path: $path)
+						.offset(x: (dialogos[contexto.idDialogo].personagem == "Edgar") ? -65: 0, y: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 38 : 0)
 				}
 				
 			}
