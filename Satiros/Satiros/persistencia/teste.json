@@ -603,7 +603,7 @@
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
 		"local_fundo":"Quarto",
-		"resumo_notas":"TROVE claims the church is rich in minerals, Desmond believes otherwise"
+		"resumo_notas":"TROVE claims the church is rich in minerals,\nDesmond believes otherwise"
 	},
 	{
 		"id":55,
@@ -878,7 +878,7 @@
 		"impacto_opcao_pop":[0, 0],
 		"impacto_opcao_desc":[0, 0],
 		"local_fundo":"Jardim",
-		"resumo_notas":"Thomas got the bruise from one of the others, maybe the angry one from the confessions?"
+		"resumo_notas":"Thomas got the bruise from one of the others,\nmaybe the angry one from the confessions?"
 	},
 	{
 		"id":80,
@@ -944,7 +944,7 @@
 		"impacto_opcao_pop":[2, -2],
 		"impacto_opcao_desc":[-1, 0],
 		"local_fundo":"Jardim",
-		"resumo_notas":"Lorgan took special care of the garden, maybe there is something there"
+		"resumo_notas":"Lorgan took special care of the garden,\nmaybe there is something there"
 	},
 	{
 		"id":86,

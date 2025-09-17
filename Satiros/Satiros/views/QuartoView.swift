@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 struct QuartoView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
@@ -28,77 +29,53 @@ struct QuartoView: View {
 	@State private var animationFinished = false
 	@State var passaNoAsset: Bool = false
 	@State var passaMural: Bool = false
+	@State var clicaBloco: Bool = false
 	
-	var body: some View {
-		GeometryReader { geometry in
-		ZStack(alignment: .topLeading){
-			Image(dialogos[contexto.idDialogo].local_fundo)
-				.resizable()
-				.scaleEffect((dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 1.0 : 1.0)
-				.aspectRatio(16 / 10, contentMode: .fit)
-				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-			if(contexto.idDialogo == 111) {
-				Button (action: {if (contexto.idDialogo == 111) {
-					path.append("mural")}}) {
-						Image("muralzinho")
-							.resizable()
-							.scaledToFit()
-							.frame(width: geometry.size.width * 0.25)
-						//.contentShape(Rectangle())
-							.onHover {over in
-								passaMural = over
-							}
-					}
-					.scaleEffect(passaMural && contexto.idDialogo == 111 ? 1.2 : 1)
-					.buttonStyle(.plain)
-					.offset(x: 650, y:200)
-			}
-			
-			if (contexto.idDialogo != 111) {
-				FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
-				
-				AtributosView(contexto: contexto)
-					.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 30: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
-				HStack(alignment: .top){
-					Spacer()
-					Button (action: {path.removeAll()}){
-						Image("sair")
-							.resizable()
-							.clipped()
-							.frame(width: 50, height: 50)
-							.padding(20)
-							.scaleEffect(passaNoAsset ? 1.1 : 1.0)
-							.onHover {over in
-								passaNoAsset = over
-							}
-					}
-					.buttonStyle(.plain)
-					//					.focusable()
-					//					.focusEffectDisabled()
-					//					.focused($estaFocado, equals: FocusKey.escape)
-					//					.onKeyPress(.escape) {
-					//						path.removeAll()
-					//						return .handled
-					//					}
-					//					.onChange(of: estaFocado) {
-					//						estaFocado = FocusKey.escape
-					//					}
+		var body: some View {
+			ZStack(alignment: .topLeading){
+				Image(dialogos[contexto.idDialogo].local_fundo)
+						.resizable()
+						.scaleEffect((dialogos[contexto.idDialogo].personagem == "Sister Desmond" && !clicaBloco) ? 0.71 : 1.0)
+						//.aspectRatio(16 / 10, contentMode: .fit)
+						.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+				if(contexto.idDialogo == 111 && !clicaBloco) {
+					Button (action: {if (contexto.idDialogo == 111) {
+						path.append("mural")}}) {
+							Image("muralzinho")
+								.resizable()
+								.scaledToFit()
+								.frame(width: 480, height: 422)
+							//.contentShape(Rectangle())
+								.onHover {over in
+									passaMural = over
+								}
+						}
+						.scaleEffect(passaMural && contexto.idDialogo == 111 ? 1.2 : 1)
+						.buttonStyle(.plain)
+						.offset(x: 650, y:200)
 				}
-				.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -30: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
+				if (!clicaBloco) {
+					FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
+					
+					AtributosView(contexto: contexto)
+						.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
+					SairBlocoView(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
+					.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
+				}
+				else {
+					BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)
+						.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+				}
 			}
-			
-		}
-	}
-		.aspectRatio(16/10, contentMode: .fit)
-		.offset(y: (dialogos[contexto.idDialogo].personagem != "Sister Desmond") ? 0 : -200)
+			.aspectRatio(16/10, contentMode: .fill)
 			.opacity(fadeIn ? 1 : 0)
 			.animation(.easeIn(duration: 1), value: fadeIn)
 			.opacity(fadeOut ? 0 : 1)
 			.animation(.easeOut(duration: 2), value: fadeOut)
-			.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.navigationBarBackButtonHidden()
 			.onChange(of: contexto.idDialogo) {
-				//defineFalaNome()
+				defineFalaNome()
 				if (contexto.idDialogo == 15) {
 					//FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome()).cancelarTarefa()
 					//withAnimation { fadeOut = true }
@@ -108,6 +85,9 @@ struct QuartoView: View {
 							contexto.parteDialogo = 0
 							path.append("confessionario")
 					//}
+				}
+				if (contexto.idDialogo == 1){
+					salvarImagemEscolhida("mural1")
 				}
 //				if (contexto.idDialogo == 0 && terminou) {
 //					fadeOut = false
@@ -126,6 +106,18 @@ struct QuartoView: View {
 			.onAppear {
 				withAnimation { fadeIn = true }
 			}
+		}
+	
+	private func salvarImagemEscolhida(_ nome: String) {
+			let defaults = UserDefaults(suiteName: "group.satiros.Satiros")
+			defaults?.set(nome, forKey: "widgetImage")
+		if defaults != nil {
+			print("Estou aqui")
+			print(defaults?.string(forKey: "widgetImage"))
+		} else {
+			print("Não funfou!!")
+		}
+			WidgetCenter.shared.reloadTimelines(ofKind: "MuralWidget")
 		}
 	
 	func defineFalaNome() -> Binding<Bool> {

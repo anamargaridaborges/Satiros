@@ -138,7 +138,7 @@ struct IntroducaoView: View {
 							BibliotecaView(contexto: contexto[0], path:$path, bloco: bloco[0])
 						}
 						else if local == "mural" {
-							MuralView(path: $path)
+							MuralView(path: $path, contexto: contexto[0], bloco: bloco[0])
 						}
 						else if local == "selecionarMural" {
 							SelecionarMuralView(path: $path)

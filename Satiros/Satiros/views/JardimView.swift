@@ -27,45 +27,39 @@ struct JardimView: View {
 	@State var tick: Bool = false
 	@State private var animationFinished = false
 	@State var passaNoAsset: Bool = false
+	@State var clicaBloco = false
 	
 		var body: some View {
 			ZStack(alignment: .topLeading){
 				
 				Image(dialogos[contexto.idDialogo].local_fundo)
 						.resizable()
-						.scaleEffect((dialogos[contexto.idDialogo].personagem == "Thomas") ? 0.7 : 1.0)
-						.aspectRatio(16 / 10, contentMode: .fit)
+						//.frame(width:1920, height:1200)
+						//.clipped()
+						.scaleEffect((dialogos[contexto.idDialogo].personagem == "Thomas" && !clicaBloco) ? 0.7 : 1.0)
+						//.aspectRatio(16 / 10, contentMode: .fit)
 						.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-				if (contexto.idDialogo != 15) {
+				if (!clicaBloco) {
 					FalaView( path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
 					
 					AtributosView(contexto: contexto)
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Thomas") ? 328: 0, y: (dialogos[contexto.idDialogo].personagem == "Thomas") ? 205 : 0)
-					HStack(alignment: .top){
-						Spacer()
-						Button (action: {path.removeAll()}){
-							Image("sair")
-								.resizable()
-								.clipped()
-								.frame(width: 50, height: 50)
-								.padding(20)
-								.scaleEffect(passaNoAsset ? 1.1 : 1.0)
-								.onHover {over in
-									passaNoAsset = over
-								}
-						}
-						.buttonStyle(.plain)
-					}
+					SairBlocoView(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
 					.offset(x: (dialogos[contexto.idDialogo].personagem == "Thomas") ? -328: 0, y: (dialogos[contexto.idDialogo].personagem == "Thomas") ? 205 : 0)
 				}
 				
+				if (clicaBloco) {
+					BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)
+				}
+				
 			}
+			//.scaledToFill()
 			.aspectRatio(16/10, contentMode: .fill)
 			.opacity(fadeIn ? 1 : 0)
 			.animation(.easeIn(duration: 1), value: fadeIn)
 			.opacity(fadeOut ? 0 : 1)
 			.animation(.easeOut(duration: 2), value: fadeOut)
-			.frame(maxWidth: .infinity, maxHeight: .infinity)
+			.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 			.navigationBarBackButtonHidden()
 			.onChange(of: contexto.idDialogo) {
 				defineFalaNome()

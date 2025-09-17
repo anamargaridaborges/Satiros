@@ -12,6 +12,9 @@ struct MuralView: View {
 	@State var passaNaFoto: [Bool] = [false, false, false, false, false, false, false]
 	@State var clicaFoto: [Bool] = [false, false, false, false, false, false, false]
 	@Binding var path: [String]
+	@State var clicaBloco = false
+	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
+	@Bindable var bloco: ContextoConfessionario3.Bloco
 	
     var body: some View {
 			GeometryReader { geometry in
@@ -134,6 +137,14 @@ struct MuralView: View {
 						SuspeitoView(suspeito: "Edgar", clicaFoto: $clicaFoto[6], path: $path)
 					}
 						}
+				
+//				AtributosView(contexto: contexto)
+//				SairBlocoView(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
+//				
+//				if (clicaBloco) {
+//					BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)
+//				}
+				
 					}
 				}
 			}
