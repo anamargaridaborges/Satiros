@@ -603,7 +603,7 @@
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
 		"local_fundo":"Quarto",
-		"resumo_notas":"TROVE claims the church is rich in minerals, Desmond believes otherwise"
+		"resumo_notas":"TROVE claims the church is rich in minerals,\nDesmond believes otherwise"
 	},
 	{
 		"id":55,
@@ -731,7 +731,7 @@
 		"personagem":"Narrator",
 		"texto":["You hear the faintest of laughs at the distance before the radio stops ringing.", "… Father…", "Now it’s time to make the report, click on the evidence board and arrange the evidence to send to They."],
 		"opcoes":[],
-		"id_que_opcao_leva":[-10],
+		"id_que_opcao_leva":[111],
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
 		"local_fundo":"Quarto",
@@ -878,7 +878,7 @@
 		"impacto_opcao_pop":[0, 0],
 		"impacto_opcao_desc":[0, 0],
 		"local_fundo":"Jardim",
-		"resumo_notas":"Thomas got the bruise from one of the others, maybe the angry one from the confessions?"
+		"resumo_notas":"Thomas got the bruise from one of the others,\nmaybe the angry one from the confessions?"
 	},
 	{
 		"id":80,
@@ -944,7 +944,7 @@
 		"impacto_opcao_pop":[2, -2],
 		"impacto_opcao_desc":[-1, 0],
 		"local_fundo":"Jardim",
-		"resumo_notas":"Lorgan took special care of the garden, maybe there is something there"
+		"resumo_notas":"Lorgan took special care of the garden,\nmaybe there is something there"
 	},
 	{
 		"id":86,
@@ -1219,6 +1219,17 @@
 		"impacto_opcao_pop":[0],
 		"impacto_opcao_desc":[0],
 		"local_fundo":"Biblioteca",
+		"resumo_notas":""
+	},
+	{
+		"id":111,
+		"personagem":"",
+		"texto":[""],
+		"opcoes":[""],
+		"id_que_opcao_leva":[-10],
+		"impacto_opcao_pop":[0],
+		"impacto_opcao_desc":[0],
+		"local_fundo":"Quarto",
 		"resumo_notas":""
 	}
 ]

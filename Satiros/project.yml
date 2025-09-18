@@ -1,5 +1,6 @@
 name: Satiros
 options:
+  bundleIdPrefix: satiros.Satiros
   deploymentTarget:
     macOS: "14.0"
   usesTabs: true
@@ -21,22 +22,13 @@ targets:
       - path: Resources
     settings:
       base:
-        GENERATE_INFOPLIST_FILE: YES
-        PRODUCT_BUNDLE_IDENTIFIER: satiros.Satiros.MuralWidget
+        PRODUCT_BUNDLE_IDENTIFIER: satiros.Satiros
         SWIFT_VERSION: 5.0
-        CODE_SIGN_STYLE: Automatic
-        DEVELOPMENT_TEAM: M6V5WGN23W
+        GENERATE_INFOPLIST_FILE: YES
     dependencies:
-      - target: MuralWidget
       - sdk: SwiftUI.framework
       - sdk: SpriteKit.framework
       - sdk: SwiftData.framework
-    entitlements:
-      path: Satiros/Satiros.entitlements
-      properties:
-        com.apple.security.app-sandbox: truegit status
-        com.apple.security.application-groups:
-          - group.satiros.Satiros.MuralWidget
 
   SatirosTests:
     type: bundle.unit-test
@@ -45,27 +37,3 @@ targets:
       - path: SatirosTests
     dependencies:
       - target: Satiros
-
-  MuralWidget:
-    type: app-extension
-    platform: macOS
-    deploymentTarget: "14.0"
-    sources:
-      - path: MuralWidget
-    settings:
-      base:
-        GENERATE_INFOPLIST_FILE: YES
-        PRODUCT_BUNDLE_IDENTIFIER: satiros.Satiros.MuralWidget
-        SWIFT_VERSION: 5.0
-        CODE_SIGN_STYLE: Automatic
-        DEVELOPMENT_TEAM: M6V5WGN23W
-    dependencies:
-      - sdk: SwiftUI.framework
-      - sdk: WidgetKit.framework
-    entitlements:
-      generate: true
-      path: MuralWidget/MuralWidget.entitlements
-      properties:
-        com.apple.security.app-sandbox: true
-        com.apple.security.application-groups:
-          - group.satiros.Satiros.MuralWidget

@@ -1,6 +1,7 @@
 import SwiftUI
 struct FalaView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
+	@Binding var path: [String]
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@FocusState private var estaFocado: FocusKey?
 	@State var texto: String = ""
@@ -11,6 +12,7 @@ struct FalaView: View {
 	@Bindable var bloco: ContextoConfessionario3.Bloco
 	@State var passaNoBotao: [Bool] = [false, false, false, false]
 	@Binding var falaNome: Bool
+	@Environment(\.modelContext) private var modelContext
 	
 	var body: some View {
 		ZStack (alignment: .bottom)
@@ -127,6 +129,9 @@ struct FalaView: View {
 					 return .handled
 					 }*/
 					proximaFala()
+					if (contexto.idDialogo == -10) {
+						return .handled
+					}
 					reiniciarOpcoes()
 					return .handled
 					
@@ -137,14 +142,12 @@ struct FalaView: View {
 				}
 				.onChange (of: contexto.idDialogo) {
 					if (dialogos[contexto.idDialogo].resumo_notas != "") {
-						if (bloco.textoPorDia.count < contexto.dia) {
-							bloco.textoPorDia.append(dialogos[contexto.idDialogo].resumo_notas)
-						}
-						else {
-							bloco.textoPorDia[contexto.dia - 1] += "\n"
-							bloco.textoPorDia[contexto.dia - 1] += dialogos[contexto.idDialogo].resumo_notas
+						if (!bloco.textoPorDia.contains(dialogos[contexto.idDialogo].resumo_notas + "\n")) {
+							bloco.textoPorDia.append(dialogos[contexto.idDialogo].resumo_notas + "\n")
+							try? modelContext.save()
 						}
 					}
+					print(bloco.textoPorDia)
 				}
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
 				.navigationBarBackButtonHidden()
@@ -197,14 +200,32 @@ struct FalaView: View {
 	}
 	
 	func selecionaOpcao (index: Int) {
-			contexto.desconfianca += dialogos[contexto.idDialogo].impacto_opcao_desc[index]
-			contexto.popularidade += dialogos[contexto.idDialogo].impacto_opcao_pop[index]
-			//let inicio = opcoes[index].index(texto.startIndex, offsetBy: 3)
-			/*let opcaoAtual = opcoes[index][inicio...]*/
-			proximaFala(index: index)
-			terminou = true
-			return
-	}
+			if (dialogos[contexto.idDialogo].impacto_opcao_pop[index] > 0) {
+				if (contexto.popularidade + dialogos[contexto.idDialogo].impacto_opcao_pop[index] <= 10) {
+					contexto.popularidade += dialogos[contexto.idDialogo].impacto_opcao_pop[index]
+				}
+			}
+			else {
+				if (contexto.popularidade + dialogos[contexto.idDialogo].impacto_opcao_pop[index] >= 0) {
+					contexto.popularidade += dialogos[contexto.idDialogo].impacto_opcao_pop[index]
+				}
+			}
+			if (dialogos[contexto.idDialogo].impacto_opcao_desc[index] > 0) {
+				if (contexto.desconfianca + dialogos[contexto.idDialogo].impacto_opcao_desc[index] <= 10) {
+					contexto.desconfianca += dialogos[contexto.idDialogo].impacto_opcao_desc[index]
+				}
+			}
+			else {
+				if (contexto.desconfianca + dialogos[contexto.idDialogo].impacto_opcao_desc[index] >= 0) {
+					contexto.desconfianca += dialogos[contexto.idDialogo].impacto_opcao_desc[index]
+				}
+			}
+				//let inicio = opcoes[index].index(texto.startIndex, offsetBy: 3)
+				/*let opcaoAtual = opcoes[index][inicio...]*/
+				proximaFala(index: index)
+				terminou = true
+				return
+		}
 	
 	func proximaFala(index: Int = 0) {
 		if (dialogos[contexto.idDialogo].id_que_opcao_leva[index] == -5) {
@@ -266,6 +287,10 @@ struct FalaView: View {
 				reiniciarOpcoes()
 				return
 			}
+		}
+		if (dialogos[contexto.idDialogo].id_que_opcao_leva[index] == 111) {
+			path.append("selecionarMural")
+			return
 		}
 		contexto.idDialogo = dialogos[contexto.idDialogo].id_que_opcao_leva[index]
 		contexto.parteDialogo = 0

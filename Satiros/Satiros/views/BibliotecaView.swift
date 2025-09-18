@@ -27,13 +27,14 @@ struct BibliotecaView: View {
 	@State var tick: Bool = false
 	@State private var animationFinished = false
 	@State var passaNoAsset: Bool = false
+	@State var clicaBloco = false
 	
 		var body: some View {
 			ZStack(alignment: .topLeading){
 				Image("Biblioteca")
 							.resizable()
-							.scaleEffect((dialogos[contexto.idDialogo].personagem == "Edgar") ? 0.93 : 1.0)
-							.aspectRatio(16 / 10, contentMode: .fit)
+							.scaleEffect((dialogos[contexto.idDialogo].personagem == "Edgar" && !clicaBloco) ? 0.93 : 1.0)
+							//.aspectRatio(16 / 10, contentMode: .fit)
 							.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 //				HStack(alignment: .top){
 //						Spacer()
@@ -65,37 +66,17 @@ struct BibliotecaView: View {
 				
 				//AtributosView(contexto: contexto)
 					//.offset(y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 200: 0)
-				if (contexto.idDialogo != 15) {
-					FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
+				if (!clicaBloco) {
+					FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
 					
 					AtributosView(contexto: contexto)
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 65: 0, y: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 38 : 0)
-					HStack(alignment: .top){
-						Spacer()
-						Button (action: {path.removeAll()}){
-							Image("sair")
-								.resizable()
-								.clipped()
-								.frame(width: 50, height: 50)
-								.padding(20)
-								.scaleEffect(passaNoAsset ? 1.1 : 1.0)
-								.onHover {over in
-									passaNoAsset = over
-								}
-						}
-						.buttonStyle(.plain)
-						//					.focusable()
-						//					.focusEffectDisabled()
-						//					.focused($estaFocado, equals: FocusKey.escape)
-						//					.onKeyPress(.escape) {
-						//						path.removeAll()
-						//						return .handled
-						//					}
-						//					.onChange(of: estaFocado) {
-						//						estaFocado = FocusKey.escape
-						//					}
-					}
+					SairBlocoView(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
 					.offset(x: (dialogos[contexto.idDialogo].personagem == "Edgar") ? -65: 0, y: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 38 : 0)
+				}
+				else {
+					BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)
+						//.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 				}
 				
 			}
