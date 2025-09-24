@@ -23,7 +23,7 @@ struct BotoesTelaInicio: View {
 				.buttonStyle(.plain)
 				.padding()
 				
-				Button(action: {}) {
+				Button(action: {path.append(.creditos)}) {
 					Image("conquistas")
 							.resizable()
 							.scaledToFit()

@@ -25,6 +25,7 @@ enum Caminhos: String, Hashable, Codable, RawRepresentable {
 	case biblioteca
 	case mural
 	case selecionarMural
+	case creditos
 }
 
 extension Caminhos {
@@ -84,6 +85,9 @@ extension Caminhos {
 
 			case .selecionarMural:
 					SelecionarMuralView(path: path)
+			
+		case .creditos:
+			CreditosView(path: path)
 		}
 	}
 }

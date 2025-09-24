@@ -16,7 +16,7 @@ struct MenuzinhoView: View {
 	@Binding var clicaBloco: Bool
 	
     var body: some View {
-			HStack(spacing: 150){
+			HStack(spacing: 130){
 				BotaoNotas(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
 				
 				VStack() {
