@@ -161,7 +161,7 @@ struct MapaView: View {
 					Spacer()
 				}
 				AtributosView(contexto: contexto)
-				BotaoSair(contexto: contexto, path: $path)
+				BotaoSair(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
 				
 				if (clicaBloco) {
 					BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)

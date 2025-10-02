@@ -28,58 +28,59 @@ struct BibliotecaView: View {
 	@State var passaNoAsset: Bool = false
 	@State var clicaBloco = false
 	
-		var body: some View {
-			ZStack(alignment: .topLeading){
-				Image("Biblioteca")
-							.resizable()
-							.scaleEffect((dialogos[contexto.idDialogo].personagem == "Edgar" && !clicaBloco) ? 0.93 : 1.0)
-							//.aspectRatio(16 / 10, contentMode: .fit)
-							.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-				
-				if (!clicaBloco) {
-          if (contexto.idDialogo != 15) {
-            FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
-
-            AtributosView(contexto: contexto)
-              .offset(x: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 65: 0, y: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 38 : 0)
-            BotaoSair(contexto: contexto, path: $path)
-              .offset(x: (dialogos[contexto.idDialogo].personagem == "Edgar") ? -65: 0, y: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 38 : 0)
-          }
-          else {
-            BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)
-              //.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-          }
-				
-			}
-			.aspectRatio(16/10, contentMode: .fill)
-			.opacity(fadeIn ? 1 : 0)
-			.animation(.easeIn(duration: 1), value: fadeIn)
-			.opacity(fadeOut ? 0 : 1)
-			.animation(.easeOut(duration: 2), value: fadeOut)
-			.frame(maxWidth: .infinity, maxHeight: .infinity)
-			.navigationBarBackButtonHidden()
-			.onChange(of: contexto.idDialogo) {
-				defineFalaNome()
-				if (contexto.idDialogo == 29) {
-					contexto.horario = "noite"
-					contexto.local = .quarto
-					contexto.parteDialogo = 0
-					path.append(.quarto)
+	var body: some View {
+		ZStack(alignment: .topLeading){
+			Image("Biblioteca")
+				.resizable()
+				.scaleEffect((dialogos[contexto.idDialogo].personagem == "Edgar" && !clicaBloco) ? 0.93 : 1.0)
+			//.aspectRatio(16 / 10, contentMode: .fit)
+				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+			
+			if (!clicaBloco) {
+				if (contexto.idDialogo != 15) {
+					FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
+					
+					AtributosView(contexto: contexto)
+						.offset(x: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 65: 0, y: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 38 : 0)
+					BotaoSair(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
+						.offset(x: (dialogos[contexto.idDialogo].personagem == "Edgar") ? -65: 0, y: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 38 : 0)
 				}
-			}
-			.onAppear {
-				withAnimation { fadeIn = true }
+				else {
+					BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)
+					//.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+				}
+				
 			}
 		}
-	
-	func defineFalaNome() -> Binding<Bool> {
-		if (dialogos[contexto.idDialogo].personagem == "Edgar" || dialogos[contexto.idDialogo].personagem == "You") {
-			falaNome = true
-		} else {
-			falaNome = false
+				.aspectRatio(16/10, contentMode: .fill)
+				.opacity(fadeIn ? 1 : 0)
+				.animation(.easeIn(duration: 1), value: fadeIn)
+				.opacity(fadeOut ? 0 : 1)
+				.animation(.easeOut(duration: 2), value: fadeOut)
+				.frame(maxWidth: .infinity, maxHeight: .infinity)
+				.navigationBarBackButtonHidden()
+				.onChange(of: contexto.idDialogo) {
+					defineFalaNome()
+					if (contexto.idDialogo == 29) {
+						contexto.horario = "noite"
+						contexto.local = .quarto
+						contexto.parteDialogo = 0
+						path.append(.quarto)
+					}
+				}
+				.onAppear {
+					withAnimation { fadeIn = true }
+				}
 		}
-		return $falaNome
+		
+		func defineFalaNome() -> Binding<Bool> {
+			if (dialogos[contexto.idDialogo].personagem == "Edgar" || dialogos[contexto.idDialogo].personagem == "You") {
+				falaNome = true
+			} else {
+				falaNome = false
+			}
+			return $falaNome
+		}
+		
 	}
 	
-}
-

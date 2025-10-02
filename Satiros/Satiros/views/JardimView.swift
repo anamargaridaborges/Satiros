@@ -43,7 +43,7 @@ struct JardimView: View {
 					
 					AtributosView(contexto: contexto)
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Thomas") ? 328: 0, y: (dialogos[contexto.idDialogo].personagem == "Thomas") ? 205 : 0)
-					BotaoSair(contexto: contexto, path: $path)
+					BotaoSair(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
 					.offset(x: (dialogos[contexto.idDialogo].personagem == "Thomas") ? -328: 0, y: (dialogos[contexto.idDialogo].personagem == "Thomas") ? 205 : 0)
 				}
 				

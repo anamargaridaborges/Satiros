@@ -52,7 +52,7 @@ struct CartasView: View {
 													}
 														else {
 															impactoPopDesc(pop: 1, desc: 0)
-															contexto.local = "popUpMapa"
+															contexto.local = .popUpMapa
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 																path.append(.popUpMapa)
@@ -91,7 +91,7 @@ struct CartasView: View {
 												}
 													else {
 														impactoPopDesc(pop: 1, desc: -1)
-														contexto.local = "popUpMapa"
+														contexto.local = .popUpMapa
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 															path.append(.popUpMapa)
@@ -131,7 +131,7 @@ struct CartasView: View {
 												}
 													else {
 														impactoPopDesc(pop: 0, desc: -1)
-														contexto.local = "popUpMapa"
+														contexto.local = .popUpMapa
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 															path.append(.popUpMapa)
@@ -171,7 +171,7 @@ struct CartasView: View {
 														}
 													}
 														else {
-															contexto.local = "popUpMapa"
+															contexto.local = .popUpMapa
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 																path.append(.popUpMapa)
@@ -209,7 +209,7 @@ struct CartasView: View {
 														}
 													}
 														else {
-															contexto.local = "popUpMapa"
+															contexto.local = .popUpMapa
 															impactoPopDesc(pop: 0, desc: -1)
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -249,7 +249,7 @@ struct CartasView: View {
 													}
 														else {
 															impactoPopDesc(pop: -1, desc: 1)
-															contexto.local = "popUpMapa"
+															contexto.local = .popUpMapa
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 																path.append(.popUpMapa)
@@ -288,7 +288,7 @@ struct CartasView: View {
 													}
 														else {
 															impactoPopDesc(pop: 0, desc: -1)
-															contexto.local = "popUpMapa"
+															contexto.local = .popUpMapa
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 																path.append(.popUpMapa)

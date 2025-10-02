@@ -86,7 +86,7 @@ struct TutorialView: View {
 					
 					AtributosView(contexto: contexto)
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
-					BotaoSair(contexto: contexto, path: $path)
+					BotaoSair(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
 				}
 				

@@ -30,7 +30,7 @@ struct QuartoView: View {
 						.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 				if(contexto.idDialogo == 111 && !clicaBloco) {
 					Button (action: {if (contexto.idDialogo == 111) {
-						path.append("mural")}}) {
+						path.append(.mural)}}) {
 							Image("muralzinho")
 								.resizable()
 								.scaledToFit()
@@ -49,7 +49,7 @@ struct QuartoView: View {
 					
 					AtributosView(contexto: contexto)
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
-					BotaoSair(contexto: contexto, path: $path)
+					BotaoSair(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
 					.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
 				}
 				else {

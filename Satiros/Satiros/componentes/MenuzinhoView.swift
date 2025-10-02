@@ -14,6 +14,7 @@ struct MenuzinhoView: View {
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
 	@Binding var path: [Caminhos]
 	@Binding var clicaBloco: Bool
+	@State var passaNoAsset: Bool = false
 	
     var body: some View {
 			HStack(spacing: 130){
@@ -36,7 +37,17 @@ struct MenuzinhoView: View {
 					}
 				}
 				
-				BotaoSair(contexto: contexto, path: $path)
+				Button (action: {path.removeAll()}){
+					Image("sair")
+						.resizable()
+						.clipped()
+						.frame(width: 45, height: 45)
+						.scaleEffect(passaNoAsset ? 1.1 : 1.0)
+						.onHover {over in
+							passaNoAsset = over
+						}
+				}
+				.buttonStyle(.plain)
 
 			}
     }
