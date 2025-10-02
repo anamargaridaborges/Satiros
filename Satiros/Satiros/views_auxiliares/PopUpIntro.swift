@@ -10,7 +10,7 @@ import SwiftUI
 struct PopUpIntro: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
-	@Binding var path: [String]
+	@Binding var path: [Caminhos]
 	@Environment(\.modelContext) private var modelContext
 	@Bindable var bloco: ContextoConfessionario3.Bloco
 	@FocusState var estaFocado: FocusKey?
@@ -18,7 +18,7 @@ struct PopUpIntro: View {
 	
 	var body: some View {
 			ZStack {
-					Button(action: { path.append("falaIntro") }) {
+				Button(action: { path.append(.falaIntro) }) {
 						Image("fundo pixel")
 							.resizable()
 							.clipped()
@@ -29,7 +29,7 @@ struct PopUpIntro: View {
 					.focusEffectDisabled()
 					.focused($estaFocado, equals: FocusKey.enter)
 					.onKeyPress(.return) {
-							path.append("falaIntro")
+						path.append(.falaIntro)
 							return .handled
 					}
 					.onAppear {

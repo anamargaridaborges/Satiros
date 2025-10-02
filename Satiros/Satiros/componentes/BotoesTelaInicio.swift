@@ -10,11 +10,11 @@ import SwiftData
 
 struct BotoesTelaInicio: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Binding var path: [String]
+	@Binding var path: [Caminhos]
 	
     var body: some View {
 			HStack {
-				Button(action: {path.append("options")}) {
+				Button(action: {path.append(.options)}) {
 					Image("configuracoes")
 							.resizable()
 							.scaledToFit()
@@ -23,7 +23,7 @@ struct BotoesTelaInicio: View {
 				.buttonStyle(.plain)
 				.padding()
 				
-				Button(action: {}) {
+				Button(action: {path.append(.creditos)}) {
 					Image("conquistas")
 							.resizable()
 							.scaledToFit()
@@ -32,7 +32,7 @@ struct BotoesTelaInicio: View {
 				.buttonStyle(.plain)
 				.padding()
 				
-				Button(action: {path.append("confirmarSair")}) {
+				Button(action: {path.append(.confirmarSair)}) {
 					Image("sair")
 							.resizable()
 							.scaledToFit()

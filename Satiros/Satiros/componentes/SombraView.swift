@@ -14,35 +14,32 @@ struct SombraView: View {
 	@State private var frameIndex = 0
 	@State var tick: Bool = false
 	@Binding var isSpeaking: Bool
-	@State var passaNoAsset: [Bool] = [false, false] //[popularidade, desconfianca]
-	@State var mostrarBalao:  [Bool] = [false, false]
 	let frames = ["fala1", "fala2", "fala3", "fala4", "fala5", "fala6"]
 	
-    var body: some View {
-			ZStack(alignment: .topLeading) {
-				Image(frames[frameIndex])
-					.resizable()
-					.scaledToFill()
-					.ignoresSafeArea()
-					.onChange(of: tick) { oldValue, newValue in
-						if isSpeaking {
-							frameIndex = (frameIndex + 1) % frames.count
-						}
-					}.task {
-						var timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) {_ in
-							Task {
-								await MainActor.run {
-									tick.toggle()
-								}
+	var body: some View {
+		ZStack(alignment: .topLeading) {
+			Image(frames[frameIndex])
+				.resizable()
+				.scaledToFill()
+				.ignoresSafeArea()
+				.onChange(of: tick) { oldValue, newValue in
+					if isSpeaking {
+						frameIndex = (frameIndex + 1) % frames.count
+					}
+				}.task {
+					var timer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) {_ in
+						Task {
+							await MainActor.run {
+								tick.toggle()
 							}
 						}
 					}
-				
-					AtributosView(contexto: contexto)
-					.padding(.top, 30)
-
-			}
-    }
+				}
+			
+				AtributosView(contexto: contexto)
+				.padding(.top, 30)
+		}
+	}
 }
 
 #Preview {

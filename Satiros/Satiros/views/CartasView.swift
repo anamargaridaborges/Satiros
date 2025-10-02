@@ -12,11 +12,10 @@ struct CartasView: View {
 	
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
-	@Binding var path: [String]
+	@Binding var path: [Caminhos]
 	@State var passaNaCarta: [Bool] = [false, false, false, false, false]
 	@State var passaNoAsset: [Bool] = [false, false] //[popularidade, desconfianca]
 	@State var mostrarBalao:  [Bool] = [false, false]
-//	@State private var showImage = true
 	@Query(sort: \ContextoConfessionario3.ContextoConfessionario.momentoAdicionado, order: .forward) var dialogosConfessionario: [ContextoConfessionario3.ContextoConfessionario]
 	@State private var scrollProxy: ScrollViewProxy? = nil
 	@State var texto: String = ""
@@ -36,9 +35,6 @@ struct CartasView: View {
 									Image("fundoCartas")
 											.resizable()
 											.clipped()
-//											.opacity(showImage ? 1 : 0)
-//											.animation(.easeInOut(duration: 0.5), value: showImage)
-											//.aspectRatio(1/1, contentMode: .fill)
 									
 								VStack(alignment: .leading) {
 									AtributosView(contexto: contexto)
@@ -51,7 +47,7 @@ struct CartasView: View {
 														contexto.horario = "confissao2"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																path.append("confessionario")
+															path.append(.confessionario)
 														}
 													}
 														else {
@@ -59,7 +55,7 @@ struct CartasView: View {
 															contexto.local = "popUpMapa"
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																	path.append("popUpMapa")
+																path.append(.popUpMapa)
 															}
 														}}) {
 												ZStack {
@@ -90,7 +86,7 @@ struct CartasView: View {
 													contexto.horario = "confissao2"
 													withAnimation { fadeOut = true }
 													DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-															path.append("confessionario")
+														path.append(.confessionario)
 													}
 												}
 													else {
@@ -98,7 +94,7 @@ struct CartasView: View {
 														contexto.local = "popUpMapa"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																path.append("popUpMapa")
+															path.append(.popUpMapa)
 														}
 													}
 												}) {
@@ -130,7 +126,7 @@ struct CartasView: View {
 													contexto.horario = "confissao2"
 													withAnimation { fadeOut = true }
 													DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-															path.append("confessionario")
+														path.append(.confessionario)
 													}
 												}
 													else {
@@ -138,7 +134,7 @@ struct CartasView: View {
 														contexto.local = "popUpMapa"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																path.append("popUpMapa")
+															path.append(.popUpMapa)
 														}
 													}}) {
 														ZStack {
@@ -171,14 +167,14 @@ struct CartasView: View {
 														contexto.horario = "confissao2"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																path.append("confessionario")
+															path.append(.confessionario)
 														}
 													}
 														else {
 															contexto.local = "popUpMapa"
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																	path.append("popUpMapa")
+																path.append(.popUpMapa)
 															}
 														}}) {
 															ZStack {
@@ -209,7 +205,7 @@ struct CartasView: View {
 														contexto.horario = "confissao2"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																path.append("confessionario")
+															path.append(.confessionario)
 														}
 													}
 														else {
@@ -217,7 +213,7 @@ struct CartasView: View {
 															impactoPopDesc(pop: 0, desc: -1)
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																	path.append("popUpMapa")
+																path.append(.popUpMapa)
 															}
 														}}) {
 															ZStack {
@@ -248,7 +244,7 @@ struct CartasView: View {
 														contexto.horario = "confissao2"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																path.append("confessionario")
+															path.append(.confessionario)
 														}
 													}
 														else {
@@ -256,7 +252,7 @@ struct CartasView: View {
 															contexto.local = "popUpMapa"
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																	path.append("popUpMapa")
+																path.append(.popUpMapa)
 															}
 														}}) {
 															ZStack {
@@ -287,7 +283,7 @@ struct CartasView: View {
 														contexto.horario = "confissao2"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																path.append("confessionario")
+															path.append(.confessionario)
 														}
 													}
 														else {
@@ -295,7 +291,7 @@ struct CartasView: View {
 															contexto.local = "popUpMapa"
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-																	path.append("popUpMapa")
+																path.append(.popUpMapa)
 															}
 														}}) {
 															ZStack {
@@ -371,7 +367,6 @@ struct CartasView: View {
 																	Text("Control, Faith, Honor")
 																		.foregroundColor(.white)
 																		.font(.appFont(selectedFont, size: 30))
-																		//.padding()
 																}
 																if (passaNaCarta[1]) {
 																	Spacer()
@@ -381,7 +376,6 @@ struct CartasView: View {
 																	Text("Control, Honor, Providence")
 																		.foregroundColor(.white)
 																		.font(.appFont(selectedFont, size: 30))
-																		//.padding()
 																}
 																if (passaNaCarta[2]) {
 																	Spacer()
@@ -391,7 +385,6 @@ struct CartasView: View {
 																	Text("Perseverance, Faith, Providence")
 																		.foregroundColor(.white)
 																		.font(.appFont(selectedFont, size: 30))
-																		//.padding()
 																}
 																if (passaNaCarta[3]) {
 																	Spacer()
@@ -401,7 +394,6 @@ struct CartasView: View {
 																	Text("Loss, Perseverance, Providence")
 																		.foregroundColor(.white)
 																		.font(.appFont(selectedFont, size: 30))
-																		//.padding()
 																}
 																if (passaNaCarta[4]) {
 																	Spacer()
@@ -411,12 +403,10 @@ struct CartasView: View {
 																	Text("Perseverance, Faith, Renunciation")
 																		.foregroundColor(.white)
 																		.font(.appFont(selectedFont, size: 30))
-																		//.padding()
 																}
 															}
 															.padding(.bottom, 25)
 														}
-														//.id("atual")
 													}
 														
 												}
@@ -427,7 +417,6 @@ struct CartasView: View {
 												}
 											}
 										}
-							
 										}
 									.background(Color("Fundo"))
 									.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)

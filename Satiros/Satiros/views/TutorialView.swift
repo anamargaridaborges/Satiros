@@ -12,13 +12,7 @@ import WidgetKit
 struct TutorialView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
-	@Binding var path: [String]
-	@FocusState private var estaFocado: FocusKey?
-	@State var texto: String = ""
-	//@State var idFala: Int = 0
-	@State var opcoes: [String] = []
-	@State var terminou: Bool = true
-	@State private var tarefaOpcoes: Task<Void, Never>? = nil
+	@Binding var path: [Caminhos]
 	@Bindable var bloco: ContextoConfessionario3.Bloco
 	@State var falaNome: Bool = false
 	@State private var fadeIn = false
@@ -92,7 +86,7 @@ struct TutorialView: View {
 					
 					AtributosView(contexto: contexto)
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
-					SairBlocoView(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
+					BotaoSair(contexto: contexto, path: $path)
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
 				}
 				
@@ -112,31 +106,14 @@ struct TutorialView: View {
 			.onChange(of: contexto.idDialogo) {
 				defineFalaNome()
 				if (contexto.idDialogo == 15) {
-					//FalaView(contexto: contexto, bloco: bloco, falaNome: defineFalaNome()).cancelarTarefa()
-					//withAnimation { fadeOut = true }
-					//DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 							contexto.horario = "confissao1"
-							contexto.local = "confessionario"
+					contexto.local = .confessionario
 							contexto.parteDialogo = 0
-							path.append("confessionario")
-					//}
+					path.append(.confessionario)
 				}
 				if (contexto.idDialogo == 1){
 					salvarImagemEscolhida("mural1")
 				}
-//				if (contexto.idDialogo == 0 && terminou) {
-//					fadeOut = false
-//					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//						withAnimation { fadeOut = true }
-//					}
-//					
-//				}
-//				if (contexto.idDialogo == 80) {
-//					fadeIn = false
-//					DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//						withAnimation { fadeIn = true }
-//					}
-//				}
 			}
 			.onAppear {
 				withAnimation { fadeIn = true }

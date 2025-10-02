@@ -13,7 +13,7 @@ struct IntroducaoView: View {
 	@Environment(\.modelContext) private var modelContext
 	@Query var contexto: [ContextoConfessionario3.ContextoSalvo]
 	@Query var bloco: [ContextoConfessionario3.Bloco]
-	@State private var path: [String] = []
+	@State private var path: [Caminhos] = []
 	@FocusState private var estaFocado: FocusKey?
 	@State var clicaNotas: Bool = false
 	
@@ -27,7 +27,7 @@ struct IntroducaoView: View {
 		let count3 = try? modelContext.fetchCount(FetchDescriptor<ContextoConfessionario3.Bloco>())
 		//print(count1, count2, count3)
 		if !(count1 == 0 ||  count3 == 0) {
-			path.append("novoJogo")
+			path.append(.novoJogo)
 			return
 		}
 		for c in contexto {
@@ -36,16 +36,16 @@ struct IntroducaoView: View {
 		for b in bloco {
 			modelContext.delete(b)
 		}
-		var novoJogo = ContextoConfessionario3.ContextoSalvo()
+		let novoJogo = ContextoConfessionario3.ContextoSalvo()
 		modelContext.insert(novoJogo)
-		var bloco = ContextoConfessionario3.Bloco()
+		let bloco = ContextoConfessionario3.Bloco()
 		modelContext.insert(bloco)
 		do {
 			try modelContext.save()
 		} catch {
 			print("Erro \(error)")
 		}
-		path.append("popUpIntro")
+		path.append(.popUpIntro)
 	}
 	
     var body: some View {
@@ -93,60 +93,14 @@ struct IntroducaoView: View {
 								.padding()
 					}
 					.padding(.bottom, 30)
-					.navigationDestination(for: String.self) { local in
-						if local == "novoJogo" {
-
-							ConfirmarNovoJogo(contexto: contexto[0], path: $path, bloco: bloco[0])
-						}
-						else if local == "tutorial" {
-							TutorialView(contexto: contexto[0], path: $path, bloco: bloco[0])
-						}
-						else if local == "confessionario" {
-							ConfessionarioView(contexto: contexto[0], path: $path, estaFocado: _estaFocado, bloco: bloco[0], clicaNotas: $clicaNotas)
-						}
-						else if local == "confirmarSair" {
-							ConfirmarSair(path: $path)
-						}
-						else if local == "options" {
-							OptionsView(path: $path)
-						}
-						else if local == "cartas" {
-							CartasView(contexto: contexto[0], path: $path, clicaBloco: $clicaNotas, bloco: bloco[0])
-						}
-						else if local == "menu" {
-							IntroducaoView()
-						}
-						else if local == "popUpIntro" {
-							PopUpIntro(contexto: contexto[0], path: $path, bloco: bloco[0], estaFocado: _estaFocado)
-						}
-						else if local == "popUpMapa" {
-							PopUpMapa(contexto: contexto[0], path: $path, bloco: bloco[0], estaFocado: _estaFocado)
-						}
-						else if local == "mapa" {
-							MapaView(contexto: contexto[0], path: $path, bloco: bloco[0])
-						}
-						else if local == "falaIntro" {
-							FalaIntroView(contexto: contexto[0], path: $path, bloco: bloco[0])
-						}
-						else if local == "jardim" {
-							JardimView(contexto: contexto[0], path: $path, bloco: bloco[0])
-						}
-						else if local == "quarto" {
-							QuartoView(contexto: contexto[0], path: $path, bloco: bloco[0])
-						}
-						else if local == "biblioteca" {
-							BibliotecaView(contexto: contexto[0], path:$path, bloco: bloco[0])
-						}
-						else if local == "mural" {
-							MuralView(path: $path, contexto: contexto[0], bloco: bloco[0])
-						}
-						else if local == "selecionarMural" {
-							SelecionarMuralView(path: $path)
-						}
-
-						/*else if local == "notas" {
-							BlocoView(path: $path, bloco: bloco[0])
-						}*/
+					.navigationDestination(for: Caminhos.self) { local in
+						local.view(
+							contexto: contexto,
+							path: $path,
+							bloco: bloco,
+							_estaFocado: _estaFocado,
+							clicaNotas: $clicaNotas
+						)
 					}
 					
 				}

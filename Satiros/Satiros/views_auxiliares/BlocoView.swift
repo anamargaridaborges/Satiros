@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BlocoView: View {
 	
-	@Binding var path: [String]
+	@Binding var path: [Caminhos]
 	@Bindable var bloco: ContextoConfessionario3.Bloco
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Binding var clicaNotas: Bool

@@ -10,7 +10,7 @@ import SwiftData
 
 struct ConfirmarSair: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
-	@Binding var path: [String]
+	@Binding var path: [Caminhos]
 	
     var body: some View {
 			ZStack{

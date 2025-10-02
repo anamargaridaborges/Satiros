@@ -11,7 +11,7 @@ import SwiftData
 struct ConfirmarNovoJogo: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
-	@Binding var path: [String]
+	@Binding var path: [Caminhos]
 	@Query var dialogosConfessionario: [ContextoConfessionario3.ContextoConfessionario]
 	@Environment(\.modelContext) private var modelContext
 	@Bindable var bloco: ContextoConfessionario3.Bloco
@@ -38,7 +38,7 @@ struct ConfirmarNovoJogo: View {
 						modelContext.delete(dial)
 					};
 						bloco.textoPorDia.removeAll();
-						contexto.local = "tutorial"; contexto.idDialogo = 0; contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; contexto.parteDialogo = 0; bloco.textoPorDia = []; contexto.cartaUsada = -1; path.append("popUpIntro")}) {
+						contexto.local = .tutorial; contexto.idDialogo = 0; contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; contexto.parteDialogo = 0; bloco.textoPorDia = []; contexto.cartaUsada = -1; path.append(.popUpIntro)}) {
 						ZStack {
 							Image("botao continue")
 								.resizable()
@@ -67,23 +67,6 @@ struct ConfirmarNovoJogo: View {
 					}
 					.buttonStyle(.plain)
 					.padding()
-					/*VStack {
-						Text("Confirm new game?")
-							.font(.appFont(selectedFont, size:50))
-							.padding()
-						Text("All your progress in the current game will be lost.")
-							.font(.appFont(selectedFont, size:20))
-							.padding()
-						HStack {
-							Button(action: {contexto.local = "confessionario"; contexto.idDialogo = retornaID(dia: 1, horario: "confissao1", local: "confessionario"); contexto.dia = 1; contexto.horario = "manha"; contexto.popularidade = 5; contexto.desconfianca = 5; path.append("confessionario")}) {
-								Text("Yes, I confirm")
-									.font(.appFont(selectedFont, size:30))
-							}
-						}
-						.navigationBarBackButtonHidden()
-						.frame(maxWidth: .infinity, maxHeight: .infinity)
-					}*/
-					
 				}
 			}
 		}

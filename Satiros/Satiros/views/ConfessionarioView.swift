@@ -5,10 +5,9 @@ import WidgetKit
 struct ConfessionarioView: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
-	@Binding var path: [String]
+	@Binding var path: [Caminhos]
 	@FocusState var estaFocado: FocusKey?
 	@State var texto: String = ""
-	//@State var idFala: Int = 0
 	@State var opcoes: [String] = []
 	@State var terminou: Bool = true
 	@State private var tarefaOpcoes: Task<Void, Never>? = nil
@@ -33,7 +32,7 @@ struct ConfessionarioView: View {
 								
 								ZStack {
 									VStack(spacing: 0) {
-										MenuzinhoView(contexto: contexto, path: $path, estaFocado: _estaFocado, clicaBloco: $clicaNotas)
+										MenuzinhoView(contexto: contexto, path: $path, clicaBloco: $clicaNotas)
 										.padding(.top, 10)
 										.frame(maxWidth: .infinity)
 										
@@ -95,8 +94,6 @@ struct ConfessionarioView: View {
 																		.background(Color("FundoOpcoes"))
 														}
 														.buttonStyle(PlainButtonStyle())
-														//.background(passaNoBotao[index] ? Color("Selecionado") : Color("Fundo"))
-														//.cornerRadius(10)
 														.onHover { over in
 															passaNoBotao[index] = over
 														}
@@ -279,11 +276,11 @@ struct ConfessionarioView: View {
 	func proximaFala(index: Int = 0) {
 		if (dialogos[contexto.idDialogo].id_que_opcao_leva[index] == -10) {
 			contexto.idDialogo = 23
-			contexto.local = "cartas"
+			contexto.local = .cartas
 			contexto.parteDialogo = 0
 			withAnimation { fadeOut = true }
 			DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-					path.append("cartas")
+				path.append(.cartas)
 			}
 			reiniciarOpcoes()
 			return

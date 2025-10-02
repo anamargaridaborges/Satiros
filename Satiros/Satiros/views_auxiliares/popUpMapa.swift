@@ -10,7 +10,7 @@ import SwiftUI
 struct PopUpMapa: View {
 	@AppStorage("selectedFont") private var selectedFont: String = "VT323"
 	@Bindable var contexto: ContextoConfessionario3.ContextoSalvo
-	@Binding var path: [String]
+	@Binding var path: [Caminhos]
 	@Environment(\.modelContext) private var modelContext
 	@Bindable var bloco: ContextoConfessionario3.Bloco
 	@FocusState var estaFocado: FocusKey?
@@ -21,7 +21,7 @@ struct PopUpMapa: View {
 			ZStack {
 				
 					// Fundo clicável
-					Button(action: { path.append("tutorial") }) {
+				Button(action: { path.append(.tutorial) }) {
 						Image("fundo pixel")
 							.resizable()
 							.clipped()
@@ -35,7 +35,7 @@ struct PopUpMapa: View {
 						contexto.local = "mapa"
 						withAnimation { fadeOut = true }
 						DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-								path.append("mapa")
+							path.append(.mapa)
 						}
 						return .handled
 					}
