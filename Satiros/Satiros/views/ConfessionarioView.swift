@@ -24,8 +24,8 @@ struct ConfessionarioView: View {
 	@State private var fadeOut = false
 	
 		var body: some View {
-			GeometryReader { geo in
-					ZStack {
+				ZStack {
+					GeometryReader { geo in
 						HStack(spacing: 0) {
 							SombraView(contexto: contexto, isSpeaking: $isSpeaking)
 								.frame(width: geo.size.width * 2/3, height: geo.size.height)
@@ -76,6 +76,10 @@ struct ConfessionarioView: View {
 													if (opcoes[index] != ""){
 														Button {
 															carregaFalaToda()
+															if (!dialogosConfessionario.contains {$0.dialogo == dialogos[contexto.idDialogo].texto[contexto.parteDialogo]}) {
+																salvaBD(personagem: dialogos[contexto.idDialogo].personagem, dialogo: dialogos[contexto.idDialogo].texto[contexto.parteDialogo], momentoAdicionado: tempo)
+															}
+															salvaBD(personagem: "You", dialogo: dialogos[contexto.idDialogo].opcoes[index], momentoAdicionado: tempo)
 															selecionaOpcao(index: index)
 															} label: {
 																		Text(opcoes[index])
@@ -165,12 +169,12 @@ struct ConfessionarioView: View {
 						}
 						.ignoresSafeArea()
 						
-						if (clicaNotas) {
-							BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaNotas)
-						}
-						
 				}
 					
+					if (clicaNotas) {
+						BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaNotas)
+					}
+
 			}
 			//.opacity(fadeIn ? 1 : 0)
 			//.animation(.easeIn(duration: 1), value: fadeIn)
@@ -193,37 +197,51 @@ struct ConfessionarioView: View {
 		}
 	
 	func addBlocoDeNotas (resumo: String) {
-		if (bloco.textoPorDia.count < contexto.dia) {
-			bloco.textoPorDia.append(dialogos[contexto.idDialogo].resumo_notas + "\n" + "\n")
+		if (!bloco.textoPorDia.contains(resumo + "\n")) {
+			bloco.textoPorDia.append(dialogos[contexto.idDialogo].resumo_notas + "\n")
 			try? modelContext.save()
 			return
 		}
-		else {
-			if !bloco.textoPorDia[contexto.dia-1].contains(resumo) {
-					print(bloco.textoPorDia[contexto.dia-1])
-					bloco.textoPorDia[contexto.dia-1] += resumo + "\n" + "\n"
-				try? modelContext.save()
-			}
-			return
-		}
+		return
 	}
 
 	func selecionaOpcao (index: Int) {
-			contexto.desconfianca += dialogos[contexto.idDialogo].impacto_opcao_desc[index]
-			contexto.popularidade += dialogos[contexto.idDialogo].impacto_opcao_pop[index]
-			let inicio = opcoes[index].index(texto.startIndex, offsetBy: 3)
-			/*let opcaoAtual = opcoes[index][inicio...]*/
-			salvaBD(personagem: "You", dialogo: String(opcoes[index][inicio...]), momentoAdicionado: tempo)
-			proximaFala(index: index)
-			terminou = true
-			return
-	}
+			if (dialogos[contexto.idDialogo].impacto_opcao_pop[index] > 0) {
+				if (contexto.popularidade + dialogos[contexto.idDialogo].impacto_opcao_pop[index] <= 10) {
+					contexto.popularidade += dialogos[contexto.idDialogo].impacto_opcao_pop[index]
+				}
+			}
+			else {
+				if (contexto.popularidade + dialogos[contexto.idDialogo].impacto_opcao_pop[index] >= 0) {
+					contexto.popularidade += dialogos[contexto.idDialogo].impacto_opcao_pop[index]
+				}
+			}
+			if (dialogos[contexto.idDialogo].impacto_opcao_desc[index] > 0) {
+				if (contexto.desconfianca + dialogos[contexto.idDialogo].impacto_opcao_desc[index] <= 10) {
+					contexto.desconfianca += dialogos[contexto.idDialogo].impacto_opcao_desc[index]
+				}
+			}
+			else {
+				if (contexto.desconfianca + dialogos[contexto.idDialogo].impacto_opcao_desc[index] >= 0) {
+					contexto.desconfianca += dialogos[contexto.idDialogo].impacto_opcao_desc[index]
+				}
+			}
+				//let inicio = opcoes[index].index(texto.startIndex, offsetBy: 3)
+				/*let opcaoAtual = opcoes[index][inicio...]*/
+				proximaFala(index: index)
+				terminou = true
+				return
+		}
 	
 	func salvaBD (personagem: String, dialogo: String, momentoAdicionado: Int) {
 		if (dialogosConfessionario.isEmpty == false) {
 			tempo = dialogosConfessionario.last!.momentoAdicionado + 1
 		}
-		modelContext.insert(ContextoConfessionario3.ContextoConfessionario(personagem: personagem, dialogo: dialogo, momentoAdicionado: tempo))
+		var resultado = dialogo
+		if (dialogo.first == "1" || dialogo.first == "2" || dialogo.first == "3") {
+			resultado = String(dialogo.dropFirst(3))
+		}
+		modelContext.insert(ContextoConfessionario3.ContextoConfessionario(personagem: personagem, dialogo: resultado, momentoAdicionado: tempo))
 		try? modelContext.save()
 		return
 	}

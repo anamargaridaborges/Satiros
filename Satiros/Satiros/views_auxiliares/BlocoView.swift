@@ -15,22 +15,21 @@ struct BlocoView: View {
 	@Binding var clicaNotas: Bool
 	
     var body: some View {
-			GeometryReader { geo in
 				ZStack {
 					Image("Fundo preto")
 						.opacity(0.5)
 					
 					ZStack {
 						Image("BlocoGRANDAO")
-							.position(x: geo.size.width * 1 / 2, y: geo.size.height * 1 / 2)
+							.position(x: 960, y: 600)
 							Text("Day 1")
 								.foregroundColor(.black)
 								.font(.appFont(selectedFont, size: 60))
-								.position(x: geo.size.width * 1 / 2, y: geo.size.height * 2 / 7)
-							Text(bloco.textoPorDia.isEmpty ? "" : bloco.textoPorDia[0])
+								.position(x: 960, y: 400)
+						Text(bloco.textoPorDia.isEmpty ? "" : bloco.textoPorDia.joined())
 								.foregroundColor(.black)
 								.font(.appFont(selectedFont, size: 30))
-								.position(x: geo.size.width * 1 / 2, y: geo.size.height * 1 / 2)
+								.position(x: 960, y: 600)
 					}
 					.frame(maxWidth: .infinity, maxHeight: .infinity)
 					//.position(x: geo.size.width * 1 / 2, y: geo.size.height * 1 / 2)
@@ -41,11 +40,10 @@ struct BlocoView: View {
 						}
 						.buttonStyle(.plain)
 					}
-					.position(x: geo.size.width * 1 / 7, y: geo.size.height * 1.2 / 7)
+					.position(x: 329, y: 206)
 					
 				}
-			}
-			.frame(maxWidth: .infinity, maxHeight: .infinity)
+				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
     }
 }
 

@@ -28,8 +28,8 @@ struct CartasView: View {
 	@State private var fadeOut = false
 	
     var body: some View {
-			GeometryReader { geo in
-					ZStack {
+			ZStack {
+				GeometryReader { geo in
 						HStack(spacing: 0) {
 							ZStack(alignment: .topLeading) {
 									Image("fundoCartas")
@@ -43,7 +43,7 @@ struct CartasView: View {
 										HStack {
 											if (contexto.cartaUsada != 1) {
 												Button (action: {contexto.cartaUsada = 1; if (contexto.horario == "confissao1") {
-														contexto.desconfianca -= 1
+														impactoPopDesc(pop: 0, desc: -1)
 														contexto.horario = "confissao2"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -51,7 +51,8 @@ struct CartasView: View {
 														}
 													}
 														else {
-															contexto.popularidade += 1
+															impactoPopDesc(pop: 1, desc: 0)
+															contexto.local = "popUpMapa"
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 																path.append(.popUpMapa)
@@ -81,8 +82,7 @@ struct CartasView: View {
 										}
 											if (contexto.cartaUsada != 2) {
 												Button (action: {contexto.cartaUsada = 2; if (contexto.horario == "confissao1") {
-													contexto.desconfianca += 1
-													contexto.popularidade -= 1
+													impactoPopDesc(pop: -1, desc: 1)
 													contexto.horario = "confissao2"
 													withAnimation { fadeOut = true }
 													DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -90,8 +90,8 @@ struct CartasView: View {
 													}
 												}
 													else {
-														contexto.popularidade += 1
-														contexto.desconfianca -= 1
+														impactoPopDesc(pop: 1, desc: -1)
+														contexto.local = "popUpMapa"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 															path.append(.popUpMapa)
@@ -122,7 +122,7 @@ struct CartasView: View {
 											}
 											if (contexto.cartaUsada != 3 && (contexto.cartaUsada != 4 && contexto.cartaUsada != 5)) {
 												Button (action: {contexto.cartaUsada = 3; if (contexto.horario == "confissao1") {
-													contexto.popularidade += 1
+													impactoPopDesc(pop: 1, desc: 0)
 													contexto.horario = "confissao2"
 													withAnimation { fadeOut = true }
 													DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -130,7 +130,8 @@ struct CartasView: View {
 													}
 												}
 													else {
-														contexto.desconfianca -= 1
+														impactoPopDesc(pop: 0, desc: -1)
+														contexto.local = "popUpMapa"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 															path.append(.popUpMapa)
@@ -170,6 +171,7 @@ struct CartasView: View {
 														}
 													}
 														else {
+															contexto.local = "popUpMapa"
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 																path.append(.popUpMapa)
@@ -199,7 +201,7 @@ struct CartasView: View {
 												}
 												else {
 													Button (action: {contexto.cartaUsada = 3; if (contexto.horario == "confissao1") {
-														contexto.popularidade += 1
+														impactoPopDesc(pop: 1, desc: 0)
 														contexto.horario = "confissao2"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -207,7 +209,8 @@ struct CartasView: View {
 														}
 													}
 														else {
-															contexto.desconfianca -= 1
+															contexto.local = "popUpMapa"
+															impactoPopDesc(pop: 0, desc: -1)
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 																path.append(.popUpMapa)
@@ -237,8 +240,7 @@ struct CartasView: View {
 												}
 												if (contexto.cartaUsada != 5) {
 													Button (action: {contexto.cartaUsada = 5; if (contexto.horario == "confissao1") {
-														contexto.desconfianca -= 1
-														contexto.popularidade += 1
+														impactoPopDesc(pop: 1, desc: -1)
 														contexto.horario = "confissao2"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -246,8 +248,8 @@ struct CartasView: View {
 														}
 													}
 														else {
-															contexto.popularidade -= 1
-															contexto.desconfianca += 1
+															impactoPopDesc(pop: -1, desc: 1)
+															contexto.local = "popUpMapa"
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 																path.append(.popUpMapa)
@@ -277,7 +279,7 @@ struct CartasView: View {
 												}
 												else {
 													Button (action: {contexto.cartaUsada = 3; if (contexto.horario == "confissao1") {
-														contexto.popularidade += 1
+														impactoPopDesc(pop: 1, desc: 0)
 														contexto.horario = "confissao2"
 														withAnimation { fadeOut = true }
 														DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -285,7 +287,8 @@ struct CartasView: View {
 														}
 													}
 														else {
-															contexto.desconfianca -= 1
+															impactoPopDesc(pop: 0, desc: -1)
+															contexto.local = "popUpMapa"
 															withAnimation { fadeOut = true }
 															DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 																path.append(.popUpMapa)
@@ -447,11 +450,10 @@ struct CartasView: View {
 								.frame(width: geo.size.width / 3, height: geo.size.height)
 						}
 						.ignoresSafeArea()
-						if (clicaBloco) {
-							BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)
-						}
 				}
-					
+				if (clicaBloco) {
+					BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)
+				}
 			}
 			.opacity(fadeIn ? 1 : 0)
 			.animation(.easeIn(duration: 1), value: fadeIn)
@@ -480,6 +482,30 @@ struct CartasView: View {
 			try? await Task.sleep(nanoseconds: 30_000_000)
 		}
 	}
+	
+	func impactoPopDesc (pop: Int, desc: Int) {
+			if (pop > 0) {
+				if (contexto.popularidade + pop <= 10) {
+					contexto.popularidade += pop
+				}
+			}
+			else {
+				if (contexto.popularidade + pop >= 0) {
+					contexto.popularidade += pop
+				}
+			}
+			if (desc > 0) {
+				if (contexto.desconfianca + desc <= 10) {
+					contexto.desconfianca += desc
+				}
+			}
+			else {
+				if (contexto.desconfianca + desc >= 0) {
+					contexto.desconfianca += desc
+				}
+			}
+			return
+		}
 	
 	func carregaFalaToda() {
 		tarefa?.cancel()

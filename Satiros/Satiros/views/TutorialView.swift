@@ -22,6 +22,9 @@ struct TutorialView: View {
 	@State var tick: Bool = false
 	@State private var animationFinished = false
 	@State var passaNoAsset: Bool = false
+	@State var clicaBloco: Bool = false
+	@State var passaBloco: Bool = false
+	@State var mostrarBalao: Bool = false
 	
     var body: some View {
 			ZStack(alignment: .topLeading){
@@ -45,17 +48,51 @@ struct TutorialView: View {
 					Image(dialogos[contexto.idDialogo].local_fundo)
 							.resizable()
 							.scaleEffect((dialogos[contexto.idDialogo].personagem == "You") ? 1.42 : 1.0)
-							.aspectRatio(16 / 10, contentMode: .fit)
+							//.aspectRatio(16 / 10, contentMode: .fit)
 							.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 				}
-				if (contexto.idDialogo != 15) {
+//				HStack(alignment: .top){
+//						Spacer()
+//						Button (action: {path.removeAll()}){
+//							Image("sair")
+//								.resizable()
+//								.clipped()
+//								.frame(width: 50, height: 50)
+//								.padding(20)
+//								.scaleEffect(passaNoAsset ? 1.1 : 1.0)
+//								.onHover {over in
+//									passaNoAsset = over
+//								}
+//						}
+//						.buttonStyle(.plain)
+//						//					.focusable()
+//						//					.focusEffectDisabled()
+//						//					.focused($estaFocado, equals: FocusKey.escape)
+//						//					.onKeyPress(.escape) {
+//						//						path.removeAll()
+//						//						return .handled
+//						//					}
+//						//					.onChange(of: estaFocado) {
+//						//						estaFocado = FocusKey.escape
+//						//					}
+//					}
+//				.offset(y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 200: 0)
+				
+				
+				//AtributosView(contexto: contexto)
+					//.offset(y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 200: 0)
+				if (clicaBloco == false) {
 					FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
 					
 					AtributosView(contexto: contexto)
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
-					
 					BotaoSair(contexto: contexto, path: $path)
 						.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
+				}
+				
+				if (clicaBloco) {
+					BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)
+						//.padding()
 				}
 				
 			}

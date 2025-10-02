@@ -17,6 +17,7 @@ struct MapaView: View {
 	@State var passaNaPlaca: [Bool] = [false, false, false, false]
 	@State private var fadeIn = false
 	@State private var fadeOut = false
+	@State var clicaBloco = false
 	
 		var body: some View {
 			ZStack(alignment: .topLeading){
@@ -161,6 +162,10 @@ struct MapaView: View {
 				}
 				AtributosView(contexto: contexto)
 				BotaoSair(contexto: contexto, path: $path)
+				
+				if (clicaBloco) {
+					BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)
+				}
 			}
 			.onAppear {
 				withAnimation { fadeIn = true }

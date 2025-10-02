@@ -134,6 +134,14 @@ struct MuralView: View {
 						SuspeitoView(suspeito: "Edgar", clicaFoto: $clicaFoto[6], path: $path)
 					}
 						}
+				
+//				AtributosView(contexto: contexto)
+//				SairBlocoView(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
+//				
+//				if (clicaBloco) {
+//					BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)
+//				}
+				
 					}
 				}
 			}

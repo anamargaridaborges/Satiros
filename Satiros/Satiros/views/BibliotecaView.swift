@@ -26,24 +26,29 @@ struct BibliotecaView: View {
 	@State var tick: Bool = false
 	@State private var animationFinished = false
 	@State var passaNoAsset: Bool = false
+	@State var clicaBloco = false
 	
 		var body: some View {
 			ZStack(alignment: .topLeading){
 				Image("Biblioteca")
 							.resizable()
-							.scaleEffect((dialogos[contexto.idDialogo].personagem == "Edgar") ? 0.93 : 1.0)
-							.aspectRatio(16 / 10, contentMode: .fit)
+							.scaleEffect((dialogos[contexto.idDialogo].personagem == "Edgar" && !clicaBloco) ? 0.93 : 1.0)
+							//.aspectRatio(16 / 10, contentMode: .fit)
 							.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 				
-				if (contexto.idDialogo != 15) {
-					FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
-					
-					AtributosView(contexto: contexto)
-						.offset(x: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 65: 0, y: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 38 : 0)
-					
-					BotaoSair(contexto: contexto, path: $path)
-						.offset(x: (dialogos[contexto.idDialogo].personagem == "Edgar") ? -65: 0, y: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 38 : 0)
-				}
+				if (!clicaBloco) {
+          if (contexto.idDialogo != 15) {
+            FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
+
+            AtributosView(contexto: contexto)
+              .offset(x: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 65: 0, y: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 38 : 0)
+            BotaoSair(contexto: contexto, path: $path)
+              .offset(x: (dialogos[contexto.idDialogo].personagem == "Edgar") ? -65: 0, y: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 38 : 0)
+          }
+          else {
+            BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)
+              //.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+          }
 				
 			}
 			.aspectRatio(16/10, contentMode: .fill)

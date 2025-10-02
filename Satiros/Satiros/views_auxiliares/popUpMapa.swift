@@ -32,6 +32,7 @@ struct PopUpMapa: View {
 					.focusEffectDisabled()
 					.focused($estaFocado, equals: FocusKey.enter)
 					.onKeyPress(.return) {
+						contexto.local = "mapa"
 						withAnimation { fadeOut = true }
 						DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 							path.append(.mapa)
