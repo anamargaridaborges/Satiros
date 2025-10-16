@@ -35,6 +35,8 @@ struct SairBlocoView: View {
 									}
 							}
 							.buttonStyle(.plain)
+							
+							
 							Button (action: {clicaBloco = true}) {
 								Image("notas")
 									.resizable()

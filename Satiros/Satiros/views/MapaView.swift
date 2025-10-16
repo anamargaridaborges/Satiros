@@ -160,8 +160,11 @@ struct MapaView: View {
 					.padding(50)
 					Spacer()
 				}
+				
 				AtributosView(contexto: contexto)
-				BotaoSair(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
+				BotaoNotas(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
+					.padding(.trailing, 80)
+				BotaoSair(contexto: contexto, path: $path)
 				
 				if (clicaBloco) {
 					BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)

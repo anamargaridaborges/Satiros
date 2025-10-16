@@ -22,14 +22,13 @@ struct AtributosView: View {
 								.resizable()
 								.clipped()
 								.aspectRatio(2/1, contentMode: .fit)
-								.frame(width: 100, height: 50)
+								.frame(width: 90, height: 45)
 								.padding(.leading, 15)
 								.aspectRatio(16/10, contentMode: .fit)
 							
 							Text(String(contexto.popularidade))
 								.font(.appFont(selectedFont, size: 30))
 								.foregroundStyle(.white)
-								//.shadow(radius: 5)
 
 						}
 						.scaleEffect(passaNoAsset[0] ? 1.1 : 1.0)
@@ -59,14 +58,13 @@ struct AtributosView: View {
 								.resizable()
 								.clipped()
 								.aspectRatio(2/1, contentMode: .fit)
-								.frame(width: 100, height: 50)
+								.frame(width: 90, height: 45)
 								.padding(.leading, 40)
 							
 							Text(String(contexto.desconfianca))
 								.font(.appFont(selectedFont, size: 30))
 								.foregroundStyle(.white)
 								.padding(.top, 25)
-								//.shadow(radius: 5)
 
 						}
 						.scaleEffect(passaNoAsset[1] ? 1.1 : 1.0)
@@ -92,6 +90,7 @@ struct AtributosView: View {
 						}
 					}
 					.padding(.top, 20)
+					Spacer()
 		}
 }
 

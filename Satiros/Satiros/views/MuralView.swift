@@ -21,6 +21,7 @@ struct MuralView: View {
 						.scaledToFit()
 						.frame(width: geometry.size.width, height: geometry.size.height)
 						.clipped()
+					
 					Button (action: {clicaFoto[0] = true}) {
 						Image("BenedictPolaroid")
 							.resizable()
@@ -34,6 +35,7 @@ struct MuralView: View {
 					.scaleEffect(passaNaFoto[0] ? 1.1 : 1)
 					.buttonStyle(.plain)
 					.offset(x: -geometry.size.width * 0.15, y: -geometry.size.height * 0.3)
+					
 					Button (action: {clicaFoto[1] = true}) {
 						Image("LorganPolaroid")
 							.resizable()

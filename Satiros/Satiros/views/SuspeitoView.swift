@@ -21,113 +21,58 @@ struct SuspeitoView: View {
 						.opacity(0.5)
 					
 					if (suspeito == "Benedict") {
-						Image("BenedictPolaroid")
-							.resizable()
-							.scaledToFit()
-							.frame(width: geo.size.width * 0.2)
-							.position(x: geo.size.width * 1 / 4, y: geo.size.height * 0.9 / 2)
-						Button(action: {path.removeAll()}) {
-							ZStack {
-								Image("BotaoDenunciar")
-									.resizable()
-									.scaledToFit()
-									.frame(width: geo.size.width * 0.2)
-								Text("Appoint suspect")
-									.foregroundColor(.black)
-									.font(.appFont(selectedFont, size: 20))
-							}
+						VStack{
+							Image("BenedictPolaroid")
+								.resizable()
+								.scaledToFit()
+								.frame(width: geo.size.width * 0.2)
+								.offset(x: -600, y: -150)
+							botaoSuspeito()
 						}
-						.clipShape(Rectangle())
-						.buttonStyle(.plain)
-						.position(x: geo.size.width * 1 / 4, y: geo.size.height * 2.8 / 4)
 					}
 					
 					if (suspeito == "Steffano") {
-						Image("StephanoPolaroid")
-							.resizable()
-							.scaledToFit()
-							.frame(width: geo.size.width * 0.2)
-							.position(x: geo.size.width * 1 / 4, y: geo.size.height * 0.9 / 2)
-						Button(action: {path.removeAll()}) {
-							ZStack {
-								Image("BotaoDenunciar")
-									.resizable()
-									.scaledToFit()
-									.frame(width: geo.size.width * 0.2)
-								Text("Appoint suspect")
-									.foregroundColor(.black)
-									.font(.appFont(selectedFont, size: 20))
-							}
+						VStack{
+							Image("StephanoPolaroid")
+								.resizable()
+								.scaledToFit()
+								.frame(width: geo.size.width * 0.2)
+								.offset(x: -600, y: -150)
+							botaoSuspeito()
 						}
-						.clipShape(Rectangle())
-						.buttonStyle(.plain)
-						.position(x: geo.size.width * 1 / 4, y: geo.size.height * 2.8 / 4)
 					}
 					
 					if (suspeito == "Thomas") {
-						Image("ThomasPolaroid")
-							.resizable()
-							.scaledToFit()
-							.frame(width: geo.size.width * 0.2)
-							.position(x: geo.size.width * 1 / 4, y: geo.size.height * 0.9 / 2)
-						Button(action: {path.removeAll()}) {
-							ZStack {
-								Image("BotaoDenunciar")
-									.resizable()
-									.scaledToFit()
-									.frame(width: geo.size.width * 0.2)
-								Text("Appoint suspect")
-									.foregroundColor(.black)
-									.font(.appFont(selectedFont, size: 20))
-							}
+						VStack{
+							Image("ThomasPolaroid")
+								.resizable()
+								.scaledToFit()
+								.frame(width: geo.size.width * 0.2)
+								.offset(x: -600, y: -150)
+							botaoSuspeito()
 						}
-						.clipShape(Rectangle())
-						.buttonStyle(.plain)
-						.position(x: geo.size.width * 1 / 4, y: geo.size.height * 2.8 / 4)
 					}
 					
 					if (suspeito == "Edgar") {
-						Image("EdgarPolaroid")
-							.resizable()
-							.scaledToFit()
-							.frame(width: geo.size.width * 0.2)
-							.position(x: geo.size.width * 1 / 4, y: geo.size.height * 0.9 / 2)
-						Button(action: {path.removeAll()}) {
-							ZStack {
-								Image("BotaoDenunciar")
-									.resizable()
-									.scaledToFit()
-									.frame(width: geo.size.width * 0.2)
-								Text("Appoint suspect")
-									.foregroundColor(.black)
-									.font(.appFont(selectedFont, size: 20))
-							}
+						VStack{
+							Image("EdgarPolaroid")
+								.resizable()
+								.scaledToFit()
+								.frame(width: geo.size.width * 0.2)
+								.offset(x: -600, y: -150)
+							botaoSuspeito()
 						}
-						.clipShape(Rectangle())
-						.buttonStyle(.plain)
-						.position(x: geo.size.width * 1 / 4, y: geo.size.height * 2.8 / 4)
 					}
 					
 					if (suspeito == "Samuel") {
-						Image("SamuelPolaroid")
-							.resizable()
-							.scaledToFit()
-							.frame(width: geo.size.width * 0.2)
-							.position(x: geo.size.width * 1 / 4, y: geo.size.height * 0.9 / 2)
-						Button(action: {path.removeAll()}) {
-							ZStack {
-								Image("BotaoDenunciar")
-									.resizable()
-									.scaledToFit()
-									.frame(width: geo.size.width * 0.2)
-								Text("Appoint suspect")
-									.foregroundColor(.black)
-									.font(.appFont(selectedFont, size: 20))
-							}
+						VStack{
+							Image("SamuelPolaroid")
+								.resizable()
+								.scaledToFit()
+								.frame(width: geo.size.width * 0.2)
+								.offset(x: -600, y: -150)
+							botaoSuspeito()
 						}
-						.clipShape(Rectangle())
-						.buttonStyle(.plain)
-						.position(x: geo.size.width * 1 / 4, y: geo.size.height * 2.8 / 4)
 					}
 					
 					if (suspeito == "S. Desmond") {
@@ -135,7 +80,7 @@ struct SuspeitoView: View {
 							.resizable()
 							.scaledToFit()
 							.frame(width: geo.size.width * 0.2)
-							.position(x: geo.size.width * 1 / 4, y: geo.size.height * 1 / 2)
+							.offset(x: -600, y: -150)
 					}
 					
 					if (suspeito == "Fr. Lorgan") {
@@ -143,7 +88,7 @@ struct SuspeitoView: View {
 							.resizable()
 							.scaledToFit()
 							.frame(width: geo.size.width * 0.2)
-							.position(x: geo.size.width * 1 / 4, y: geo.size.height * 1 / 2)
+							.offset(x: -600, y: -150)
 					}
 					
 					ZStack {
@@ -152,12 +97,12 @@ struct SuspeitoView: View {
 							.scaledToFit()
 							.frame(width: geo.size.width * 0.9)
 							.position(x: geo.size.width * 2 / 3, y: geo.size.height * 1 / 2)
-							//.scaledToFit()
-							//.frame(width: geo.size.width * 0.3)
+
 							Text(suspeito)
 								.foregroundColor(.black)
 								.font(.appFont(selectedFont, size: 50))
 								.position(x: geo.size.width * 2 / 3, y: geo.size.height * 2.3 / 7)
+						
 						if (suspeito == "Benedict") {
 							Text("Aristocrat turned zealot. Left his\nwealth and comfort for the Lord’s work.")
 								.foregroundColor(.black)
@@ -216,7 +161,26 @@ struct SuspeitoView: View {
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 		}
+	
+	func	botaoSuspeito() -> some View {
+		Button(action: {path.append(.fimDia1)}) {
+			ZStack {
+				Image("BotaoDenunciar")
+					.resizable()
+					.scaledToFit()
+					.frame(width: 300)
+				Text("Appoint suspect")
+					.foregroundColor(.black)
+					.font(.appFont(selectedFont, size: 30))
+			}
+		}
+		.buttonStyle(.plain)
+		.offset(x: -600, y: -120)
+	}
+	
 }
+
+
 
 #Preview {
 		//BlocoView()

@@ -14,20 +14,23 @@ struct FalaView: View {
 	@Environment(\.modelContext) private var modelContext
 	
 	var body: some View {
-		ZStack (alignment: .bottom)
-		{
-			ZStack(alignment: .bottom) {
+		ZStack (alignment: .bottom){
 				
+			VStack{
 				Image((contexto.local == .tutorial && dialogos[contexto.idDialogo].personagem != "Sister Desmond") ? "" : dialogos[contexto.idDialogo].personagem)
-					.scaleEffect((dialogos[contexto.idDialogo].personagem == "Edgar") ? 0.4 : 0.3)
-					.offset(x: -300, y:-79)
+					//.scaleEffect((dialogos[contexto.idDialogo].personagem == "Edgar") ? 0.4 : 0.3)
+					.resizable()
+					.frame(width: 350, height: 345, alignment: .bottom)
+					.clipped()
+					.offset(x: -300, y:10)
 				
 				Image("blocoFala")
 					.resizable()
 					.frame(width: 1180, height: 310, alignment: .bottom)
 					.clipped()
 					.padding(.bottom, 38)
-					.offset(x: 0, y:(dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -200 : (dialogos[contexto.idDialogo].personagem == "Thomas" && contexto.local == .jardim) ? -206 : (dialogos[contexto.idDialogo].personagem == "Edgar" && contexto.local == .biblioteca) ? -40 : 0)
+			}
+				
 				
 				VStack(alignment: .leading, spacing: 10) {
 					if(falaNome){
@@ -149,7 +152,6 @@ struct FalaView: View {
 				}
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
 				.navigationBarBackButtonHidden()
-			}
 			.padding(0)
 				}
 		}
@@ -276,10 +278,10 @@ struct FalaView: View {
 				return
 			}
 		}
-		if (dialogos[contexto.idDialogo].id_que_opcao_leva[index] == 111) {
-			path.append(.selecionarMural)
-			return
-		}
+//		if (dialogos[contexto.idDialogo].id_que_opcao_leva[index] == 111) {
+//			path.append(.selecionarMural)
+//			return
+//		}
 		contexto.idDialogo = dialogos[contexto.idDialogo].id_que_opcao_leva[index]
 		contexto.parteDialogo = 0
 		reiniciarOpcoes()

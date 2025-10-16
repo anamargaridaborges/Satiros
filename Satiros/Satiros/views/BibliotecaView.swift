@@ -32,22 +32,18 @@ struct BibliotecaView: View {
 		ZStack(alignment: .topLeading){
 			Image("Biblioteca")
 				.resizable()
-				.scaleEffect((dialogos[contexto.idDialogo].personagem == "Edgar" && !clicaBloco) ? 0.93 : 1.0)
-			//.aspectRatio(16 / 10, contentMode: .fit)
-				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+				.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)			
 			
 			if (!clicaBloco) {
 				if (contexto.idDialogo != 15) {
-					FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
-					
 					AtributosView(contexto: contexto)
-						.offset(x: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 65: 0, y: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 38 : 0)
-					BotaoSair(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
-						.offset(x: (dialogos[contexto.idDialogo].personagem == "Edgar") ? -65: 0, y: (dialogos[contexto.idDialogo].personagem == "Edgar") ? 38 : 0)
+					BotaoNotas(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
+						.padding(.trailing, 80)
+					BotaoSair(contexto: contexto, path: $path)
+					FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
 				}
 				else {
 					BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)
-					//.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
 				}
 				
 			}

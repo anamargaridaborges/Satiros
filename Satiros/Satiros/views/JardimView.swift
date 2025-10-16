@@ -33,18 +33,14 @@ struct JardimView: View {
 				
 				Image(dialogos[contexto.idDialogo].local_fundo)
 						.resizable()
-						//.frame(width:1920, height:1200)
-						//.clipped()
-						.scaleEffect((dialogos[contexto.idDialogo].personagem == "Thomas" && !clicaBloco) ? 0.7 : 1.0)
-						//.aspectRatio(16 / 10, contentMode: .fit)
 						.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+				
 				if (!clicaBloco) {
-					FalaView( path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
-					
 					AtributosView(contexto: contexto)
-						.offset(x: (dialogos[contexto.idDialogo].personagem == "Thomas") ? 328: 0, y: (dialogos[contexto.idDialogo].personagem == "Thomas") ? 205 : 0)
-					BotaoSair(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
-					.offset(x: (dialogos[contexto.idDialogo].personagem == "Thomas") ? -328: 0, y: (dialogos[contexto.idDialogo].personagem == "Thomas") ? 205 : 0)
+					BotaoNotas(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
+						.padding(.trailing, 80)
+					BotaoSair(contexto: contexto, path: $path)
+					FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
 				}
 				
 				if (clicaBloco) {

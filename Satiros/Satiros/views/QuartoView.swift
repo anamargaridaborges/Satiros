@@ -25,32 +25,44 @@ struct QuartoView: View {
 			ZStack(alignment: .topLeading){
 				Image(dialogos[contexto.idDialogo].local_fundo)
 						.resizable()
-						.scaleEffect((dialogos[contexto.idDialogo].personagem == "Sister Desmond" && !clicaBloco) ? 0.71 : 1.0)
-						//.aspectRatio(16 / 10, contentMode: .fit)
 						.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-				if(contexto.idDialogo == 111 && !clicaBloco) {
-					Button (action: {if (contexto.idDialogo == 111) {
-						path.append(.mural)}}) {
+				
+				if (!clicaBloco) {
+					if(contexto.idDialogo == 111) {
+						Button (action: {path.append(.mural)}) {
 							Image("muralzinho")
 								.resizable()
 								.scaledToFit()
-								.frame(width: 480, height: 422)
-							//.contentShape(Rectangle())
+								.frame(width: 350, height: 300)
 								.onHover {over in
 									passaMural = over
 								}
 						}
-						.scaleEffect(passaMural && contexto.idDialogo == 111 ? 1.2 : 1)
+						.scaleEffect(passaMural ? 1.2 : 1)
 						.buttonStyle(.plain)
-						.offset(x: 650, y:200)
-				}
-				if (!clicaBloco) {
-					FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
+						.offset(x: 650, y: 150)
+						
+						Image("radio")
+							.resizable()
+							.scaledToFit()
+							.frame(width: 200, height: 200)
+							.offset(x: 400, y: 390)
+						
+					} else {
+						FalaView(path: $path, contexto: contexto, bloco: bloco, falaNome: defineFalaNome())
+						if(contexto.idDialogo >= 59){
+							Image("radio")
+								.resizable()
+								.scaledToFit()
+								.frame(width: 200, height: 200)
+								.offset(x: 400, y: 390)
+						}
+					}
 					
 					AtributosView(contexto: contexto)
-						.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
-					BotaoSair(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
-					.offset(x: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? -318: 0, y: (dialogos[contexto.idDialogo].personagem == "Sister Desmond") ? 197 : 0)
+					BotaoNotas(contexto: contexto, path: $path, clicaBloco: $clicaBloco)
+						.padding(.trailing, 80)
+					BotaoSair(contexto: contexto, path: $path)
 				}
 				else {
 					BlocoView(path: $path, bloco: bloco, clicaNotas: $clicaBloco)
@@ -66,12 +78,6 @@ struct QuartoView: View {
 			.navigationBarBackButtonHidden()
 			.onChange(of: contexto.idDialogo) {
 				defineFalaNome()
-				if (contexto.idDialogo == 15) {
-							contexto.horario = "confissao1"
-					contexto.local = .confessionario
-							contexto.parteDialogo = 0
-					path.append(.confessionario)
-				}
 				if (contexto.idDialogo == 1){
 					salvarImagemEscolhida("mural1")
 				}

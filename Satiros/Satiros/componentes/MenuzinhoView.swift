@@ -37,17 +37,7 @@ struct MenuzinhoView: View {
 					}
 				}
 				
-				Button (action: {path.removeAll()}){
-					Image("sair")
-						.resizable()
-						.clipped()
-						.frame(width: 45, height: 45)
-						.scaleEffect(passaNoAsset ? 1.1 : 1.0)
-						.onHover {over in
-							passaNoAsset = over
-						}
-				}
-				.buttonStyle(.plain)
+				BotaoSair(contexto: contexto, path: $path)
 
 			}
     }
