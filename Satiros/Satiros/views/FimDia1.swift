@@ -22,12 +22,12 @@ struct FimDia1: View {
 					.resizable()
 					.aspectRatio(16/10, contentMode: .fill)
 				
-				Text("You have reached the end of your first day. \nRest now, pilgrim — the path ahead is long and uncertain. \nThank you for walking with us through this chapter of Forgive Me, Father. \nMay your faith guide you, and your feedback enlighten us.")
+				Text("The first day is done. \nConfess what you have seen, and rest before the next trial. \nThank you for joining us in Forgive Me, Father — your voice will guide what comes next.")
 					.font(.appFont(selectedFont, size: 30))
 					.foregroundStyle(.white)
 					.padding(.bottom, 30)
 					.lineSpacing(20)
-					//.multilineTextAlignment(.center)
+					.multilineTextAlignment(.center)
 				
 			}
 			.opacity(fadeIn ? 1 : 0)
