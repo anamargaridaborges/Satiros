@@ -2,7 +2,7 @@
 	{
 		"id":0,
 		"personagem":"Narrator",
-		"texto":["THREE DAYS AGO, FATHER LORGAN, HEAD OF THE EASTOWN SEMINAR, MYSTERIOUSLY DISAPPEARED"],
+		"texto":["Three days ago, Father Lorgan, head of the Eastown Seminar, mysteriously disappeared."],
 		"opcoes":[],
 		"id_que_opcao_leva":[80],
 		"impacto_opcao_pop":[0],
@@ -113,7 +113,7 @@
 	{
 		"id":10,
 		"personagem":"Sister Desmond",
-		"texto":["I would not hang Father Lorgan’s shoes just yet, we don’t know what happened to him, well not we, I don’t. The boys “know” he has been sent on break. I can’t believe they would make us lie in the house of the Lord."],
+		"texto":["I would not hang Father Lorgan’s shoes just yet, we don’t know what happened to him. Well... not we, I don’t. The boys “know” he has been sent on break. I can’t believe they would make us lie in the house of the Lord."],
 		"opcoes":["What do you think happened to Lorgan?", "(Brush it off)"],
 		"id_que_opcao_leva":[11, 12],
 		"impacto_opcao_pop":[0, 0],
@@ -124,7 +124,7 @@
 	{
 		"id":11,
 		"personagem":"Sister Desmond",
-		"texto":["As I told you Father, I do not know. He was overwhelmed sure… but he cared deeply for the church… for the community. He is a leader no just in faith but for the village, we are weakened by his absence…"],
+		"texto":["As I told you Father, I do not know. He was overwhelmed sure… but he cared deeply for the church… for the community. He is a leader not just in faith but for the village, we are weakened by his absence…"],
 		"opcoes":[],
 		"id_que_opcao_leva":[12],
 		"impacto_opcao_pop":[0],
@@ -135,7 +135,7 @@
 	{
 		"id":12,
 		"personagem":"Sister Desmond",
-		"texto":["I don’t know how it was with your last congregation, be here you'll have a schedule to follow Father Denver…", "We start confessions at Nine A.M., I have a feeling the boys are gonna need it. Here, Lorgan left his deck of penance, it comes with instruction on the box, it may help you. Don’t go easy on them just because of Lorgan, it’s in times like these that it can really have an effect.",  "Since the church is closed there won’t be any masses, so you’re free to roam in the afternoon.", "The day ends at ten, I’ll be helping you with any doubts, just meet me at the corridor prior to sleep.", "Now go, confessions are about to start."],
+		"texto":["I don’t know how it was with your last congregation, but here you'll have a schedule to follow Father Denver…", "We start confessions at nine A.M., I have a feeling the boys are gonna need it. Here, Lorgan left his deck of penance, it comes with instruction on the box, it may help you. Don’t go easy on them just because of Lorgan, it’s in times like these that it can really have an effect.",  "Since the church is closed there won’t be any masses, so you’re free to roam in the afternoon.", "The day ends at ten, I’ll be helping you with any doubts, just meet me at the corridor prior to sleep.", "Now go, confessions are about to start."],
 		"opcoes":[],
 		"id_que_opcao_leva":[13],
 		"impacto_opcao_pop":[0],
@@ -190,7 +190,7 @@
 	{
 		"id":17,
 		"personagem":"Shadow",
-		"texto":["I have not confessed yet, father."],
+		"texto":["I have not confessed yet, Father."],
 		"opcoes":[],
 		"id_que_opcao_leva":[18],
 		"impacto_opcao_pop":[0],
@@ -201,7 +201,7 @@
 	{
 		"id":18,
 		"personagem":"You",
-		"texto":["I’m sorry son, It has been a while."],
+		"texto":["I’m sorry son, it has been a while."],
 		"opcoes":[],
 		"id_que_opcao_leva":[19],
 		"impacto_opcao_pop":[0],
@@ -213,7 +213,7 @@
 		"id":19,
 		"personagem":"Shadow",
 		"texto":["It has been one week since I’ve last confessed. I have been noticing myself giving in to greed, Father. Temptation. Not of the world, but of the spirit.", "I’m trying to drown it in prayer but I have only found solace in the indulgence of the bottle. The past week or so, I slipped out, drank a bit too much.", "That is not who I am Father, although you have none but my visage to judge character. Well, not even that inside here. I shall not question your guidance either way, who am I to judge His work. Tho it is definitely mysterious."],
-		"opcoes":["It is normal to give in to temptation \"he will also provide a way out so that you can endure it.\"(1 Corinthians 10:13)", "\"Pray that ye enter not into temptation\" (Luke 22:40)", "Drinking is not good for you Son"],
+		"opcoes":["It is normal to give in to temptation \"he will also provide a way out so that you can endure it.\"(1 Corinthians 10:13)", "\"Pray that ye enter not into temptation\" (Luke 22:40)", "Drinking is not good for you, Son"],
 		"id_que_opcao_leva":[20, 21, 22],
 		"impacto_opcao_pop":[2, 0, 0],
 		"impacto_opcao_desc":[0, 0, 1],
@@ -223,7 +223,7 @@
 	{
 		"id":20,
 		"personagem":"Shadow",
-		"texto":["He truly does, doesn’t he. Faith in being provided a way out. Maybe he already has… Thank you Father."],
+		"texto":["He truly does, doesn’t He. Faith in being provided a way out. Maybe He already has… Thank you, Father."],
 		"opcoes":[],
 		"id_que_opcao_leva":[-10],
 		"impacto_opcao_pop":[0],
@@ -256,7 +256,7 @@
 	{
 		"id":23,
 		"personagem":"Shadow",
-		"texto":["Forgive me Father, for I have sinned.", "It has been five months since my last confession", "It is a trying time isn’t it Father. With old man Lorgan out, I have lashed out at against my brethren. I have not ever been a man of wrath. But the past few days have been to unkind.", "For my brothers cannot see past the thin veil. Anger cleanses my eyes. Rage touches their very core. Maybe that’s is why it is a capital sin.", "Wrath is destructively effective."],
+		"texto":["Forgive me Father, for I have sinned.", "It has been five months since my last confession", "It is a trying time isn’t it Father. With old man Lorgan out, I have lashed out at against my brethren. I have not ever been a man of wrath. But the past few days have been to unkind.", "For my brothers cannot see past the thin veil. Anger cleanses my eyes. Rage touches their very core. Maybe that’s why it is a capital sin.", "Wrath is destructively effective."],
 		"opcoes":["Wrath will bring you no answers \"for the anger of man does not produce the righteousness of God.\" (James 1:19 - 20)", "Anger is natural, let it full you, but carefully \"Be angry and do not sin; do not let the sun go down on your anger, and give no opportunity to the devil.\" (Ephesians 4:26-27)", "Tell me son, what does thou seek beyond this veil?"],
 		"id_que_opcao_leva":[24, 25, 26],
 		"impacto_opcao_pop":[0, 1, 0],
@@ -278,7 +278,7 @@
 	{
 		"id":25,
 		"personagem":"Shadow",
-		"texto":["Gosh. Just.. Thank you Father. I was lost thinking giving in to sin was the only way to the truth. I shall stand vigilant on my wrath. Maybe you are not to be overlooked after all..."],
+		"texto":["Gosh. Just.. Thank you, Father. I was lost thinking giving in to sin was the only way to the truth. I shall stand vigilant on my wrath. Maybe you are not to be overlooked after all..."],
 		"opcoes":[],
 		"id_que_opcao_leva":[-10],
 		"impacto_opcao_pop":[0],
@@ -290,7 +290,7 @@
 		"id":26,
 		"personagem":"Shadow",
 		"texto":["Well Father, they conceal the truth. Lorgan vanished. And yet they say he has left out of his own accord. I tell you Father, Lorgan knew a bit too much. He was becoming a liability. So they took him out of the game. "],
-		"opcoes":["Advise", "Who is this “they” you speak of?"],
+		"opcoes":["(Advise)", "Who is this “they” you speak of?"],
 		"id_que_opcao_leva":[27, 28],
 		"impacto_opcao_pop":[0, 0],
 		"impacto_opcao_desc":[0, 1],
@@ -322,7 +322,7 @@
 	{
 		"id":29,
 		"personagem":"Narrator",
-		"texto":["At night you go to your quarters, at the door. Sister Desmond awaits you."],
+		"texto":["At night, you go to your quarters. Sister Desmond awaits you at the door."],
 		"opcoes":[],
 		"id_que_opcao_leva":[30],
 		"impacto_opcao_pop":[0],
@@ -421,7 +421,7 @@
 	{
 		"id":38,
 		"personagem":"Sister Desmond",
-		"texto":["You saw it too, didn’t you. The boys, they are basically beaming with blame."],
+		"texto":["You saw it too, didn’t you? The boys, they are basically beaming with blame."],
 		"opcoes":["What are you implying, Sister?", "Do you think one of them did something?", "(Say nothing)"],
 		"id_que_opcao_leva":[39, 40, 39],
 		"impacto_opcao_pop":[0, 0, 0],
@@ -432,7 +432,7 @@
 	{
 		"id":39,
 		"personagem":"Sister Desmond",
-		"texto":["Oh Lord. I know that it might sound insane. And I have prayed for these thoughts to rid of my brain.", "But they persist even prayer.", "I think one of them did something to Lorgan or, at least, know something about him."],
+		"texto":["Oh Lord. I know that it might sound insane. And I have prayed for these thoughts to leave my brain.", "But they persist even with prayer.", "I think one of them did something to Lorgan or, at least, know something about him."],
 		"opcoes":[],
 		"id_que_opcao_leva":[41],
 		"impacto_opcao_pop":[0],
@@ -443,7 +443,7 @@
 	{
 		"id":40,
 		"personagem":"Sister Desmond",
-		"texto":["Aren’t you quick.", "I know that it might sound insane. And I have prayed for these thoughts to rid of my brain.", "But they persist even prayer"],
+		"texto":["Aren’t you quick.", "I know that it might sound insane. And I have prayed for these thoughts to leave my brain.", "But they persist even with prayer"],
 		"opcoes":[],
 		"id_que_opcao_leva":[41],
 		"impacto_opcao_pop":[0],
@@ -564,7 +564,7 @@
 	{
 		"id":51,
 		"personagem":"Sister Desmond",
-		"texto":["Thank the Lord. And thank you father.", "Be careful, listen to their confession. Guide them, do your diligence as shepherd. Keep your ears pricked. And may the Lord help us.", "We’ll talk soon enough.", "For now you earned your sleep. Goodnight Father."],
+		"texto":["Thank the Lord. And thank you Father.", "Be careful, listen to their confession. Guide them, do your diligence as shepherd. Keep your ears pricked. And may the Lord help us.", "We’ll talk soon enough.", "For now you earned your sleep. Goodnight Father."],
 		"opcoes":[],
 		"id_que_opcao_leva":[56],
 		"impacto_opcao_pop":[0],
@@ -586,7 +586,7 @@
 	{
 		"id":53,
 		"personagem":"Sister Desmond",
-		"texto":["Gut feeling,\nDivine foresight,\nDesperation.", "Call it whatever thy want.", "So, what do you say Father?"],
+		"texto":["Gut feeling,\nDivine foresight,\nDesperation.", "Call it whatever thou wantest.", "So, what do you say Father?"],
 		"opcoes":["I will help you"],
 		"id_que_opcao_leva":[51],
 		"impacto_opcao_pop":[0],
@@ -630,7 +630,7 @@
 	{
 		"id":57,
 		"personagem":"Narrator",
-		"texto":["Walking into your room you see your belongings scattered around."],
+		"texto":["WALKING INTO YOUR ROOM YOU SEE YOUR BELONGINGS SCATTERED AROUND."],
 		"opcoes":[],
 		"id_que_opcao_leva":[58],
 		"impacto_opcao_pop":[0],
@@ -652,7 +652,7 @@
 	{
 		"id":59,
 		"personagem":"Narrator",
-		"texto":["You pick up your radio, it seems They are as unquiet as Sister Desmond."],
+		"texto":["YOU PICK UP YOUR RADIO, IT SEEMS THEY ARE AS UNQUIET AS SISTER DESMOND."],
 		"opcoes":["Pick up", "Turn off"],
 		"id_que_opcao_leva":[60, 67],
 		"impacto_opcao_pop":[0, 0],
@@ -674,7 +674,7 @@
 	{
 		"id":61,
 		"personagem":"Radiovoice",
-		"texto":["How was the trip dude!! Or should I say, Father…", "Oh forget it, I don’t really care. So did you find that old priest They sent you after?"],
+		"texto":["How was the trip dude!? Or should I say, Father…", "Oh forget it, I don’t really care. So did you find that old priest They sent you after?"],
 		"opcoes":["Not yet", "Not cool to talk about such a respected person like that"],
 		"id_que_opcao_leva":[62, 70],
 		"impacto_opcao_pop":[0, 0],
@@ -685,7 +685,7 @@
 	{
 		"id":62,
 		"personagem":"Radiovoice",
-		"texto":["Gosh why do you always have to be soooo slow?", "You gotta learned from me man, remember the oil rig? I put those corrupt suckers behind the bar in what like 4 hours?", "The dude we're after is like 100 years old, he can’t have gotten so far"],
+		"texto":["Gosh why do you always have to be soooo slow?", "You gotta learn from me man, remember the oil rig? I put those corrupt suckers behind the bar in what like 4 hours?", "The dude we're after is like 100 years old, he can’t have gotten so far"],
 		"opcoes":["This mission needs caution, that’s why They haven’t sent you", "Get to the point."],
 		"id_que_opcao_leva":[63, 64],
 		"impacto_opcao_pop":[0, 0],
@@ -795,7 +795,7 @@
 	{
 		"id":72,
 		"personagem":"Thomas",
-		"texto":["Gazanias. Vexing. They have been blooming around here non stop. Yet, I do not know who could have spread it’s seeds.", "Tell me, Father, What flowers do enjoy most?"],
+		"texto":["Gazanias. Vexing. They have been blooming around here non stop. Yet, I do not know who could have spread it’s seeds.", "Tell me, Father, what flowers do you enjoy most?"],
 		"opcoes":["First, Hello Thomas", "Solomon Lilies, for they remind me of God’s beauty", "Gazanias, for they are signs of prosperity", "Roses, the classic."],
 		"id_que_opcao_leva":[73, 74, 75, 76],
 		"impacto_opcao_pop":[-1, 1, 0, 0],
@@ -872,7 +872,7 @@
 	{
 		"id":79,
 		"personagem":"Thomas",
-		"texto":["I don’t want to get anyone in trouble Father, but please trust me, It’s fine. It was just an accident with one of my brothers. Nothing to be weary about"],
+		"texto":["I don’t want to get anyone in trouble Father, but please trust me, it’s fine. It was just an accident with one of my brothers. Nothing to be weary about"],
 		"opcoes":["Do you come often to the garden?"],
 		"id_que_opcao_leva":[84],
 		"impacto_opcao_pop":[0, 0],
@@ -883,7 +883,7 @@
 	{
 		"id":80,
 		"personagem":"Narrator",
-		"texto":["YOU HAVE BEEN SEND TO REPLACE HIM IN THE MEANTIME"],
+		"texto":["You have been sent to replace him in the meantime."],
 		"opcoes":[],
 		"id_que_opcao_leva":[1],
 		"impacto_opcao_pop":[0],
@@ -949,7 +949,7 @@
 	{
 		"id":86,
 		"personagem":"Thomas",
-		"texto":["I’m Glad to hear it, Father! Truly."],
+		"texto":["I’m glad to hear it, Father! Truly."],
 		"opcoes":[],
 		"id_que_opcao_leva":[88],
 		"impacto_opcao_pop":[0],
@@ -982,7 +982,7 @@
 	{
 		"id":89,
 		"personagem":"Thomas",
-		"texto":["Oh geez look at the sky. It was nice speaking with thee. Let us go inside and escape the rain Father."],
+		"texto":["Oh geez look at the sky. It was nice speaking with thee. Let us go inside and escape the rain, Father."],
 		"opcoes":[],
 		"id_que_opcao_leva":[29],
 		"impacto_opcao_pop":[0],
@@ -1004,7 +1004,7 @@
 	{
 		"id":91,
 		"personagem":"Edgar",
-		"texto":["Shit, you scared me Father.", "Hello there, Forgive me for cursing also"],
+		"texto":["Shit, you scared me Father.", "Hello there, forgive me for cursing also"],
 		"opcoes":["Maybe I can help", "(Watch as he searches)"],
 		"id_que_opcao_leva":[93, 101],
 		"impacto_opcao_pop":[0, 0],
@@ -1026,7 +1026,7 @@
 	{
 		"id":93,
 		"personagem":"Edgar",
-		"texto":["Really? It’s one with a leather cover that has a purple stone etch to it."],
+		"texto":["Really? It’s one with a leather cover that has a purple stone etched into it."],
 		"opcoes":["Look at the bottom shelf", "Look at the top shelf", "Look at the middle shelf"],
 		"id_que_opcao_leva":[108, 94, 109],
 		"impacto_opcao_pop":[0, 2, 0],
@@ -1070,7 +1070,7 @@
 	{
 		"id":97,
 		"personagem":"Edgar",
-		"texto":["Honestly Father, Not much, I’m just looking for answers on why the old bum decided to get away all of a sudden."],
+		"texto":["Honestly Father, not much, I’m just looking for answers on why the old bum decided to get away all of a sudden."],
 		"opcoes":[],
 		"id_que_opcao_leva":[102],
 		"impacto_opcao_pop":[0],
