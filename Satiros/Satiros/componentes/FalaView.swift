@@ -12,17 +12,18 @@ struct FalaView: View {
 	@State var passaNoBotao: [Bool] = [false, false, false, false]
 	@Binding var falaNome: Bool
 	@Environment(\.modelContext) private var modelContext
+	@State var isSpeaking: Bool = true
 	
 	var body: some View {
 		ZStack (alignment: .bottom){
 				
 			VStack{
-				Image((contexto.local == .tutorial && dialogos[contexto.idDialogo].personagem != "Sister Desmond") ? "" : dialogos[contexto.idDialogo].personagem)
-					//.scaleEffect((dialogos[contexto.idDialogo].personagem == "Edgar") ? 0.4 : 0.3)
-					.resizable()
-					.frame(width: 350, height: 345, alignment: .bottom)
-					.clipped()
-					.offset(x: -300, y:10)
+//				Image((contexto.local == .tutorial && dialogos[contexto.idDialogo].personagem != "Sister Desmond") ? "" : dialogos[contexto.idDialogo].personagem)
+//					.resizable()
+//					.frame(width: 350, height: 345, alignment: .bottom)
+//					.clipped()
+//					.offset(x: -300, y:10)
+				animacaoFala(contexto: contexto, isSpeaking: $isSpeaking)
 				
 				Image("blocoFala")
 					.resizable()
@@ -86,6 +87,9 @@ struct FalaView: View {
 						contexto.parteDialogo += 1
 						reiniciarOpcoes()
 						return .handled
+					}
+					if (contexto.parteDialogo == dialogos[contexto.idDialogo].texto.count - 1 && dialogos[contexto.idDialogo].opcoes.count > 0){
+						isSpeaking = false  //para de falar na primeira opcao e n volta mais
 					}
 					if (terminou == false) {
 						if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo] && opcoes.last == dialogos[contexto.idDialogo].opcoes.last ) {
