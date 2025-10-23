@@ -30,14 +30,14 @@ struct animacaoFala: View {
 	}
 	
 	var body: some View {
-		Image(frames[frameIndex])
+		Image(frameIndex < frames.count ? frames[frameIndex]: "")
 			.resizable()
 			.frame(width: 350, height: 345, alignment: .bottom)
 			.clipped()
 			.offset(x: -300, y:10)
 			.onChange(of: tick) { oldValue, newValue in
 				if isSpeaking {
-					frameIndex = (frameIndex + 1) % frames.count
+					frameIndex = (frameIndex + 1) % (frames.count)
 				}
 			}.task {
 				var timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) {_ in

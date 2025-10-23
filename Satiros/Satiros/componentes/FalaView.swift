@@ -45,6 +45,7 @@ struct FalaView: View {
 						.foregroundColor(.white)
 					
 					if (contexto.parteDialogo == dialogos[contexto.idDialogo].texto.count - 1 && dialogos[contexto.idDialogo].opcoes.count > 0) {
+						
 						// se é a última parte da fala
 						ForEach(opcoes.indices, id: \.self) { index in
 							if (opcoes[index] != ""){
@@ -80,6 +81,9 @@ struct FalaView: View {
 				.focusable()
 				.focusEffectDisabled()
 				.focused($estaFocado, equals: .enter)
+				.onKeyPress(.escape) {
+					return .ignored
+				}
 				.onKeyPress(.return) {
 					if (texto == dialogos[contexto.idDialogo].texto[contexto.parteDialogo] && contexto.parteDialogo < dialogos[contexto.idDialogo].texto.count - 1) {
 						terminou = true
@@ -160,6 +164,14 @@ struct FalaView: View {
 				}
 		}
 	
+	func isPresentingMenu() -> Bool {
+		let result = contexto.parteDialogo == dialogos[contexto.idDialogo].texto.count - 1 && dialogos[contexto.idDialogo].opcoes.count > 0
+		if result {
+			isSpeaking = false
+		}
+		return result
+	}
+	
 	func cancelarTarefa() {
 		tarefaOpcoes?.cancel()
 		return
@@ -180,6 +192,7 @@ struct FalaView: View {
 			try? await Task.yield()
 			texto = ""
 			texto += dialogos[contexto.idDialogo].texto[contexto.parteDialogo]
+			print(texto)
 			var cont: Int = 0
 			for opc in dialogos[contexto.idDialogo].opcoes {
 				opcoes[cont] = ""
@@ -310,14 +323,21 @@ struct FalaView: View {
 			await MainActor.run {
 				texto = ""
 			}
+			await MainActor.run {
+				isSpeaking = true
+			}
 			for c in fala {
 				await MainActor.run {
 					texto.append(c)
+					// Parece um bom lugar para parar a fala
 				}
 				if Task.isCancelled {
 					return
 				}
 				try? await Task.sleep(nanoseconds: 30_000_000)
+			}
+			await MainActor.run {
+				isSpeaking = false
 			}
 			try? await Task.sleep(nanoseconds: 30_000_000)
 			
